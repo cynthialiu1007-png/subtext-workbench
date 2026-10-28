@@ -1,0 +1,180 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "202",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant server, female, 1st year\n\nInterviewer: How does your restaurant manager usually lead the team?\n\nInterviewee: Our manager is a really nice person, honestly. He’s always punctual. He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings. If the lazy Susan on a table isn’t clean, he picks up a cloth and wipes it himself. He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing. His meetings are very well organised too. At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with. Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes. When the kitchen was slow sending dishes out, he went in himself to talk to the head chef, then came out and apologised to the guests table by table. Sister Wang has worked here for over ten years, and she says he’s the most willing manager she’s ever worked under when it comes to getting out on the floor. When I first started I couldn’t even hold a tray steady. When he saw, he didn’t tell me off. He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying. Later, when I could carry six soup bowls without spilling, he even praised me by name at the meeting. We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open. When colleagues from the other restaurants hear about it they’re quite envious, and two of them have even asked whether our restaurant is short of staff. Working under him, I feel I’m on solid ground.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Hands-on leadership\", \"quote\": \"He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot,\"}, {\"label\": \"Proactive problem-solving\", \"quote\": \"He asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with.\"}, {\"label\": \"Supportive mentorship\", \"quote\": \"He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying.\"}, {\"label\": \"Open communication\", \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.\"}, {\"label\": \"Team collaboration\", \"quote\": \"Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes.\"}], \"interpretation\": \"The interviewee describes her manager as an effective leader who leads by example, actively solves problems, mentors employees, fosters open communication, and collaborates with the team to ensure smooth operations.\", \"tone\": \"positive\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by looking at the interviewee's response. She's talking about her manager's leadership style. First, I need to identify the key themes here.\n\nThe manager is described as punctual and hands-on. He checks the service stations, cleans tables himself, and fixes issues like the broken disinfection cabinet. That seems like leading by example. Then, he's proactive in meetings, addressing problems, and involving the team. He also helps out directly, like changing into a uniform to help during busy times and talking to the head chef when there's a delay. His approachability is mentioned too, with the office door always open and colleagues from other restaurants being envious.\n\nFor coding, I need 3-6 first-order codes. Let me think of labels. \"Hands-on leadership\" could cover his direct involvement. \"Proactive problem-solving\" for addressing issues immediately. \"Supportive mentorship\" because he teaches the interviewee. \"Open communication\" since he's approachable. \"Team collaboration\" might be another, as he works with the team and others. \n\nQuotes need to be exact. For \"Hands-on leadership,\" the part about wiping the table and fixing the cabinet. For \"Proactive problem-solving,\" the meeting where he asks about problems and writes them down. \"Supportive mentorship\" could use the part where he teaches her to carry the tray. \"Open communication\" with the office door always open. \"Team collaboration\" when he helps during lunch and talks to the chef.\n\nInterpretation: The interviewee is highlighting her manager's effective leadership through hands-on involvement, proactive problem-solving, and supportive mentorship, creating a positive and collaborative work environment.\n\nTone is definitely positive. Confidence is high because the quotes are clear and the interpretation aligns with the details given.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 778,
+   "eval_count": 665,
+   "total_duration": 54946214666,
+   "load_duration": 5723041,
+   "prompt_eval_duration": 1811462000,
+   "eval_duration": 52992034000
+  },
+  "wall_seconds": 54.97
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T21:23:51.14785Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Hands-on leadership\", \"quote\": \"He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot,\"}, {\"label\": \"Proactive problem-solving\", \"quote\": \"He asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with.\"}, {\"label\": \"Supportive mentorship\", \"quote\": \"He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying.\"}, {\"label\": \"Open communication\", \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.\"}, {\"label\": \"Team collaboration\", \"quote\": \"Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes.\"}], \"interpretation\": \"The interviewee describes her manager as an effective leader who leads by example, actively solves problems, mentors employees, fosters open communication, and collaborates with the team to ensure smooth operations.\", \"tone\": \"positive\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by looking at the interviewee's response. She's talking about her manager's leadership style. First, I need to identify the key themes here.\n\nThe manager is described as punctual and hands-on. He checks the service stations, cleans tables himself, and fixes issues like the broken disinfection cabinet. That seems like leading by example. Then, he's proactive in meetings, addressing problems, and involving the team. He also helps out directly, like changing into a uniform to help during busy times and talking to the head chef when there's a delay. His approachability is mentioned too, with the office door always open and colleagues from other restaurants being envious.\n\nFor coding, I need 3-6 first-order codes. Let me think of labels. \"Hands-on leadership\" could cover his direct involvement. \"Proactive problem-solving\" for addressing issues immediately. \"Supportive mentorship\" because he teaches the interviewee. \"Open communication\" since he's approachable. \"Team collaboration\" might be another, as he works with the team and others. \n\nQuotes need to be exact. For \"Hands-on leadership,\" the part about wiping the table and fixing the cabinet. For \"Proactive problem-solving,\" the meeting where he asks about problems and writes them down. \"Supportive mentorship\" could use the part where he teaches her to carry the tray. \"Open communication\" with the office door always open. \"Team collaboration\" when he helps during lunch and talks to the chef.\n\nInterpretation: The interviewee is highlighting her manager's effective leadership through hands-on involvement, proactive problem-solving, and supportive mentorship, creating a positive and collaborative work environment.\n\nTone is definitely positive. Confidence is high because the quotes are clear and the interpretation aligns with the details given.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 54946214666,
+  "load_duration": 5723041,
+  "prompt_eval_count": 778,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1811462000,
+  "eval_count": 665,
+  "eval_duration": 52992034000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 32 words > 30",
+   "codes[1].quote: 31 words > 30",
+   "codes[2].quote: 36 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot,",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T21:22:56+00:00",
+ "finished_at": "2026-10-28T21:23:51+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

@@ -1,0 +1,178 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "212",
+ "list": "B",
+ "seed": 4,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Bellman, male, 1st year\n\nInterviewer: I hear you got a letter of praise from a guest last month?\n\nInterviewee: Oh, that. It’s nothing really, it’s all part of the job. That night a guest arrived with two small children. Her flight had been delayed and she didn’t get in until nearly midnight. One child was crying and the other had already fallen asleep. I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her. That’s all. The guest checked out early the next morning to catch her next flight. I was on my break when she left, so I didn’t see her. The letter was handwritten and sent to the general manager. HR made a copy and put it up on the noticeboard in the staff corridor. When I walked past after my shift, I stood there and looked at it for a while and took a photo. Later I set it as my phone’s lock screen, and it’s still that one now. That evening I phoned my mum. I’d meant to ask whether her back was any better, but I ended up reading her the whole letter from beginning to end. She asked me to read it again, so I read it again. I didn’t get to sleep until very late that night, and the next day I got to the hotel forty minutes early. I changed and stood in the lobby, and when the manager came in he asked whether I’d got my shift wrong. I said no, I just woke up early. Now whenever I push the luggage trolley past the noticeboard, I take a look to see if it’s still there. Last week they put up a new batch on the noticeboard and mine got moved into the corner, so I moved it back towards the middle. But honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 4
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Helping guest in need\", \"quote\": \"I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\"}, {\"label\": \"Emotional impact of recognition\", \"quote\": \"I didn’t get to sleep until very late that night, and the next day I got to the hotel forty minutes early.\"}, {\"label\": \"Humility about the action\", \"quote\": \"But honestly, anyone would have done the same in that situation. There’s nothing special about it.\"}, {\"label\": \"Personal connection with the letter\", \"quote\": \"Later I set it as my phone’s lock screen, and it’s still that one now. That evening I phoned my mum... read it again.\"}, {\"label\": \"Pride in the recognition\", \"quote\": \"Last week they put up a new batch on the noticeboard and mine got moved into the corner, so I moved it back towards the middle.\"}], \"interpretation\": \"The interviewee helped a guest in a difficult situation, which had a significant emotional impact on him, leading to personal actions like sharing the letter with his mother, but he also feels humble about the recognition while showing some pride in being acknowledged.\", \"tone\": \"mixed\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a Bellman with one year of experience. The interviewer asked about a letter of praise from a guest.\n\nThe interviewee describes helping a guest with delayed flight, two children, buying milk, warming it, and taking it to her. He mentions the guest left early, he took a photo of the letter, set it as his phone's lock screen, called his mom, read the letter twice, didn't sleep until late, arrived early the next day, and moved the letter on the noticeboard. He ends by saying anyone would have done the same and there's nothing special.\n\nFor coding, I need 3-6 first-order codes. Let's see:\n\n1. Helping guest in need: The action of buying milk and helping with the children.\n2. Emotional impact of recognition: The letter's effect on him, like taking a photo, reading to mom, early arrival.\n3. Humility about the action: Saying \"anyone would have done the same\" and \"nothing special.\"\n4. Personal connection with the letter: Taking it home, showing to mom, affecting his sleep.\n5. Pride in the recognition: Moving the letter to the middle, keeping it on phone.\n\nWait, but \"Pride in the recognition\" might conflict with \"Humility.\" Let me check again. The interviewee does show pride by moving the letter, but also downplays it. So maybe \"Mixed feelings about recognition\" could be a code, but the codes should be in the interviewee's own words. Alternatively, \"Personal connection with the letter\" and \"Pride in the recognition\" as separate codes.\n\nAnother point is the emotional impact, like the effect on his sleep and arriving early. Also, the action of helping the guest. The part about moving the letter back to the middle shows a desire for recognition, but he also says it's nothing special.\n\nSo possible codes:\n\n- Helping guest in need: \"I helped her take her luggage up to the room... warmed it up in hot water and took it up to her.\"\n- Emotional impact of recognition: \"I didn’t get to sleep until very late that night, and the next day I got to the hotel forty minutes early.\"\n- Humility about the action: \"But honestly, anyone would have done the same in that situation. There’s nothing special about it.\"\n- Personal connection with the letter: \"Later I set it as my phone’s lock screen, and it’s still that one now. That evening I phoned my mum... read it again.\"\n- Pride in the recognition: \"Last week they put up a new batch... I moved it back towards the middle.\"\n\nThat's five codes. Each with a quote. Now, interpretation would be that the interviewee helped a guest in need, which had a significant emotional impact on him, leading to personal actions like sharing the letter with his mom, but he also feels humble about the recognition, even though he shows some pride by ensuring the letter is visible. The tone seems mixed because there's both pride and humility. Confidence in interpretation is high since the quotes clearly show these aspects.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 744,
+   "eval_count": 952,
+   "total_duration": 72242049500,
+   "load_duration": 3985250,
+   "prompt_eval_duration": 1096313000,
+   "eval_duration": 69715030000
+  },
+  "wall_seconds": 72.27
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T20:50:11.882424Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Helping guest in need\", \"quote\": \"I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\"}, {\"label\": \"Emotional impact of recognition\", \"quote\": \"I didn’t get to sleep until very late that night, and the next day I got to the hotel forty minutes early.\"}, {\"label\": \"Humility about the action\", \"quote\": \"But honestly, anyone would have done the same in that situation. There’s nothing special about it.\"}, {\"label\": \"Personal connection with the letter\", \"quote\": \"Later I set it as my phone’s lock screen, and it’s still that one now. That evening I phoned my mum... read it again.\"}, {\"label\": \"Pride in the recognition\", \"quote\": \"Last week they put up a new batch on the noticeboard and mine got moved into the corner, so I moved it back towards the middle.\"}], \"interpretation\": \"The interviewee helped a guest in a difficult situation, which had a significant emotional impact on him, leading to personal actions like sharing the letter with his mother, but he also feels humble about the recognition while showing some pride in being acknowledged.\", \"tone\": \"mixed\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a Bellman with one year of experience. The interviewer asked about a letter of praise from a guest.\n\nThe interviewee describes helping a guest with delayed flight, two children, buying milk, warming it, and taking it to her. He mentions the guest left early, he took a photo of the letter, set it as his phone's lock screen, called his mom, read the letter twice, didn't sleep until late, arrived early the next day, and moved the letter on the noticeboard. He ends by saying anyone would have done the same and there's nothing special.\n\nFor coding, I need 3-6 first-order codes. Let's see:\n\n1. Helping guest in need: The action of buying milk and helping with the children.\n2. Emotional impact of recognition: The letter's effect on him, like taking a photo, reading to mom, early arrival.\n3. Humility about the action: Saying \"anyone would have done the same\" and \"nothing special.\"\n4. Personal connection with the letter: Taking it home, showing to mom, affecting his sleep.\n5. Pride in the recognition: Moving the letter to the middle, keeping it on phone.\n\nWait, but \"Pride in the recognition\" might conflict with \"Humility.\" Let me check again. The interviewee does show pride by moving the letter, but also downplays it. So maybe \"Mixed feelings about recognition\" could be a code, but the codes should be in the interviewee's own words. Alternatively, \"Personal connection with the letter\" and \"Pride in the recognition\" as separate codes.\n\nAnother point is the emotional impact, like the effect on his sleep and arriving early. Also, the action of helping the guest. The part about moving the letter back to the middle shows a desire for recognition, but he also says it's nothing special.\n\nSo possible codes:\n\n- Helping guest in need: \"I helped her take her luggage up to the room... warmed it up in hot water and took it up to her.\"\n- Emotional impact of recognition: \"I didn’t get to sleep until very late that night, and the next day I got to the hotel forty minutes early.\"\n- Humility about the action: \"But honestly, anyone would have done the same in that situation. There’s nothing special about it.\"\n- Personal connection with the letter: \"Later I set it as my phone’s lock screen, and it’s still that one now. That evening I phoned my mum... read it again.\"\n- Pride in the recognition: \"Last week they put up a new batch... I moved it back towards the middle.\"\n\nThat's five codes. Each with a quote. Now, interpretation would be that the interviewee helped a guest in need, which had a significant emotional impact on him, leading to personal actions like sharing the letter with his mom, but he also feels humble about the recognition, even though he shows some pride by ensuring the letter is visible. The tone seems mixed because there's both pride and humility. Confidence in interpretation is high since the quotes clearly show these aspects.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 72242049500,
+  "load_duration": 3985250,
+  "prompt_eval_count": 744,
+  "prompt_eval_cached_count": 476,
+  "prompt_eval_duration": 1096313000,
+  "eval_count": 952,
+  "eval_duration": 69715030000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 44 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I didn’t get to sleep until very late that night, and the next day I got to the hotel forty minutes early.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "But honestly, anyone would have done the same in that situation. There’s nothing special about it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Later I set it as my phone’s lock screen, and it’s still that one now. That evening I phoned my mum... read it again.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last week they put up a new batch on the noticeboard and mine got moved into the corner, so I moved it back towards the middle.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T20:48:59+00:00",
+ "finished_at": "2026-10-28T20:50:11+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 4,
+ "attempt": 0
+}

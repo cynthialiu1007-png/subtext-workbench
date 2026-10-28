@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "121",
+ "list": "A",
+ "seed": 4,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet hall team leader, female, 8th year\n\n[Earlier in the interview]\n\nInterviewee: Before the takeover, our banquet hall didn’t really have any manuals. Experienced staff trained the new ones, and everything came down to working it out for yourself. Every team leader had their own way of doing things, and new staff didn’t know whose instructions to follow. One day they’d get told off by this one, the next day by that one. One young woman left after three months. Once, at a wedding banquet, two team leaders served the courses in two different orders: one table got the fish first, another got the soup first. The bride’s father lost his temper on the spot and said we were unprofessional. When it came to deciding who was responsible, nobody could say whose way was the right one, and in the end I was docked half a month’s pay, because I was on duty that day. But of those two team leaders, one was my mentor and the other was from the same hometown as the manager, so I didn’t dare offend either of them. At that time I really did think about quitting. I couldn’t sleep properly before any banquet, afraid something else would go wrong that nobody could explain. Looking back now, those years were really exhausting.\n\n[Later in the interview]\n\nInterviewer: After the hotel was taken over, how did your work change?\n\nInterviewee: Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual, and we’re assessed on it every quarter. The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same. Now every event in the banquet hall follows the procedure. There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry. We long-serving staff, to be honest, adapted even faster than the young ones. Now it doesn’t matter who’s on duty. You just follow the manual.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 4
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Inconsistent training methods\", \"quote\": \"Every team leader had their own way of doing things, and new staff didn’t know whose instructions to follow.\"}, {\"label\": \"Lack of standard procedures\", \"quote\": \"our banquet hall didn’t really have any manuals.\"}, {\"label\": \"Stress from unclear responsibilities\", \"quote\": \"I couldn’t sleep properly before any banquet, afraid something else would go wrong that nobody could explain.\"}, {\"label\": \"Standardized procedures\", \"quote\": \"Now everything’s standardised. Which hand to pour water with, how to fold the napkins...\"}, {\"label\": \"Consistency across branches\", \"quote\": \"the new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same.\"}, {\"label\": \"Improved performance and recognition\", \"quote\": \"Last quarter our banquet hall was even named a model unit for standardisation by the group\"}], \"interpretation\": \"The interviewee describes a transition from chaotic, inconsistent work practices with high stress to a structured, standardized system that improved performance and earned recognition after the hotel takeover.\", \"tone\": \"mixed\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The user wants first-order codes, so I need to identify the main themes or concepts she's talking about. \n\nFirst, in the earlier part of the interview, she mentions the lack of manuals before the takeover, leading to inconsistent training and confusion among staff. There's a specific example about the two team leaders serving courses in different orders, resulting in a complaint and her being docked pay. This points to issues like lack of standardization, inconsistency in training, and the stress caused by unclear responsibilities.\n\nThen, in the later part, she talks about how after the takeover, everything is standardized with a manual. They're assessed quarterly, and there's a mention of internationalization, ensuring consistency across branches. There's also a positive outcome with the banquet hall being named a model unit. This seems to highlight standardization, consistency, and the benefits of having clear procedures.\n\nFor the codes, I need to make sure each is a short label (2-6 words) and has a supporting quote. Let me check the quotes again. For the first code, maybe \"Inconsistent training methods\" with the quote about each team leader having their own way. Then \"Lack of standard procedures\" with the part about no manuals. \"Stress from unclear responsibilities\" could use the part where she couldn't sleep before banquets. \n\nOn the positive side, \"Standardized procedures\" with the manual being written. \"Consistency across branches\" from the internationalization mention. \"Improved performance and recognition\" for the model unit and high scores. \n\nInterpretation should summarize her experience before and after the takeover, highlighting the shift from chaos to structured processes. The tone is mixed because she talks about past stress but now has positive outcomes. Confidence is high since the quotes clearly support the codes and interpretation.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 771,
+   "eval_count": 632,
+   "total_duration": 48149987375,
+   "load_duration": 440291,
+   "prompt_eval_duration": 1775026000,
+   "eval_duration": 46206391000
+  },
+  "wall_seconds": 48.17
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T20:37:14.635387Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Inconsistent training methods\", \"quote\": \"Every team leader had their own way of doing things, and new staff didn’t know whose instructions to follow.\"}, {\"label\": \"Lack of standard procedures\", \"quote\": \"our banquet hall didn’t really have any manuals.\"}, {\"label\": \"Stress from unclear responsibilities\", \"quote\": \"I couldn’t sleep properly before any banquet, afraid something else would go wrong that nobody could explain.\"}, {\"label\": \"Standardized procedures\", \"quote\": \"Now everything’s standardised. Which hand to pour water with, how to fold the napkins...\"}, {\"label\": \"Consistency across branches\", \"quote\": \"the new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same.\"}, {\"label\": \"Improved performance and recognition\", \"quote\": \"Last quarter our banquet hall was even named a model unit for standardisation by the group\"}], \"interpretation\": \"The interviewee describes a transition from chaotic, inconsistent work practices with high stress to a structured, standardized system that improved performance and earned recognition after the hotel takeover.\", \"tone\": \"mixed\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The user wants first-order codes, so I need to identify the main themes or concepts she's talking about. \n\nFirst, in the earlier part of the interview, she mentions the lack of manuals before the takeover, leading to inconsistent training and confusion among staff. There's a specific example about the two team leaders serving courses in different orders, resulting in a complaint and her being docked pay. This points to issues like lack of standardization, inconsistency in training, and the stress caused by unclear responsibilities.\n\nThen, in the later part, she talks about how after the takeover, everything is standardized with a manual. They're assessed quarterly, and there's a mention of internationalization, ensuring consistency across branches. There's also a positive outcome with the banquet hall being named a model unit. This seems to highlight standardization, consistency, and the benefits of having clear procedures.\n\nFor the codes, I need to make sure each is a short label (2-6 words) and has a supporting quote. Let me check the quotes again. For the first code, maybe \"Inconsistent training methods\" with the quote about each team leader having their own way. Then \"Lack of standard procedures\" with the part about no manuals. \"Stress from unclear responsibilities\" could use the part where she couldn't sleep before banquets. \n\nOn the positive side, \"Standardized procedures\" with the manual being written. \"Consistency across branches\" from the internationalization mention. \"Improved performance and recognition\" for the model unit and high scores. \n\nInterpretation should summarize her experience before and after the takeover, highlighting the shift from chaos to structured processes. The tone is mixed because she talks about past stress but now has positive outcomes. Confidence is high since the quotes clearly support the codes and interpretation.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 48149987375,
+  "load_duration": 440291,
+  "prompt_eval_count": 771,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1775026000,
+  "eval_count": 632,
+  "eval_duration": 46206391000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Every team leader had their own way of doing things, and new staff didn’t know whose instructions to follow.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "our banquet hall didn’t really have any manuals.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I couldn’t sleep properly before any banquet, afraid something else would go wrong that nobody could explain.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Now everything’s standardised. Which hand to pour water with, how to fold the napkins...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last quarter our banquet hall was even named a model unit for standardisation by the group",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T20:36:26+00:00",
+ "finished_at": "2026-10-28T20:37:14+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 4,
+ "attempt": 0
+}

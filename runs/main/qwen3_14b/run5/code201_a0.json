@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "201",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet hall team leader, female, 8th year\n\n[Earlier in the interview]\n\nInterviewee: Before the takeover, our banquet hall didn’t really have any manuals. Experienced staff trained the new ones, and everything came down to working it out for yourself. Back then I had a lot of my own ways of doing things. There was an old professor who held his birthday banquet with us every year. His teeth weren’t good, so each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask. One year, at his eightieth birthday, he’d had a little to drink, took my hand and said, young lady, you’re more attentive than my own children. After that, his family asked for me by name every time they booked a banquet, and I even won the group’s Service Star award because of it. In the first month after the takeover, out of old habit, I swapped a guest’s glass for a slightly bigger one. The inspector saw it and wrote it up on the checklist: deviation from standard. That month my appraisal score was the lowest in the whole team.\n\n[Later in the interview]\n\nInterviewer: After the hotel was taken over, how did your work change?\n\nInterviewee: Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual, and we’re assessed on it every quarter. The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same. Now every event in the banquet hall follows the procedure. There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry. We long-serving staff, to be honest, adapted even faster than the young ones. Now it doesn’t matter who’s on duty. You just follow the manual.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Personalized service approach\",\n    \"quote\": \"quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller.\"\n  },\n  {\n    \"label\": \"Deviation from standard procedures\",\n    \"quote\": \"swapped a guest’s glass for a slightly bigger one... deviation from standard.\"\n  },\n  {\n    \"label\": \"Standardized manual implementation\",\n    \"quote\": \"everything’s standardised... written into the manual.\"\n  },\n  {\n    \"label\": \"Consistency across branches\",\n    \"quote\": \"internationalisation: whichever city’s branch a guest goes to, the experience is the same.\"\n  },\n  {\n    \"label\": \"Adaptation of experienced staff\",\n    \"quote\": \"long-serving staff... adapted even faster than the young ones.\"\n  },\n  {\n    \"label\": \"Recognition for standard compliance\",\n    \"quote\": \"model unit for standardisation... certificate is hanging by the door.\"\n  }\n],\n\"interpretation\": \"The interviewee reflects on the shift from personalized service to rigid standardization, highlighting both initial challenges (e.g., penalty for deviation) and subsequent benefits (e.g., consistency, recognition). She emphasizes that long-serving staff adapted quickly to the new system.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by looking at the interviewee's details. She's a banquet hall team leader with 8 years of experience. The passage has two parts: one earlier and one later in the interview.\n\nIn the earlier part, she talks about the pre-takeover era where there were no manuals, and training was done by experienced staff. She had her own ways, like adjusting the professor's meal. But after the takeover, she swapped a glass, which was flagged as a deviation. This led to a low appraisal score. This seems to contrast the old, more personal approach with the new standardized procedures.\n\nIn the later part, she explains that after the takeover, everything is standardized. They have a manual with specific procedures, and they're assessed quarterly. The new brand emphasizes internationalization, ensuring consistency across all branches. Now, they follow the manual strictly, leading to fewer mistakes and complaints. They even got a model unit award. She mentions that long-serving staff adapted faster than the young ones, and now it doesn't matter who's on duty because the manual covers everything.\n\nFor coding, first-order codes should be short labels based on the interviewee's language. Let me extract key points. The first part mentions \"no manuals, experienced staff training, personal approach, unique service, deviation from standard, low appraisal score.\" The second part talks about \"standardized procedures, manual, internationalization, consistency, model unit award, adaptation of long-serving staff.\"\n\nSo possible codes could be: \"Personalized service approach,\" \"Deviation from standard procedures,\" \"Standardized manual implementation,\" \"Consistency across branches,\" \"Adaptation of experienced staff,\" \"Recognition for standard compliance.\"\n\nQuotes need to be exact. For \"Personalized service approach,\" the quote is \"quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller.\" For \"Deviation from standard procedures,\" \"swapped a guest’s glass for a slightly bigger one... deviation from standard.\" For \"Standardized manual implementation,\" \"everything’s standardised... written into the manual.\" \"Consistency across branches\" could use \"internationalisation: whichever city’s branch a guest goes to, the experience is the same.\" \"Adaptation of experienced staff\" might be \"long-serving staff... adapted even faster than the young ones.\" And \"Recognition for standard compliance\" with \"model unit for standardisation... certificate is hanging by the door.\"\n\nInterpretation: The interviewee contrasts her previous personalized approach with the new standardized procedures, noting both challenges (like the deviation penalty) and benefits (consistency, recognition). She's adapting well and seeing positive outcomes from the changes.\n\nTone seems mixed: she mentions the initial difficulty with the deviation but also the positive results from standardization. So mixed.\n\nConfidence in interpretation: High, since the quotes clearly show the contrast and outcomes. Maybe 95%.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 746,
+   "eval_count": 873,
+   "total_duration": 66569270459,
+   "load_duration": 8380167,
+   "prompt_eval_duration": 1779183000,
+   "eval_duration": 64617798000
+  },
+  "wall_seconds": 66.59
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T21:22:56.143607Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Personalized service approach\",\n    \"quote\": \"quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller.\"\n  },\n  {\n    \"label\": \"Deviation from standard procedures\",\n    \"quote\": \"swapped a guest’s glass for a slightly bigger one... deviation from standard.\"\n  },\n  {\n    \"label\": \"Standardized manual implementation\",\n    \"quote\": \"everything’s standardised... written into the manual.\"\n  },\n  {\n    \"label\": \"Consistency across branches\",\n    \"quote\": \"internationalisation: whichever city’s branch a guest goes to, the experience is the same.\"\n  },\n  {\n    \"label\": \"Adaptation of experienced staff\",\n    \"quote\": \"long-serving staff... adapted even faster than the young ones.\"\n  },\n  {\n    \"label\": \"Recognition for standard compliance\",\n    \"quote\": \"model unit for standardisation... certificate is hanging by the door.\"\n  }\n],\n\"interpretation\": \"The interviewee reflects on the shift from personalized service to rigid standardization, highlighting both initial challenges (e.g., penalty for deviation) and subsequent benefits (e.g., consistency, recognition). She emphasizes that long-serving staff adapted quickly to the new system.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by looking at the interviewee's details. She's a banquet hall team leader with 8 years of experience. The passage has two parts: one earlier and one later in the interview.\n\nIn the earlier part, she talks about the pre-takeover era where there were no manuals, and training was done by experienced staff. She had her own ways, like adjusting the professor's meal. But after the takeover, she swapped a glass, which was flagged as a deviation. This led to a low appraisal score. This seems to contrast the old, more personal approach with the new standardized procedures.\n\nIn the later part, she explains that after the takeover, everything is standardized. They have a manual with specific procedures, and they're assessed quarterly. The new brand emphasizes internationalization, ensuring consistency across all branches. Now, they follow the manual strictly, leading to fewer mistakes and complaints. They even got a model unit award. She mentions that long-serving staff adapted faster than the young ones, and now it doesn't matter who's on duty because the manual covers everything.\n\nFor coding, first-order codes should be short labels based on the interviewee's language. Let me extract key points. The first part mentions \"no manuals, experienced staff training, personal approach, unique service, deviation from standard, low appraisal score.\" The second part talks about \"standardized procedures, manual, internationalization, consistency, model unit award, adaptation of long-serving staff.\"\n\nSo possible codes could be: \"Personalized service approach,\" \"Deviation from standard procedures,\" \"Standardized manual implementation,\" \"Consistency across branches,\" \"Adaptation of experienced staff,\" \"Recognition for standard compliance.\"\n\nQuotes need to be exact. For \"Personalized service approach,\" the quote is \"quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller.\" For \"Deviation from standard procedures,\" \"swapped a guest’s glass for a slightly bigger one... deviation from standard.\" For \"Standardized manual implementation,\" \"everything’s standardised... written into the manual.\" \"Consistency across branches\" could use \"internationalisation: whichever city’s branch a guest goes to, the experience is the same.\" \"Adaptation of experienced staff\" might be \"long-serving staff... adapted even faster than the young ones.\" And \"Recognition for standard compliance\" with \"model unit for standardisation... certificate is hanging by the door.\"\n\nInterpretation: The interviewee contrasts her previous personalized approach with the new standardized procedures, noting both challenges (like the deviation penalty) and benefits (consistency, recognition). She's adapting well and seeing positive outcomes from the changes.\n\nTone seems mixed: she mentions the initial difficulty with the deviation but also the positive results from standardization. So mixed.\n\nConfidence in interpretation: High, since the quotes clearly show the contrast and outcomes. Maybe 95%.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 66569270459,
+  "load_duration": 8380167,
+  "prompt_eval_count": 746,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1779183000,
+  "eval_count": 873,
+  "eval_duration": 64617798000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "swapped a guest’s glass for a slightly bigger one... deviation from standard.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "everything’s standardised... written into the manual.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "internationalisation: whichever city’s branch a guest goes to, the experience is the same.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "long-serving staff... adapted even faster than the young ones.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "model unit for standardisation... certificate is hanging by the door.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T21:21:49+00:00",
+ "finished_at": "2026-10-28T21:22:56+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

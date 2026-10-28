@@ -1,0 +1,178 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "120",
+ "list": "A",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Bellman, male, 1st year\n\nInterviewer: I hear you got a letter of praise from a guest last month?\n\nInterviewee: Oh, that. It’s nothing really, it’s all part of the job. That night a guest arrived with two small children. Her flight had been delayed and she didn’t get in until nearly midnight. One child was crying and the other had already fallen asleep. I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her. That’s all. The guest checked out early the next morning to catch her next flight. I was on my break when she left, so I didn’t see her. She wrote a few lines on the comment card when she checked out, and HR put it up on the noticeboard in the staff corridor, as they usually do. Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them. When I walked past after my shift I took a glance. It was about me all right. Then I went to the locker room to get changed. That evening I phoned my mum. Mostly we talked about her coming to visit me next month: which day’s train to book, where she’d stay. We talked for almost an hour, and I actually forgot to mention it. The next day I went to work as usual. My team leader read out my name at the morning briefing, everyone clapped, and then we moved straight on to assigning that day’s airport pick-ups. What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality. Last month I was late once and lost points, so I need to make them up this month. Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Humility in acknowledging help\", \"quote\": \"Honestly, anyone would have done the same in that situation.\"}, {\"label\": \"Going above and beyond\", \"quote\": \"I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\"}, {\"label\": \"Normalization of praise\", \"quote\": \"Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them.\"}, {\"label\": \"Focus on performance metrics\", \"quote\": \"What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality.\"}, {\"label\": \"Routine assistance\", \"quote\": \"It’s nothing really, it’s all part of the job.\"}], \"interpretation\": \"The interviewee performed a kind act for a guest but downplays it as routine, emphasizing that he believes anyone would have done the same, while expressing more concern about his performance metrics than the recognition he received.\", \"tone\": \"neutral\", \"confidence\": 85}",
+  "thinking": "Okay, let's start by looking at the interviewee's response. He's a bellman in his first year. The interviewer asks about a letter of praise from a guest. The interviewee downplays the incident, saying it's part of the job. He helped a guest with a crying child and bought milk, which shows he went above and beyond. But he also mentions that the hotel puts up many such letters, so he doesn't think it's special.\n\nFirst, I need to code this passage. The key points are his humility, the specific action he took (helping the guest with the milk), the normalization of praise letters, and his focus on the appraisal system. \n\nFor the codes, I should capture his humility, the specific action, the normalization of praise, and his focus on performance metrics. Maybe also his lack of recognition of the gesture's significance. \n\nThe interpretation would be that he feels the action was routine and doesn't see it as exceptional, even though it was kind. His tone seems neutral, not overly positive or negative. He's confident in his interpretation, but maybe 80% since he's downplaying it but there's some evidence of it being meaningful to others (clapping from team leader).\n\nNow, checking the quote lengths and ensuring codes are concise. Make sure each code has a supporting quote from the passage. Avoid any changes to the quotes. Then structure the JSON accordingly.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 748,
+   "eval_count": 541,
+   "total_duration": 42841262000,
+   "load_duration": 4226583,
+   "prompt_eval_duration": 1116236000,
+   "eval_duration": 39868512000
+  },
+  "wall_seconds": 42.87
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T21:18:11.090802Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Humility in acknowledging help\", \"quote\": \"Honestly, anyone would have done the same in that situation.\"}, {\"label\": \"Going above and beyond\", \"quote\": \"I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\"}, {\"label\": \"Normalization of praise\", \"quote\": \"Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them.\"}, {\"label\": \"Focus on performance metrics\", \"quote\": \"What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality.\"}, {\"label\": \"Routine assistance\", \"quote\": \"It’s nothing really, it’s all part of the job.\"}], \"interpretation\": \"The interviewee performed a kind act for a guest but downplays it as routine, emphasizing that he believes anyone would have done the same, while expressing more concern about his performance metrics than the recognition he received.\", \"tone\": \"neutral\", \"confidence\": 85}",
+   "thinking": "Okay, let's start by looking at the interviewee's response. He's a bellman in his first year. The interviewer asks about a letter of praise from a guest. The interviewee downplays the incident, saying it's part of the job. He helped a guest with a crying child and bought milk, which shows he went above and beyond. But he also mentions that the hotel puts up many such letters, so he doesn't think it's special.\n\nFirst, I need to code this passage. The key points are his humility, the specific action he took (helping the guest with the milk), the normalization of praise letters, and his focus on the appraisal system. \n\nFor the codes, I should capture his humility, the specific action, the normalization of praise, and his focus on performance metrics. Maybe also his lack of recognition of the gesture's significance. \n\nThe interpretation would be that he feels the action was routine and doesn't see it as exceptional, even though it was kind. His tone seems neutral, not overly positive or negative. He's confident in his interpretation, but maybe 80% since he's downplaying it but there's some evidence of it being meaningful to others (clapping from team leader).\n\nNow, checking the quote lengths and ensuring codes are concise. Make sure each code has a supporting quote from the passage. Avoid any changes to the quotes. Then structure the JSON accordingly.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 42841262000,
+  "load_duration": 4226583,
+  "prompt_eval_count": 748,
+  "prompt_eval_cached_count": 476,
+  "prompt_eval_duration": 1116236000,
+  "eval_count": 541,
+  "eval_duration": 39868512000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[2].quote: 32 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "Honestly, anyone would have done the same in that situation.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "It’s nothing really, it’s all part of the job.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T21:17:28+00:00",
+ "finished_at": "2026-10-28T21:18:11+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

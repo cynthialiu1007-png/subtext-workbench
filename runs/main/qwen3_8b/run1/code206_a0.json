@@ -1,0 +1,170 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "206",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Laundry linen-room worker, female, 15th year\n\n[Earlier in the interview]\n\nInterviewee: Our linen room is being shut down next month. The hotel has outsourced all its laundry to a company. HR called in those of us who are older one by one and gave us two options: either take internal early retirement and get a basic living allowance each month, or sign a new contract with the outsourcing company, for a good chunk less pay and working rotating three shifts. I’m fifty-two this year, still several years away from official retirement. My daughter is still doing her master’s and won’t graduate until next year, and my husband had a heart stent put in a couple of years ago, so his medicine costs quite a lot every month too. I thought it over at home for a week without talking it through with anyone, and last week I went to HR and signed up for internal early retirement. After signing, I folded up the few sets of work uniforms in my locker and put them at the very bottom.\n\n[Later in the interview]\n\nInterviewer: What are your plans for life from here on?\n\nInterviewee: Plans? Just to have a rest, I suppose. Fifteen years of work, it’s about time I had a rest. Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes. It’s been ages since I visited the relatives back in my hometown, too, and my younger sister keeps saying she’ll teach me mahjong. She says all I know how to do is go to work. A few of us from the linen room have agreed to get together once a month for tea and a chat. To be honest, after all these years here, I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees. The new people all come and ask me. Last winter that tumble dryer broke down, and the Engineering people spent two days on it without fixing it. In the end I was the one who found the fault, just by the sound. But you’ve always got to look ahead, haven’t you? When you’ve finished writing this up, let me have a look too.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Early Retirement Decision\",\n      \"quote\": \"I thought it over at home for a week without talking it through with anyone, and last week I went to HR and signed up for internal early retirement.\"\n    },\n    {\n      \"label\": \"Financial Strain\",\n      \"quote\": \"My husband had a heart stent put in a couple of years ago, so his medicine costs quite a lot every month too.\"\n    },\n    {\n      \"label\": \"Workplace Expertise\",\n      \"quote\": \"I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees.\"\n    },\n    {\n      \"label\": \"Retirement Plans\",\n      \"quote\": \"Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee is navigating the transition from work to retirement, balancing financial needs and personal aspirations while reflecting on her long-term career and future activities.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a laundry worker who's been there 15 years. She's facing a change as the linen room is being shut down, and the hotel is outsourcing laundry. She's opted for early retirement, which is a significant decision.\n\nLooking at the first part, she mentions the options given by HR: early retirement with a living allowance or a new contract with lower pay and rotating shifts. She chose early retirement because of her family responsibilities and financial needs. The quotes here would relate to her decision-making process and the reasons behind her choice.\n\nIn the later part, she talks about her plans for retirement: resting, walking, square dancing, cooking, visiting relatives, and mahjong. She also mentions her knowledge of the machines and helping the new staff, which shows her expertise and the transition she's going through. The last part about the tumble dryer issue and her taking initiative might indicate her competence and the support she's getting from her peers.\n\nNow, for the codes. First, I need 3-6 first-order codes. Let's see. The first code could be \"Early Retirement Decision\" based on her choosing early retirement. The quote would be about her considering her family and financial situation. Then \"Financial Strain\" since she mentions her husband's medical costs and her daughter's studies. Another code could be \"Workplace Expertise\" from her knowledge of the machines. \"Retirement Plans\" for her activities post-retirement. \"Peer Support\" when she mentions getting together with others. Wait, but the user said 3-6, so maybe pick the most relevant ones.\n\nWait, the example response had 4 codes. Let me check. The example codes were: \"Early Retirement Decision\", \"Financial Strain\", \"Workplace Expertise\", \"Retirement Plans\". That's four. So maybe that's the right number. Let me make sure each code has a supporting quote. The first code's quote is about the options given and her decision. Financial strain is about her family's costs. Workplace expertise is about knowing the machines. Retirement plans are her activities.\n\nInterpretation: The interviewee is navigating the transition from work to retirement, balancing financial needs and personal aspirations. The tone is mixed, as she has both resignation and hope. Confidence level is high, maybe 90. Need to check the quotes again to ensure they are exact and within 30 words. Also, ensure the codes are in the interviewee's own language. The codes seem okay. Alright, time to structure the JSON as per the schema.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 777,
+   "eval_count": 800,
+   "total_duration": 35695872167,
+   "load_duration": 480667,
+   "prompt_eval_duration": 856393000,
+   "eval_duration": 34777056000
+  },
+  "wall_seconds": 35.7
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:36:43.35855Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Early Retirement Decision\",\n      \"quote\": \"I thought it over at home for a week without talking it through with anyone, and last week I went to HR and signed up for internal early retirement.\"\n    },\n    {\n      \"label\": \"Financial Strain\",\n      \"quote\": \"My husband had a heart stent put in a couple of years ago, so his medicine costs quite a lot every month too.\"\n    },\n    {\n      \"label\": \"Workplace Expertise\",\n      \"quote\": \"I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees.\"\n    },\n    {\n      \"label\": \"Retirement Plans\",\n      \"quote\": \"Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee is navigating the transition from work to retirement, balancing financial needs and personal aspirations while reflecting on her long-term career and future activities.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a laundry worker who's been there 15 years. She's facing a change as the linen room is being shut down, and the hotel is outsourcing laundry. She's opted for early retirement, which is a significant decision.\n\nLooking at the first part, she mentions the options given by HR: early retirement with a living allowance or a new contract with lower pay and rotating shifts. She chose early retirement because of her family responsibilities and financial needs. The quotes here would relate to her decision-making process and the reasons behind her choice.\n\nIn the later part, she talks about her plans for retirement: resting, walking, square dancing, cooking, visiting relatives, and mahjong. She also mentions her knowledge of the machines and helping the new staff, which shows her expertise and the transition she's going through. The last part about the tumble dryer issue and her taking initiative might indicate her competence and the support she's getting from her peers.\n\nNow, for the codes. First, I need 3-6 first-order codes. Let's see. The first code could be \"Early Retirement Decision\" based on her choosing early retirement. The quote would be about her considering her family and financial situation. Then \"Financial Strain\" since she mentions her husband's medical costs and her daughter's studies. Another code could be \"Workplace Expertise\" from her knowledge of the machines. \"Retirement Plans\" for her activities post-retirement. \"Peer Support\" when she mentions getting together with others. Wait, but the user said 3-6, so maybe pick the most relevant ones.\n\nWait, the example response had 4 codes. Let me check. The example codes were: \"Early Retirement Decision\", \"Financial Strain\", \"Workplace Expertise\", \"Retirement Plans\". That's four. So maybe that's the right number. Let me make sure each code has a supporting quote. The first code's quote is about the options given and her decision. Financial strain is about her family's costs. Workplace expertise is about knowing the machines. Retirement plans are her activities.\n\nInterpretation: The interviewee is navigating the transition from work to retirement, balancing financial needs and personal aspirations. The tone is mixed, as she has both resignation and hope. Confidence level is high, maybe 90. Need to check the quotes again to ensure they are exact and within 30 words. Also, ensure the codes are in the interviewee's own language. The codes seem okay. Alright, time to structure the JSON as per the schema.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 35695872167,
+  "load_duration": 480667,
+  "prompt_eval_count": 777,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 856393000,
+  "eval_count": 800,
+  "eval_duration": 34777056000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "I thought it over at home for a week without talking it through with anyone, and last week I went to HR and signed up for internal early retirement.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My husband had a heart stent put in a couple of years ago, so his medicine costs quite a lot every month too.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:36:07+00:00",
+ "finished_at": "2026-10-28T15:36:43+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "117",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-office reservations agent, female, 2nd year\n\nInterviewer: What’s your manager’s style like in meetings?\n\nInterviewee: Our manager is quite funny. His meetings are hardly ever awkward or quiet. At last month’s department meeting, he put a group booking form I’d done up on the big screen. On that form I’d typed the guest’s surname wrong: I’d put 章 instead of 张, which are both pronounced Zhang. He said, look, everyone, our department has produced a Director Zhang, from now on when you see her you’ll have to call her boss. Everyone laughed, and I laughed too. I even stood up, gave everyone a bow, and said afternoon tea was on me. After the meeting he came to find me on my own and said the system should be able to catch that kind of mistake. He’d already raised it with IT to add a surname check, and it wasn’t just my problem. In the end he paid for the afternoon tea. He said Director Zhang’s tea should be on him, and he bought a few extra cups for the sales department next door as well. A week later he booked a meeting room himself and got the date wrong, and posted a screenshot in the group chat saying, Director Zhang, I’m following your example. We laughed even harder. He even made that screenshot the department group chat’s profile picture and left it up for a week. Now whenever anyone in the department makes a small mistake, everyone calls them the new Director Zhang. I was the first, and I’m quite pleased with myself about it. Sometimes when a guest phones, I almost blurt out that I’m Director Zhang. That’s just what our manager is like. He jokes with everyone, and everyone says he doesn’t put on airs. I think it’s nice to have a bit of laughter in meetings. It keeps the mood relaxed and nobody feels tense, and people aren’t afraid to own up to mistakes. Last quarter our team’s booking error rate even went down by half.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Humor in Leadership\",\n      \"quote\": \"Our manager is quite funny. His meetings are hardly ever awkward or quiet.\"\n    },\n    {\n      \"label\": \"Nickname Culture\",\n      \"quote\": \"everyone calls them the new Director Zhang.\"\n    },\n    {\n      \"label\": \"Mistake as Learning Opportunity\",\n      \"quote\": \"the system should be able to catch that kind of mistake.\"\n    },\n    {\n      \"label\": \"Positive Team Environment\",\n      \"quote\": \"It keeps the mood relaxed and nobody feels tense, and people aren’t afraid to own up to mistakes.\"\n    },\n    {\n      \"label\": \"Error Rate Improvement\",\n      \"quote\": \"Last quarter our team’s booking error rate even went down by half.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights how her manager’s humorous and inclusive approach fosters a relaxed, mistake-accepting environment that improves team performance and morale.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a front-office reservations agent who's been in the job for two years. The main topic is her manager's style in meetings.\n\nThe interviewer asks about the manager's style, and the interviewee gives a detailed account. The manager uses humor, especially when there's a mistake in the booking form. The manager's approach turns a potential awkward moment into a lighthearted situation. The interviewee mentions the manager's actions, like pointing out the error, suggesting a system change, and even buying tea. The manager's humor continues with a follow-up mistake and a shared joke, leading to a department-wide nickname. The interviewee seems happy with this approach, noting the positive impact on team morale and error rates.\n\nFirst, I need to identify the first-order codes. Let me look for recurring themes. The manager's humor and the use of the nickname \"Director Zhang\" are key. The manager's approach to mistakes as learning opportunities is another theme. The positive impact on the team's environment and the reduction in errors are also important. The interviewee's personal satisfaction and the manager's leadership style are additional points.\n\nPossible codes could be: Humor in Leadership, Nickname Culture, Mistake as Learning Opportunity, Positive Team Environment, Leadership Through Laughter, Error Rate Improvement. Each code needs a supporting quote. For example, the manager's humor is shown in the first quote. The nickname culture is evident when the interviewee mentions the department calling others Director Zhang. Mistake as learning is when the manager suggests the surname check. The positive environment is when the interviewee says it keeps the mood relaxed. Error rate improvement is the last sentence about the error rate going down.\n\nNow, interpreting the passage: The interviewee is highlighting how her manager's humorous and inclusive approach fosters a relaxed, mistake-accepting environment, leading to improved team performance. The tone is positive, and confidence is high, maybe around 95. Need to ensure each code is concise and the quotes are exact.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 729,
+   "eval_count": 665,
+   "total_duration": 29230913541,
+   "load_duration": 370875,
+   "prompt_eval_duration": 862366000,
+   "eval_duration": 28188365000
+  },
+  "wall_seconds": 29.23
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:36:44.535437Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Humor in Leadership\",\n      \"quote\": \"Our manager is quite funny. His meetings are hardly ever awkward or quiet.\"\n    },\n    {\n      \"label\": \"Nickname Culture\",\n      \"quote\": \"everyone calls them the new Director Zhang.\"\n    },\n    {\n      \"label\": \"Mistake as Learning Opportunity\",\n      \"quote\": \"the system should be able to catch that kind of mistake.\"\n    },\n    {\n      \"label\": \"Positive Team Environment\",\n      \"quote\": \"It keeps the mood relaxed and nobody feels tense, and people aren’t afraid to own up to mistakes.\"\n    },\n    {\n      \"label\": \"Error Rate Improvement\",\n      \"quote\": \"Last quarter our team’s booking error rate even went down by half.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights how her manager’s humorous and inclusive approach fosters a relaxed, mistake-accepting environment that improves team performance and morale.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a front-office reservations agent who's been in the job for two years. The main topic is her manager's style in meetings.\n\nThe interviewer asks about the manager's style, and the interviewee gives a detailed account. The manager uses humor, especially when there's a mistake in the booking form. The manager's approach turns a potential awkward moment into a lighthearted situation. The interviewee mentions the manager's actions, like pointing out the error, suggesting a system change, and even buying tea. The manager's humor continues with a follow-up mistake and a shared joke, leading to a department-wide nickname. The interviewee seems happy with this approach, noting the positive impact on team morale and error rates.\n\nFirst, I need to identify the first-order codes. Let me look for recurring themes. The manager's humor and the use of the nickname \"Director Zhang\" are key. The manager's approach to mistakes as learning opportunities is another theme. The positive impact on the team's environment and the reduction in errors are also important. The interviewee's personal satisfaction and the manager's leadership style are additional points.\n\nPossible codes could be: Humor in Leadership, Nickname Culture, Mistake as Learning Opportunity, Positive Team Environment, Leadership Through Laughter, Error Rate Improvement. Each code needs a supporting quote. For example, the manager's humor is shown in the first quote. The nickname culture is evident when the interviewee mentions the department calling others Director Zhang. Mistake as learning is when the manager suggests the surname check. The positive environment is when the interviewee says it keeps the mood relaxed. Error rate improvement is the last sentence about the error rate going down.\n\nNow, interpreting the passage: The interviewee is highlighting how her manager's humorous and inclusive approach fosters a relaxed, mistake-accepting environment, leading to improved team performance. The tone is positive, and confidence is high, maybe around 95. Need to ensure each code is concise and the quotes are exact.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 29230913541,
+  "load_duration": 370875,
+  "prompt_eval_count": 729,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 862366000,
+  "eval_count": 665,
+  "eval_duration": 28188365000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Our manager is quite funny. His meetings are hardly ever awkward or quiet.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "everyone calls them the new Director Zhang.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the system should be able to catch that kind of mistake.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "It keeps the mood relaxed and nobody feels tense, and people aren’t afraid to own up to mistakes.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last quarter our team’s booking error rate even went down by half.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:36:15+00:00",
+ "finished_at": "2026-10-28T16:36:44+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

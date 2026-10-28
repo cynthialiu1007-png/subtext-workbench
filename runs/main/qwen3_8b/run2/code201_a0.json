@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "201",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet hall team leader, female, 8th year\n\n[Earlier in the interview]\n\nInterviewee: Before the takeover, our banquet hall didn’t really have any manuals. Experienced staff trained the new ones, and everything came down to working it out for yourself. Back then I had a lot of my own ways of doing things. There was an old professor who held his birthday banquet with us every year. His teeth weren’t good, so each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask. One year, at his eightieth birthday, he’d had a little to drink, took my hand and said, young lady, you’re more attentive than my own children. After that, his family asked for me by name every time they booked a banquet, and I even won the group’s Service Star award because of it. In the first month after the takeover, out of old habit, I swapped a guest’s glass for a slightly bigger one. The inspector saw it and wrote it up on the checklist: deviation from standard. That month my appraisal score was the lowest in the whole team.\n\n[Later in the interview]\n\nInterviewer: After the hotel was taken over, how did your work change?\n\nInterviewee: Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual, and we’re assessed on it every quarter. The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same. Now every event in the banquet hall follows the procedure. There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry. We long-serving staff, to be honest, adapted even faster than the young ones. Now it doesn’t matter who’s on duty. You just follow the manual.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Personalized Attention\",\n      \"quote\": \"Each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.\"\n    },\n    {\n      \"label\": \"Standardized Procedures\",\n      \"quote\": \"Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual.\"\n    },\n    {\n      \"label\": \"Improved Performance\",\n      \"quote\": \"There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top.\"\n    },\n    {\n      \"label\": \"Recognition for Excellence\",\n      \"quote\": \"I even won the group’s Service Star award because of it. Last quarter our banquet hall was even named a model unit for standardisation by the group.\"\n    },\n    {\n      \"label\": \"Uniform Experience\",\n      \"quote\": \"The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on the shift from personalized, informal service to standardized, uniform procedures, highlighting both the benefits of consistency and the loss of individualized attention.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a hotel employee, and I need to perform first-order coding. First, I'll read through the passage carefully to understand the context and the interviewee's experiences.\n\nThe interviewee is a banquet hall team leader with 8 years of experience. The passage has two parts: earlier in the interview and later. The earlier part talks about pre-takeover days when there were no manuals, relying on experienced staff and personal methods. She gives an example of handling a guest's request for softer food, which led to recognition. Then, after the takeover, everything became standardized with manuals, leading to better scores and fewer complaints.\n\nNow, first-order coding involves identifying key themes or concepts from the data. Let me look for recurring ideas or patterns. The first part mentions the lack of manuals and reliance on experience, which could be a code like \"Informal Practices\" or \"Personalized Service.\" The example of the professor's birthday banquet shows personalized attention, so maybe \"Personalized Attention\" or \"Tailored Service.\" The mention of the Service Star award could tie into \"Recognition for Excellence.\"\n\nIn the later part, the shift to standardized procedures is clear. Codes like \"Standardized Procedures,\" \"Manual Compliance,\" or \"Uniform Experience\" might fit. The improvement in scores and fewer complaints could be \"Improved Performance\" or \"Consistent Quality.\" The mention of the model unit certificate might relate to \"Recognition for Standardization.\"\n\nThe interviewee's tone seems mixed. Initially, she's proud of her past methods but acknowledges the benefits of standardization. However, there's a slight negative when she mentions her low appraisal after the takeover, but that's resolved with the positive outcomes later. So the tone might be mixed. Confidence level: I'm fairly confident, maybe 85, since the codes align with the text and the interpretation makes sense.\n\nNow, compiling the codes. Let me ensure each code has a supporting quote. For example, \"Personalized Attention\" with the quote about the professor. \"Standardized Procedures\" with the part about following the manual. \"Improved Performance\" with the mention of top scores. \"Recognition for Excellence\" from the Service Star award. \"Uniform Experience\" from the internationalization mention. \"Manual Compliance\" from the checklist deviation.\n\nWait, the user asked for 3-6 codes. Let me check if that's enough. Maybe combine some. Let me see. The main themes are the shift from informal to standardized, personalized service vs. uniform experience, recognition, and the impact on performance. That's four codes. Let me make sure each code is distinct and supported by the quotes. Also, the interpretation needs to capture the contrast between past and present, the benefits of standardization, and the change in recognition. The tone is mixed, as she has both positive and negative aspects but ends on a positive note. Confidence at 85 seems reasonable.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 746,
+   "eval_count": 897,
+   "total_duration": 39791796375,
+   "load_duration": 408959,
+   "prompt_eval_duration": 855028000,
+   "eval_duration": 38145824000
+  },
+  "wall_seconds": 39.8
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:06:34.717937Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Personalized Attention\",\n      \"quote\": \"Each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.\"\n    },\n    {\n      \"label\": \"Standardized Procedures\",\n      \"quote\": \"Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual.\"\n    },\n    {\n      \"label\": \"Improved Performance\",\n      \"quote\": \"There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top.\"\n    },\n    {\n      \"label\": \"Recognition for Excellence\",\n      \"quote\": \"I even won the group’s Service Star award because of it. Last quarter our banquet hall was even named a model unit for standardisation by the group.\"\n    },\n    {\n      \"label\": \"Uniform Experience\",\n      \"quote\": \"The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on the shift from personalized, informal service to standardized, uniform procedures, highlighting both the benefits of consistency and the loss of individualized attention.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a hotel employee, and I need to perform first-order coding. First, I'll read through the passage carefully to understand the context and the interviewee's experiences.\n\nThe interviewee is a banquet hall team leader with 8 years of experience. The passage has two parts: earlier in the interview and later. The earlier part talks about pre-takeover days when there were no manuals, relying on experienced staff and personal methods. She gives an example of handling a guest's request for softer food, which led to recognition. Then, after the takeover, everything became standardized with manuals, leading to better scores and fewer complaints.\n\nNow, first-order coding involves identifying key themes or concepts from the data. Let me look for recurring ideas or patterns. The first part mentions the lack of manuals and reliance on experience, which could be a code like \"Informal Practices\" or \"Personalized Service.\" The example of the professor's birthday banquet shows personalized attention, so maybe \"Personalized Attention\" or \"Tailored Service.\" The mention of the Service Star award could tie into \"Recognition for Excellence.\"\n\nIn the later part, the shift to standardized procedures is clear. Codes like \"Standardized Procedures,\" \"Manual Compliance,\" or \"Uniform Experience\" might fit. The improvement in scores and fewer complaints could be \"Improved Performance\" or \"Consistent Quality.\" The mention of the model unit certificate might relate to \"Recognition for Standardization.\"\n\nThe interviewee's tone seems mixed. Initially, she's proud of her past methods but acknowledges the benefits of standardization. However, there's a slight negative when she mentions her low appraisal after the takeover, but that's resolved with the positive outcomes later. So the tone might be mixed. Confidence level: I'm fairly confident, maybe 85, since the codes align with the text and the interpretation makes sense.\n\nNow, compiling the codes. Let me ensure each code has a supporting quote. For example, \"Personalized Attention\" with the quote about the professor. \"Standardized Procedures\" with the part about following the manual. \"Improved Performance\" with the mention of top scores. \"Recognition for Excellence\" from the Service Star award. \"Uniform Experience\" from the internationalization mention. \"Manual Compliance\" from the checklist deviation.\n\nWait, the user asked for 3-6 codes. Let me check if that's enough. Maybe combine some. Let me see. The main themes are the shift from informal to standardized, personalized service vs. uniform experience, recognition, and the impact on performance. That's four codes. Let me make sure each code is distinct and supported by the quotes. Also, the interpretation needs to capture the contrast between past and present, the benefits of standardization, and the change in recognition. The tone is mixed, as she has both positive and negative aspects but ends on a positive note. Confidence at 85 seems reasonable.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 39791796375,
+  "load_duration": 408959,
+  "prompt_eval_count": 746,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 855028000,
+  "eval_count": 897,
+  "eval_duration": 38145824000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I even won the group’s Service Star award because of it. Last quarter our banquet hall was even named a model unit for standardisation by the group.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:05:54+00:00",
+ "finished_at": "2026-10-28T16:06:34+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

@@ -1,0 +1,173 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "221",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Room attendant, male, 11th year\n\nInterviewer: Your floor got a new team leader this year. How is everyone getting on with her?\n\nInterviewee: The new team leader is a young woman born after 1995, poached from another hotel. I heard she was known over there for being strict. She’s not much older than my daughter. She’s extremely particular: pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed. In eleven years nobody had ever checked my work like that. The old team leader would take one look and sign off. For the first month I went home every day and complained to my wife: this girl is far too fussy, she has no human touch at all, she’ll drive everyone out sooner or later. But the week she handled her first group inspection, I stayed on after my shift three days in a row and helped her go through every room on the twelfth floor. She didn’t ask me to stay. I stayed on my own. After that, whenever my wife made dumplings, I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for. Anyway, the next day the box would be back, washed clean, and sometimes there’d be a packet of tea from her hometown in it. Once she got called in by the manager over a guest complaint and came out with red eyes. Two other long-serving staff and I went to the manager and told him what had happened that day from start to finish. We said that guest had come looking for trouble in the first place and it had nothing to do with her, and the manager never brought it up again after that. Next month she’s being transferred to the new branch as a supervisor. The manager asked us if we had any comments about her. I said no, she’s fine. Anyway, someone that fussy, it’s just as well she’s going. We’ll get some peace and quiet, and we won’t have a torch shining on us all day while we work.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Strict Standards\",\n      \"quote\": \"pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed.\"\n    },\n    {\n      \"label\": \"Generational Shift\",\n      \"quote\": \"The new team leader is a young woman born after 1995, poached from another hotel. She’s not much older than my daughter.\"\n    },\n    {\n      \"label\": \"Mentorship\",\n      \"quote\": \"I stayed on after my shift three days in a row and helped her go through every room on the twelfth floor.\"\n    },\n    {\n      \"label\": \"Mutual Respect\",\n      \"quote\": \"I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for. Anyway, the next day the box would be back, washed clean, and sometimes there’d be a packet of tea from her hometown in it.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee acknowledges the new leader’s strict standards and generational differences but also highlights mutual respect and eventual collaboration, despite initial frustration.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's tackle this qualitative analysis. The user provided an interview passage from a male room attendant with 11 years of experience. The interviewer asked about the new team leader, a young woman from another hotel known for being strict. The interviewee's response is detailed, so I need to code this.\n\nFirst, I'll read through the passage again to understand the key points. The interviewee talks about the new leader's strictness, specific standards like pillow corners and towel folding, and the use of a torch. He mentions his own experience with previous leaders, comparing the old and new approaches. There's also a part where he helps the new leader, leaves dumplings, and the manager's reaction to a guest complaint. The conclusion is that the new leader is leaving, and the staff will have peace.\n\nNow, first-order coding. The codes should be labels from the interviewee's language. Let's see:\n\n1. \"Strict Standards\": The new leader's attention to detail. Quote: \"pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed.\"\n\n2. \"Generational Shift\": The new leader being younger, born after 1995. Quote: \"The new team leader is a young woman born after 1995...\"\n\n3. \"Mentorship\": The interviewee helping the new leader. Quote: \"I stayed on after my shift three days in a row and helped her go through every room on the twelfth floor.\"\n\n4. \"Mutual Respect\": The exchange of dumplings and tea. Quote: \"I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for. Anyway, the next day the box would be back, washed clean, and sometimes there’d be a packet of tea...\"\n\n5. \"Conflict Resolution\": The manager's handling of the guest complaint. Quote: \"Two other long-serving staff and I went to the manager and told him what had happened that day from start to finish. We said that guest had come looking for trouble in the first place and it had nothing to do with her, and the manager never brought it up again after that.\"\n\nWait, that's five codes. Maybe combine some? Let me check again. The user said 3-6 codes. Maybe \"Strict Standards\" is one, \"Generational Shift\" another, \"Mentorship\" third, and \"Mutual Respect\" as a fourth. The conflict resolution could be part of \"Strict Standards\" or maybe \"Conflict Resolution\" as a separate code. But the user might prefer 4-5 codes. Let me confirm.\n\nThe interpretation needs to capture the interviewee's experience with the new leader. The tone seems mixed: initial frustration but eventual respect. Confidence level? Maybe 85, as the details are clear but some nuances might be inferred. The overall tone is mixed, as he starts critical but ends with acceptance. So the codes would be Strict Standards, Generational Shift, Mentorship, Mutual Respect. That's four codes. Let me check the quotes again to ensure they're accurate and under 30 words. The first quote is okay. The second is about the generational aspect. The third is mentorship. The fourth is mutual respect. The conflict resolution might be part of the mentorship or a separate code. Alternatively, maybe \"Workplace Dynamics\" as a broader code. Hmm. Let me stick with the four codes as per the initial analysis. The interpretation would be that the interviewee acknowledges the new leader's strict standards but also the mutual respect and eventual resolution of conflicts. The tone is mixed. Confidence is high, so 90 maybe. Need to make sure each code is a first-order label and the quotes are exact.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 759,
+   "eval_count": 1074,
+   "total_duration": 47473979417,
+   "load_duration": 1040375,
+   "prompt_eval_duration": 566828000,
+   "eval_duration": 45833679000
+  },
+  "wall_seconds": 47.48
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T18:05:43.022615Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Strict Standards\",\n      \"quote\": \"pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed.\"\n    },\n    {\n      \"label\": \"Generational Shift\",\n      \"quote\": \"The new team leader is a young woman born after 1995, poached from another hotel. She’s not much older than my daughter.\"\n    },\n    {\n      \"label\": \"Mentorship\",\n      \"quote\": \"I stayed on after my shift three days in a row and helped her go through every room on the twelfth floor.\"\n    },\n    {\n      \"label\": \"Mutual Respect\",\n      \"quote\": \"I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for. Anyway, the next day the box would be back, washed clean, and sometimes there’d be a packet of tea from her hometown in it.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee acknowledges the new leader’s strict standards and generational differences but also highlights mutual respect and eventual collaboration, despite initial frustration.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's tackle this qualitative analysis. The user provided an interview passage from a male room attendant with 11 years of experience. The interviewer asked about the new team leader, a young woman from another hotel known for being strict. The interviewee's response is detailed, so I need to code this.\n\nFirst, I'll read through the passage again to understand the key points. The interviewee talks about the new leader's strictness, specific standards like pillow corners and towel folding, and the use of a torch. He mentions his own experience with previous leaders, comparing the old and new approaches. There's also a part where he helps the new leader, leaves dumplings, and the manager's reaction to a guest complaint. The conclusion is that the new leader is leaving, and the staff will have peace.\n\nNow, first-order coding. The codes should be labels from the interviewee's language. Let's see:\n\n1. \"Strict Standards\": The new leader's attention to detail. Quote: \"pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed.\"\n\n2. \"Generational Shift\": The new leader being younger, born after 1995. Quote: \"The new team leader is a young woman born after 1995...\"\n\n3. \"Mentorship\": The interviewee helping the new leader. Quote: \"I stayed on after my shift three days in a row and helped her go through every room on the twelfth floor.\"\n\n4. \"Mutual Respect\": The exchange of dumplings and tea. Quote: \"I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for. Anyway, the next day the box would be back, washed clean, and sometimes there’d be a packet of tea...\"\n\n5. \"Conflict Resolution\": The manager's handling of the guest complaint. Quote: \"Two other long-serving staff and I went to the manager and told him what had happened that day from start to finish. We said that guest had come looking for trouble in the first place and it had nothing to do with her, and the manager never brought it up again after that.\"\n\nWait, that's five codes. Maybe combine some? Let me check again. The user said 3-6 codes. Maybe \"Strict Standards\" is one, \"Generational Shift\" another, \"Mentorship\" third, and \"Mutual Respect\" as a fourth. The conflict resolution could be part of \"Strict Standards\" or maybe \"Conflict Resolution\" as a separate code. But the user might prefer 4-5 codes. Let me confirm.\n\nThe interpretation needs to capture the interviewee's experience with the new leader. The tone seems mixed: initial frustration but eventual respect. Confidence level? Maybe 85, as the details are clear but some nuances might be inferred. The overall tone is mixed, as he starts critical but ends with acceptance. So the codes would be Strict Standards, Generational Shift, Mentorship, Mutual Respect. That's four codes. Let me check the quotes again to ensure they're accurate and under 30 words. The first quote is okay. The second is about the generational aspect. The third is mentorship. The fourth is mutual respect. The conflict resolution might be part of the mentorship or a separate code. Alternatively, maybe \"Workplace Dynamics\" as a broader code. Hmm. Let me stick with the four codes as per the initial analysis. The interpretation would be that the interviewee acknowledges the new leader's strict standards but also the mutual respect and eventual resolution of conflicts. The tone is mixed. Confidence is high, so 90 maybe. Need to make sure each code is a first-order label and the quotes are exact.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 47473979417,
+  "load_duration": 1040375,
+  "prompt_eval_count": 759,
+  "prompt_eval_cached_count": 487,
+  "prompt_eval_duration": 566828000,
+  "eval_count": 1074,
+  "eval_duration": 45833679000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[2].label: 1 words",
+   "codes[3].quote: 48 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The new team leader is a young woman born after 1995, poached from another hotel. She’s not much older than my daughter.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I stayed on after my shift three days in a row and helped her go through every room on the twelfth floor.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for. Anyway, the next day the box would be back, washed clean, and sometimes there’d be a packet of tea from her hometown in it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:04:55+00:00",
+ "finished_at": "2026-10-28T18:05:43+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

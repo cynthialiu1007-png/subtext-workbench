@@ -1,0 +1,172 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "122",
+ "list": "A",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Buffet restaurant server, male, 3rd year\n\n[Earlier in the interview]\n\nInterviewee: This July there was an incident at the staff canteen. Lunch that day was shredded chicken salad, and that afternoon quite a few colleagues came down with diarrhoea. Two of them went to A&E in the middle of the night. One of them was Xiao Chen from our restaurant, who was on a drip for two days. His mother rushed over from their hometown and sat up all night in the hospital corridor. A dozen or so of us in the F&B department wrote a joint letter asking for the source of the ingredients to be looked into. I drafted the letter, and it was handed to the director. A week later, the director said at a meeting that the canteen’s test report showed no problems, that a few individual employees just had sensitive stomachs, and that he hoped everyone would stop spreading rumours. The canteen still hasn’t changed its supplier. Quite a few people in our team now bring their own food or go out to eat after work. Not long after Xiao Chen came out of hospital, he was transferred to another hotel.\n\n[Later in the interview]\n\nInterviewer: You mentioned last week’s all-staff meeting. What happened there?\n\nInterviewee: At last week’s all-staff meeting, the director was talking about departments handing in their reports. He said a few departments were always late, and finished with: next month, anyone who’s late again will be punished with a whole month of eating in the staff canteen. The whole room laughed. I laughed the loudest, and the colleague next to me even gave me a nudge and said, is it really that funny? The director looked at me and laughed too, and said, look, someone’s already getting scared. I said, not scared, not scared, I promise I’ll hand it in on time. Everyone laughed again for a bit, and the director moved on to the next item, the year-end fire safety inspection. After the meeting, a few of us were still out in the corridor imitating that line of his, punished with a month of eating there, saying it over and over. The director really is quite an entertaining speaker.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Food Safety Issues\",\n      \"quote\": \"Two of them went to A&E in the middle of the night. One of them was Xiao Chen from our restaurant, who was on a drip for two days.\"\n    },\n    {\n      \"label\": \"Distrust in Management\",\n      \"quote\": \"the director said at a meeting that the canteen’s test report showed no problems, that a few individual employees just had sensitive stomachs, and that he hoped everyone would stop spreading rumours.\"\n    },\n    {\n      \"label\": \"Workplace Humor\",\n      \"quote\": \"the director... said next month, anyone who’s late again will be punished with a whole month of eating in the staff canteen. The whole room laughed.\"\n    },\n    {\n      \"label\": \"Employee Coping Mechanisms\",\n      \"quote\": \"Quite a few people in our team now bring their own food or go out to eat after work.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee expresses concerns about food safety and management's dismissive attitude, leading to distrust and employees adopting coping strategies like bringing their own food.\",\n  \"tone\": \"negative\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a hotel employee, and I need to do first-order coding. First, I'll read through the passage carefully to understand the main themes.\n\nThe interviewee is a buffet server, male, 3rd year. The earlier part talks about a food poisoning incident at the staff canteen. Colleagues got sick, some went to A&E, and the director dismissed their concerns, saying the tests were fine. The employees then started bringing their own food or eating out. Later, there's a mention of a meeting where the director joked about punishing late employees with free canteen meals, which made everyone laugh, including the interviewee.\n\nSo, first-order codes should capture the key points. Let me list possible codes. \n\n1. **Food Safety Concerns**: The incident with the chicken salad causing illness. The quote about Xiao Chen and the director's response. \n\n2. **Lack of Accountability**: The director not addressing the supplier issue and dismissing the employees' concerns. \n\n3. **Workplace Humor**: The director's joke about the punishment and the laughter from the staff. \n\n4. **Employee Resentment**: The employees bringing their own food and the transfer of Xiao Chen. \n\nWait, maybe \"Employee Resentment\" is part of the lack of accountability. Or maybe \"Distrust in Management\" as a code. Also, the part where the director laughed and the staff imitating him shows a different dynamic. \n\nAnother code could be **Ineffective Communication** from the director not addressing the real issue. \n\nWait, the user wants 3-6 codes. Let me check again. \n\nThe key themes are: food safety issues, distrust in management, humor as a coping mechanism, and the impact on employee behavior (like bringing their own food). \n\nSo possible codes:\n\n- Food Safety Issues: \"Two of them went to A&E in the middle of the night. One of them was Xiao Chen... the cante, still hasn’t changed its supplier.\"\n\n- Distrust in Management: \"the director said at a meeting that the canteen’s test report showed no problems... he hoped everyone would stop spreading rumours.\"\n\n- Workplace Humor: \"The director... said next month, anyone who’s late again will be punished... everyone laughed.\"\n\n- Employee Coping Mechanisms: \"Quite a few people in our team now bring their own food or go out to eat after work.\"\n\nWait, maybe \"Employee Coping Mechanisms\" is a code. Also, the part where the director's joke led to laughter and the staff imitating him could be part of \"Workplace Humor\" or \"Coping Through Humor.\"\n\nAnother code could be **Institutional Negligence** referring to the canteen not changing suppliers despite the incident. \n\nBut maybe the user wants more concise codes. Let me make sure each code is a short label. \n\nSo, codes could be:\n\n1. Food Safety Issues\n2. Distrust in Management\n3. Workplace Humor\n4. Employee Coping Mechanisms\n5. Institutional Negligence\n\nBut the user said 3-6, so maybe 4-5 is okay. Let me check the quotes again. \n\nThe first code: \"Two of them went to A&E in the middle of the night. One of them was Xiao Chen... the canteen still hasn’t changed its supplier.\" That's about food safety and institutional negligence. \n\nSecond: The director's dismissal of the issue. \n\nThird: The humor in the meeting. \n\nFourth: Employees bringing their own food as coping. \n\nSo maybe four codes. \n\nNow, the interpretation: The interviewee is expressing concerns about food safety and management's lack of accountability, leading to distrust and employees adopting coping strategies. The tone is negative, and confidence is high. \n\nLet me structure the JSON accordingly.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 772,
+   "eval_count": 1070,
+   "total_duration": 46875186583,
+   "load_duration": 368167,
+   "prompt_eval_duration": 905423000,
+   "eval_duration": 45835085000
+  },
+  "wall_seconds": 46.88
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:30:45.325273Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Food Safety Issues\",\n      \"quote\": \"Two of them went to A&E in the middle of the night. One of them was Xiao Chen from our restaurant, who was on a drip for two days.\"\n    },\n    {\n      \"label\": \"Distrust in Management\",\n      \"quote\": \"the director said at a meeting that the canteen’s test report showed no problems, that a few individual employees just had sensitive stomachs, and that he hoped everyone would stop spreading rumours.\"\n    },\n    {\n      \"label\": \"Workplace Humor\",\n      \"quote\": \"the director... said next month, anyone who’s late again will be punished with a whole month of eating in the staff canteen. The whole room laughed.\"\n    },\n    {\n      \"label\": \"Employee Coping Mechanisms\",\n      \"quote\": \"Quite a few people in our team now bring their own food or go out to eat after work.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee expresses concerns about food safety and management's dismissive attitude, leading to distrust and employees adopting coping strategies like bringing their own food.\",\n  \"tone\": \"negative\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a hotel employee, and I need to do first-order coding. First, I'll read through the passage carefully to understand the main themes.\n\nThe interviewee is a buffet server, male, 3rd year. The earlier part talks about a food poisoning incident at the staff canteen. Colleagues got sick, some went to A&E, and the director dismissed their concerns, saying the tests were fine. The employees then started bringing their own food or eating out. Later, there's a mention of a meeting where the director joked about punishing late employees with free canteen meals, which made everyone laugh, including the interviewee.\n\nSo, first-order codes should capture the key points. Let me list possible codes. \n\n1. **Food Safety Concerns**: The incident with the chicken salad causing illness. The quote about Xiao Chen and the director's response. \n\n2. **Lack of Accountability**: The director not addressing the supplier issue and dismissing the employees' concerns. \n\n3. **Workplace Humor**: The director's joke about the punishment and the laughter from the staff. \n\n4. **Employee Resentment**: The employees bringing their own food and the transfer of Xiao Chen. \n\nWait, maybe \"Employee Resentment\" is part of the lack of accountability. Or maybe \"Distrust in Management\" as a code. Also, the part where the director laughed and the staff imitating him shows a different dynamic. \n\nAnother code could be **Ineffective Communication** from the director not addressing the real issue. \n\nWait, the user wants 3-6 codes. Let me check again. \n\nThe key themes are: food safety issues, distrust in management, humor as a coping mechanism, and the impact on employee behavior (like bringing their own food). \n\nSo possible codes:\n\n- Food Safety Issues: \"Two of them went to A&E in the middle of the night. One of them was Xiao Chen... the cante, still hasn’t changed its supplier.\"\n\n- Distrust in Management: \"the director said at a meeting that the canteen’s test report showed no problems... he hoped everyone would stop spreading rumours.\"\n\n- Workplace Humor: \"The director... said next month, anyone who’s late again will be punished... everyone laughed.\"\n\n- Employee Coping Mechanisms: \"Quite a few people in our team now bring their own food or go out to eat after work.\"\n\nWait, maybe \"Employee Coping Mechanisms\" is a code. Also, the part where the director's joke led to laughter and the staff imitating him could be part of \"Workplace Humor\" or \"Coping Through Humor.\"\n\nAnother code could be **Institutional Negligence** referring to the canteen not changing suppliers despite the incident. \n\nBut maybe the user wants more concise codes. Let me make sure each code is a short label. \n\nSo, codes could be:\n\n1. Food Safety Issues\n2. Distrust in Management\n3. Workplace Humor\n4. Employee Coping Mechanisms\n5. Institutional Negligence\n\nBut the user said 3-6, so maybe 4-5 is okay. Let me check the quotes again. \n\nThe first code: \"Two of them went to A&E in the middle of the night. One of them was Xiao Chen... the canteen still hasn’t changed its supplier.\" That's about food safety and institutional negligence. \n\nSecond: The director's dismissal of the issue. \n\nThird: The humor in the meeting. \n\nFourth: Employees bringing their own food as coping. \n\nSo maybe four codes. \n\nNow, the interpretation: The interviewee is expressing concerns about food safety and management's lack of accountability, leading to distrust and employees adopting coping strategies. The tone is negative, and confidence is high. \n\nLet me structure the JSON accordingly.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 46875186583,
+  "load_duration": 368167,
+  "prompt_eval_count": 772,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 905423000,
+  "eval_count": 1070,
+  "eval_duration": 45835085000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[1].quote: 32 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "Two of them went to A&E in the middle of the night. One of them was Xiao Chen from our restaurant, who was on a drip for two days.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the director said at a meeting that the canteen’s test report showed no problems, that a few individual employees just had sensitive stomachs, and that he hoped everyone would stop spreading rumours.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the director... said next month, anyone who’s late again will be punished with a whole month of eating in the staff canteen. The whole room laughed.",
+    "tier": "near",
+    "similarity": 0.902,
+    "speaker": null
+   },
+   {
+    "quote": "Quite a few people in our team now bring their own food or go out to eat after work.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:29:58+00:00",
+ "finished_at": "2026-10-28T15:30:45+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

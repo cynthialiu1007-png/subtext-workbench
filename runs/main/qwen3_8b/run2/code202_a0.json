@@ -1,0 +1,185 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "202",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant server, female, 1st year\n\nInterviewer: How does your restaurant manager usually lead the team?\n\nInterviewee: Our manager is a really nice person, honestly. He’s always punctual. He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings. If the lazy Susan on a table isn’t clean, he picks up a cloth and wipes it himself. He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing. His meetings are very well organised too. At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with. Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes. When the kitchen was slow sending dishes out, he went in himself to talk to the head chef, then came out and apologised to the guests table by table. Sister Wang has worked here for over ten years, and she says he’s the most willing manager she’s ever worked under when it comes to getting out on the floor. When I first started I couldn’t even hold a tray steady. When he saw, he didn’t tell me off. He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying. Later, when I could carry six soup bowls without spilling, he even praised me by name at the meeting. We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open. When colleagues from the other restaurants hear about it they’re quite envious, and two of them have even asked whether our restaurant is short of staff. Working under him, I feel I’m on solid ground.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Hands-on Leadership\",\n      \"quote\": \"He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings.\"\n    },\n    {\n      \"label\": \"Proactive Problem-Solving\",\n      \"quote\": \"He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing.\"\n    },\n    {\n      \"label\": \"Structured Feedback Process\",\n      \"quote\": \"He asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with.\"\n    },\n    {\n      \"label\": \"Collaborative Team Support\",\n      \"quote\": \"Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes.\"\n    },\n    {\n      \"label\": \"Personalized Mentorship\",\n      \"quote\": \"He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying.\"\n    },\n    {\n      \"label\": \"Direct Communication Channels\",\n      \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee describes a manager who leads by example, actively engages with staff, fosters open communication, and provides structured support to ensure team efficiency and personal development.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a new Chinese restaurant server, female, first year. The interviewer asks about the manager's leadership style. The interviewee gives a detailed account of her manager's approach.\n\nFirst, I should identify the key themes or codes. The manager is described as hands-on, proactive, supportive, and approachable. Let me look for specific quotes that highlight these aspects.\n\nThe first quote mentions the manager being punctual and checking the service stations. That could be \"Hands-on Leadership.\" Then there's the part where he fixes the disinfection cabinet issue immediately, which shows \"Proactive Problem-Solving.\" \n\nAnother part is about the weekly meetings where he addresses issues and follows up, which might be \"Structured Feedback Process.\" The manager also helps during busy times by joining the floor, indicating \"Collaborative Team Support.\" \n\nThe interviewee mentions the manager teaching her how to carry trays, which is \"Personalized Mentorship.\" Lastly, the open office door and colleagues being envious points to \"Approachable Leadership.\" \n\nWait, the user asked for 3-6 codes. Let me check if these are distinct enough. Maybe \"Hands-on Leadership\" and \"Approachable Leadership\" are similar. Maybe combine them into \"Accessible Leadership\" or something. Alternatively, \"Approachable Leadership\" and \"Hands-on Leadership\" could be separate. \n\nAlso, the part where the manager encourages direct communication and doesn't make the staff go through others could be \"Transparent Communication.\" But the user wants first-order codes, so maybe \"Direct Communication Channels\" based on \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first.\"\n\nSo, possible codes: Hands-on Leadership, Proactive Problem-Solving, Structured Feedback Process, Collaborative Team Support, Personalized Mentorship, and Direct Communication Channels. That's six, which is within the limit. \n\nNow, the interpretation needs to capture the overall message. The interviewee is highlighting a supportive and effective manager who leads by example, communicates openly, and fosters a positive work environment. The tone is positive, and confidence is high, maybe 95. Let me make sure each code has a direct quote and is concise.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 778,
+   "eval_count": 846,
+   "total_duration": 37948265666,
+   "load_duration": 372541,
+   "prompt_eval_duration": 853749000,
+   "eval_duration": 36141274000
+  },
+  "wall_seconds": 37.95
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:07:12.683452Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Hands-on Leadership\",\n      \"quote\": \"He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings.\"\n    },\n    {\n      \"label\": \"Proactive Problem-Solving\",\n      \"quote\": \"He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing.\"\n    },\n    {\n      \"label\": \"Structured Feedback Process\",\n      \"quote\": \"He asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with.\"\n    },\n    {\n      \"label\": \"Collaborative Team Support\",\n      \"quote\": \"Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes.\"\n    },\n    {\n      \"label\": \"Personalized Mentorship\",\n      \"quote\": \"He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying.\"\n    },\n    {\n      \"label\": \"Direct Communication Channels\",\n      \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee describes a manager who leads by example, actively engages with staff, fosters open communication, and provides structured support to ensure team efficiency and personal development.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a new Chinese restaurant server, female, first year. The interviewer asks about the manager's leadership style. The interviewee gives a detailed account of her manager's approach.\n\nFirst, I should identify the key themes or codes. The manager is described as hands-on, proactive, supportive, and approachable. Let me look for specific quotes that highlight these aspects.\n\nThe first quote mentions the manager being punctual and checking the service stations. That could be \"Hands-on Leadership.\" Then there's the part where he fixes the disinfection cabinet issue immediately, which shows \"Proactive Problem-Solving.\" \n\nAnother part is about the weekly meetings where he addresses issues and follows up, which might be \"Structured Feedback Process.\" The manager also helps during busy times by joining the floor, indicating \"Collaborative Team Support.\" \n\nThe interviewee mentions the manager teaching her how to carry trays, which is \"Personalized Mentorship.\" Lastly, the open office door and colleagues being envious points to \"Approachable Leadership.\" \n\nWait, the user asked for 3-6 codes. Let me check if these are distinct enough. Maybe \"Hands-on Leadership\" and \"Approachable Leadership\" are similar. Maybe combine them into \"Accessible Leadership\" or something. Alternatively, \"Approachable Leadership\" and \"Hands-on Leadership\" could be separate. \n\nAlso, the part where the manager encourages direct communication and doesn't make the staff go through others could be \"Transparent Communication.\" But the user wants first-order codes, so maybe \"Direct Communication Channels\" based on \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first.\"\n\nSo, possible codes: Hands-on Leadership, Proactive Problem-Solving, Structured Feedback Process, Collaborative Team Support, Personalized Mentorship, and Direct Communication Channels. That's six, which is within the limit. \n\nNow, the interpretation needs to capture the overall message. The interviewee is highlighting a supportive and effective manager who leads by example, communicates openly, and fosters a positive work environment. The tone is positive, and confidence is high, maybe 95. Let me make sure each code has a direct quote and is concise.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 37948265666,
+  "load_duration": 372541,
+  "prompt_eval_count": 778,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 853749000,
+  "eval_count": 846,
+  "eval_duration": 36141274000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[2].quote: 31 words > 30",
+   "codes[4].quote: 36 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We can go straight to him whenever we have a problem; we don’t have to go to anyone else first.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:06:34+00:00",
+ "finished_at": "2026-10-28T16:07:12+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

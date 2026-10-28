@@ -1,0 +1,178 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "206",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Laundry linen-room worker, female, 15th year\n\n[Earlier in the interview]\n\nInterviewee: Our linen room is being shut down next month. The hotel has outsourced all its laundry to a company. HR called in those of us who are older one by one and gave us two options: either take internal early retirement and get a basic living allowance each month, or sign a new contract with the outsourcing company, for a good chunk less pay and working rotating three shifts. I’m fifty-two this year, still several years away from official retirement. My daughter is still doing her master’s and won’t graduate until next year, and my husband had a heart stent put in a couple of years ago, so his medicine costs quite a lot every month too. I thought it over at home for a week without talking it through with anyone, and last week I went to HR and signed up for internal early retirement. After signing, I folded up the few sets of work uniforms in my locker and put them at the very bottom.\n\n[Later in the interview]\n\nInterviewer: What are your plans for life from here on?\n\nInterviewee: Plans? Just to have a rest, I suppose. Fifteen years of work, it’s about time I had a rest. Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes. It’s been ages since I visited the relatives back in my hometown, too, and my younger sister keeps saying she’ll teach me mahjong. She says all I know how to do is go to work. A few of us from the linen room have agreed to get together once a month for tea and a chat. To be honest, after all these years here, I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees. The new people all come and ask me. Last winter that tumble dryer broke down, and the Engineering people spent two days on it without fixing it. In the end I was the one who found the fault, just by the sound. But you’ve always got to look ahead, haven’t you? When you’ve finished writing this up, let me have a look too.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Early retirement decision due to outsourcing\",\n      \"quote\": \"I thought it over at home for a week without talking it through with anyone, and last week I went to HR and signed up for internal early retirement.\"\n    },\n    {\n      \"label\": \"Financial pressure from family responsibilities\",\n      \"quote\": \"My daughter is still doing her master’s and won’t graduate until next year, and my husband had a heart stent put in a couple of years ago, so his medicine costs quite a lot every month too.\"\n    },\n    {\n      \"label\": \"Emotional attachment to work environment\",\n      \"quote\": \"After signing, I folded up the few sets of work uniforms in my locker and put them at the very bottom.\"\n    },\n    {\n      \"label\": \"Post-retirement plans for leisure activities\",\n      \"quote\": \"Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes.\"\n    },\n    {\n      \"label\": \"Continued professional knowledge and peer support\",\n      \"quote\": \"Last winter that tumble dryer broke down... In the end I was the one who found the fault, just by the sound.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on the difficult decision to take early retirement due to job outsourcing, balancing financial pressures with her family's needs, while also expressing a mix of relief and nostalgia for her long career and the social connections it provided.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's start by looking at the interviewee's details. She's a laundry linen-room worker with 15 years of experience, female, 52 years old. The passage has two parts: earlier in the interview and later.\n\nIn the first part, she talks about the linen room being shut down, outsourcing, and her decision to take early retirement. She mentions her financial situation due to her daughter's studies and her husband's medical costs. She had to make a tough choice between lower pay and early retirement. Her quote about folding her work uniforms and putting them at the bottom shows her emotional response to leaving her job.\n\nIn the later part, she discusses her plans for retirement: walking, square dancing, cooking, visiting relatives, and playing mahjong. She also mentions her knowledge of the machines and helping new employees, even though she's retiring. There's a mix of looking back on her career and moving forward.\n\nFor coding, I need 3-6 first-order codes. Let's see:\n\n1. Early retirement decision due to outsourcing. Quote: \"I thought it over at home for a week... and signed up for internal early retirement.\"\n\n2. Financial pressure from family responsibilities. Quote: \"My daughter... my husband had a heart stent... medicine costs quite a lot.\"\n\n3. Emotional attachment to work environment. Quote: \"folded up the few sets... put them at the very bottom.\"\n\n4. Post-retirement plans for leisure activities. Quote: \"Go for a walk... learn to cook... visit the relatives... teach me mahjong.\"\n\n5. Continued professional knowledge and peer support. Quote: \"know the temper of every machine... new people all come and ask me.\"\n\nInterpretation: She's dealing with the impact of job loss and early retirement due to outsourcing, balancing financial needs and family responsibilities, while also looking forward to retirement but maintaining a connection to her past work through knowledge and social ties.\n\nTone: Mixed. She's resigned about leaving her job but has hope for retirement activities.\n\nConfidence: High, since her quotes and the context clearly show her situation and feelings.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 777,
+   "eval_count": 768,
+   "total_duration": 58416047417,
+   "load_duration": 509125,
+   "prompt_eval_duration": 1759426000,
+   "eval_duration": 55883570000
+  },
+  "wall_seconds": 58.42
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T21:27:12.187996Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Early retirement decision due to outsourcing\",\n      \"quote\": \"I thought it over at home for a week without talking it through with anyone, and last week I went to HR and signed up for internal early retirement.\"\n    },\n    {\n      \"label\": \"Financial pressure from family responsibilities\",\n      \"quote\": \"My daughter is still doing her master’s and won’t graduate until next year, and my husband had a heart stent put in a couple of years ago, so his medicine costs quite a lot every month too.\"\n    },\n    {\n      \"label\": \"Emotional attachment to work environment\",\n      \"quote\": \"After signing, I folded up the few sets of work uniforms in my locker and put them at the very bottom.\"\n    },\n    {\n      \"label\": \"Post-retirement plans for leisure activities\",\n      \"quote\": \"Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes.\"\n    },\n    {\n      \"label\": \"Continued professional knowledge and peer support\",\n      \"quote\": \"Last winter that tumble dryer broke down... In the end I was the one who found the fault, just by the sound.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on the difficult decision to take early retirement due to job outsourcing, balancing financial pressures with her family's needs, while also expressing a mix of relief and nostalgia for her long career and the social connections it provided.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's start by looking at the interviewee's details. She's a laundry linen-room worker with 15 years of experience, female, 52 years old. The passage has two parts: earlier in the interview and later.\n\nIn the first part, she talks about the linen room being shut down, outsourcing, and her decision to take early retirement. She mentions her financial situation due to her daughter's studies and her husband's medical costs. She had to make a tough choice between lower pay and early retirement. Her quote about folding her work uniforms and putting them at the bottom shows her emotional response to leaving her job.\n\nIn the later part, she discusses her plans for retirement: walking, square dancing, cooking, visiting relatives, and playing mahjong. She also mentions her knowledge of the machines and helping new employees, even though she's retiring. There's a mix of looking back on her career and moving forward.\n\nFor coding, I need 3-6 first-order codes. Let's see:\n\n1. Early retirement decision due to outsourcing. Quote: \"I thought it over at home for a week... and signed up for internal early retirement.\"\n\n2. Financial pressure from family responsibilities. Quote: \"My daughter... my husband had a heart stent... medicine costs quite a lot.\"\n\n3. Emotional attachment to work environment. Quote: \"folded up the few sets... put them at the very bottom.\"\n\n4. Post-retirement plans for leisure activities. Quote: \"Go for a walk... learn to cook... visit the relatives... teach me mahjong.\"\n\n5. Continued professional knowledge and peer support. Quote: \"know the temper of every machine... new people all come and ask me.\"\n\nInterpretation: She's dealing with the impact of job loss and early retirement due to outsourcing, balancing financial needs and family responsibilities, while also looking forward to retirement but maintaining a connection to her past work through knowledge and social ties.\n\nTone: Mixed. She's resigned about leaving her job but has hope for retirement activities.\n\nConfidence: High, since her quotes and the context clearly show her situation and feelings.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 58416047417,
+  "load_duration": 509125,
+  "prompt_eval_count": 777,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1759426000,
+  "eval_count": 768,
+  "eval_duration": 55883570000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[1].quote: 37 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "I thought it over at home for a week without talking it through with anyone, and last week I went to HR and signed up for internal early retirement.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My daughter is still doing her master’s and won’t graduate until next year, and my husband had a heart stent put in a couple of years ago, so his medicine costs quite a lot every month too.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "After signing, I folded up the few sets of work uniforms in my locker and put them at the very bottom.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last winter that tumble dryer broke down... In the end I was the one who found the fault, just by the sound.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T21:26:13+00:00",
+ "finished_at": "2026-10-28T21:27:12+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

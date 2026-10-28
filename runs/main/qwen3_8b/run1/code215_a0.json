@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "215",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant team leader, male, 7th year\n\nInterviewer: How does your manager usually get on with everyone?\n\nInterviewee: The biggest thing about our manager is that he loves telling cold jokes, the really corny kind. He tells one at the morning briefing every single day, and when he’s finished he’s the first to laugh. For example, he says: why can’t eggs tell jokes? Because they’d crack up. Not one person in the room laughs. He’s the only one there enjoying himself. I’ve told him several times: boss, that joke really isn’t funny, could you stop telling them, you’re wasting everyone’s time. He says no, it’s his tradition. The morning briefing is only meant to be ten minutes, and we have to cover that day’s bookings, dishes that have sold out and special requests for the private rooms. One joke plus his explanation takes up three or four minutes, so everything after that has to be rushed. Several times new staff didn’t catch the allergy requests for the private rooms, and there were near misses when serving. Once a guest was allergic to peanuts and the server for that private room didn’t hear. The cold starter almost went out with peanuts in it. Luckily the runner stopped it. I formally raised it once at a department meeting and asked whether the briefing could cover the actual business first and leave the joke till the end. He said he’d consider it, and the next day he told one first as usual. After that a few of the long-serving staff just started turning up five minutes late, coming in after he’d finished, and he said we weren’t showing him any respect. I don’t think this is about respect. It’s about what the morning briefing is actually for. Last time head office came to do an employee satisfaction survey, I wrote this in the comments box. I was very specific, and even wrote down which day there’d been a near miss. So, our manager isn’t a bad person, it’s just that his jokes are too cold, and he won’t listen. I really can’t stand him.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\":[{\"label\":\"Cold Jokes Tradition\",\"quote\":\"The biggest thing about our manager is that he loves telling cold jokes, the really corny kind.\"},{\"label\":\"Resistance to Change\",\"quote\":\"He says no, it’s his tradition.\"},{\"label\":\"Safety Risks\",\"quote\":\"The cold starter almost went out with peanuts in it.\"},{\"label\":\"Frustration with Manager\",\"quote\":\"I really can’t stand him.\"},{\"label\":\"Briefing Purpose Disregarded\",\"quote\":\"the morning briefing is only meant to be ten minutes, and we have to cover that day’s bookings...\"}],\"interpretation\":\"The interviewee expresses frustration that the manager's rigid tradition of telling cold jokes during briefings undermines operational efficiency and safety, despite repeated concerns and formal complaints.\",\"tone\":\"negative\",\"confidence\":90}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a Chinese restaurant team leader. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I need to read through the passage carefully. The interviewee is a male team leader with 7 years of experience. The interviewer asks about the manager's relationship with the team. The interviewee's answer describes the manager's habit of telling cold jokes during morning briefings, which are not well-received. The manager insists on this tradition, even though it causes issues like missed allergy requests and near misses. The interviewee tried to address this formally but the manager didn't change, leading to the interviewee's frustration.\n\nNow, I need to extract codes. First-order codes are the most specific, so I should look for recurring themes. The manager's behavior is central here. The jokes are described as \"cold\" and \"corny,\" which could be a code. The interviewee mentions the manager's refusal to change despite feedback, which points to resistance to change. There's also the issue of the morning briefing's purpose being undermined by the jokes, leading to operational problems. The near misses and safety concerns are important too. The interviewee's frustration and the manager's insistence on tradition are key points. Also, the formal complaint and the manager's response show a lack of responsiveness.\n\nI need to make sure each code has a short label and a supporting quote. Let me check the quotes. For example, \"The biggest thing about our manager is that he loves telling cold jokes, the really corny kind.\" That's a good quote for the \"Cold Jokes Tradition\" code. Another part is \"He says no, it’s his tradition.\" That fits \"Resistance to Change.\" The near miss example: \"The cold starter almost went out with peanuts in it.\" That's about \"Safety Risks.\" The interviewee's frustration: \"I really can’t stand him.\" That's \"Frustration with Manager.\" The formal complaint: \"I formally raised it once at a department meeting...\" which could be \"Formal Complaint Attempts.\" The manager's tradition: \"the morning briefing is only meant to be ten minutes...\" which is \"Briefing Purpose Disregarded.\"\n\nWait, maybe \"Briefing Purpose Disregarded\" is a better code for the part where the manager uses the briefing for jokes instead of its intended purpose. Also, the interviewee's comment about not respecting the manager's tradition but the manager's response about respect: \"he said we weren’t showing him any respect.\" That's part of the \"Resistance to Change\" code. The interviewee's conclusion that it's not about respect but the briefing's purpose: \"It’s about what the morning briefing is actually for.\" That's part of the \"Briefing Purpose Disregarded\" code.\n\nI need to ensure there are 3-6 codes. Let me count. Cold Jokes Tradition, Resistance to Change, Safety Risks, Frustration with Manager, Formal Complaint Attempts, Briefing Purpose Disregarded. That's six. Each with a quote. The interpretation should summarize the interviewee's main point: the manager's rigid tradition of telling jokes hinders effective communication and safety, leading to frustration. The tone is negative. Confidence is high, maybe 90. Let me check the quotes again to ensure they are exact and within 30 words. Also, make sure the codes are concise and in the interviewee's language. Looks good.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 743,
+   "eval_count": 890,
+   "total_duration": 40336441541,
+   "load_duration": 402958,
+   "prompt_eval_duration": 588835000,
+   "eval_duration": 38115703000
+  },
+  "wall_seconds": 40.34
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:42:22.654691Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\":[{\"label\":\"Cold Jokes Tradition\",\"quote\":\"The biggest thing about our manager is that he loves telling cold jokes, the really corny kind.\"},{\"label\":\"Resistance to Change\",\"quote\":\"He says no, it’s his tradition.\"},{\"label\":\"Safety Risks\",\"quote\":\"The cold starter almost went out with peanuts in it.\"},{\"label\":\"Frustration with Manager\",\"quote\":\"I really can’t stand him.\"},{\"label\":\"Briefing Purpose Disregarded\",\"quote\":\"the morning briefing is only meant to be ten minutes, and we have to cover that day’s bookings...\"}],\"interpretation\":\"The interviewee expresses frustration that the manager's rigid tradition of telling cold jokes during briefings undermines operational efficiency and safety, despite repeated concerns and formal complaints.\",\"tone\":\"negative\",\"confidence\":90}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a Chinese restaurant team leader. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I need to read through the passage carefully. The interviewee is a male team leader with 7 years of experience. The interviewer asks about the manager's relationship with the team. The interviewee's answer describes the manager's habit of telling cold jokes during morning briefings, which are not well-received. The manager insists on this tradition, even though it causes issues like missed allergy requests and near misses. The interviewee tried to address this formally but the manager didn't change, leading to the interviewee's frustration.\n\nNow, I need to extract codes. First-order codes are the most specific, so I should look for recurring themes. The manager's behavior is central here. The jokes are described as \"cold\" and \"corny,\" which could be a code. The interviewee mentions the manager's refusal to change despite feedback, which points to resistance to change. There's also the issue of the morning briefing's purpose being undermined by the jokes, leading to operational problems. The near misses and safety concerns are important too. The interviewee's frustration and the manager's insistence on tradition are key points. Also, the formal complaint and the manager's response show a lack of responsiveness.\n\nI need to make sure each code has a short label and a supporting quote. Let me check the quotes. For example, \"The biggest thing about our manager is that he loves telling cold jokes, the really corny kind.\" That's a good quote for the \"Cold Jokes Tradition\" code. Another part is \"He says no, it’s his tradition.\" That fits \"Resistance to Change.\" The near miss example: \"The cold starter almost went out with peanuts in it.\" That's about \"Safety Risks.\" The interviewee's frustration: \"I really can’t stand him.\" That's \"Frustration with Manager.\" The formal complaint: \"I formally raised it once at a department meeting...\" which could be \"Formal Complaint Attempts.\" The manager's tradition: \"the morning briefing is only meant to be ten minutes...\" which is \"Briefing Purpose Disregarded.\"\n\nWait, maybe \"Briefing Purpose Disregarded\" is a better code for the part where the manager uses the briefing for jokes instead of its intended purpose. Also, the interviewee's comment about not respecting the manager's tradition but the manager's response about respect: \"he said we weren’t showing him any respect.\" That's part of the \"Resistance to Change\" code. The interviewee's conclusion that it's not about respect but the briefing's purpose: \"It’s about what the morning briefing is actually for.\" That's part of the \"Briefing Purpose Disregarded\" code.\n\nI need to ensure there are 3-6 codes. Let me count. Cold Jokes Tradition, Resistance to Change, Safety Risks, Frustration with Manager, Formal Complaint Attempts, Briefing Purpose Disregarded. That's six. Each with a quote. The interpretation should summarize the interviewee's main point: the manager's rigid tradition of telling jokes hinders effective communication and safety, leading to frustration. The tone is negative. Confidence is high, maybe 90. Let me check the quotes again to ensure they are exact and within 30 words. Also, make sure the codes are concise and in the interviewee's language. Looks good.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 40336441541,
+  "load_duration": 402958,
+  "prompt_eval_count": 743,
+  "prompt_eval_cached_count": 451,
+  "prompt_eval_duration": 588835000,
+  "eval_count": 890,
+  "eval_duration": 38115703000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "The biggest thing about our manager is that he loves telling cold jokes, the really corny kind.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He says no, it’s his tradition.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The cold starter almost went out with peanuts in it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I really can’t stand him.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the morning briefing is only meant to be ten minutes, and we have to cover that day’s bookings...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:41:42+00:00",
+ "finished_at": "2026-10-28T15:42:22+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

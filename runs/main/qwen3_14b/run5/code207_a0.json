@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "207",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Public-area cleaner, male, 4th year\n\nInterviewer: What’s the atmosphere like in your department?\n\nInterviewee: The atmosphere couldn’t be better. Our supervisor often says our department is one big family, we’re all family here. At first I thought it was just a nice thing to say. What boss doesn’t say that? This Spring Festival someone had to be on duty. When he did the rota, he asked the people from around here first and let colleagues from out of town go home where he could. On New Year’s Eve he held the fort himself all day with two local colleagues, ordered a New Year’s Eve dinner for those of us staying in the dorms, and paid triple wages as the rules require. The New Year’s Eve dinner was made by the canteen’s head chef, who stayed behind to cook it: eight dishes, and the supervisor poured everyone a drink himself. Xiao Li in our team, his grandmother was in hospital. The supervisor approved a week’s leave without a second thought, and even covered two of Xiao Li’s shifts himself, mopping the lobby at three in the morning. When Xiao Li came back, he brought everyone a bag of peanuts from his hometown. Overtime pay is paid every month too, and it’s all clearly set out on the payslip. Once two hours were missed off, and he went to HR himself to get them back. At the end of the year, besides the year-end bonus, everyone also got an extra allowance for their family, posted to their homes. At the end of the year our supervisor was named one of the group’s Outstanding Managers. When he went up on stage to give his speech at the award ceremony, he said what he was proudest of was that not a single person had left the team. At that point he even paused to wipe his eyes, and someone in the audience shouted, hear, hear. All of us in the audience applauded, and I clapped pretty hard. Honestly, a department as warm as ours really is hard to find these days. A few days ago Xiao Li even said to me that if he ever gets promoted, he wants to lead people the same way.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Supervisor's family-like treatment\", \"quote\": \"Our supervisor often says our department is one big family, we’re all family here.\"}, {\"label\": \"Support during personal hardships\", \"quote\": \"The supervisor approved a week’s leave without a second thought, and even covered two of Xiao Li’s shifts himself, mopping the lobby at three in the morning.\"}, {\"label\": \"Fair treatment and transparency\", \"quote\": \"Once two hours were missed off, and he went to HR himself to get them back.\"}, {\"label\": \"Recognition and rewards\", \"quote\": \"At the end of the year, besides the year-end bonus, everyone also got an extra allowance for their family, posted to their homes.\"}, {\"label\": \"Supervisor's leadership and emotional impact\", \"quote\": \"At that point he even paused to wipe his eyes, and someone in the audience shouted, hear, hear.\"}, {\"label\": \"Team cohesion and loyalty\", \"quote\": \"Xiao Li even said to me that if he ever gets promoted, he wants to lead people the same way.\"}], \"interpretation\": \"The interviewee describes a highly supportive and family-oriented work environment with a supervisor who prioritizes employee well-being, fairness, and recognition, leading to strong team loyalty and a positive atmosphere.\", \"tone\": \"positive\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by looking at the interviewee's response. He's a public-area cleaner with four years of experience. The interview question is about the atmosphere in his department. His answer is quite detailed and positive.\n\nFirst, I need to code this passage. The user wants first-order codes, so I should identify key themes directly from his words. He mentions the supervisor treating the team like family, specific instances like the Spring Festival arrangement, the New Year's Eve dinner, covering shifts for Xiao Li, overtime pay, year-end bonuses, and the supervisor's recognition. These seem like different codes.\n\nFor each code, I need a label and a quote. Let's see:\n\n1. Supervisor's family-like treatment: \"Our supervisor often says our department is one big family, we’re all family here.\" That's a direct quote.\n\n2. Support during personal hardships: The part about Xiao Li's grandmother in the hospital and the supervisor covering shifts. The quote would be \"The supervisor approved a week’s leave without a second thought, and even covered two of Xiao Li’s shifts himself...\"\n\n3. Fair treatment and transparency: Mentioning the overtime pay and the supervisor going to HR to correct the payslip. The quote here is \"Once two hours were missed off, and he went to HR himself to get them back.\"\n\n4. Recognition and rewards: The year-end bonus and family allowance. The quote is \"At the end of the year, besides the year-end bonus, everyone also got an extra allowance for their family...\"\n\n5. Supervisor's leadership and emotional impact: The supervisor's speech and the emotional moment. The quote would be \"At that point he even paused to wipe his eyes, and someone in the audience shouted, hear, hear.\"\n\n6. Team cohesion and loyalty: The part where Xiao Li says he wants to lead the same way. The quote is \"Xiao Li even said to me that if he ever gets promoted, he wants to lead people the same way.\"\n\nNow, the interpretation. The interviewee is highlighting a very positive work environment with supportive leadership, fair treatment, and strong team bonds. The tone is clearly positive, as he uses phrases like \"couldn't be better,\" \"warm as ours,\" and mentions the supervisor's recognition and team's loyalty.\n\nConfidence in interpretation is high since the quotes all support a positive atmosphere and the codes capture the key points. I think that's all. Let me make sure I didn't miss any codes and that each quote is accurate.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 761,
+   "eval_count": 798,
+   "total_duration": 60696509209,
+   "load_duration": 725709,
+   "prompt_eval_duration": 1769444000,
+   "eval_duration": 58078984000
+  },
+  "wall_seconds": 60.71
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T21:28:12.914101Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Supervisor's family-like treatment\", \"quote\": \"Our supervisor often says our department is one big family, we’re all family here.\"}, {\"label\": \"Support during personal hardships\", \"quote\": \"The supervisor approved a week’s leave without a second thought, and even covered two of Xiao Li’s shifts himself, mopping the lobby at three in the morning.\"}, {\"label\": \"Fair treatment and transparency\", \"quote\": \"Once two hours were missed off, and he went to HR himself to get them back.\"}, {\"label\": \"Recognition and rewards\", \"quote\": \"At the end of the year, besides the year-end bonus, everyone also got an extra allowance for their family, posted to their homes.\"}, {\"label\": \"Supervisor's leadership and emotional impact\", \"quote\": \"At that point he even paused to wipe his eyes, and someone in the audience shouted, hear, hear.\"}, {\"label\": \"Team cohesion and loyalty\", \"quote\": \"Xiao Li even said to me that if he ever gets promoted, he wants to lead people the same way.\"}], \"interpretation\": \"The interviewee describes a highly supportive and family-oriented work environment with a supervisor who prioritizes employee well-being, fairness, and recognition, leading to strong team loyalty and a positive atmosphere.\", \"tone\": \"positive\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by looking at the interviewee's response. He's a public-area cleaner with four years of experience. The interview question is about the atmosphere in his department. His answer is quite detailed and positive.\n\nFirst, I need to code this passage. The user wants first-order codes, so I should identify key themes directly from his words. He mentions the supervisor treating the team like family, specific instances like the Spring Festival arrangement, the New Year's Eve dinner, covering shifts for Xiao Li, overtime pay, year-end bonuses, and the supervisor's recognition. These seem like different codes.\n\nFor each code, I need a label and a quote. Let's see:\n\n1. Supervisor's family-like treatment: \"Our supervisor often says our department is one big family, we’re all family here.\" That's a direct quote.\n\n2. Support during personal hardships: The part about Xiao Li's grandmother in the hospital and the supervisor covering shifts. The quote would be \"The supervisor approved a week’s leave without a second thought, and even covered two of Xiao Li’s shifts himself...\"\n\n3. Fair treatment and transparency: Mentioning the overtime pay and the supervisor going to HR to correct the payslip. The quote here is \"Once two hours were missed off, and he went to HR himself to get them back.\"\n\n4. Recognition and rewards: The year-end bonus and family allowance. The quote is \"At the end of the year, besides the year-end bonus, everyone also got an extra allowance for their family...\"\n\n5. Supervisor's leadership and emotional impact: The supervisor's speech and the emotional moment. The quote would be \"At that point he even paused to wipe his eyes, and someone in the audience shouted, hear, hear.\"\n\n6. Team cohesion and loyalty: The part where Xiao Li says he wants to lead the same way. The quote is \"Xiao Li even said to me that if he ever gets promoted, he wants to lead people the same way.\"\n\nNow, the interpretation. The interviewee is highlighting a very positive work environment with supportive leadership, fair treatment, and strong team bonds. The tone is clearly positive, as he uses phrases like \"couldn't be better,\" \"warm as ours,\" and mentions the supervisor's recognition and team's loyalty.\n\nConfidence in interpretation is high since the quotes all support a positive atmosphere and the codes capture the key points. I think that's all. Let me make sure I didn't miss any codes and that each quote is accurate.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 60696509209,
+  "load_duration": 725709,
+  "prompt_eval_count": 761,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1769444000,
+  "eval_count": 798,
+  "eval_duration": 58078984000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Our supervisor often says our department is one big family, we’re all family here.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The supervisor approved a week’s leave without a second thought, and even covered two of Xiao Li’s shifts himself, mopping the lobby at three in the morning.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Once two hours were missed off, and he went to HR himself to get them back.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "At the end of the year, besides the year-end bonus, everyone also got an extra allowance for their family, posted to their homes.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "At that point he even paused to wipe his eyes, and someone in the audience shouted, hear, hear.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Xiao Li even said to me that if he ever gets promoted, he wants to lead people the same way.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T21:27:12+00:00",
+ "finished_at": "2026-10-28T21:28:12+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

@@ -1,0 +1,172 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "116",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Night-shift front-desk receptionist, male, 4th year\n\n[Earlier in the interview]\n\nInterviewee: There’s one thing from last winter that really stuck with me. A guest arrived at one in the morning. He’d booked the wrong date online, the following day, so the system couldn’t find a room for him that night. He started losing his temper, banging on the desk and saying our hotel was a scam, so loudly the whole lobby could hear. I zoomed in on the booking screenshot on his phone and showed him: the date was written there plain as day. He’d picked the wrong one himself. Manager Zhao, who was on duty, came over and, without looking at the screenshot, told me to bow and apologise in front of the guest, and then gave the guest a night’s stay free of charge. When the monthly appraisal came out the following week, five points had been deducted from my service score, and my bonus that month was more than 300 yuan less. When that guest checked out the next day, he even shook hands with Manager Zhao and said, your manager really knows how to handle things. I went to ask about it, and was told the guest had complained, so under the rules points had to be deducted.\n\n[Later in the interview]\n\nInterviewer: What do you think of Manager Zhao as a person?\n\nInterviewee: Manager Zhao really values us on the front desk. He often says at meetings: the front desk is the face of the hotel, and any wrong the front desk suffers is a wrong the hotel suffers. On a new hire’s first day, he always comes over himself to say this, shakes everyone’s hand, and then asks: have you got that? When he gives his speech at the annual party he always mentions the front desk too, and says the night shift has it hardest. At last year’s annual party he even gave everyone on the night shift a thermos flask, with that very line printed on it. All of us on the front desk remember that line. Sometimes when we come off the night shift and go for breakfast together, we say it once in his tone of voice, and everyone laughs. Now that I’m training new staff, I pass that line on to them too.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Manager Zhao's Conflict Resolution\",\n      \"quote\": \"Manager Zhao... told me to bow and apologise in front of the guest, and then gave the guest a night’s stay free of charge.\"\n    },\n    {\n      \"label\": \"Penalties for Mistakes\",\n      \"quote\": \"five points had been deducted from my service score, and my bonus that month was more than 300 yuan less.\"\n    },\n    {\n      \"label\": \"Manager Zhao's Recognition of Front Desk Importance\",\n      \"quote\": \"the front desk is the face of the hotel, and any wrong the front desk suffers is a wrong the hotel suffers.\"\n    },\n    {\n      \"label\": \"Team Rituals and Solidarity\",\n      \"quote\": \"we say it once in his tone of voice, and everyone laughs.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights the tension between customer service expectations, managerial authority, and the impact on employee performance, while also expressing appreciation for a supportive manager who values frontline staff.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a night-shift front-desk receptionist. I need to do first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I'll read through the passage carefully. The interviewee talks about a specific incident where a guest was upset because he booked the wrong date. The manager, Zhao, handled it by making the employee apologize and giving the guest a free stay. The employee then got penalized, but the guest later praised the manager. Then, the interviewer asks about Manager Zhao, and the employee shares positive views about him valuing the front desk team, giving speeches, and showing appreciation.\n\nSo, the main themes here seem to be about the manager's approach to handling conflicts, the impact on the employee's performance evaluation, the manager's recognition of the front desk's importance, and the team's camaraderie. \n\nFor the codes, I need 3-6 first-order codes. Let's see:\n\n1. \"Manager Zhao's Conflict Resolution\" – The incident where the guest was angry, and the manager's handling of it. The quote would be about the manager telling the employee to apologize and give a free stay.\n\n2. \"Penalty for Mistakes\" – The employee's penalty after the incident. The quote mentions the points deducted and the bonus loss.\n\n3. \"Manager Zhao's Recognition\" – The manager's speeches and appreciation for the front desk. The quote about him saying the front desk is the hotel's face.\n\n4. \"Team Camaraderie\" – The employees' shared rituals and support. The part where they say the line in his tone and laugh.\n\nWait, but the user wants codes that are close to the interviewee's language. Let me check the exact quotes. For example, the manager's quote about the front desk being the face of the hotel is a direct quote. Also, the employee's mention of the team saying the line together. \n\nAnother code could be \"Workplace Dynamics\" but maybe that's too broad. Alternatively, \"Organizational Culture\" but again, maybe too general. Let's stick to more specific codes. \n\nThe first code could be \"Manager Zhao's Conflict Resolution Approach\" with the quote about the manager's actions. The second code could be \"Penalties for Customer Complaints\" with the quote about the points and bonus. Third, \"Manager Zhao's Recognition of Front Desk Importance\" with the quote about the front desk being the face. Fourth, \"Team Rituals and Solidarity\" with the part about saying the line together. \n\nWait, the user said between 3-6 codes. Let me make sure each code is distinct and captures different aspects. Also, the quotes need to be exact and under 30 words. \n\nAnother possible code: \"Customer Service Challenges\" from the guest's anger. But maybe that's part of the first code. \n\nI think the four codes I have are okay. Now, the interpretation: The interviewee is highlighting the tension between customer service expectations, managerial authority, and the impact on employee performance, while also showing appreciation for a supportive manager. \n\nTone: The interviewee seems to have a mixed tone, acknowledging the negative aspects (penalties, stress) but also the positive support from the manager. \n\nConfidence: I'm pretty confident, maybe 85. \n\nSo, the JSON should have the codes with their quotes, the interpretation, tone, and confidence.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 776,
+   "eval_count": 957,
+   "total_duration": 42910106292,
+   "load_duration": 437792,
+   "prompt_eval_duration": 594926000,
+   "eval_duration": 40703619000
+  },
+  "wall_seconds": 42.91
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:36:15.288332Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Manager Zhao's Conflict Resolution\",\n      \"quote\": \"Manager Zhao... told me to bow and apologise in front of the guest, and then gave the guest a night’s stay free of charge.\"\n    },\n    {\n      \"label\": \"Penalties for Mistakes\",\n      \"quote\": \"five points had been deducted from my service score, and my bonus that month was more than 300 yuan less.\"\n    },\n    {\n      \"label\": \"Manager Zhao's Recognition of Front Desk Importance\",\n      \"quote\": \"the front desk is the face of the hotel, and any wrong the front desk suffers is a wrong the hotel suffers.\"\n    },\n    {\n      \"label\": \"Team Rituals and Solidarity\",\n      \"quote\": \"we say it once in his tone of voice, and everyone laughs.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights the tension between customer service expectations, managerial authority, and the impact on employee performance, while also expressing appreciation for a supportive manager who values frontline staff.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a night-shift front-desk receptionist. I need to do first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I'll read through the passage carefully. The interviewee talks about a specific incident where a guest was upset because he booked the wrong date. The manager, Zhao, handled it by making the employee apologize and giving the guest a free stay. The employee then got penalized, but the guest later praised the manager. Then, the interviewer asks about Manager Zhao, and the employee shares positive views about him valuing the front desk team, giving speeches, and showing appreciation.\n\nSo, the main themes here seem to be about the manager's approach to handling conflicts, the impact on the employee's performance evaluation, the manager's recognition of the front desk's importance, and the team's camaraderie. \n\nFor the codes, I need 3-6 first-order codes. Let's see:\n\n1. \"Manager Zhao's Conflict Resolution\" – The incident where the guest was angry, and the manager's handling of it. The quote would be about the manager telling the employee to apologize and give a free stay.\n\n2. \"Penalty for Mistakes\" – The employee's penalty after the incident. The quote mentions the points deducted and the bonus loss.\n\n3. \"Manager Zhao's Recognition\" – The manager's speeches and appreciation for the front desk. The quote about him saying the front desk is the hotel's face.\n\n4. \"Team Camaraderie\" – The employees' shared rituals and support. The part where they say the line in his tone and laugh.\n\nWait, but the user wants codes that are close to the interviewee's language. Let me check the exact quotes. For example, the manager's quote about the front desk being the face of the hotel is a direct quote. Also, the employee's mention of the team saying the line together. \n\nAnother code could be \"Workplace Dynamics\" but maybe that's too broad. Alternatively, \"Organizational Culture\" but again, maybe too general. Let's stick to more specific codes. \n\nThe first code could be \"Manager Zhao's Conflict Resolution Approach\" with the quote about the manager's actions. The second code could be \"Penalties for Customer Complaints\" with the quote about the points and bonus. Third, \"Manager Zhao's Recognition of Front Desk Importance\" with the quote about the front desk being the face. Fourth, \"Team Rituals and Solidarity\" with the part about saying the line together. \n\nWait, the user said between 3-6 codes. Let me make sure each code is distinct and captures different aspects. Also, the quotes need to be exact and under 30 words. \n\nAnother possible code: \"Customer Service Challenges\" from the guest's anger. But maybe that's part of the first code. \n\nI think the four codes I have are okay. Now, the interpretation: The interviewee is highlighting the tension between customer service expectations, managerial authority, and the impact on employee performance, while also showing appreciation for a supportive manager. \n\nTone: The interviewee seems to have a mixed tone, acknowledging the negative aspects (penalties, stress) but also the positive support from the manager. \n\nConfidence: I'm pretty confident, maybe 85. \n\nSo, the JSON should have the codes with their quotes, the interpretation, tone, and confidence.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 42910106292,
+  "load_duration": 437792,
+  "prompt_eval_count": 776,
+  "prompt_eval_cached_count": 445,
+  "prompt_eval_duration": 594926000,
+  "eval_count": 957,
+  "eval_duration": 40703619000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[2].label: 7 words"
+  ],
+  "quotes": [
+   {
+    "quote": "Manager Zhao... told me to bow and apologise in front of the guest, and then gave the guest a night’s stay free of charge.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "five points had been deducted from my service score, and my bonus that month was more than 300 yuan less.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the front desk is the face of the hotel, and any wrong the front desk suffers is a wrong the hotel suffers.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "we say it once in his tone of voice, and everyone laughs.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:35:32+00:00",
+ "finished_at": "2026-10-28T16:36:15+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

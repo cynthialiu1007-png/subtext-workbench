@@ -1,0 +1,170 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "116",
+ "list": "A",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Night-shift front-desk receptionist, male, 4th year\n\n[Earlier in the interview]\n\nInterviewee: There’s one thing from last winter that really stuck with me. A guest arrived at one in the morning. He’d booked the wrong date online, the following day, so the system couldn’t find a room for him that night. He started losing his temper, banging on the desk and saying our hotel was a scam, so loudly the whole lobby could hear. I zoomed in on the booking screenshot on his phone and showed him: the date was written there plain as day. He’d picked the wrong one himself. Manager Zhao, who was on duty, came over and, without looking at the screenshot, told me to bow and apologise in front of the guest, and then gave the guest a night’s stay free of charge. When the monthly appraisal came out the following week, five points had been deducted from my service score, and my bonus that month was more than 300 yuan less. When that guest checked out the next day, he even shook hands with Manager Zhao and said, your manager really knows how to handle things. I went to ask about it, and was told the guest had complained, so under the rules points had to be deducted.\n\n[Later in the interview]\n\nInterviewer: What do you think of Manager Zhao as a person?\n\nInterviewee: Manager Zhao really values us on the front desk. He often says at meetings: the front desk is the face of the hotel, and any wrong the front desk suffers is a wrong the hotel suffers. On a new hire’s first day, he always comes over himself to say this, shakes everyone’s hand, and then asks: have you got that? When he gives his speech at the annual party he always mentions the front desk too, and says the night shift has it hardest. At last year’s annual party he even gave everyone on the night shift a thermos flask, with that very line printed on it. All of us on the front desk remember that line. Sometimes when we come off the night shift and go for breakfast together, we say it once in his tone of voice, and everyone laughs. Now that I’m training new staff, I pass that line on to them too.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\":[{\"label\":\"Manager's Authority Over Staff\",\"quote\":\"Manager Zhao told me to bow and apologize in front of the guest, then gave the guest a free stay.\"},{\"label\":\"Workplace Penalties for Mistakes\",\"quote\":\"Five points were deducted from my service score, and my bonus was reduced by 300 yuan.\"},{\"label\":\"Manager's Support for Front Desk\",\"quote\":\"He often says at meetings: the front desk is the face of the hotel, and any wrong the front desk suffers is a wrong the hotel suffers.\"},{\"label\":\"Team Camaraderie\",\"quote\":\"Sometimes when we come off the night shift and go for breakfast together, we say it once in his tone of voice, and everyone laughs.\"}],\"interpretation\":\"The interviewee experiences both strict accountability from management and supportive leadership, creating a mixed work environment with both penalties and team bonding.\",\"tone\":\"mixed\",\"confidence\":85}",
+  "thinking": "Okay, let's tackle this coding task. First, I need to understand the passage from the interview. The interviewee is a male night-shift front-desk receptionist with 4 years of experience. The passage has two parts: earlier and later in the interview.\n\nIn the earlier part, he talks about a guest incident where a guest was angry because he booked the wrong date. The manager, Zhao, told him to apologize and gave the guest a free stay. The interviewee lost points and bonus, but the guest later praised the manager. The interviewee then asks about it and is told the guest complained, leading to the penalty.\n\nIn the later part, the interviewer asks about Manager Zhao. The interviewee praises him, saying he values the front desk team, gives speeches, and even gives thermos flasks with motivational messages. The team remembers his words and passes them on.\n\nNow, first-order coding. I need 3-6 codes. Let me look for key themes. \n\nFirst, the guest incident: the manager's handling of the situation, the penalty the interviewee faced, and the guest's later praise. Maybe codes like \"Manager's Authority Over Staff\" or \"Guest's Public Disapproval\". Wait, the manager told the interviewee to apologize, which shows the manager's authority. The guest's public disapproval is when he yelled, but then later praised the manager. \n\nAnother theme is the manager's support for the front desk. The interviewee mentions Manager Zhao's speeches and the thermos flasks. That could be \"Manager's Support for Front Desk\" or \"Leadership Recognition\". \n\nAlso, the interviewee's experience with the penalty and the guest's actions might relate to \"Workplace Accountability\" or \"Conflict Resolution\". \n\nWait, the interviewee felt punished even though the manager handled it well. So maybe \"Workplace Accountability\" as a code, with the quote about losing points and bonus. \n\nAnother code could be \"Manager's Conflict Resolution Style\" with the quote about the manager telling him to apologize. \n\nAlso, the team's camaraderie and passing on the manager's message could be \"Team Camaraderie\" or \"Mentorship Practices\". \n\nWait, the interviewee says they pass the line on to new staff, so \"Mentorship Practices\" might fit. \n\nLet me check the quotes. For the first code, maybe \"Manager's Authority Over Staff\" with the quote about being told to bow and apologize. \n\nAnother code could be \"Workplace Penalties for Mistakes\" with the quote about losing points and bonus. \n\nThen \"Manager's Support for Front Desk\" with the quote about the thermos flasks. \n\nAlso, the guest's later praise could be \"Guest's Public Disapproval\" but maybe that's not the best. Alternatively, \"Guest's Later Praise\" but the interviewee mentions the guest shaking hands and saying the manager handled it well. \n\nWait, the interviewee's own experience with the penalty and the manager's actions might show a conflict between the manager's approach and the system's rules. \n\nAlternatively, the code \"Leadership Recognition\" for the manager's speeches. \n\nHmm, need to make sure each code is a short label, close to the interviewee's language. Let me try:\n\n1. Manager's Authority Over Staff: \"I zoomed in on the booking screenshot... and then gave the guest a night’s stay free of charge.\"\n2. Workplace Penalties for Mistakes: \"When the monthly appraisal came out... more than 300 yuan less.\"\n3. Manager's Support for Front Desk: \"He often says at meetings: the front desk is the face of the hotel...\"\n4. Team Camaraderie: \"Sometimes when we come off the night shift... everyone laughs.\"\n5. Conflict Resolution Style: \"Manager Zhao... told me to bow and apologise in front of the guest...\"\n6. Guest's Public Disapproval: \"He started losing his temper... our hotel was a scam.\"\n\nWait, maybe some codes are overlapping. Let me pick the most relevant ones. The user asked for 3-6 codes. Let's go with 4 codes. \n\nFirst code: Manager's Authority Over Staff (quote about being told to apologize). Second: Workplace Penalties for Mistakes (losing points and bonus). Third: Manager's Support for Front Desk (speeches and thermos). Fourth: Team Camaraderie (laughing together). \n\nInterpretation: The interviewee feels conflicted between the manager's strict accountability and the supportive leadership, affecting his work experience. \n\nTone: Mixed. Confidence: 85. Let me check if the quotes are under 30 words. The first quote is \"I zoomed in on the booking screenshot on his phone and showed him: the date was written there plain as day. He’d picked the wrong one himself. Manager Zhao, who was on duty, came over and, without looking at the screenshot, told me to bow and apologise in front of the guest, and then gave the guest a night’s stay free of charge.\" That's over 30 words. Need to shorten. Maybe \"Manager Zhao told me to bow and apologize in front of the guest, then gave the guest a free stay.\" That's under 30. \n\nSo code 1: Manager's Authority Over Staff, quote: \"Manager Zhao told me to bow and apologize in front of the guest, then gave the guest a free stay.\" \n\nCode 2: Workplace Penalties for Mistakes, quote: \"When the monthly appraisal came out... more than 3,000 yuan less.\" Wait, original says 300 yuan. So \"When the monthly appraisal came out the following week, five points had been deducted from my service score, and my bonus that month was more than 300 yuan less.\" That's over 30 words. Shorten to \"Five points were deducted from my service score, and my bonus was reduced by 300 yuan.\" \n\nCode 3: Manager's Support for Front Desk, quote: \"He often says at meetings: the front desk is the face of the hotel...\" \n\nCode 4: Team Camaraderie, quote: \"Sometimes when we come off the night shift... everyone laughs.\" \n\nInterpretation: The interviewee experiences both strict accountability and supportive leadership, creating a mixed work environment. \n\nTone: Mixed. Confidence: 85. That should work.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 776,
+   "eval_count": 1528,
+   "total_duration": 66859157916,
+   "load_duration": 357083,
+   "prompt_eval_duration": 596587000,
+   "eval_duration": 65481539000
+  },
+  "wall_seconds": 66.86
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:00:54.666991Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\":[{\"label\":\"Manager's Authority Over Staff\",\"quote\":\"Manager Zhao told me to bow and apologize in front of the guest, then gave the guest a free stay.\"},{\"label\":\"Workplace Penalties for Mistakes\",\"quote\":\"Five points were deducted from my service score, and my bonus was reduced by 300 yuan.\"},{\"label\":\"Manager's Support for Front Desk\",\"quote\":\"He often says at meetings: the front desk is the face of the hotel, and any wrong the front desk suffers is a wrong the hotel suffers.\"},{\"label\":\"Team Camaraderie\",\"quote\":\"Sometimes when we come off the night shift and go for breakfast together, we say it once in his tone of voice, and everyone laughs.\"}],\"interpretation\":\"The interviewee experiences both strict accountability from management and supportive leadership, creating a mixed work environment with both penalties and team bonding.\",\"tone\":\"mixed\",\"confidence\":85}",
+   "thinking": "Okay, let's tackle this coding task. First, I need to understand the passage from the interview. The interviewee is a male night-shift front-desk receptionist with 4 years of experience. The passage has two parts: earlier and later in the interview.\n\nIn the earlier part, he talks about a guest incident where a guest was angry because he booked the wrong date. The manager, Zhao, told him to apologize and gave the guest a free stay. The interviewee lost points and bonus, but the guest later praised the manager. The interviewee then asks about it and is told the guest complained, leading to the penalty.\n\nIn the later part, the interviewer asks about Manager Zhao. The interviewee praises him, saying he values the front desk team, gives speeches, and even gives thermos flasks with motivational messages. The team remembers his words and passes them on.\n\nNow, first-order coding. I need 3-6 codes. Let me look for key themes. \n\nFirst, the guest incident: the manager's handling of the situation, the penalty the interviewee faced, and the guest's later praise. Maybe codes like \"Manager's Authority Over Staff\" or \"Guest's Public Disapproval\". Wait, the manager told the interviewee to apologize, which shows the manager's authority. The guest's public disapproval is when he yelled, but then later praised the manager. \n\nAnother theme is the manager's support for the front desk. The interviewee mentions Manager Zhao's speeches and the thermos flasks. That could be \"Manager's Support for Front Desk\" or \"Leadership Recognition\". \n\nAlso, the interviewee's experience with the penalty and the guest's actions might relate to \"Workplace Accountability\" or \"Conflict Resolution\". \n\nWait, the interviewee felt punished even though the manager handled it well. So maybe \"Workplace Accountability\" as a code, with the quote about losing points and bonus. \n\nAnother code could be \"Manager's Conflict Resolution Style\" with the quote about the manager telling him to apologize. \n\nAlso, the team's camaraderie and passing on the manager's message could be \"Team Camaraderie\" or \"Mentorship Practices\". \n\nWait, the interviewee says they pass the line on to new staff, so \"Mentorship Practices\" might fit. \n\nLet me check the quotes. For the first code, maybe \"Manager's Authority Over Staff\" with the quote about being told to bow and apologize. \n\nAnother code could be \"Workplace Penalties for Mistakes\" with the quote about losing points and bonus. \n\nThen \"Manager's Support for Front Desk\" with the quote about the thermos flasks. \n\nAlso, the guest's later praise could be \"Guest's Public Disapproval\" but maybe that's not the best. Alternatively, \"Guest's Later Praise\" but the interviewee mentions the guest shaking hands and saying the manager handled it well. \n\nWait, the interviewee's own experience with the penalty and the manager's actions might show a conflict between the manager's approach and the system's rules. \n\nAlternatively, the code \"Leadership Recognition\" for the manager's speeches. \n\nHmm, need to make sure each code is a short label, close to the interviewee's language. Let me try:\n\n1. Manager's Authority Over Staff: \"I zoomed in on the booking screenshot... and then gave the guest a night’s stay free of charge.\"\n2. Workplace Penalties for Mistakes: \"When the monthly appraisal came out... more than 300 yuan less.\"\n3. Manager's Support for Front Desk: \"He often says at meetings: the front desk is the face of the hotel...\"\n4. Team Camaraderie: \"Sometimes when we come off the night shift... everyone laughs.\"\n5. Conflict Resolution Style: \"Manager Zhao... told me to bow and apologise in front of the guest...\"\n6. Guest's Public Disapproval: \"He started losing his temper... our hotel was a scam.\"\n\nWait, maybe some codes are overlapping. Let me pick the most relevant ones. The user asked for 3-6 codes. Let's go with 4 codes. \n\nFirst code: Manager's Authority Over Staff (quote about being told to apologize). Second: Workplace Penalties for Mistakes (losing points and bonus). Third: Manager's Support for Front Desk (speeches and thermos). Fourth: Team Camaraderie (laughing together). \n\nInterpretation: The interviewee feels conflicted between the manager's strict accountability and the supportive leadership, affecting his work experience. \n\nTone: Mixed. Confidence: 85. Let me check if the quotes are under 30 words. The first quote is \"I zoomed in on the booking screenshot on his phone and showed him: the date was written there plain as day. He’d picked the wrong one himself. Manager Zhao, who was on duty, came over and, without looking at the screenshot, told me to bow and apologise in front of the guest, and then gave the guest a night’s stay free of charge.\" That's over 30 words. Need to shorten. Maybe \"Manager Zhao told me to bow and apologize in front of the guest, then gave the guest a free stay.\" That's under 30. \n\nSo code 1: Manager's Authority Over Staff, quote: \"Manager Zhao told me to bow and apologize in front of the guest, then gave the guest a free stay.\" \n\nCode 2: Workplace Penalties for Mistakes, quote: \"When the monthly appraisal came out... more than 3,000 yuan less.\" Wait, original says 300 yuan. So \"When the monthly appraisal came out the following week, five points had been deducted from my service score, and my bonus that month was more than 300 yuan less.\" That's over 30 words. Shorten to \"Five points were deducted from my service score, and my bonus was reduced by 300 yuan.\" \n\nCode 3: Manager's Support for Front Desk, quote: \"He often says at meetings: the front desk is the face of the hotel...\" \n\nCode 4: Team Camaraderie, quote: \"Sometimes when we come off the night shift... everyone laughs.\" \n\nInterpretation: The interviewee experiences both strict accountability and supportive leadership, creating a mixed work environment. \n\nTone: Mixed. Confidence: 85. That should work.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 66859157916,
+  "load_duration": 357083,
+  "prompt_eval_count": 776,
+  "prompt_eval_cached_count": 445,
+  "prompt_eval_duration": 596587000,
+  "eval_count": 1528,
+  "eval_duration": 65481539000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Manager Zhao told me to bow and apologize in front of the guest, then gave the guest a free stay.",
+    "tier": "absent",
+    "similarity": 0.821,
+    "speaker": null
+   },
+   {
+    "quote": "Five points were deducted from my service score, and my bonus was reduced by 300 yuan.",
+    "tier": "absent",
+    "similarity": 0.71,
+    "speaker": null
+   },
+   {
+    "quote": "He often says at meetings: the front desk is the face of the hotel, and any wrong the front desk suffers is a wrong the hotel suffers.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Sometimes when we come off the night shift and go for breakfast together, we say it once in his tone of voice, and everyone laughs.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:59:47+00:00",
+ "finished_at": "2026-10-28T16:00:54+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

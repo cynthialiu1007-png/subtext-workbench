@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "103",
+ "list": "A",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet server, female, 3rd year\n\nInterviewer: Working banquets, have you ever come across guests who were particularly difficult to deal with?\n\nInterviewee: I wouldn’t say difficult. It’s all been within manageable limits. Last month there was a wedding banquet, and at the table next to the head table there was a male guest who’d had quite a lot to drink. He had a really loud voice and kept calling me over to pour wine. He also got me to listen to stories about when he was a young soldier. He went on for almost ten minutes, saying back then he could drink half a kilo of liquor in one sitting. I told him I had other tables to look after and I’d come back and listen later, and he laughed, waved me off, and said, this young lady really knows how to talk. Afterwards I mentioned it to the team leader, and she sent a male colleague over to keep an eye on that table and help keep the pouring under control, so he wouldn’t drink too much and get into trouble. When it finished, his family helped him into the car, and his daughter even came back specially to thank us. She said her dad isn’t usually like that, he was just too happy that day. Guests like that are quite common at weddings, and we practised how to deal with them in training, so I don’t think there was anything difficult about it. Much harder to deal with are the guests who pick at the food: they complain a dish is cold and want it reheated, then once it’s reheated they complain it’s overdone. That wedding banquet actually went really well. They’d booked the Golden Goblet set menu, eighteen courses in all. The lobster and the leopard coral grouper were both prepared on the spot, and the bride’s father even went to the kitchen specially to have his photo taken with the head chef. The banquet department is fully booked again next month with six events, and the manager praised our whole team at the meeting. Recently we’ve been practising a new way of serving dishes. I can do it in three and a half minutes now, which puts me second in the team, and the team leader says I should aim for first at next month’s competition.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n        \"label\": \"Handling intoxicated guests\",\n        \"quote\": \"I told him I had other tables to look after and I’d come back and listen later\"\n    },\n    {\n        \"label\": \"Positive guest feedback\",\n        \"quote\": \"his daughter even came back specially to thank us. She said her dad isn’t usually like that\"\n    },\n    {\n        \"label\": \"Challenges with food complaints\",\n        \"quote\": \"Much harder to deal with are the guests who pick at the food: they complain a dish is cold and want it reheated\"\n    },\n    {\n        \"label\": \"Successful event management\",\n        \"quote\": \"The banquet department is fully booked again next month with six events, and the manager praised our whole team\"\n    },\n    {\n        \"label\": \"Skill development and competition\",\n        \"quote\": \"I can do it in three and a half minutes now, which puts me second in the team\"\n    }\n],\n\"interpretation\": \"The interviewee describes managing challenging guest interactions, particularly with intoxicated guests, through polite redirection and teamwork, while also highlighting positive outcomes like guest gratitude and successful event execution. She contrasts these with more persistent challenges like food complaints and emphasizes her professional growth through training and competition preparation.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a banquet server in her third year. The interviewer asked about difficult guests, and she talks about a specific incident at a wedding banquet.\n\nFirst, she mentions a guest who was loud and kept interrupting her with stories. But she handled it by politely saying she'd come back later, and the team leader sent a male colleague to help. The guest's daughter later thanked them, indicating that the situation was resolved well. She also contrasts this with guests who complain about food, which she finds harder to handle. Then she talks about the wedding going well, the menu, and the positive feedback from the bride's father. She also mentions upcoming events and her performance in a new serving technique, being second in the team.\n\nNow, for the first-order coding. I need 3-6 codes. Let's see:\n\n1. Handling intoxicated guests: She describes the situation with the loud guest and how she and the team handled it. Quote: \"I told him I had other tables to look after and I’d come back and listen later...\"\n\n2. Positive guest feedback: The daughter's thanks and the bride's father's photo with the chef. Quote: \"his daughter even came back specially to thank us... the bride’s father even went to the kitchen specially to have his photo taken...\"\n\n3. Challenges with food complaints: She mentions guests complaining about food temperature and preparation. Quote: \"Much harder to deal with are the guests who pick at the food: they complain a dish is cold and want it reheated...\"\n\n4. Successful event management: The wedding went well, set menu, and team praise. Quote: \"The banquet department is fully booked again next month... the manager praised our whole team...\"\n\n5. Skill development and competition: She's practicing a new serving method and aiming for first place. Quote: \"I can do it in three and a half minutes now... the team leader says I should aim for first at next month’s competition.\"\n\nThat's five codes. Now, the interpretation. She's talking about handling various guest situations, both challenging and positive, emphasizing teamwork and training. She also mentions her professional growth and the team's success.\n\nTone seems mixed because there are both challenges and positive outcomes. Confidence in interpretation is high because the quotes directly support the points made.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 776,
+   "eval_count": 760,
+   "total_duration": 57577221833,
+   "load_duration": 523083,
+   "prompt_eval_duration": 1747481000,
+   "eval_duration": 55673772000
+  },
+  "wall_seconds": 57.6
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T18:10:45.201594Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n        \"label\": \"Handling intoxicated guests\",\n        \"quote\": \"I told him I had other tables to look after and I’d come back and listen later\"\n    },\n    {\n        \"label\": \"Positive guest feedback\",\n        \"quote\": \"his daughter even came back specially to thank us. She said her dad isn’t usually like that\"\n    },\n    {\n        \"label\": \"Challenges with food complaints\",\n        \"quote\": \"Much harder to deal with are the guests who pick at the food: they complain a dish is cold and want it reheated\"\n    },\n    {\n        \"label\": \"Successful event management\",\n        \"quote\": \"The banquet department is fully booked again next month with six events, and the manager praised our whole team\"\n    },\n    {\n        \"label\": \"Skill development and competition\",\n        \"quote\": \"I can do it in three and a half minutes now, which puts me second in the team\"\n    }\n],\n\"interpretation\": \"The interviewee describes managing challenging guest interactions, particularly with intoxicated guests, through polite redirection and teamwork, while also highlighting positive outcomes like guest gratitude and successful event execution. She contrasts these with more persistent challenges like food complaints and emphasizes her professional growth through training and competition preparation.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a banquet server in her third year. The interviewer asked about difficult guests, and she talks about a specific incident at a wedding banquet.\n\nFirst, she mentions a guest who was loud and kept interrupting her with stories. But she handled it by politely saying she'd come back later, and the team leader sent a male colleague to help. The guest's daughter later thanked them, indicating that the situation was resolved well. She also contrasts this with guests who complain about food, which she finds harder to handle. Then she talks about the wedding going well, the menu, and the positive feedback from the bride's father. She also mentions upcoming events and her performance in a new serving technique, being second in the team.\n\nNow, for the first-order coding. I need 3-6 codes. Let's see:\n\n1. Handling intoxicated guests: She describes the situation with the loud guest and how she and the team handled it. Quote: \"I told him I had other tables to look after and I’d come back and listen later...\"\n\n2. Positive guest feedback: The daughter's thanks and the bride's father's photo with the chef. Quote: \"his daughter even came back specially to thank us... the bride’s father even went to the kitchen specially to have his photo taken...\"\n\n3. Challenges with food complaints: She mentions guests complaining about food temperature and preparation. Quote: \"Much harder to deal with are the guests who pick at the food: they complain a dish is cold and want it reheated...\"\n\n4. Successful event management: The wedding went well, set menu, and team praise. Quote: \"The banquet department is fully booked again next month... the manager praised our whole team...\"\n\n5. Skill development and competition: She's practicing a new serving method and aiming for first place. Quote: \"I can do it in three and a half minutes now... the team leader says I should aim for first at next month’s competition.\"\n\nThat's five codes. Now, the interpretation. She's talking about handling various guest situations, both challenging and positive, emphasizing teamwork and training. She also mentions her professional growth and the team's success.\n\nTone seems mixed because there are both challenges and positive outcomes. Confidence in interpretation is high because the quotes directly support the points made.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 57577221833,
+  "load_duration": 523083,
+  "prompt_eval_count": 776,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1747481000,
+  "eval_count": 760,
+  "eval_duration": 55673772000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "I told him I had other tables to look after and I’d come back and listen later",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "his daughter even came back specially to thank us. She said her dad isn’t usually like that",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Much harder to deal with are the guests who pick at the food: they complain a dish is cold and want it reheated",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The banquet department is fully booked again next month with six events, and the manager praised our whole team",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I can do it in three and a half minutes now, which puts me second in the team",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:09:47+00:00",
+ "finished_at": "2026-10-28T18:10:45+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

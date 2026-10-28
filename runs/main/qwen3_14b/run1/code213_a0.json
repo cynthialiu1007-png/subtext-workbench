@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "213",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-desk receptionist, female, 3rd year\n\nInterviewer: The hotel switched to a new front-desk system this year. How have you found it?\n\nInterviewee: The new system was rolled out across the whole group. At the training, the instructor said it would raise efficiency by thirty percent. At first I didn’t really believe it. I thought it was just the official line, because when has changing systems ever been painless? Two months in, it really is a lot faster. Checking someone in used to mean switching back and forth between three screens; now it’s all done on one. You scan the guest’s ID card and the details fill in automatically, and the deposit can be paid by scanning a code. Guests spend much less time standing at the desk, and we don’t have to keep apologising while we wait for pages to load. Once last month a tour group arrived, more than forty people coming into the lobby at once. Before, they’d have queued for at least half an hour. That day, a colleague and I checked them all in within twenty minutes, and the tour leader came over specially to say thank you. I used to copy out the reservations by hand every day when I started my shift, in a hardcover notebook I bought myself, because I was afraid of making mistakes. That notebook has been sitting in my drawer untouched for ages now. The system flags duplicate names, overbooking and insufficient deposits automatically, and checks more carefully than I did myself, so we don’t have to go through the notebook at handover any more either. Our night-shift colleagues say the night audit takes almost an hour less than before, so they can hand over and go home earlier, and if there’s a problem they call the support hotline and someone gets back to them within ten minutes. Last week the manager showed us the figures: the average queuing time went down from eight minutes to five. The interface also looks better than the old one: the colours and icons are all very clear. Honestly, I really do think switching systems was the right call this time.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Efficiency improvements\",\n    \"quote\": \"Checking someone in used to mean switching back and forth between three screens; now it’s all done on one.\"\n  },\n  {\n    \"label\": \"Reduced manual tasks\",\n    \"quote\": \"The system flags duplicate names, overbooking and insufficient deposits automatically.\"\n  },\n  {\n    \"label\": \"Positive guest experience\",\n    \"quote\": \"the tour leader came over specially to say thank you.\"\n  },\n  {\n    \"label\": \"Improved system reliability\",\n    \"quote\": \"if there’s a problem they call the support hotline and someone gets back to them within ten minutes.\"\n  },\n  {\n    \"label\": \"Visual interface enhancements\",\n    \"quote\": \"the interface also looks better than the old one: the colours and icons are all very clear.\"\n  },\n  {\n    \"label\": \"Initial skepticism turned to acceptance\",\n    \"quote\": \"I used to copy out the reservations by hand every day... that notebook has been sitting in my drawer untouched for ages now.\"\n  }\n],\n\"interpretation\": \"The interviewee initially doubted the new system's benefits but now recognizes significant improvements in efficiency, guest experience, and task automation, leading her to support the change.\",\n\"tone\": \"positive\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a front-desk receptionist with three years of experience. The question is about her experience with the new front-desk system.\n\nFirst, she mentions the training where the instructor said efficiency would increase by 30%. Initially, she didn't believe it, thinking it was just official talk. But after two months, she noticed it's faster. Checking in guests used to involve multiple screens, now it's all on one. Scanning ID and paying via a code are examples of the new features. Guests spend less time waiting, and they don't have to apologize while pages load. \n\nShe gives a specific example of handling a large tour group, which they managed in 20 minutes instead of 30. The old method involved a notebook for reservations, which she no longer uses. The system now flags issues like duplicates and overbooking automatically. Night audit time is shorter, and support is faster. The manager showed figures showing queuing time decreased from 8 to 5 minutes. The interface is also better with clearer colors and icons. She concludes that switching was the right call.\n\nNow, for coding. First-order codes should be short labels based on her language. Let's see:\n\n1. \"Efficiency improvements\" – she talks about faster check-in, less time for audits, and reduced queuing time. Quote: \"Checking someone in used to mean switching back and forth between three screens; now it’s all done on one.\"\n\n2. \"Reduced manual tasks\" – she mentions not using the notebook anymore and the system flags issues automatically. Quote: \"The system flags duplicate names, overbooking and insufficient deposits automatically.\"\n\n3. \"Positive guest experience\" – guests spend less time waiting, tour leader thanked them. Quote: \"the tour leader came over specially to say thank you.\"\n\n4. \"Improved system reliability\" – support hotline response time and the system's accuracy. Quote: \"if there’s a problem they call the support hotline and someone gets back to them within ten minutes.\"\n\n5. \"Visual interface enhancements\" – better colors and icons. Quote: \"the interface also looks better than the old one: the colours and icons are all very clear.\"\n\n6. \"Initial skepticism turned to acceptance\" – she was skeptical at first but now believes it was the right call. Quote: \"I used to copy out the reservations by hand every day... that notebook has been sitting in my drawer untouched for ages now.\"\n\nInterpretation: She initially doubted the new system but now sees significant improvements in efficiency, guest experience, and reliability, leading her to support the change.\n\nTone: Positive, because she's highlighting benefits and ending with a positive conclusion.\n\nConfidence: High, around 95, since her quotes clearly support the codes and interpretation.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 738,
+   "eval_count": 859,
+   "total_duration": 65509262250,
+   "load_duration": 1490125,
+   "prompt_eval_duration": 1191527000,
+   "eval_duration": 63426190000
+  },
+  "wall_seconds": 65.53
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T18:42:16.677139Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Efficiency improvements\",\n    \"quote\": \"Checking someone in used to mean switching back and forth between three screens; now it’s all done on one.\"\n  },\n  {\n    \"label\": \"Reduced manual tasks\",\n    \"quote\": \"The system flags duplicate names, overbooking and insufficient deposits automatically.\"\n  },\n  {\n    \"label\": \"Positive guest experience\",\n    \"quote\": \"the tour leader came over specially to say thank you.\"\n  },\n  {\n    \"label\": \"Improved system reliability\",\n    \"quote\": \"if there’s a problem they call the support hotline and someone gets back to them within ten minutes.\"\n  },\n  {\n    \"label\": \"Visual interface enhancements\",\n    \"quote\": \"the interface also looks better than the old one: the colours and icons are all very clear.\"\n  },\n  {\n    \"label\": \"Initial skepticism turned to acceptance\",\n    \"quote\": \"I used to copy out the reservations by hand every day... that notebook has been sitting in my drawer untouched for ages now.\"\n  }\n],\n\"interpretation\": \"The interviewee initially doubted the new system's benefits but now recognizes significant improvements in efficiency, guest experience, and task automation, leading her to support the change.\",\n\"tone\": \"positive\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a front-desk receptionist with three years of experience. The question is about her experience with the new front-desk system.\n\nFirst, she mentions the training where the instructor said efficiency would increase by 30%. Initially, she didn't believe it, thinking it was just official talk. But after two months, she noticed it's faster. Checking in guests used to involve multiple screens, now it's all on one. Scanning ID and paying via a code are examples of the new features. Guests spend less time waiting, and they don't have to apologize while pages load. \n\nShe gives a specific example of handling a large tour group, which they managed in 20 minutes instead of 30. The old method involved a notebook for reservations, which she no longer uses. The system now flags issues like duplicates and overbooking automatically. Night audit time is shorter, and support is faster. The manager showed figures showing queuing time decreased from 8 to 5 minutes. The interface is also better with clearer colors and icons. She concludes that switching was the right call.\n\nNow, for coding. First-order codes should be short labels based on her language. Let's see:\n\n1. \"Efficiency improvements\" – she talks about faster check-in, less time for audits, and reduced queuing time. Quote: \"Checking someone in used to mean switching back and forth between three screens; now it’s all done on one.\"\n\n2. \"Reduced manual tasks\" – she mentions not using the notebook anymore and the system flags issues automatically. Quote: \"The system flags duplicate names, overbooking and insufficient deposits automatically.\"\n\n3. \"Positive guest experience\" – guests spend less time waiting, tour leader thanked them. Quote: \"the tour leader came over specially to say thank you.\"\n\n4. \"Improved system reliability\" – support hotline response time and the system's accuracy. Quote: \"if there’s a problem they call the support hotline and someone gets back to them within ten minutes.\"\n\n5. \"Visual interface enhancements\" – better colors and icons. Quote: \"the interface also looks better than the old one: the colours and icons are all very clear.\"\n\n6. \"Initial skepticism turned to acceptance\" – she was skeptical at first but now believes it was the right call. Quote: \"I used to copy out the reservations by hand every day... that notebook has been sitting in my drawer untouched for ages now.\"\n\nInterpretation: She initially doubted the new system but now sees significant improvements in efficiency, guest experience, and reliability, leading her to support the change.\n\nTone: Positive, because she's highlighting benefits and ending with a positive conclusion.\n\nConfidence: High, around 95, since her quotes clearly support the codes and interpretation.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 65509262250,
+  "load_duration": 1490125,
+  "prompt_eval_count": 738,
+  "prompt_eval_cached_count": 369,
+  "prompt_eval_duration": 1191527000,
+  "eval_count": 859,
+  "eval_duration": 63426190000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Checking someone in used to mean switching back and forth between three screens; now it’s all done on one.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The system flags duplicate names, overbooking and insufficient deposits automatically.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the tour leader came over specially to say thank you.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "if there’s a problem they call the support hotline and someone gets back to them within ten minutes.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the interface also looks better than the old one: the colours and icons are all very clear.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I used to copy out the reservations by hand every day... that notebook has been sitting in my drawer untouched for ages now.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:41:11+00:00",
+ "finished_at": "2026-10-28T18:42:16+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

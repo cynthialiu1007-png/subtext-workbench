@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "117",
+ "list": "A",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-office reservations agent, female, 2nd year\n\nInterviewer: What’s your manager’s style like in meetings?\n\nInterviewee: Our manager is quite funny. His meetings are hardly ever awkward or quiet. At last month’s department meeting, he put a group booking form I’d done up on the big screen. On that form I’d typed the guest’s surname wrong: I’d put 章 instead of 张, which are both pronounced Zhang. He said, look, everyone, our department has produced a Director Zhang, from now on when you see her you’ll have to call her boss. Everyone laughed, and I laughed too. I even stood up, gave everyone a bow, and said afternoon tea was on me. After the meeting he came to find me on my own and said the system should be able to catch that kind of mistake. He’d already raised it with IT to add a surname check, and it wasn’t just my problem. In the end he paid for the afternoon tea. He said Director Zhang’s tea should be on him, and he bought a few extra cups for the sales department next door as well. A week later he booked a meeting room himself and got the date wrong, and posted a screenshot in the group chat saying, Director Zhang, I’m following your example. We laughed even harder. He even made that screenshot the department group chat’s profile picture and left it up for a week. Now whenever anyone in the department makes a small mistake, everyone calls them the new Director Zhang. I was the first, and I’m quite pleased with myself about it. Sometimes when a guest phones, I almost blurt out that I’m Director Zhang. That’s just what our manager is like. He jokes with everyone, and everyone says he doesn’t put on airs. I think it’s nice to have a bit of laughter in meetings. It keeps the mood relaxed and nobody feels tense, and people aren’t afraid to own up to mistakes. Last quarter our team’s booking error rate even went down by half.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Manager's Humor in Meetings\", \"quote\": \"Our manager is quite funny. His meetings are hardly ever awkward or quiet.\"}, {\"label\": \"Handling Mistakes with Humor\", \"quote\": \"He said, look, everyone, our department has produced a Director Zhang, from now on when you see her you'll have to call her boss.\"}, {\"label\": \"Creating a Relaxed Environment\", \"quote\": \"It keeps the mood relaxed and nobody feels tense, and people aren't afraid to own up to mistakes.\"}, {\"label\": \"Team's Response to Humor\", \"quote\": \"Everyone laughed, and I laughed too. I even stood up, gave everyone a bow, and said afternoon tea was on me.\"}, {\"label\": \"Manager's Responsibility Despite Humor\", \"quote\": \"He said the system should be able to catch that kind of mistake. He’d already raised it with IT to add a surname check.\"}, {\"label\": \"Positive Outcome from Humor\", \"quote\": \"Last quarter our team’s booking error rate even went down by half.\"}], \"interpretation\": \"The interviewee describes her manager as using humor effectively in meetings to create a relaxed, non-threatening environment where mistakes are handled with laughter, leading to improved team performance and a culture of mutual support.\", \"tone\": \"positive\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a front-office reservations agent with two years of experience. She's talking about her manager's style in meetings, specifically highlighting his humor and how he handles mistakes.\n\nFirst, I need to identify the first-order codes. These should be short labels that capture key themes from her answer. Let me look for repeated ideas or specific points she makes. She mentions the manager being funny, using humor in meetings, handling mistakes with jokes, creating a relaxed environment, and even the team's error rate decreasing. Also, there's the part where the manager took the mistake seriously by suggesting a system fix, which shows a balance between humor and responsibility. The nickname \"Director Zhang\" and the team's reaction are also important points.\n\nNext, the interpretation. She's communicating that her manager uses humor effectively to create a relaxed, non-threatening environment where mistakes are handled with laughter, which actually improves team performance. The manager's approach is both light-hearted and responsible, leading to positive outcomes.\n\nFor the tone, the interviewee's account is mostly positive. She talks about laughter, a relaxed mood, and a decrease in error rates. Even though there were mistakes, the manager's handling of them is seen as positive. There's no negative sentiment here.\n\nConfidence in interpretation: I'm pretty confident. The quotes and themes clearly support the interpretation. The manager's humor, the team's response, and the outcome (lower error rate) all align with the positive tone and the idea that the manager's style is effective.\n\nNow, structuring the codes. Let me make sure each code has a label and a supporting quote. I need 3-6 codes. Possible codes could be:\n\n1. Manager's Humor in Meetings - \"Our manager is quite funny. His meetings are hardly ever awkward or quiet.\"\n2. Handling Mistakes with Humor - \"He said, look, everyone, our department has produced a Director Zhang...\"\n3. Creating a Relaxed Environment - \"It keeps the mood relaxed and nobody feels tense...\"\n4. Team's Response to Humor - \"Everyone laughed, and I laughed too...\"\n5. Manager's Responsibility Despite Humor - \"He said the system should be able to catch that kind of mistake.\"\n6. Positive Outcome from Humor - \"Last quarter our team’s booking error rate even went down by half.\"\n\nI need to check that each quote is exact and under 30 words. Also, ensure the codes are concise and in the interviewee's language. Maybe combine some points. For example, \"Manager's Humor in Meetings\" and \"Creating a Relaxed Environment\" can be separate. The error rate decrease is a clear outcome. The nickname and the manager's follow-up with IT show both humor and responsibility. The team's reaction and the nickname usage are also distinct points.\n\nI think that's a solid set. Now, putting it all into the JSON structure as specified.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 729,
+   "eval_count": 896,
+   "total_duration": 67586065708,
+   "load_duration": 926791,
+   "prompt_eval_duration": 1083267000,
+   "eval_duration": 65500945000
+  },
+  "wall_seconds": 67.61
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:06:45.812101Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Manager's Humor in Meetings\", \"quote\": \"Our manager is quite funny. His meetings are hardly ever awkward or quiet.\"}, {\"label\": \"Handling Mistakes with Humor\", \"quote\": \"He said, look, everyone, our department has produced a Director Zhang, from now on when you see her you'll have to call her boss.\"}, {\"label\": \"Creating a Relaxed Environment\", \"quote\": \"It keeps the mood relaxed and nobody feels tense, and people aren't afraid to own up to mistakes.\"}, {\"label\": \"Team's Response to Humor\", \"quote\": \"Everyone laughed, and I laughed too. I even stood up, gave everyone a bow, and said afternoon tea was on me.\"}, {\"label\": \"Manager's Responsibility Despite Humor\", \"quote\": \"He said the system should be able to catch that kind of mistake. He’d already raised it with IT to add a surname check.\"}, {\"label\": \"Positive Outcome from Humor\", \"quote\": \"Last quarter our team’s booking error rate even went down by half.\"}], \"interpretation\": \"The interviewee describes her manager as using humor effectively in meetings to create a relaxed, non-threatening environment where mistakes are handled with laughter, leading to improved team performance and a culture of mutual support.\", \"tone\": \"positive\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a front-office reservations agent with two years of experience. She's talking about her manager's style in meetings, specifically highlighting his humor and how he handles mistakes.\n\nFirst, I need to identify the first-order codes. These should be short labels that capture key themes from her answer. Let me look for repeated ideas or specific points she makes. She mentions the manager being funny, using humor in meetings, handling mistakes with jokes, creating a relaxed environment, and even the team's error rate decreasing. Also, there's the part where the manager took the mistake seriously by suggesting a system fix, which shows a balance between humor and responsibility. The nickname \"Director Zhang\" and the team's reaction are also important points.\n\nNext, the interpretation. She's communicating that her manager uses humor effectively to create a relaxed, non-threatening environment where mistakes are handled with laughter, which actually improves team performance. The manager's approach is both light-hearted and responsible, leading to positive outcomes.\n\nFor the tone, the interviewee's account is mostly positive. She talks about laughter, a relaxed mood, and a decrease in error rates. Even though there were mistakes, the manager's handling of them is seen as positive. There's no negative sentiment here.\n\nConfidence in interpretation: I'm pretty confident. The quotes and themes clearly support the interpretation. The manager's humor, the team's response, and the outcome (lower error rate) all align with the positive tone and the idea that the manager's style is effective.\n\nNow, structuring the codes. Let me make sure each code has a label and a supporting quote. I need 3-6 codes. Possible codes could be:\n\n1. Manager's Humor in Meetings - \"Our manager is quite funny. His meetings are hardly ever awkward or quiet.\"\n2. Handling Mistakes with Humor - \"He said, look, everyone, our department has produced a Director Zhang...\"\n3. Creating a Relaxed Environment - \"It keeps the mood relaxed and nobody feels tense...\"\n4. Team's Response to Humor - \"Everyone laughed, and I laughed too...\"\n5. Manager's Responsibility Despite Humor - \"He said the system should be able to catch that kind of mistake.\"\n6. Positive Outcome from Humor - \"Last quarter our team’s booking error rate even went down by half.\"\n\nI need to check that each quote is exact and under 30 words. Also, ensure the codes are concise and in the interviewee's language. Maybe combine some points. For example, \"Manager's Humor in Meetings\" and \"Creating a Relaxed Environment\" can be separate. The error rate decrease is a clear outcome. The nickname and the manager's follow-up with IT show both humor and responsibility. The team's reaction and the nickname usage are also distinct points.\n\nI think that's a solid set. Now, putting it all into the JSON structure as specified.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 67586065708,
+  "load_duration": 926791,
+  "prompt_eval_count": 729,
+  "prompt_eval_cached_count": 459,
+  "prompt_eval_duration": 1083267000,
+  "eval_count": 896,
+  "eval_duration": 65500945000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Our manager is quite funny. His meetings are hardly ever awkward or quiet.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He said, look, everyone, our department has produced a Director Zhang, from now on when you see her you'll have to call her boss.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "It keeps the mood relaxed and nobody feels tense, and people aren't afraid to own up to mistakes.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Everyone laughed, and I laughed too. I even stood up, gave everyone a bow, and said afternoon tea was on me.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He said the system should be able to catch that kind of mistake. He’d already raised it with IT to add a surname check.",
+    "tier": "near",
+    "similarity": 0.957,
+    "speaker": null
+   },
+   {
+    "quote": "Last quarter our team’s booking error rate even went down by half.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:05:38+00:00",
+ "finished_at": "2026-10-28T19:06:45+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

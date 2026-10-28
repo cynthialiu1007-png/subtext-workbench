@@ -1,0 +1,174 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "218",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-office cashier, male, 6th year\n\nInterviewer: I hear your former front-office manager left this year. What was the reason?\n\nInterviewee: She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too. That’s what the email said too, and all staff received it. Actually there were rumours about it last year, and she told us herself it was a good opportunity she didn’t want to miss. Her child happens to be at university in Shanghai as well. In the month before she left, Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. That’s done every time a manager leaves. They didn’t find any problems, and the audit findings were posted in the department group chat too. We on the cashier side helped by handing over some slips, and it was all done within a week. She even treated the Finance colleagues to afternoon tea. Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her. Her eyes went red too, and she said if any of us ever went to Shanghai, we had to look her up. She was a really nice person. Whenever a guest complained, she’d come out and stand between us and them, and at New Year she’d give each of us a red envelope, out of her own pocket. We still have a group chat, and every now and then she posts photos from Shanghai and asks whether we’ve been busy lately. The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some handover matters. Our front-office cashier system has been upgraded too. Now guests can pay by scanning a code, and invoices are much quicker.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career Advancement\",\n      \"quote\": \"She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too.\"\n    },\n    {\n      \"label\": \"Exit Audit Process\",\n      \"quote\": \"Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. They didn’t find any problems, and the audit findings were posted in the department group chat too.\"\n    },\n    {\n      \"label\": \"Camaraderie and Emotional Farewell\",\n      \"quote\": \"Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her.\"\n    },\n    {\n      \"label\": \"Organizational Change and Adaptation\",\n      \"quote\": \"The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some handover matters.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee emphasizes the smooth transition during the manager's departure, highlighting professional growth, procedural compliance, and the maintenance of positive workplace relationships.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a front-office cashier, male, with 6 years of experience. The interviewer asked about the manager's departure, and the interviewee gives a detailed account.\n\nFirst, I need to identify first-order codes. The key points here are about the manager's transition, the audit process, the emotional farewell, and the new system. Let me look for themes. \n\nThe manager moving to Shanghai as a director, better pay, and her child's education are about career advancement. That's one code: Career Advancement. The quote about her role and pay fits here.\n\nThen, the exit audit and checking discount slips. The finance department's process is another theme. Code: Exit Audit Process. The quote about the audit and the findings in the group chat supports this.\n\nThe emotional farewell with the meal, crying, and the red envelopes show camaraderie. Code: Camaraderie and Emotional Farewell. The quote about the meal and people crying is relevant.\n\nThe new manager's approach and the system upgrade relate to organizational changes. Code: Organizational Change and Adaptation. The quote about the new manager phoning the former one and the upgraded system fits here.\n\nWait, the user wants 3-6 codes. Let me check if I have enough. Maybe another code about the transition process? The handover and the new manager's actions. But maybe that's covered under organizational change. \n\nTone: The interviewee seems positive, talking about the manager's good qualities and the smooth transition. Confidence: High, since the details are specific. Interpretation: The interviewee is highlighting the positive aspects of the manager's departure, the smooth process, and the ongoing connections. \n\nI think that's covered. Now, structure the JSON with the codes, interpretation, tone, and confidence. Make sure each code has a label and a quote. Check the quotes are exact and within 30 words. Alright, that should do it.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 720,
+   "eval_count": 706,
+   "total_duration": 30942099667,
+   "load_duration": 409750,
+   "prompt_eval_duration": 866351000,
+   "eval_duration": 30044245000
+  },
+  "wall_seconds": 30.94
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:44:15.709612Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career Advancement\",\n      \"quote\": \"She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too.\"\n    },\n    {\n      \"label\": \"Exit Audit Process\",\n      \"quote\": \"Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. They didn’t find any problems, and the audit findings were posted in the department group chat too.\"\n    },\n    {\n      \"label\": \"Camaraderie and Emotional Farewell\",\n      \"quote\": \"Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her.\"\n    },\n    {\n      \"label\": \"Organizational Change and Adaptation\",\n      \"quote\": \"The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some handover matters.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee emphasizes the smooth transition during the manager's departure, highlighting professional growth, procedural compliance, and the maintenance of positive workplace relationships.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a front-office cashier, male, with 6 years of experience. The interviewer asked about the manager's departure, and the interviewee gives a detailed account.\n\nFirst, I need to identify first-order codes. The key points here are about the manager's transition, the audit process, the emotional farewell, and the new system. Let me look for themes. \n\nThe manager moving to Shanghai as a director, better pay, and her child's education are about career advancement. That's one code: Career Advancement. The quote about her role and pay fits here.\n\nThen, the exit audit and checking discount slips. The finance department's process is another theme. Code: Exit Audit Process. The quote about the audit and the findings in the group chat supports this.\n\nThe emotional farewell with the meal, crying, and the red envelopes show camaraderie. Code: Camaraderie and Emotional Farewell. The quote about the meal and people crying is relevant.\n\nThe new manager's approach and the system upgrade relate to organizational changes. Code: Organizational Change and Adaptation. The quote about the new manager phoning the former one and the upgraded system fits here.\n\nWait, the user wants 3-6 codes. Let me check if I have enough. Maybe another code about the transition process? The handover and the new manager's actions. But maybe that's covered under organizational change. \n\nTone: The interviewee seems positive, talking about the manager's good qualities and the smooth transition. Confidence: High, since the details are specific. Interpretation: The interviewee is highlighting the positive aspects of the manager's departure, the smooth process, and the ongoing connections. \n\nI think that's covered. Now, structure the JSON with the codes, interpretation, tone, and confidence. Make sure each code has a label and a quote. Check the quotes are exact and within 30 words. Alright, that should do it.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 30942099667,
+  "load_duration": 409750,
+  "prompt_eval_count": 720,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 866351000,
+  "eval_count": 706,
+  "eval_duration": 30044245000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 40 words > 30",
+   "codes[1].quote: 34 words > 30",
+   "codes[3].quote: 32 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. They didn’t find any problems, and the audit findings were posted in the department group chat too.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some handover matters.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:43:44+00:00",
+ "finished_at": "2026-10-28T15:44:15+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

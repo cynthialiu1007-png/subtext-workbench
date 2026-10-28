@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "220",
+ "list": "B",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet server, male, 3rd year\n\nInterviewer: How much of the banquet service charge do you frontline staff get?\n\nInterviewee: The service charge is distributed centrally according to hotel regulations. The proportions are determined by management. We on the front line are not involved. There’s a line on the payslip called service bonus. The figure is different every month. How exactly it’s calculated, we don’t really know, and we don’t really need to know. It gets paid every month anyway. Last year a colleague asked once in the group chat what the proportions of the service charge were and whether they could be made public. Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them. After that nobody asked about it in the group chat again. He’s still there now. He’s doing fine. Sometimes we run into each other in the staff corridor and say hello. He talks less than he used to, and he doesn’t say much in the group chat any more. Anyway, the hotel has its regulations. It’s not something for us to think about. We just need to do our own service well. Actually, the benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine. It’s much better than the hotel I was at before. There’s also a year-end bonus. Last year it was a month and a half’s pay. Next month is the peak wedding season. Every weekend we’ll have three events, setting up from nine in the morning and clearing the tables until ten at night. Recently we’ve been practising new napkin folds. There’s one called the peacock fan that takes more than twenty folds, and I can already do it pretty quickly. My team leader says I fold better than anyone else in this intake, and I might move up a grade before New Year. If you’re interested, you could come and watch us set up at the weekend. It looks really impressive. Lots of the new people take photos and post them on WeChat Moments.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Unclear Service Charge Distribution\", \"quote\": \"The service charge is distributed centrally according to hotel regulations. The proportions are determined by management. We on the front line are not involved.\"}, {\"label\": \"Whistleblower Retaliation\", \"quote\": \"Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them.\"}, {\"label\": \"Positive Work Benefits\", \"quote\": \"Actually, the benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine.\"}, {\"label\": \"Silence After Retaliation\", \"quote\": \"He talks less than he used to, and he doesn’t say much in the group chat any more.\"}, {\"label\": \"Professional Development Efforts\", \"quote\": \"Recently we’ve been practising new napkin folds. There’s one called the peacock fan that takes more than twenty folds, and I can already do it pretty quickly.\"}], \"interpretation\": \"The interviewee highlights unclear financial practices and potential retaliation against those who inquire, while also expressing satisfaction with work benefits and professional growth opportunities.\", \"tone\": \"mixed\", \"confidence\": 95}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a banquet server, male, 3rd year. The interviewer asks about the service charge distribution. The interviewee explains that it's handled centrally by management, not involving frontline staff. There's a mention of a service bonus on the payslip, but the calculation is unclear. A colleague asked about it and was moved to dishwashing, which the interviewee notes as a normal rotation. The interviewee also talks about the benefits like meals, accommodation, and a year-end bonus. They mention the busy wedding season and practicing new napkin folds, with the team leader praising their skills.\n\nNow, I need to identify first-order codes. These should be short labels based on the interviewee's own words. Let me look for key themes. The first part is about the service charge distribution and lack of transparency. That could be a code like \"Unclear Service Charge Distribution.\" The colleague's experience and being moved might relate to \"Fear of Inquiry\" or \"Whistleblower Retaliation.\" The benefits mentioned could be \"Positive Work Benefits.\" The mention of the colleague's change in behavior might be \"Silence After Retaliation.\" The team leader's praise could be \"Recognition of Skill.\" Lastly, the mention of practicing and new techniques might be \"Professional Development Efforts.\"\n\nWait, the colleague being moved to dishwashing and then not talking much could indicate retaliation, so \"Whistleblower Retaliation\" might be better. Also, the interviewee's overall tone seems neutral but with some negative aspects. The confidence level would be high since the codes are directly from the text. Interpretation should tie these codes together, showing the tension between transparency, retaliation, and positive aspects. The tone is mixed, as there's both negative and positive elements. Let me check if the codes are between 3-6. The user specified 3-6 codes, so maybe 5 is okay. Let me make sure each code has a supporting quote. Also, the quotes need to be exact and under 30 words. Okay, I think that's covered. Now, structure the JSON accordingly.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 747,
+   "eval_count": 728,
+   "total_duration": 31865743958,
+   "load_duration": 428125,
+   "prompt_eval_duration": 882498000,
+   "eval_duration": 30874576000
+  },
+  "wall_seconds": 31.88
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:56:15.879158Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Unclear Service Charge Distribution\", \"quote\": \"The service charge is distributed centrally according to hotel regulations. The proportions are determined by management. We on the front line are not involved.\"}, {\"label\": \"Whistleblower Retaliation\", \"quote\": \"Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them.\"}, {\"label\": \"Positive Work Benefits\", \"quote\": \"Actually, the benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine.\"}, {\"label\": \"Silence After Retaliation\", \"quote\": \"He talks less than he used to, and he doesn’t say much in the group chat any more.\"}, {\"label\": \"Professional Development Efforts\", \"quote\": \"Recently we’ve been practising new napkin folds. There’s one called the peacock fan that takes more than twenty folds, and I can already do it pretty quickly.\"}], \"interpretation\": \"The interviewee highlights unclear financial practices and potential retaliation against those who inquire, while also expressing satisfaction with work benefits and professional growth opportunities.\", \"tone\": \"mixed\", \"confidence\": 95}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a banquet server, male, 3rd year. The interviewer asks about the service charge distribution. The interviewee explains that it's handled centrally by management, not involving frontline staff. There's a mention of a service bonus on the payslip, but the calculation is unclear. A colleague asked about it and was moved to dishwashing, which the interviewee notes as a normal rotation. The interviewee also talks about the benefits like meals, accommodation, and a year-end bonus. They mention the busy wedding season and practicing new napkin folds, with the team leader praising their skills.\n\nNow, I need to identify first-order codes. These should be short labels based on the interviewee's own words. Let me look for key themes. The first part is about the service charge distribution and lack of transparency. That could be a code like \"Unclear Service Charge Distribution.\" The colleague's experience and being moved might relate to \"Fear of Inquiry\" or \"Whistleblower Retaliation.\" The benefits mentioned could be \"Positive Work Benefits.\" The mention of the colleague's change in behavior might be \"Silence After Retaliation.\" The team leader's praise could be \"Recognition of Skill.\" Lastly, the mention of practicing and new techniques might be \"Professional Development Efforts.\"\n\nWait, the colleague being moved to dishwashing and then not talking much could indicate retaliation, so \"Whistleblower Retaliation\" might be better. Also, the interviewee's overall tone seems neutral but with some negative aspects. The confidence level would be high since the codes are directly from the text. Interpretation should tie these codes together, showing the tension between transparency, retaliation, and positive aspects. The tone is mixed, as there's both negative and positive elements. Let me check if the codes are between 3-6. The user specified 3-6 codes, so maybe 5 is okay. Let me make sure each code has a supporting quote. Also, the quotes need to be exact and under 30 words. Okay, I think that's covered. Now, structure the JSON accordingly.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 31865743958,
+  "load_duration": 428125,
+  "prompt_eval_count": 747,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 882498000,
+  "eval_count": 728,
+  "eval_duration": 30874576000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "The service charge is distributed centrally according to hotel regulations. The proportions are determined by management. We on the front line are not involved.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Actually, the benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He talks less than he used to, and he doesn’t say much in the group chat any more.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Recently we’ve been practising new napkin folds. There’s one called the peacock fan that takes more than twenty folds, and I can already do it pretty quickly.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:55:44+00:00",
+ "finished_at": "2026-10-28T16:56:15+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

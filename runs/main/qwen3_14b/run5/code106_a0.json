@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "106",
+ "list": "A",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant team leader, male, 7th year\n\nInterviewer: How does your manager usually get on with everyone?\n\nInterviewee: The biggest thing about our manager is that he loves telling cold jokes, the really corny kind. He tells one at the morning briefing every single day, and when he’s finished he’s the first to laugh. For example, he says: why can’t eggs tell jokes? Because they’d crack up. Not one person in the room laughs. He’s the only one there enjoying himself. I’ve told him several times: boss, that joke really isn’t funny, could you stop telling them, you’re wasting everyone’s time. He says no, it’s his tradition. But in the notes app on my phone I’ve got a folder just for the jokes he’s told. I’ve recorded more than 120 so far, with the date written after each one. Some of them I’ve even marked with a star. Those are the ones I think are especially cold, so cold I wanted to walk out on the spot. Last time he went to head office for two weeks’ training, nobody told jokes at the morning briefing. On the third day I told one myself, the egg one, and even laughed first the way he does. My colleagues teased me about it all morning. The day he came back, he told a new one right at the start of the briefing, and I wrote it down in my notes there and then. At the department dinner at the end of the year, I printed all these jokes out, bound them into a little booklet and gave it to him. On the cover I wrote: The Complete Cold Jokes, Volume One. When he got it he stood there stunned for quite a while. Since then that booklet has stayed on his desk. Once I saw him flipping through it, and when he got to a certain page he laughed out loud by himself. So, our manager is great in every way, it’s just that his jokes are too cold. They’re so cold we don’t need the air conditioning in summer. I really can’t stand him.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Manager's Cold Jokes Tradition\", \"quote\": \"He tells one at the morning briefing every single day, and when he’s finished he’s the first to laugh.\"}, {\"label\": \"Team Disinterest in Jokes\", \"quote\": \"Not one person in the room laughs. He’s the only one there enjoying himself.\"}, {\"label\": \"Personal Documentation of Jokes\", \"quote\": \"I’ve recorded more than 120 so far, with the date written after each one.\"}, {\"label\": \"Mocking Manager's Tradition\", \"quote\": \"I told one myself, the egg one, and even laughed first the way he does.\"}, {\"label\": \"Manager's Reaction to Booklet\", \"quote\": \"When he got it he stood there stunned for quite a while.\"}, {\"label\": \"Mixed Feelings Toward Manager\", \"quote\": \"Our manager is great in every way, it’s just that his jokes are too cold.\"}], \"interpretation\": \"The interviewee describes his manager’s persistent habit of telling unfunny cold jokes, his own documentation of these jokes, and a humorous act of mocking the tradition by telling a joke himself. He also recounts gifting the manager a booklet of jokes, which surprised the manager, while expressing mixed feelings about the manager’s overall qualities versus his unfunny jokes.\", \"tone\": \"mixed\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by looking at the interviewee's response. He's talking about his manager's habit of telling really cold jokes every morning. The key points here are the manager's persistence in telling these jokes despite the team not finding them funny, the interviewee's personal record of the jokes, and the incident where he gave the manager a booklet of all the jokes.\n\nFirst, I need to code this with first-order codes. The main themes here seem to be the manager's behavior with the jokes, the team's reaction, the interviewee's personal actions (like recording and compiling the jokes), and the outcome of giving the booklet. Also, the manager's reaction to the booklet is a point of interest.\n\nFor the codes, possible labels could be \"Manager's Cold Jokes Tradition,\" \"Team Disinterest in Jokes,\" \"Personal Documentation of Jokes,\" \"Mocking Manager's Tradition,\" \"Manager's Reaction to Booklet,\" and \"Mixed Feelings Toward Manager.\" Each code needs a supporting quote from the passage. I have to make sure the quotes are exact and under 30 words.\n\nNext, the interpretation. The interviewee is highlighting the manager's tradition of cold jokes, the team's lack of humor, his own documentation, the act of mocking the tradition by telling a joke himself, the manager's surprise at the booklet, and the mixed feelings towards the manager despite his other qualities.\n\nThe tone is mixed because the interviewee mentions the manager being great in every way but the jokes are so bad they're unbearable. So the tone isn't entirely negative or positive.\n\nConfidence in interpretation is high since the details are clear and the emotions are well-expressed. I'd say around 95% confidence.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 746,
+   "eval_count": 650,
+   "total_duration": 50466939375,
+   "load_duration": 489083,
+   "prompt_eval_duration": 1166534000,
+   "eval_duration": 47817663000
+  },
+  "wall_seconds": 50.49
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T21:06:10.728874Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Manager's Cold Jokes Tradition\", \"quote\": \"He tells one at the morning briefing every single day, and when he’s finished he’s the first to laugh.\"}, {\"label\": \"Team Disinterest in Jokes\", \"quote\": \"Not one person in the room laughs. He’s the only one there enjoying himself.\"}, {\"label\": \"Personal Documentation of Jokes\", \"quote\": \"I’ve recorded more than 120 so far, with the date written after each one.\"}, {\"label\": \"Mocking Manager's Tradition\", \"quote\": \"I told one myself, the egg one, and even laughed first the way he does.\"}, {\"label\": \"Manager's Reaction to Booklet\", \"quote\": \"When he got it he stood there stunned for quite a while.\"}, {\"label\": \"Mixed Feelings Toward Manager\", \"quote\": \"Our manager is great in every way, it’s just that his jokes are too cold.\"}], \"interpretation\": \"The interviewee describes his manager’s persistent habit of telling unfunny cold jokes, his own documentation of these jokes, and a humorous act of mocking the tradition by telling a joke himself. He also recounts gifting the manager a booklet of jokes, which surprised the manager, while expressing mixed feelings about the manager’s overall qualities versus his unfunny jokes.\", \"tone\": \"mixed\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by looking at the interviewee's response. He's talking about his manager's habit of telling really cold jokes every morning. The key points here are the manager's persistence in telling these jokes despite the team not finding them funny, the interviewee's personal record of the jokes, and the incident where he gave the manager a booklet of all the jokes.\n\nFirst, I need to code this with first-order codes. The main themes here seem to be the manager's behavior with the jokes, the team's reaction, the interviewee's personal actions (like recording and compiling the jokes), and the outcome of giving the booklet. Also, the manager's reaction to the booklet is a point of interest.\n\nFor the codes, possible labels could be \"Manager's Cold Jokes Tradition,\" \"Team Disinterest in Jokes,\" \"Personal Documentation of Jokes,\" \"Mocking Manager's Tradition,\" \"Manager's Reaction to Booklet,\" and \"Mixed Feelings Toward Manager.\" Each code needs a supporting quote from the passage. I have to make sure the quotes are exact and under 30 words.\n\nNext, the interpretation. The interviewee is highlighting the manager's tradition of cold jokes, the team's lack of humor, his own documentation, the act of mocking the tradition by telling a joke himself, the manager's surprise at the booklet, and the mixed feelings towards the manager despite his other qualities.\n\nThe tone is mixed because the interviewee mentions the manager being great in every way but the jokes are so bad they're unbearable. So the tone isn't entirely negative or positive.\n\nConfidence in interpretation is high since the details are clear and the emotions are well-expressed. I'd say around 95% confidence.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 50466939375,
+  "load_duration": 489083,
+  "prompt_eval_count": 746,
+  "prompt_eval_cached_count": 451,
+  "prompt_eval_duration": 1166534000,
+  "eval_count": 650,
+  "eval_duration": 47817663000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "He tells one at the morning briefing every single day, and when he’s finished he’s the first to laugh.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Not one person in the room laughs. He’s the only one there enjoying himself.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I’ve recorded more than 120 so far, with the date written after each one.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I told one myself, the egg one, and even laughed first the way he does.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "When he got it he stood there stunned for quite a while.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Our manager is great in every way, it’s just that his jokes are too cold.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T21:05:20+00:00",
+ "finished_at": "2026-10-28T21:06:10+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

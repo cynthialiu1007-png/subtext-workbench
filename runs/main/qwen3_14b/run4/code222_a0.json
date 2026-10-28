@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "222",
+ "list": "B",
+ "seed": 4,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Room attendant, female, 5th year\n\nInterviewer: A while ago there was a news report about some hotels wiping cups with towels. How are cups usually cleaned here?\n\nInterviewee: (Pauses for a moment and glances at the meeting-room door) We do everything to standard. The cups are taken to the workroom and put into the special disinfection cabinet. Once they’re disinfected they get a plastic seal put over them, and then they go back to the rooms. It was all taught in training, and we were tested on it too. (Lowers her voice) This recording of yours, will anyone at the hotel hear it? ... Oh, good. Last time a colleague said a few things about the workload at a staff forum, and the next month that colleague was put on the floor with the hardest suites. Each of us has to do sixteen rooms a day, with four cups per room, and at twelve noon the supervisor checks on our progress. There are two disinfection cabinets per floor. One cycle takes forty minutes, and a full load is twenty-four cups. Work it out for yourself and you’ll see. The standard time for a room, from walking in to walking out, is twenty-five minutes. (Glances at the door again) When the supervisor inspects, she mainly looks at the bed and the bathroom. For the cups, as long as there’s a seal on them, that’s fine. The seals are all on the trolley, roll after roll, and they get used up very quickly. I don’t really know about the other floors. Everyone has their own habits. All I can say is that we do everything to standard. Let’s leave this question there, shall we? Why don’t you ask about something else? For example, the new bedding we changed to this year. The guest feedback has been really good. The mattresses have been changed too, they’re softer than before, and guests can choose soft or firm pillows, buckwheat or down. You can write about that, as much as you like. Our manager chose the bedding himself. He cares a lot about it.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 4
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Standard cleaning procedures\",\n    \"quote\": \"We do everything to standard. The cups are taken to the workroom and put into the special disinfection cabinet.\"\n  },\n  {\n    \"label\": \"Workload pressure\",\n    \"quote\": \"Each of us has to do sixteen rooms a day, with four cups per room, and at twelve noon the supervisor checks on our progress.\"\n  },\n  {\n    \"label\": \"Fear of repercussions\",\n    \"quote\": \"Last time a colleague said a few things about the workload at a staff forum, and the next month that colleague was put on the floor with the hardest suites.\"\n  },\n  {\n    \"label\": \"Time constraints\",\n    \"quote\": \"One cycle takes forty minutes, and a full load is twenty-four cups. Work it out for yourself and you’ll see.\"\n  },\n  {\n    \"label\": \"Supervisor's focus on appearance\",\n    \"quote\": \"The supervisor inspects, she mainly looks at the bed and the bathroom. For the cups, as long as there’s a seal on them, that’s fine.\"\n  },\n  {\n    \"label\": \"Positive aspect of new bedding\",\n    \"quote\": \"The guest feedback has been really good. The mattresses have been changed too, they’re softer than before.\"\n  }\n],\n\"interpretation\": \"The interviewee describes the standardized cleaning process for cups but reveals systemic pressures, including strict workload expectations and fear of punishment for speaking out. She shifts to a positive note about recent improvements in bedding to redirect the conversation.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a room attendant with five years of experience. The interviewer asked about how cups are cleaned, and she explains the standard procedure involving disinfection cabinets and plastic seals. But then she lowers her voice and mentions that a colleague was punished for talking about workload, which hints at some workplace issues.\n\nFirst, I need to identify the first-order codes. The key points here are the standard cleaning process, the pressure from the supervisor, the workload, and the mention of the new bedding. Let me break it down:\n\n1. Standard cleaning procedures: She talks about the disinfection cabinet, plastic seals, and training. The quote is \"We do everything to standard... tested on it too.\"\n\n2. Workload pressure: She mentions 16 rooms a day, 4 cups per room, and the supervisor checking progress at noon. The quote is \"Each of us has to do sixteen rooms a day... and at twelve noon the supervisor checks on our progress.\"\n\n3. Fear of repercussions: When she lowers her voice and asks if the recording will be heard, and references a colleague being moved to harder suites. The quote is \"This recording of yours, will anyone at the hotel hear it? ... Oh, good. Last time a colleague said a few things about the workload...\"\n\n4. Time constraints: The math she does about the disinfection cabinet cycle and time per room. The quote is \"One cycle takes forty minutes... Work it out for yourself and you’ll see.\"\n\n5. Supervisor's focus on appearance: She says the supervisor mainly checks the bed and bathroom, not the cups as long as they have seals. The quote is \"The supervisor inspects, she mainly looks at the bed and the bathroom... as long as there’s a seal on them, that’s fine.\"\n\n6. Positive aspect of new bedding: She shifts to talking about the new bedding and guest feedback. The quote is \"The guest feedback has been really good... guests can choose soft or firm pillows...\"\n\nFor the interpretation, she's explaining the standard procedures but also revealing the stressful work environment with strict supervision and fear of punishment, while trying to redirect the conversation to a more positive topic.\n\nThe tone seems mixed because she's both describing the standard procedures (which could be neutral or positive) but also discussing the pressures and fear (negative), then shifting to a positive note about the bedding. However, the main sentiment might lean towards negative due to the workload and fear mentioned.\n\nConfidence in the interpretation would be high because the quotes clearly support the codes and the interpretation.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 750,
+   "eval_count": 873,
+   "total_duration": 66244262417,
+   "load_duration": 9389750,
+   "prompt_eval_duration": 1760405000,
+   "eval_duration": 64325082000
+  },
+  "wall_seconds": 66.25
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T20:58:48.868422Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Standard cleaning procedures\",\n    \"quote\": \"We do everything to standard. The cups are taken to the workroom and put into the special disinfection cabinet.\"\n  },\n  {\n    \"label\": \"Workload pressure\",\n    \"quote\": \"Each of us has to do sixteen rooms a day, with four cups per room, and at twelve noon the supervisor checks on our progress.\"\n  },\n  {\n    \"label\": \"Fear of repercussions\",\n    \"quote\": \"Last time a colleague said a few things about the workload at a staff forum, and the next month that colleague was put on the floor with the hardest suites.\"\n  },\n  {\n    \"label\": \"Time constraints\",\n    \"quote\": \"One cycle takes forty minutes, and a full load is twenty-four cups. Work it out for yourself and you’ll see.\"\n  },\n  {\n    \"label\": \"Supervisor's focus on appearance\",\n    \"quote\": \"The supervisor inspects, she mainly looks at the bed and the bathroom. For the cups, as long as there’s a seal on them, that’s fine.\"\n  },\n  {\n    \"label\": \"Positive aspect of new bedding\",\n    \"quote\": \"The guest feedback has been really good. The mattresses have been changed too, they’re softer than before.\"\n  }\n],\n\"interpretation\": \"The interviewee describes the standardized cleaning process for cups but reveals systemic pressures, including strict workload expectations and fear of punishment for speaking out. She shifts to a positive note about recent improvements in bedding to redirect the conversation.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a room attendant with five years of experience. The interviewer asked about how cups are cleaned, and she explains the standard procedure involving disinfection cabinets and plastic seals. But then she lowers her voice and mentions that a colleague was punished for talking about workload, which hints at some workplace issues.\n\nFirst, I need to identify the first-order codes. The key points here are the standard cleaning process, the pressure from the supervisor, the workload, and the mention of the new bedding. Let me break it down:\n\n1. Standard cleaning procedures: She talks about the disinfection cabinet, plastic seals, and training. The quote is \"We do everything to standard... tested on it too.\"\n\n2. Workload pressure: She mentions 16 rooms a day, 4 cups per room, and the supervisor checking progress at noon. The quote is \"Each of us has to do sixteen rooms a day... and at twelve noon the supervisor checks on our progress.\"\n\n3. Fear of repercussions: When she lowers her voice and asks if the recording will be heard, and references a colleague being moved to harder suites. The quote is \"This recording of yours, will anyone at the hotel hear it? ... Oh, good. Last time a colleague said a few things about the workload...\"\n\n4. Time constraints: The math she does about the disinfection cabinet cycle and time per room. The quote is \"One cycle takes forty minutes... Work it out for yourself and you’ll see.\"\n\n5. Supervisor's focus on appearance: She says the supervisor mainly checks the bed and bathroom, not the cups as long as they have seals. The quote is \"The supervisor inspects, she mainly looks at the bed and the bathroom... as long as there’s a seal on them, that’s fine.\"\n\n6. Positive aspect of new bedding: She shifts to talking about the new bedding and guest feedback. The quote is \"The guest feedback has been really good... guests can choose soft or firm pillows...\"\n\nFor the interpretation, she's explaining the standard procedures but also revealing the stressful work environment with strict supervision and fear of punishment, while trying to redirect the conversation to a more positive topic.\n\nThe tone seems mixed because she's both describing the standard procedures (which could be neutral or positive) but also discussing the pressures and fear (negative), then shifting to a positive note about the bedding. However, the main sentiment might lean towards negative due to the workload and fear mentioned.\n\nConfidence in the interpretation would be high because the quotes clearly support the codes and the interpretation.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 66244262417,
+  "load_duration": 9389750,
+  "prompt_eval_count": 750,
+  "prompt_eval_cached_count": 309,
+  "prompt_eval_duration": 1760405000,
+  "eval_count": 873,
+  "eval_duration": 64325082000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "We do everything to standard. The cups are taken to the workroom and put into the special disinfection cabinet.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Each of us has to do sixteen rooms a day, with four cups per room, and at twelve noon the supervisor checks on our progress.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last time a colleague said a few things about the workload at a staff forum, and the next month that colleague was put on the floor with the hardest suites.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "One cycle takes forty minutes, and a full load is twenty-four cups. Work it out for yourself and you’ll see.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The supervisor inspects, she mainly looks at the bed and the bathroom. For the cups, as long as there’s a seal on them, that’s fine.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The guest feedback has been really good. The mattresses have been changed too, they’re softer than before.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T20:57:42+00:00",
+ "finished_at": "2026-10-28T20:58:48+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 4,
+ "attempt": 0
+}

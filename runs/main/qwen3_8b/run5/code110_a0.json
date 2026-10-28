@@ -1,0 +1,174 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "110",
+ "list": "A",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Bartender, male, 4th year\n\n[Earlier in the interview]\n\nInterviewee: My younger brother got married last Saturday. Our hometown is in Hunan, five hours away by high-speed train. I put in my leave request two months ago. At the time the manager said no problem and told me to sort out the rota in advance. Then last month another bartender quit and they still haven’t hired a replacement. The manager said that at weekends I’m the only one left on the bar, so there was really no way I could be spared. He asked me to understand, and said he’d definitely make it up to me next time. I phoned home and told them. My mum paused for a moment on the phone, then said, well, you do your job properly, don’t make things awkward for your boss. On the day of the wedding my brother sent me a few photos. During the toasts, they’d kept a seat for me next to the head table, with a bowl, chopsticks and a wine glass set out. I only saw them when I woke up the next morning. I replied to my brother: congratulations, I’ve sent you a red envelope.\n\n[Later in the interview]\n\nInterviewer: What was the shift like last Saturday night?\n\nInterviewee: It was pretty busy that night. The customers just kept coming, and after ten it was basically full. I was on the bar on my own, from six in the evening until nearly two. After the last table left, I cleaned up the bar, wiped every glass and put them back on the rack, then made myself a drink: the last one on that night’s menu. I sat behind the bar, switched the music to songs I like, drank it slowly, and only then locked up and went home. By the time I got home it was nearly three. That night’s takings were the highest this month, almost half as much again as a normal Saturday. The next morning the manager sent a red envelope in the group chat and said thanks for all the hard work, and he also said he’d give me an Outstanding Employee certificate next month. All in all, it was a pretty good night.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Work-Life Balance\",\n      \"quote\": \"I put in my leave request two months ago... my mum paused for a moment on the phone, then said, well, you do your job properly, don’t make things awkward for your boss.\"\n    },\n    {\n      \"label\": \"Manager's Support\",\n      \"quote\": \"He asked me to understand, and said he’d definitely make it up to me next time.\"\n    },\n    {\n      \"label\": \"Professional Commitment\",\n      \"quote\": \"I was on the bar on my own, from six in the evening until nearly two... made myself a drink: the last one on that night’s menu.\"\n    },\n    {\n      \"label\": \"Recognition\",\n      \"quote\": \"The next morning the manager sent a red envelope in the group chat and said thanks for all the hard work, and he also said he’d give me an Outstanding Employee certificate next month.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee navigates work and family responsibilities with dedication, balancing professional commitment with the strain of managerial constraints, ultimately receiving recognition for their efforts.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this qualitative analysis. The user provided an interview passage from a bartender who's been in the job for four years. The task is to code the passage using first-order coding, then fill out the coding form with codes, interpretation, tone, and confidence level.\n\nFirst, I need to understand the passage. The interviewee talks about taking leave for his brother's wedding, which was in Hunan, five hours away. He had to work weekends because there was no replacement. His manager didn't let him take time off, but promised to make it up later. His mom advised him to focus on work. The wedding day was busy, and he only saw the setup the next morning. He sent a red envelope for the wedding. Then, the manager sent a red envelope and mentioned an Outstanding Employee certificate. The shift was busy, he worked alone, cleaned up, had a drink, and the takings were high. The manager appreciated his work.\n\nNow, first-order coding. These are initial codes that capture the essence of the data without interpretation. I need 3-6 codes. Let me look for key themes.\n\n1. Work-Life Balance: He had to balance work and family, taking leave but not being able to go. The manager's refusal and the mom's advice relate to this.\n2. Manager's Support: The manager promised to make up for the time off and later gave a red envelope and certificate. This shows some level of support.\n3. Professional Commitment: He worked through the busy night, cleaned up, and took pride in his work. The high takings and manager's appreciation indicate commitment.\n4. Family Support: His brother sent photos, and the family set up a seat for him. His mom's advice shows family support but also pressure to work.\n5. Recognition and Rewards: The manager's red envelope and certificate are forms of recognition.\n6. Workload and Stress: The busy shift, working alone, long hours, and the physical work (cleaning, wiping glasses) show workload and stress.\n\nWait, but the user wants 3-6 codes. Let me pick the most prominent. Maybe Work-Life Balance, Professional Commitment, Manager's Support, and Recognition. Or maybe combine some. Let me check the quotes.\n\nThe interviewee mentions the manager's promise to make it up, which is Manager's Support. The red envelope and certificate are Recognition. The work during the shift is Professional Commitment. The family's reaction and his own balance is Work-Life Balance. Also, the stress of the workload could be another code. But maybe the main codes are:\n\n1. Work-Life Balance: \"I put in my leave request two months ago... my mum paused... don’t make things awkward for your boss.\"\n2. Manager's Support: \"He asked me to understand... make it up to me next time.\"\n3. Professional Commitment: \"I was on the bar on my own... made myself a drink... locked up and went home.\"\n4. Recognition: \"The next morning the manager sent a red envelope... Outstanding Employee certificate.\"\n\nThat's four codes. Maybe add Workload and Stress as another, but the user said 3-6. Maybe that's enough. Now, the interpretation: The interviewee balances work and family, showing commitment despite challenges, with some recognition from the manager. The tone is mixed, as there's stress but also positive outcomes. Confidence is high, maybe 85. Let me structure the JSON accordingly.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 762,
+   "eval_count": 973,
+   "total_duration": 43662391792,
+   "load_duration": 509250,
+   "prompt_eval_duration": 863868000,
+   "eval_duration": 42584624000
+  },
+  "wall_seconds": 43.66
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:40:35.63507Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Work-Life Balance\",\n      \"quote\": \"I put in my leave request two months ago... my mum paused for a moment on the phone, then said, well, you do your job properly, don’t make things awkward for your boss.\"\n    },\n    {\n      \"label\": \"Manager's Support\",\n      \"quote\": \"He asked me to understand, and said he’d definitely make it up to me next time.\"\n    },\n    {\n      \"label\": \"Professional Commitment\",\n      \"quote\": \"I was on the bar on my own, from six in the evening until nearly two... made myself a drink: the last one on that night’s menu.\"\n    },\n    {\n      \"label\": \"Recognition\",\n      \"quote\": \"The next morning the manager sent a red envelope in the group chat and said thanks for all the hard work, and he also said he’d give me an Outstanding Employee certificate next month.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee navigates work and family responsibilities with dedication, balancing professional commitment with the strain of managerial constraints, ultimately receiving recognition for their efforts.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this qualitative analysis. The user provided an interview passage from a bartender who's been in the job for four years. The task is to code the passage using first-order coding, then fill out the coding form with codes, interpretation, tone, and confidence level.\n\nFirst, I need to understand the passage. The interviewee talks about taking leave for his brother's wedding, which was in Hunan, five hours away. He had to work weekends because there was no replacement. His manager didn't let him take time off, but promised to make it up later. His mom advised him to focus on work. The wedding day was busy, and he only saw the setup the next morning. He sent a red envelope for the wedding. Then, the manager sent a red envelope and mentioned an Outstanding Employee certificate. The shift was busy, he worked alone, cleaned up, had a drink, and the takings were high. The manager appreciated his work.\n\nNow, first-order coding. These are initial codes that capture the essence of the data without interpretation. I need 3-6 codes. Let me look for key themes.\n\n1. Work-Life Balance: He had to balance work and family, taking leave but not being able to go. The manager's refusal and the mom's advice relate to this.\n2. Manager's Support: The manager promised to make up for the time off and later gave a red envelope and certificate. This shows some level of support.\n3. Professional Commitment: He worked through the busy night, cleaned up, and took pride in his work. The high takings and manager's appreciation indicate commitment.\n4. Family Support: His brother sent photos, and the family set up a seat for him. His mom's advice shows family support but also pressure to work.\n5. Recognition and Rewards: The manager's red envelope and certificate are forms of recognition.\n6. Workload and Stress: The busy shift, working alone, long hours, and the physical work (cleaning, wiping glasses) show workload and stress.\n\nWait, but the user wants 3-6 codes. Let me pick the most prominent. Maybe Work-Life Balance, Professional Commitment, Manager's Support, and Recognition. Or maybe combine some. Let me check the quotes.\n\nThe interviewee mentions the manager's promise to make it up, which is Manager's Support. The red envelope and certificate are Recognition. The work during the shift is Professional Commitment. The family's reaction and his own balance is Work-Life Balance. Also, the stress of the workload could be another code. But maybe the main codes are:\n\n1. Work-Life Balance: \"I put in my leave request two months ago... my mum paused... don’t make things awkward for your boss.\"\n2. Manager's Support: \"He asked me to understand... make it up to me next time.\"\n3. Professional Commitment: \"I was on the bar on my own... made myself a drink... locked up and went home.\"\n4. Recognition: \"The next morning the manager sent a red envelope... Outstanding Employee certificate.\"\n\nThat's four codes. Maybe add Workload and Stress as another, but the user said 3-6. Maybe that's enough. Now, the interpretation: The interviewee balances work and family, showing commitment despite challenges, with some recognition from the manager. The tone is mixed, as there's stress but also positive outcomes. Confidence is high, maybe 85. Let me structure the JSON accordingly.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 43662391792,
+  "load_duration": 509250,
+  "prompt_eval_count": 762,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 863868000,
+  "eval_count": 973,
+  "eval_duration": 42584624000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 33 words > 30",
+   "codes[3].label: 1 words",
+   "codes[3].quote: 34 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "I put in my leave request two months ago... my mum paused for a moment on the phone, then said, well, you do your job properly, don’t make things awkward for your boss.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He asked me to understand, and said he’d definitely make it up to me next time.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I was on the bar on my own, from six in the evening until nearly two... made myself a drink: the last one on that night’s menu.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The next morning the manager sent a red envelope in the group chat and said thanks for all the hard work, and he also said he’d give me an Outstanding Employee certificate next month.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:39:51+00:00",
+ "finished_at": "2026-10-28T17:40:35+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

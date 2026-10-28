@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "209",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Bartender, male, 4th year\n\n[Earlier in the interview]\n\nInterviewee: This September I was promoted to head bartender, which means I can set the drinks menu myself. I spent two months developing a set of signature cocktails made with local osmanthus and rice wine, six in all. After the manager tasted them, he had me try them out at weekends first, and last Saturday was the first time they were officially on the menu. Before that I’d always worked under my mentor. I’d never run the whole bar on my own. That afternoon my parents even phoned specially and told me to take photos and send them, and my brother said he’d bring his girlfriend over to support me. I hardly slept the night before. I went over the recipe and the order of service for each drink one more time, polished every glass myself one by one, and had the ice frozen two hours in advance. The manager patted me on the shoulder and said, don’t be nervous, just do it the way you practised.\n\n[Later in the interview]\n\nInterviewer: What was the shift like last Saturday night?\n\nInterviewee: It was pretty busy that night. The customers just kept coming, and after ten it was basically full. I was on the bar on my own, from six in the evening until nearly two. After the last table left, I cleaned up the bar, wiped every glass and put them back on the rack, then made myself a drink: the last one on that night’s menu. I sat behind the bar, switched the music to songs I like, drank it slowly, and only then locked up and went home. By the time I got home it was nearly three. That night’s takings were the highest this month, almost half as much again as a normal Saturday. The next morning the manager sent a red envelope in the group chat and said thanks for all the hard work, and he also said he’d give me an Outstanding Employee certificate next month. All in all, it was a pretty good night.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career Achievement\",\n      \"quote\": \"This September I was promoted to head bartender... six in all.\"\n    },\n    {\n      \"label\": \"Attention to Detail\",\n      \"quote\": \"polished every glass myself one by one, and had the ice frozen two hours in advance.\"\n    },\n    {\n      \"label\": \"Personal Support\",\n      \"quote\": \"my parents even phoned specially and told me to take photos and send them, and my brother said he’d bring his girlfriend over to support me.\"\n    },\n    {\n      \"label\": \"Workload and Exhaustion\",\n      \"quote\": \"By the time I got home it was nearly three. That night’s takings were the highest this month...\"\n    },\n    {\n      \"label\": \"Recognition and Success\",\n      \"quote\": \"the manager sent a red envelope in the group chat and said thanks for all the hard work...\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on his career growth, meticulous preparation, and the positive outcomes of his promotion, balancing personal investment with professional achievement.\",\n  \"tone\": \"positive\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a bartender who was promoted to head bartender. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I need to read through the passage carefully. The interviewee talks about his promotion, developing signature cocktails, the preparation for the launch, the busy Saturday night, and the positive outcome with the manager's recognition. \n\nLooking for key themes: \n\n1. **Career Achievement**: The promotion to head bartender and taking ownership of the menu. The quote about being promoted and creating signature cocktails fits here.\n2. **Preparation and Attention to Detail**: He spent time perfecting the recipes, polishing glasses, and freezing ice. The quote about polishing every glass and freezing ice is a good example.\n3. **Personal Investment and Support**: His family's involvement, like parents calling and brother bringing a girlfriend. The quote about parents phoning and brother's support shows personal investment.\n4. **Work-Life Balance and Exhaustion**: The mention of not sleeping the night before and arriving home at 3 AM indicates long hours and possible stress. The quote about not sleeping and arriving home late.\n5. **Recognition and Positive Outcome**: The manager's praise and the high takings. The quote about the manager sending a red envelope and the high takings.\n6. **Professional Pride and Satisfaction**: The satisfaction from the successful event and the personal drink. The quote about making the last drink and feeling it was a good night.\n\nWait, the user asked for 3-6 codes. Maybe some of these can be grouped. For example, \"Career Achievement\" and \"Recognition\" could be separate. Let me check the examples again. The user wants codes that are close to the interviewee's language. \n\nThe first code could be \"Career Achievement\" with the quote about promotion and creating cocktails. Second, \"Attention to Detail\" with the glass polishing and ice freezing. Third, \"Personal Support\" with the family involvement. Fourth, \"Workload and Exhaustion\" from the sleepless night and late hours. Fifth, \"Positive Outcomes\" with the manager's recognition and high takings. That's five codes. Maybe \"Professional Pride\" as another code with the last drink quote. Alternatively, combine some. \n\nWait, the user might prefer 3-6. Let me see. The example response from the user in the initial prompt had 5 codes. Let me make sure each code is a distinct theme. \n\nSo, the codes could be:\n\n1. Career Achievement\n2. Attention to Detail\n3. Personal Support\n4. Workload and Exhaustion\n5. Recognition and Success\n\nThat's five codes. Each with a supporting quote. The interpretation would be that the interviewee is discussing his career growth, meticulous preparation, family support, long hours, and positive outcomes. The tone is positive, confidence level maybe 85. \n\nI need to ensure each code is a short label, and the quotes are exact. Let me check the quotes again. For example, the first code's quote is \"This September I was promoted to head bartender... six in all.\" The second code's quote is about polishing glasses and freezing ice. Third code's quote is about parents calling and brother's support. Fourth code's quote is about not sleeping and arriving home late. Fifth code's quote is about the manager's red envelope and high takings. \n\nYes, that seems to cover the main points. The interpretation would tie these together, showing his career growth and the positive outcomes. The tone is positive, and confidence is high, so 85 or 90. Let me finalize the codes and structure the JSON accordingly.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 730,
+   "eval_count": 1013,
+   "total_duration": 44284032916,
+   "load_duration": 434416,
+   "prompt_eval_duration": 870095000,
+   "eval_duration": 43387160000
+  },
+  "wall_seconds": 44.29
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:38:29.302815Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career Achievement\",\n      \"quote\": \"This September I was promoted to head bartender... six in all.\"\n    },\n    {\n      \"label\": \"Attention to Detail\",\n      \"quote\": \"polished every glass myself one by one, and had the ice frozen two hours in advance.\"\n    },\n    {\n      \"label\": \"Personal Support\",\n      \"quote\": \"my parents even phoned specially and told me to take photos and send them, and my brother said he’d bring his girlfriend over to support me.\"\n    },\n    {\n      \"label\": \"Workload and Exhaustion\",\n      \"quote\": \"By the time I got home it was nearly three. That night’s takings were the highest this month...\"\n    },\n    {\n      \"label\": \"Recognition and Success\",\n      \"quote\": \"the manager sent a red envelope in the group chat and said thanks for all the hard work...\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on his career growth, meticulous preparation, and the positive outcomes of his promotion, balancing personal investment with professional achievement.\",\n  \"tone\": \"positive\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a bartender who was promoted to head bartender. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I need to read through the passage carefully. The interviewee talks about his promotion, developing signature cocktails, the preparation for the launch, the busy Saturday night, and the positive outcome with the manager's recognition. \n\nLooking for key themes: \n\n1. **Career Achievement**: The promotion to head bartender and taking ownership of the menu. The quote about being promoted and creating signature cocktails fits here.\n2. **Preparation and Attention to Detail**: He spent time perfecting the recipes, polishing glasses, and freezing ice. The quote about polishing every glass and freezing ice is a good example.\n3. **Personal Investment and Support**: His family's involvement, like parents calling and brother bringing a girlfriend. The quote about parents phoning and brother's support shows personal investment.\n4. **Work-Life Balance and Exhaustion**: The mention of not sleeping the night before and arriving home at 3 AM indicates long hours and possible stress. The quote about not sleeping and arriving home late.\n5. **Recognition and Positive Outcome**: The manager's praise and the high takings. The quote about the manager sending a red envelope and the high takings.\n6. **Professional Pride and Satisfaction**: The satisfaction from the successful event and the personal drink. The quote about making the last drink and feeling it was a good night.\n\nWait, the user asked for 3-6 codes. Maybe some of these can be grouped. For example, \"Career Achievement\" and \"Recognition\" could be separate. Let me check the examples again. The user wants codes that are close to the interviewee's language. \n\nThe first code could be \"Career Achievement\" with the quote about promotion and creating cocktails. Second, \"Attention to Detail\" with the glass polishing and ice freezing. Third, \"Personal Support\" with the family involvement. Fourth, \"Workload and Exhaustion\" from the sleepless night and late hours. Fifth, \"Positive Outcomes\" with the manager's recognition and high takings. That's five codes. Maybe \"Professional Pride\" as another code with the last drink quote. Alternatively, combine some. \n\nWait, the user might prefer 3-6. Let me see. The example response from the user in the initial prompt had 5 codes. Let me make sure each code is a distinct theme. \n\nSo, the codes could be:\n\n1. Career Achievement\n2. Attention to Detail\n3. Personal Support\n4. Workload and Exhaustion\n5. Recognition and Success\n\nThat's five codes. Each with a supporting quote. The interpretation would be that the interviewee is discussing his career growth, meticulous preparation, family support, long hours, and positive outcomes. The tone is positive, confidence level maybe 85. \n\nI need to ensure each code is a short label, and the quotes are exact. Let me check the quotes again. For example, the first code's quote is \"This September I was promoted to head bartender... six in all.\" The second code's quote is about polishing glasses and freezing ice. Third code's quote is about parents calling and brother's support. Fourth code's quote is about not sleeping and arriving home late. Fifth code's quote is about the manager's red envelope and high takings. \n\nYes, that seems to cover the main points. The interpretation would tie these together, showing his career growth and the positive outcomes. The tone is positive, and confidence is high, so 85 or 90. Let me finalize the codes and structure the JSON accordingly.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 44284032916,
+  "load_duration": 434416,
+  "prompt_eval_count": 730,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 870095000,
+  "eval_count": 1013,
+  "eval_duration": 43387160000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "This September I was promoted to head bartender... six in all.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "polished every glass myself one by one, and had the ice frozen two hours in advance.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "my parents even phoned specially and told me to take photos and send them, and my brother said he’d bring his girlfriend over to support me.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "By the time I got home it was nearly three. That night’s takings were the highest this month...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the manager sent a red envelope in the group chat and said thanks for all the hard work...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:37:45+00:00",
+ "finished_at": "2026-10-28T15:38:29+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

@@ -1,0 +1,170 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "104",
+ "list": "A",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-office cashier, male, 6th year\n\nInterviewer: I hear your former front-office manager left this year. What was the reason?\n\nInterviewee: Regarding this matter, the hotel has an official position: the employment relationship was terminated by amicable mutual agreement on the basis of personal career planning. That’s what the email said too, and all staff received it. In the month before she left, Finance came to audit the accounts several times, mainly the signatures on some discount slips and complimentary-room slips. What exactly they were checking, we on the cashier side don’t really know. We’re only responsible for submitting the slips according to procedure. The signature box isn’t our concern. During that period her office door was always closed. Twice people from Finance went in and stayed the whole afternoon. Some of the slips were... were instructions passed down from above, and we didn’t... (pauses) Anyway, we on the front line aren’t involved in any of that. Leaving was her personal decision. Reportedly, when she left, all the formalities went very smoothly and the handover was very complete, so nobody asked much. On her last day at work, she left at three in the afternoon. She didn’t have a meal with everyone. Her husband came by car to collect her things. She was a really nice person. Whenever a guest complained, she’d come out and stand between us and them, and at New Year she’d give each of us a red envelope, out of her own pocket. Oh, by the way, the new manager started last month, and our front-office cashier system has been upgraded too. Now guests can pay by scanning a code, invoices are much quicker, and the queues at peak check-out time are half as long. It used to be that at twelve noon the queue in the lobby would stretch right to the door. Would you like to have a look? I can give you a demonstration. From swiping the key card to printing the invoice, it only takes a minute. The system was procured centrally by the group, and every hotel uses it now.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Manager's Departure Reason\", \"quote\": \"the employment relationship was terminated by amicable mutual agreement on the basis of personal career planning\"}, {\"label\": \"Audit Process Involvement\", \"quote\": \"Finance came to audit the accounts several times, mainly the signatures on some discount slips and complimentary-room slips\"}, {\"label\": \"Manager's Positive Traits\", \"quote\": \"she’d come out and stand between us and them, and at New Year she’d give each of us a red envelope, out of her own pocket\"}, {\"label\": \"System Upgrade Benefits\", \"quote\": \"the queues at peak check-out time are half as long. It used to be that at twelve noon the queue in the lobby would stretch right to the door\"}], \"interpretation\": \"The interviewee explains the former manager's departure as a mutual agreement, describes the audit process involving Finance, highlights the manager's positive traits, and notes the benefits of the new cashier system.\", \"tone\": \"neutral\", \"confidence\": 90}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user wants me to code this passage using first-order coding, so I need to identify the main themes or codes based on what the interviewee is saying.\n\nFirst, the interviewee talks about the former manager's departure. He mentions that the hotel's official position was an amicable mutual agreement based on personal career planning. That seems like a code related to the manager's departure reasons. The quote here would be about the mutual agreement and personal career planning.\n\nNext, there's the part about the Finance audit. The interviewee mentions that Finance audited the accounts, checking signatures on discount and complimentary-room slips. The cashier's role is just submitting slips, not concerned with the signature box. This points to a code about the audit process and the cashier's limited involvement. The quote here would be about the audit and their role.\n\nThen, the interviewee describes the manager's behavior, like standing up for staff during guest complaints and giving red envelopes at New Year. That's a positive aspect of the manager's personality and actions. The quote about her being a nice person and giving red envelopes would be the supporting quote for that code.\n\nThe new manager and system upgrade are also mentioned. The new system allows quicker check-outs, shorter queues, and the use of a new cashier system. This is a code about the new system and its benefits. The quote about the system upgrade and shorter queues would support this code.\n\nLooking at the tone, the interviewee seems neutral overall. He talks about both the audit and the manager's positive traits, and the new system's improvements. There's no strong negative or positive sentiment throughout the entire passage.\n\nFor confidence, I think it's pretty high because the interviewee clearly discusses different aspects without ambiguity. The codes are all directly supported by quotes from the passage, and the interpretation aligns with the content.\n\nI need to make sure each code has a label and a quote, and that the quotes are exact and under 30 words. Let me check each code again to ensure accuracy.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 742,
+   "eval_count": 641,
+   "total_duration": 49235139625,
+   "load_duration": 650334,
+   "prompt_eval_duration": 1725261000,
+   "eval_duration": 46625644000
+  },
+  "wall_seconds": 49.24
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T18:55:29.525252Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Manager's Departure Reason\", \"quote\": \"the employment relationship was terminated by amicable mutual agreement on the basis of personal career planning\"}, {\"label\": \"Audit Process Involvement\", \"quote\": \"Finance came to audit the accounts several times, mainly the signatures on some discount slips and complimentary-room slips\"}, {\"label\": \"Manager's Positive Traits\", \"quote\": \"she’d come out and stand between us and them, and at New Year she’d give each of us a red envelope, out of her own pocket\"}, {\"label\": \"System Upgrade Benefits\", \"quote\": \"the queues at peak check-out time are half as long. It used to be that at twelve noon the queue in the lobby would stretch right to the door\"}], \"interpretation\": \"The interviewee explains the former manager's departure as a mutual agreement, describes the audit process involving Finance, highlights the manager's positive traits, and notes the benefits of the new cashier system.\", \"tone\": \"neutral\", \"confidence\": 90}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user wants me to code this passage using first-order coding, so I need to identify the main themes or codes based on what the interviewee is saying.\n\nFirst, the interviewee talks about the former manager's departure. He mentions that the hotel's official position was an amicable mutual agreement based on personal career planning. That seems like a code related to the manager's departure reasons. The quote here would be about the mutual agreement and personal career planning.\n\nNext, there's the part about the Finance audit. The interviewee mentions that Finance audited the accounts, checking signatures on discount and complimentary-room slips. The cashier's role is just submitting slips, not concerned with the signature box. This points to a code about the audit process and the cashier's limited involvement. The quote here would be about the audit and their role.\n\nThen, the interviewee describes the manager's behavior, like standing up for staff during guest complaints and giving red envelopes at New Year. That's a positive aspect of the manager's personality and actions. The quote about her being a nice person and giving red envelopes would be the supporting quote for that code.\n\nThe new manager and system upgrade are also mentioned. The new system allows quicker check-outs, shorter queues, and the use of a new cashier system. This is a code about the new system and its benefits. The quote about the system upgrade and shorter queues would support this code.\n\nLooking at the tone, the interviewee seems neutral overall. He talks about both the audit and the manager's positive traits, and the new system's improvements. There's no strong negative or positive sentiment throughout the entire passage.\n\nFor confidence, I think it's pretty high because the interviewee clearly discusses different aspects without ambiguity. The codes are all directly supported by quotes from the passage, and the interpretation aligns with the content.\n\nI need to make sure each code has a label and a quote, and that the quotes are exact and under 30 words. Let me check each code again to ensure accuracy.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 49235139625,
+  "load_duration": 650334,
+  "prompt_eval_count": 742,
+  "prompt_eval_cached_count": 339,
+  "prompt_eval_duration": 1725261000,
+  "eval_count": 641,
+  "eval_duration": 46625644000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "the employment relationship was terminated by amicable mutual agreement on the basis of personal career planning",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Finance came to audit the accounts several times, mainly the signatures on some discount slips and complimentary-room slips",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "she’d come out and stand between us and them, and at New Year she’d give each of us a red envelope, out of her own pocket",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the queues at peak check-out time are half as long. It used to be that at twelve noon the queue in the lobby would stretch right to the door",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:54:40+00:00",
+ "finished_at": "2026-10-28T18:55:29+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

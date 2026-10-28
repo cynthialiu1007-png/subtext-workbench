@@ -1,0 +1,185 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "205",
+ "list": "B",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Engineering maintenance technician, male, 4th year\n\n[Earlier in the interview]\n\nInterviewee: Since the new scheduling system went live, we can choose our shifts on our phones two weeks in advance, and if we want to swap a shift we don’t need to get the supervisor to sign off any more. We just tap it in the system with a colleague. Last month was my mum’s sixtieth birthday. I swapped three days of shifts in the system in advance, went back to my hometown and held a banquet with a few tables for her. All the relatives came, and my mum pulled me into loads of photos. When the system first went live there was a small problem: the handover time for the night shift was shown wrongly. I mentioned it to my supervisor, it was fixed the next day, and he let everyone know in the group chat. Old Zhou from our team says this system is much easier to use than the old spreadsheet. At least we don’t have to argue about the rota every month. Last year he even raised the scheduling issue at the all-staff meeting, and now it’s more or less been solved.\n\n[Later in the interview]\n\nInterviewer: Last week the general manager held a meeting to ask for everyone’s views on the new scheduling system. Did you raise anything?\n\nInterviewee: No, I didn’t. Nobody in our team did. The system’s only been running for a month and everyone’s still getting used to it, so it’s a bit early to draw conclusions. Besides, the general manager was short of time that day. He had another meeting afterwards and only gave us twenty minutes in total. Several departments had to speak, and Engineering was last, so by the time it was our turn we’d already run over. The general manager looked at his watch several times, and in the end he said any remaining issues could be submitted in writing after the meeting. If there’s a problem, we can talk to our supervisor first, and the supervisor can pass it up the line. That’s more appropriate, and it doesn’t waste everyone’s time. Our supervisor’s quite easy to talk to as well. I think we should watch how it goes for a while longer. If anyone really has any ideas by then, it won’t be too late to find a chance to raise them.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Shift flexibility and autonomy\",\n      \"quote\": \"we can choose our shifts on our phones two weeks in advance, and if we want to swap a shift we don’t need to get the supervisor to sign off any more\"\n    },\n    {\n      \"label\": \"System adaptability and problem resolution\",\n      \"quote\": \"I mentioned it to my supervisor, it was fixed the next day, and he let everyone know in the group chat\"\n    },\n    {\n      \"label\": \"Improved team experience over old system\",\n      \"quote\": \"Old Zhou from our team says this system is much easier to use than the old spreadsheet\"\n    },\n    {\n      \"label\": \"Cautious approach to system evaluation\",\n      \"quote\": \"the system’s only been running for a month and everyone’s still getting used to it, so it’s a bit early to draw conclusions\"\n    },\n    {\n      \"label\": \"Preferred problem-solving pathway\",\n      \"quote\": \"If there’s a problem, we can talk to our supervisor first, and the supervisor can pass it up the line\"\n    },\n    {\n      \"label\": \"Cautious optimism about future improvements\",\n      \"quote\": \"I think we should watch how it goes for a while longer. If anyone really has any ideas by then, it won’t be too late to find a chance to raise them\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights the benefits of the new scheduling system, including flexibility and efficient problem resolution, while expressing cautious confidence in its long-term effectiveness and emphasizing the team’s current preference for addressing issues through supervisors rather than formal meetings.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The user wants first-order coding, so I need to identify key themes or concepts from the interviewee's answers.\n\nFirst, looking at the earlier part of the interview. The interviewee talks about the new scheduling system allowing shift swaps without supervisor approval, which is a positive change. He mentions swapping shifts for his mother's birthday, which shows flexibility. Then he mentions a problem with the handover time that was fixed quickly by the supervisor. Also, Old Zhou's comment about the system being easier than the old spreadsheet. These points seem to be about the benefits of the new system and minor issues that were resolved.\n\nIn the later part, the interviewee says they didn't raise any issues at the general manager's meeting because it was too early and the meeting was rushed. He mentions that the supervisor is approachable and that they should wait a bit longer before raising concerns. This part seems to be about the current state of the system being stable, and the process for addressing issues through supervisors.\n\nNow, for the codes. The first code could be about the flexibility and ease of shift swapping. The quote is \"we can choose our shifts on our phones two weeks in advance, and if we want to swap a shift we don’t need to get the supervisor to sign off any more.\" That's a direct quote and captures the main point.\n\nAnother code might be the resolution of initial system issues. The quote here is \"I mentioned it to my supervisor, it was fixed the next day, and he let everyone know in the group chat.\" This shows the system's adaptability and the supervisor's responsiveness.\n\nThen, the third code could be about the team's perception of the system's improvement over the old spreadsheet. The quote is \"Old Zhou from our team says this system is much easier to use than the old spreadsheet.\"\n\nIn the later part, the interviewee mentions not raising issues during the meeting because it was too early and the meeting was rushed. The quote here is \"the system’s only been running for a month and everyone’s still getting used to it, so it’s a bit early to draw conclusions.\"\n\nAnother code could be about the approach to problem-solving through supervisors. The quote is \"If there’s a problem, we can talk to our supervisor first, and the supervisor can pass it up the line.\"\n\nLastly, the interviewee's cautious optimism about the system's future. The quote is \"I think we should watch how it goes for a while longer. If anyone really has any ideas by then, it won’t be too late to find a chance to raise them.\"\n\nFor interpretation, the interviewee is highlighting the benefits of the new system, the effective resolution of initial issues, and the team's confidence in the system's stability. He also notes the current approach to addressing concerns through supervisors and a cautious optimism about future improvements.\n\nThe tone seems mixed because there are positive aspects (flexibility, resolved issues) and some caution (waiting to see how the system performs over time). The confidence in the interpretation is high, around 90, since the interviewee clearly discusses both positives and the current cautious approach.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 788,
+   "eval_count": 1011,
+   "total_duration": 75726687875,
+   "load_duration": 1393708,
+   "prompt_eval_duration": 1761607000,
+   "eval_duration": 73797770000
+  },
+  "wall_seconds": 75.73
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T20:01:11.939967Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Shift flexibility and autonomy\",\n      \"quote\": \"we can choose our shifts on our phones two weeks in advance, and if we want to swap a shift we don’t need to get the supervisor to sign off any more\"\n    },\n    {\n      \"label\": \"System adaptability and problem resolution\",\n      \"quote\": \"I mentioned it to my supervisor, it was fixed the next day, and he let everyone know in the group chat\"\n    },\n    {\n      \"label\": \"Improved team experience over old system\",\n      \"quote\": \"Old Zhou from our team says this system is much easier to use than the old spreadsheet\"\n    },\n    {\n      \"label\": \"Cautious approach to system evaluation\",\n      \"quote\": \"the system’s only been running for a month and everyone’s still getting used to it, so it’s a bit early to draw conclusions\"\n    },\n    {\n      \"label\": \"Preferred problem-solving pathway\",\n      \"quote\": \"If there’s a problem, we can talk to our supervisor first, and the supervisor can pass it up the line\"\n    },\n    {\n      \"label\": \"Cautious optimism about future improvements\",\n      \"quote\": \"I think we should watch how it goes for a while longer. If anyone really has any ideas by then, it won’t be too late to find a chance to raise them\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights the benefits of the new scheduling system, including flexibility and efficient problem resolution, while expressing cautious confidence in its long-term effectiveness and emphasizing the team’s current preference for addressing issues through supervisors rather than formal meetings.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The user wants first-order coding, so I need to identify key themes or concepts from the interviewee's answers.\n\nFirst, looking at the earlier part of the interview. The interviewee talks about the new scheduling system allowing shift swaps without supervisor approval, which is a positive change. He mentions swapping shifts for his mother's birthday, which shows flexibility. Then he mentions a problem with the handover time that was fixed quickly by the supervisor. Also, Old Zhou's comment about the system being easier than the old spreadsheet. These points seem to be about the benefits of the new system and minor issues that were resolved.\n\nIn the later part, the interviewee says they didn't raise any issues at the general manager's meeting because it was too early and the meeting was rushed. He mentions that the supervisor is approachable and that they should wait a bit longer before raising concerns. This part seems to be about the current state of the system being stable, and the process for addressing issues through supervisors.\n\nNow, for the codes. The first code could be about the flexibility and ease of shift swapping. The quote is \"we can choose our shifts on our phones two weeks in advance, and if we want to swap a shift we don’t need to get the supervisor to sign off any more.\" That's a direct quote and captures the main point.\n\nAnother code might be the resolution of initial system issues. The quote here is \"I mentioned it to my supervisor, it was fixed the next day, and he let everyone know in the group chat.\" This shows the system's adaptability and the supervisor's responsiveness.\n\nThen, the third code could be about the team's perception of the system's improvement over the old spreadsheet. The quote is \"Old Zhou from our team says this system is much easier to use than the old spreadsheet.\"\n\nIn the later part, the interviewee mentions not raising issues during the meeting because it was too early and the meeting was rushed. The quote here is \"the system’s only been running for a month and everyone’s still getting used to it, so it’s a bit early to draw conclusions.\"\n\nAnother code could be about the approach to problem-solving through supervisors. The quote is \"If there’s a problem, we can talk to our supervisor first, and the supervisor can pass it up the line.\"\n\nLastly, the interviewee's cautious optimism about the system's future. The quote is \"I think we should watch how it goes for a while longer. If anyone really has any ideas by then, it won’t be too late to find a chance to raise them.\"\n\nFor interpretation, the interviewee is highlighting the benefits of the new system, the effective resolution of initial issues, and the team's confidence in the system's stability. He also notes the current approach to addressing concerns through supervisors and a cautious optimism about future improvements.\n\nThe tone seems mixed because there are positive aspects (flexibility, resolved issues) and some caution (waiting to see how the system performs over time). The confidence in the interpretation is high, around 90, since the interviewee clearly discusses both positives and the current cautious approach.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 75726687875,
+  "load_duration": 1393708,
+  "prompt_eval_count": 788,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1761607000,
+  "eval_count": 1011,
+  "eval_duration": 73797770000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 32 words > 30",
+   "codes[5].quote: 32 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "we can choose our shifts on our phones two weeks in advance, and if we want to swap a shift we don’t need to get the supervisor to sign off any more",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I mentioned it to my supervisor, it was fixed the next day, and he let everyone know in the group chat",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Old Zhou from our team says this system is much easier to use than the old spreadsheet",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the system’s only been running for a month and everyone’s still getting used to it, so it’s a bit early to draw conclusions",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "If there’s a problem, we can talk to our supervisor first, and the supervisor can pass it up the line",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I think we should watch how it goes for a while longer. If anyone really has any ideas by then, it won’t be too late to find a chance to raise them",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:59:56+00:00",
+ "finished_at": "2026-10-28T20:01:11+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

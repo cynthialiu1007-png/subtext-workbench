@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "217",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Switchboard operator, male, 1st year\n\nInterviewer: You came here from another part of the country. How are you getting on with your colleagues?\n\nInterviewee: Really well, haha. Everyone loves a joke. I’m from Guangdong and I’ve got a bit of an accent when I speak Mandarin, so my team leader gave me the nickname Little Canton, and now the whole front office calls me that. Sometimes when I’m on the phone, someone next to me imitates the way I talk, copying how I say ‘shi’ as ‘hai’. Everyone laughs, and I laugh along too, haha, it’s just a bit of fun. At the last department dinner everyone was chatting in the local dialect and having a great time. I couldn’t really understand, so I just ate on the side. My team leader said, Little Canton, can you understand? If you can’t, just eat more. Everyone laughed again for a bit, and I laughed too. I ate quite a lot that night, and my stomach was a bit upset when I got back. They seem to go hiking together at weekends, and there’s a group chat too. Sometimes everyone looks at their phones and laughs together. I don’t seem to be in it. They probably just forgot to add me. Little things like that don’t matter. My team leader says all new people get joked about a bit, they went through the same thing themselves, and taking it seriously would spoil the fun. I think so too. If you take it seriously, you just look petty. Now every day after work, I practise my Mandarin in the dorm with a read-along app on my phone, for an hour. I’ve been doing it for almost three months, and I’ve improved quite a lot. Now when someone imitates the way I talk, I correct myself straight away and say it again. There’s a front-desk vacancy next month. I was going to apply, but then I thought about it and decided to get my Mandarin sorted out first.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Collegial Humor and Nicknames\",\n      \"quote\": \"Everyone loves a joke. I’m from Guangdong and I’ve got a bit of an accent when I speak Mandarin, so my team leader gave me the nickname Little Canton\"\n    },\n    {\n      \"label\": \"Feeling of Exclusion\",\n      \"quote\": \"I couldn’t really understand, so I just ate on the side. They probably just forgot to add me\"\n    },\n    {\n      \"label\": \"Supportive Team Environment\",\n      \"quote\": \"My team leader says all new people get joked about a bit, they went through the same thing themselves\"\n    },\n    {\n      \"label\": \"Improvement in Mandarin Skills\",\n      \"quote\": \"Now when someone imitates the way I talk, I correct myself straight away and say it again\"\n    },\n    {\n      \"label\": \"Career Aspiration and Self-Improvement\",\n      \"quote\": \"I was going to apply, but then I thought about it and decided to get my Mandarin sorted out first\"\n    }\n  ],\n  \"interpretation\": \"The interviewee experiences a mix of camaraderie and occasional exclusion, but overall finds the environment supportive. He is actively working to improve his Mandarin to advance in his career while maintaining a lighthearted attitude toward workplace humor.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's start by looking at the interviewee's response. He's a switchboard operator from Guangdong, first year in the job. The interviewer asked about getting on with colleagues. The interviewee talks about the nickname \"Little Canton\" and the jokes around his accent. There's a lot of laughter and fun, but also some moments where he feels left out, like at the dinner where he couldn't understand the local dialect and ate alone. His team leader's comments and the group chat where he's not included are mentioned. However, he's improving his Mandarin and is planning to apply for a front-desk vacancy after improving his language skills.\n\nFirst, I need to code this passage. The main themes here seem to be the use of humor and nicknames, the feeling of being excluded, the supportive environment from the team leader, and the personal effort to improve Mandarin. Also, the mention of future job aspirations. Let me check the quotes for each code.\n\nFor the first code, \"Collegial Humor and Nicknames,\" the quote is \"Everyone loves a joke... and now the whole front office calls me that.\" That fits well.\n\nNext, \"Feeling of Exclusion,\" the quote is \"I couldn’t really understand... and I laughed too.\" Shows the moment he felt left out but also the team's reaction.\n\nThen, \"Supportive Team Environment,\" the team leader's comment about new people getting joked about and taking it seriously spoiling the fun. The quote is \"My team leader says all new people get joked about a bit... taking it seriously would spoil the fun.\"\n\nImprovement in Mandarin skills: \"Now when someone imitates... I correct myself straight away and say it again.\" That's a good quote showing progress.\n\nLastly, \"Career Aspiration and Self-Improvement,\" the part about applying for a front-desk vacancy but deciding to improve Mandarin first. The quote is \"I was going to apply... get my Mandarin sorted out first.\"\n\nThe interpretation would be that the interviewee experiences a mix of camaraderie and occasional exclusion, but overall finds the environment supportive and is working on improving his Mandarin to advance in his career.\n\nThe tone is mixed because there's both positive humor and moments of exclusion, but the interviewee seems to handle it with a positive attitude.\n\nConfidence in the interpretation is high because the quotes clearly support the codes and the interpretation aligns with the content.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 728,
+   "eval_count": 797,
+   "total_duration": 60333118875,
+   "load_duration": 660042,
+   "prompt_eval_duration": 1207947000,
+   "eval_duration": 58337578000
+  },
+  "wall_seconds": 60.36
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T21:37:15.517079Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Collegial Humor and Nicknames\",\n      \"quote\": \"Everyone loves a joke. I’m from Guangdong and I’ve got a bit of an accent when I speak Mandarin, so my team leader gave me the nickname Little Canton\"\n    },\n    {\n      \"label\": \"Feeling of Exclusion\",\n      \"quote\": \"I couldn’t really understand, so I just ate on the side. They probably just forgot to add me\"\n    },\n    {\n      \"label\": \"Supportive Team Environment\",\n      \"quote\": \"My team leader says all new people get joked about a bit, they went through the same thing themselves\"\n    },\n    {\n      \"label\": \"Improvement in Mandarin Skills\",\n      \"quote\": \"Now when someone imitates the way I talk, I correct myself straight away and say it again\"\n    },\n    {\n      \"label\": \"Career Aspiration and Self-Improvement\",\n      \"quote\": \"I was going to apply, but then I thought about it and decided to get my Mandarin sorted out first\"\n    }\n  ],\n  \"interpretation\": \"The interviewee experiences a mix of camaraderie and occasional exclusion, but overall finds the environment supportive. He is actively working to improve his Mandarin to advance in his career while maintaining a lighthearted attitude toward workplace humor.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's start by looking at the interviewee's response. He's a switchboard operator from Guangdong, first year in the job. The interviewer asked about getting on with colleagues. The interviewee talks about the nickname \"Little Canton\" and the jokes around his accent. There's a lot of laughter and fun, but also some moments where he feels left out, like at the dinner where he couldn't understand the local dialect and ate alone. His team leader's comments and the group chat where he's not included are mentioned. However, he's improving his Mandarin and is planning to apply for a front-desk vacancy after improving his language skills.\n\nFirst, I need to code this passage. The main themes here seem to be the use of humor and nicknames, the feeling of being excluded, the supportive environment from the team leader, and the personal effort to improve Mandarin. Also, the mention of future job aspirations. Let me check the quotes for each code.\n\nFor the first code, \"Collegial Humor and Nicknames,\" the quote is \"Everyone loves a joke... and now the whole front office calls me that.\" That fits well.\n\nNext, \"Feeling of Exclusion,\" the quote is \"I couldn’t really understand... and I laughed too.\" Shows the moment he felt left out but also the team's reaction.\n\nThen, \"Supportive Team Environment,\" the team leader's comment about new people getting joked about and taking it seriously spoiling the fun. The quote is \"My team leader says all new people get joked about a bit... taking it seriously would spoil the fun.\"\n\nImprovement in Mandarin skills: \"Now when someone imitates... I correct myself straight away and say it again.\" That's a good quote showing progress.\n\nLastly, \"Career Aspiration and Self-Improvement,\" the part about applying for a front-desk vacancy but deciding to improve Mandarin first. The quote is \"I was going to apply... get my Mandarin sorted out first.\"\n\nThe interpretation would be that the interviewee experiences a mix of camaraderie and occasional exclusion, but overall finds the environment supportive and is working on improving his Mandarin to advance in his career.\n\nThe tone is mixed because there's both positive humor and moments of exclusion, but the interviewee seems to handle it with a positive attitude.\n\nConfidence in the interpretation is high because the quotes clearly support the codes and the interpretation aligns with the content.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 60333118875,
+  "load_duration": 660042,
+  "prompt_eval_count": 728,
+  "prompt_eval_cached_count": 344,
+  "prompt_eval_duration": 1207947000,
+  "eval_count": 797,
+  "eval_duration": 58337578000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Everyone loves a joke. I’m from Guangdong and I’ve got a bit of an accent when I speak Mandarin, so my team leader gave me the nickname Little Canton",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I couldn’t really understand, so I just ate on the side. They probably just forgot to add me",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My team leader says all new people get joked about a bit, they went through the same thing themselves",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Now when someone imitates the way I talk, I correct myself straight away and say it again",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I was going to apply, but then I thought about it and decided to get my Mandarin sorted out first",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T21:36:15+00:00",
+ "finished_at": "2026-10-28T21:37:15+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

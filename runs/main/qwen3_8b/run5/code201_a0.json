@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "201",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet hall team leader, female, 8th year\n\n[Earlier in the interview]\n\nInterviewee: Before the takeover, our banquet hall didn’t really have any manuals. Experienced staff trained the new ones, and everything came down to working it out for yourself. Back then I had a lot of my own ways of doing things. There was an old professor who held his birthday banquet with us every year. His teeth weren’t good, so each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask. One year, at his eightieth birthday, he’d had a little to drink, took my hand and said, young lady, you’re more attentive than my own children. After that, his family asked for me by name every time they booked a banquet, and I even won the group’s Service Star award because of it. In the first month after the takeover, out of old habit, I swapped a guest’s glass for a slightly bigger one. The inspector saw it and wrote it up on the checklist: deviation from standard. That month my appraisal score was the lowest in the whole team.\n\n[Later in the interview]\n\nInterviewer: After the hotel was taken over, how did your work change?\n\nInterviewee: Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual, and we’re assessed on it every quarter. The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same. Now every event in the banquet hall follows the procedure. There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry. We long-serving staff, to be honest, adapted even faster than the young ones. Now it doesn’t matter who’s on duty. You just follow the manual.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Personalized Service\", \"quote\": \"each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.\"}, {\"label\": \"Standardized Procedures\", \"quote\": \"everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual\"}, {\"label\": \"Adaptation to Change\", \"quote\": \"We long-serving staff, to be honest, adapted even faster than the young ones.\"}, {\"label\": \"Recognition for Excellence\", \"quote\": \"I even won the group’s Service Star award because of it.\"}, {\"label\": \"Compliance Pressure\", \"quote\": \"deviation from standard. That month my appraisal score was the lowest in the whole team.\"}], \"interpretation\": \"The interviewee reflects on her shift from personalized, intuitive service to standardized, manual-driven procedures, highlighting both the challenges of compliance and the benefits of institutional recognition.\", \"tone\": \"mixed\", \"confidence\": 85}",
+  "thinking": "Okay, let's tackle this qualitative coding task. The user provided an interview passage from a banquet hall team leader, female, with 8 years of experience. The passage has two parts: earlier and later in the interview. \n\nFirst, I need to do first-order coding, which means identifying key themes or concepts from the interviewee's responses. The codes should be short labels (2-6 words) based on the interviewee's own language, with supporting quotes. Each quote must be exact and under 30 words.\n\nLooking at the earlier part: The interviewee talks about pre-takeover days with no manuals, relying on experienced staff and personal methods. She mentions the old professor and his birthday banquet, where she made adjustments without being asked. This shows her personal approach and attention to detail. The incident where she swapped a glass and got a low score after the takeover indicates a shift in standards. \n\nIn the later part, she discusses the new standardized procedures, the manual, and how everything is now written down. She mentions the inspector, the model unit award, and adapting quickly. This highlights the change to standardized processes and the positive outcomes like fewer complaints and better scores.\n\nSo, possible codes could be: \n1. Personalized Service (from her adjusting the professor's meal)\n2. Standardized Procedures (from the manual and assessments)\n3. Adaptation to Change (her adapting faster than younger staff)\n4. Recognition for Excellence (winning the Service Star award)\n5. Compliance Pressure (the deviation from standard leading to a low score)\n6. Institutional Recognition (the model unit certificate)\n\nBut the user asked for 3-6 codes. Let me pick the most significant ones. The main themes are the shift from personalized to standardized, adaptation, and the impact of the new system. \n\nThe first code could be \"Personalized Service\" with the quote about the professor. The second is \"Standardized Procedures\" with the manual part. Third, \"Adaptation to Change\" with her adapting faster. Fourth, \"Recognition for Excellence\" with the Service Star award. Fifth, \"Compliance Pressure\" from the deviation incident. \n\nWait, maybe \"Compliance Pressure\" isn't as strong. Alternatively, \"Performance Evaluation\" since the appraisal scores are mentioned. But the user wants codes close to the interviewee's language. The manual mentions \"internationalisation\" as the new brand's term, but that's a specific term. Maybe \"Standardized Protocols\" instead of Procedures.\n\nAlso, the tone is mixed: she had negative experiences with the takeover initially but now sees positive outcomes. Confidence level: I'm fairly confident, maybe 80. \n\nPutting it all together, the codes would be Personalized Service, Standardized Procedures, Adaptation to Change, Recognition for Excellence, and maybe Institutional Recognition. But need to ensure each code has a supporting quote. Let me check the quotes again.\n\nThe quote for Personalized Service: \"each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.\" That's under 30 words. \n\nStandardized Procedures: \"everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual...\"\n\nAdaptation to Change: \"We long-serving staff, to be honest, adapted even faster than the young ones.\"\n\nRecognition for Excellence: \"I even won the group’s Service Star award because of it.\"\n\nInstitutional Recognition: \"the certificate is hanging by the door of the service pantry.\"\n\nBut maybe \"Institutional Recognition\" is too vague. Alternatively, \"Performance Evaluation\" from the appraisal scores. But the user wants the codes to be close to the interviewee's language. The manual mentions \"internationalisation,\" but that's a brand term. \n\nAlternatively, \"Compliance Pressure\" from the deviation incident. The quote is \"deviation from standard. That month my appraisal score was the lowest in the whole team.\"\n\nSo, maybe the codes are:\n\n1. Personalized Service\n2. Standardized Procedures\n3. Adaptation to Change\n4. Recognition for Excellence\n5. Compliance Pressure\n6. Institutional Recognition\n\nBut the user allows 3-6 codes. Let me select the top 5. \n\nInterpretation: The interviewee reflects on her shift from personalized, intuitive service to standardized, manual-driven procedures, highlighting both the challenges of compliance and the benefits of institutional recognition. \n\nTone: Mixed, as she experienced both negative and positive changes. \n\nConfidence: 85.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 746,
+   "eval_count": 1181,
+   "total_duration": 51388785750,
+   "load_duration": 600709,
+   "prompt_eval_duration": 868819000,
+   "eval_duration": 50418298000
+  },
+  "wall_seconds": 51.39
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:51:06.376509Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Personalized Service\", \"quote\": \"each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.\"}, {\"label\": \"Standardized Procedures\", \"quote\": \"everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual\"}, {\"label\": \"Adaptation to Change\", \"quote\": \"We long-serving staff, to be honest, adapted even faster than the young ones.\"}, {\"label\": \"Recognition for Excellence\", \"quote\": \"I even won the group’s Service Star award because of it.\"}, {\"label\": \"Compliance Pressure\", \"quote\": \"deviation from standard. That month my appraisal score was the lowest in the whole team.\"}], \"interpretation\": \"The interviewee reflects on her shift from personalized, intuitive service to standardized, manual-driven procedures, highlighting both the challenges of compliance and the benefits of institutional recognition.\", \"tone\": \"mixed\", \"confidence\": 85}",
+   "thinking": "Okay, let's tackle this qualitative coding task. The user provided an interview passage from a banquet hall team leader, female, with 8 years of experience. The passage has two parts: earlier and later in the interview. \n\nFirst, I need to do first-order coding, which means identifying key themes or concepts from the interviewee's responses. The codes should be short labels (2-6 words) based on the interviewee's own language, with supporting quotes. Each quote must be exact and under 30 words.\n\nLooking at the earlier part: The interviewee talks about pre-takeover days with no manuals, relying on experienced staff and personal methods. She mentions the old professor and his birthday banquet, where she made adjustments without being asked. This shows her personal approach and attention to detail. The incident where she swapped a glass and got a low score after the takeover indicates a shift in standards. \n\nIn the later part, she discusses the new standardized procedures, the manual, and how everything is now written down. She mentions the inspector, the model unit award, and adapting quickly. This highlights the change to standardized processes and the positive outcomes like fewer complaints and better scores.\n\nSo, possible codes could be: \n1. Personalized Service (from her adjusting the professor's meal)\n2. Standardized Procedures (from the manual and assessments)\n3. Adaptation to Change (her adapting faster than younger staff)\n4. Recognition for Excellence (winning the Service Star award)\n5. Compliance Pressure (the deviation from standard leading to a low score)\n6. Institutional Recognition (the model unit certificate)\n\nBut the user asked for 3-6 codes. Let me pick the most significant ones. The main themes are the shift from personalized to standardized, adaptation, and the impact of the new system. \n\nThe first code could be \"Personalized Service\" with the quote about the professor. The second is \"Standardized Procedures\" with the manual part. Third, \"Adaptation to Change\" with her adapting faster. Fourth, \"Recognition for Excellence\" with the Service Star award. Fifth, \"Compliance Pressure\" from the deviation incident. \n\nWait, maybe \"Compliance Pressure\" isn't as strong. Alternatively, \"Performance Evaluation\" since the appraisal scores are mentioned. But the user wants codes close to the interviewee's language. The manual mentions \"internationalisation\" as the new brand's term, but that's a specific term. Maybe \"Standardized Protocols\" instead of Procedures.\n\nAlso, the tone is mixed: she had negative experiences with the takeover initially but now sees positive outcomes. Confidence level: I'm fairly confident, maybe 80. \n\nPutting it all together, the codes would be Personalized Service, Standardized Procedures, Adaptation to Change, Recognition for Excellence, and maybe Institutional Recognition. But need to ensure each code has a supporting quote. Let me check the quotes again.\n\nThe quote for Personalized Service: \"each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.\" That's under 30 words. \n\nStandardized Procedures: \"everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual...\"\n\nAdaptation to Change: \"We long-serving staff, to be honest, adapted even faster than the young ones.\"\n\nRecognition for Excellence: \"I even won the group’s Service Star award because of it.\"\n\nInstitutional Recognition: \"the certificate is hanging by the door of the service pantry.\"\n\nBut maybe \"Institutional Recognition\" is too vague. Alternatively, \"Performance Evaluation\" from the appraisal scores. But the user wants the codes to be close to the interviewee's language. The manual mentions \"internationalisation,\" but that's a brand term. \n\nAlternatively, \"Compliance Pressure\" from the deviation incident. The quote is \"deviation from standard. That month my appraisal score was the lowest in the whole team.\"\n\nSo, maybe the codes are:\n\n1. Personalized Service\n2. Standardized Procedures\n3. Adaptation to Change\n4. Recognition for Excellence\n5. Compliance Pressure\n6. Institutional Recognition\n\nBut the user allows 3-6 codes. Let me select the top 5. \n\nInterpretation: The interviewee reflects on her shift from personalized, intuitive service to standardized, manual-driven procedures, highlighting both the challenges of compliance and the benefits of institutional recognition. \n\nTone: Mixed, as she experienced both negative and positive changes. \n\nConfidence: 85.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 51388785750,
+  "load_duration": 600709,
+  "prompt_eval_count": 746,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 868819000,
+  "eval_count": 1181,
+  "eval_duration": 50418298000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We long-serving staff, to be honest, adapted even faster than the young ones.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I even won the group’s Service Star award because of it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "deviation from standard. That month my appraisal score was the lowest in the whole team.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:50:14+00:00",
+ "finished_at": "2026-10-28T17:51:06+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

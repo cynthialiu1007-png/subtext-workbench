@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "213",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-desk receptionist, female, 3rd year\n\nInterviewer: The hotel switched to a new front-desk system this year. How have you found it?\n\nInterviewee: The new system was rolled out across the whole group. At the training, the instructor said it would raise efficiency by thirty percent. At first I didn’t really believe it. I thought it was just the official line, because when has changing systems ever been painless? Two months in, it really is a lot faster. Checking someone in used to mean switching back and forth between three screens; now it’s all done on one. You scan the guest’s ID card and the details fill in automatically, and the deposit can be paid by scanning a code. Guests spend much less time standing at the desk, and we don’t have to keep apologising while we wait for pages to load. Once last month a tour group arrived, more than forty people coming into the lobby at once. Before, they’d have queued for at least half an hour. That day, a colleague and I checked them all in within twenty minutes, and the tour leader came over specially to say thank you. I used to copy out the reservations by hand every day when I started my shift, in a hardcover notebook I bought myself, because I was afraid of making mistakes. That notebook has been sitting in my drawer untouched for ages now. The system flags duplicate names, overbooking and insufficient deposits automatically, and checks more carefully than I did myself, so we don’t have to go through the notebook at handover any more either. Our night-shift colleagues say the night audit takes almost an hour less than before, so they can hand over and go home earlier, and if there’s a problem they call the support hotline and someone gets back to them within ten minutes. Last week the manager showed us the figures: the average queuing time went down from eight minutes to five. The interface also looks better than the old one: the colours and icons are all very clear. Honestly, I really do think switching systems was the right call this time.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\":[{\"label\":\"Efficiency Gains\",\"quote\":\"Checking someone in used to mean switching back and forth between three screens; now it’s all done on one.\"},{\"label\":\"Reduced Manual Tasks\",\"quote\":\"I used to copy out the reservations by hand every day... That notebook has been sitting in my drawer untouched for ages now.\"},{\"label\":\"Improved Error Checking\",\"quote\":\"The system flags duplicate names, overbooking and insufficient deposits automatically, and checks more carefully than I did myself.\"},{\"label\":\"Positive Staff Feedback\",\"quote\":\"Our night-shift colleagues say the night audit takes almost an hour less than before... someone gets back to them within ten minutes.\"},{\"label\":\"Guest Satisfaction\",\"quote\":\"Last month a tour group arrived... the tour leader came over specially to say thank you.\"},{\"label\":\"System Interface Improvements\",\"quote\":\"The interface also looks better than the old one: the colours and icons are all very clear.\"}],\"interpretation\":\"The interviewee communicates that the new front-desk system has significantly improved operational efficiency, reduced manual work, enhanced error detection, and boosted both guest and staff satisfaction through faster service and better interface design.\",\"tone\":\"positive\",\"confidence\":95}",
+  "thinking": "Okay, let's tackle this qualitative coding task. The user provided an interview passage from a front-desk receptionist. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I need to read through the interviewee's response carefully. The interviewee is talking about a new hotel system. The interviewer asked about the new system, and the interviewee's answer includes both initial skepticism and eventual positive outcomes. \n\nLooking at the content, there are several key points. The interviewee mentions the system's efficiency improvements, like faster check-ins, reduced waiting times for guests, and the elimination of manual tasks like copying reservations by hand. There's also mention of the system's features like automatic checks for duplicates and overbooking, which reduce errors. Additionally, the night-shift colleagues benefit from shorter audit times, and the manager's data shows reduced queuing times. The interface is also praised for being clearer.\n\nNow, I need to extract first-order codes. These should be concise labels that capture the essence of the interviewee's statements. Possible codes could be \"Efficiency Gains,\" \"Reduced Manual Tasks,\" \"Improved Error Checking,\" \"Positive Staff Feedback,\" \"Guest Satisfaction,\" and \"System Interface Improvements.\" Each code should have a supporting quote from the passage.\n\nFor example, \"Efficiency Gains\" could be supported by the quote about checking in being faster. \"Reduced Manual Tasks\" might use the part about not needing to copy reservations by hand. \"Improved Error Checking\" could reference the system flagging duplicates and overbooking. \"Positive Staff Feedback\" would include the night-shift colleagues' experience. \"Guest Satisfaction\" relates to the tour group example. Lastly, \"System Interface Improvements\" would be the comment about the interface looking better.\n\nNext, the interpretation should summarize the interviewee's main point. They seem to be expressing that the new system has significantly improved efficiency, reduced manual work, and enhanced guest and staff experiences. \n\nThe tone is positive because the interviewee is highlighting the benefits and the system's success. Confidence level is high since the interviewee provides specific examples and data from the manager, which supports the positive outcome.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 738,
+   "eval_count": 690,
+   "total_duration": 30967176375,
+   "load_duration": 398542,
+   "prompt_eval_duration": 869690000,
+   "eval_duration": 29249317000
+  },
+  "wall_seconds": 30.97
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:59:43.415888Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\":[{\"label\":\"Efficiency Gains\",\"quote\":\"Checking someone in used to mean switching back and forth between three screens; now it’s all done on one.\"},{\"label\":\"Reduced Manual Tasks\",\"quote\":\"I used to copy out the reservations by hand every day... That notebook has been sitting in my drawer untouched for ages now.\"},{\"label\":\"Improved Error Checking\",\"quote\":\"The system flags duplicate names, overbooking and insufficient deposits automatically, and checks more carefully than I did myself.\"},{\"label\":\"Positive Staff Feedback\",\"quote\":\"Our night-shift colleagues say the night audit takes almost an hour less than before... someone gets back to them within ten minutes.\"},{\"label\":\"Guest Satisfaction\",\"quote\":\"Last month a tour group arrived... the tour leader came over specially to say thank you.\"},{\"label\":\"System Interface Improvements\",\"quote\":\"The interface also looks better than the old one: the colours and icons are all very clear.\"}],\"interpretation\":\"The interviewee communicates that the new front-desk system has significantly improved operational efficiency, reduced manual work, enhanced error detection, and boosted both guest and staff satisfaction through faster service and better interface design.\",\"tone\":\"positive\",\"confidence\":95}",
+   "thinking": "Okay, let's tackle this qualitative coding task. The user provided an interview passage from a front-desk receptionist. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I need to read through the interviewee's response carefully. The interviewee is talking about a new hotel system. The interviewer asked about the new system, and the interviewee's answer includes both initial skepticism and eventual positive outcomes. \n\nLooking at the content, there are several key points. The interviewee mentions the system's efficiency improvements, like faster check-ins, reduced waiting times for guests, and the elimination of manual tasks like copying reservations by hand. There's also mention of the system's features like automatic checks for duplicates and overbooking, which reduce errors. Additionally, the night-shift colleagues benefit from shorter audit times, and the manager's data shows reduced queuing times. The interface is also praised for being clearer.\n\nNow, I need to extract first-order codes. These should be concise labels that capture the essence of the interviewee's statements. Possible codes could be \"Efficiency Gains,\" \"Reduced Manual Tasks,\" \"Improved Error Checking,\" \"Positive Staff Feedback,\" \"Guest Satisfaction,\" and \"System Interface Improvements.\" Each code should have a supporting quote from the passage.\n\nFor example, \"Efficiency Gains\" could be supported by the quote about checking in being faster. \"Reduced Manual Tasks\" might use the part about not needing to copy reservations by hand. \"Improved Error Checking\" could reference the system flagging duplicates and overbooking. \"Positive Staff Feedback\" would include the night-shift colleagues' experience. \"Guest Satisfaction\" relates to the tour group example. Lastly, \"System Interface Improvements\" would be the comment about the interface looking better.\n\nNext, the interpretation should summarize the interviewee's main point. They seem to be expressing that the new system has significantly improved efficiency, reduced manual work, and enhanced guest and staff experiences. \n\nThe tone is positive because the interviewee is highlighting the benefits and the system's success. Confidence level is high since the interviewee provides specific examples and data from the manager, which supports the positive outcome.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 30967176375,
+  "load_duration": 398542,
+  "prompt_eval_count": 738,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 869690000,
+  "eval_count": 690,
+  "eval_duration": 29249317000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Checking someone in used to mean switching back and forth between three screens; now it’s all done on one.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I used to copy out the reservations by hand every day... That notebook has been sitting in my drawer untouched for ages now.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The system flags duplicate names, overbooking and insufficient deposits automatically, and checks more carefully than I did myself.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Our night-shift colleagues say the night audit takes almost an hour less than before... someone gets back to them within ten minutes.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last month a tour group arrived... the tour leader came over specially to say thank you.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The interface also looks better than the old one: the colours and icons are all very clear.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:59:12+00:00",
+ "finished_at": "2026-10-28T17:59:43+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

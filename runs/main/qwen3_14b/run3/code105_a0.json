@@ -1,0 +1,178 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "105",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Room attendant, female, 2nd year\n\nInterviewer: Is there anything at work that’s made a particularly strong impression on you?\n\nInterviewee: Last month a guest phoned after checking out to say a gold bracelet had gone missing from the bedside table, and I was the one who’d cleaned that room. Security called me into their office and questioned me for almost an hour: what time I went into the room, what time I came out, whether anyone else had come in while I was there. Then, right in front of me, they went through my cleaning trolley and my locker. They even opened my lunch box and looked inside. The office door was open, and every so often a colleague walked past in the corridor, glanced in, and walked on. I kept saying I’d cooperate, that it was only right, the hotel has rules, anyone would have to be checked. The next day the guest found it herself, in the inner pocket of her make-up bag. The lobby manager phoned to tell me it had been a misunderstanding and not to take it to heart. The guest never phoned again after that. I said it’s fine, it’s all over now. For about two weeks after that, I didn’t go to the staff canteen at lunchtime. I just sat in the workroom, and I barely touched the food I’d brought. I also went to bed very late every night when I got home. I lost two kilos in those two weeks. Now when I clean a room, I prop my phone up on the trolley and record from the moment I walk in until I walk out. And I don’t leave the door half open any more. I push it all the way open and wedge it with a doorstop. My team leader asked me once why I do that. I said I’ve just got used to it, and this way everyone can feel easy. Around that time my mum phoned and asked how work was going. I said it’s fine, just a bit tiring, then said I had to go and clean a room, and hung up. Actually, I’d already finished my shift that day.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"security questioning\", \"quote\": \"Security called me into their office and questioned me for almost an hour: what time I went into the room, what time I came out, whether anyone else had come in while I was there.\"}, {\"label\": \"stress and physical effects\", \"quote\": \"I lost two kilos in those two weeks.\"}, {\"label\": \"work habit changes\", \"quote\": \"I push it all the way open and wedge it with a doorstop.\"}, {\"label\": \"emotional suppression\", \"quote\": \"I said it’s fine, just a bit tiring, then said I had to go and clean a room, and hung up.\"}, {\"label\": \"normalization of experience\", \"quote\": \"I’ve just got used to it, and this way everyone can feel easy.\"}], \"interpretation\": \"The interviewee describes a traumatic experience with security questioning that led to significant stress, changes in work habits, and emotional suppression, while also indicating she has normalized the situation over time.\", \"tone\": \"mixed\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a room attendant with two years of experience. She talks about an incident where she was questioned by security after a guest reported a missing bracelet. The security team went through her belongings, which made her uncomfortable. She mentions the stress she felt afterward, like not eating and losing weight. Then, she describes the changes she made in her work routine, like recording her cleaning and using a doorstop. She also mentions her mother's phone call, where she downplayed the situation.\n\nFirst, I need to code this using first-order coding. The codes should be short labels (2-6 words) and quotes from the passage. Let me identify key themes. The security incident is a big part. Then, the stress and physical effects. The changes in work habits. The emotional response, like lying to her mother. Also, the normalization of the situation.\n\nFor the first code, \"security questioning\" seems appropriate. The quote is \"Security called me into their office and questioned me for almost an hour...\" That's a direct quote. Next, the stress and physical effects: \"I lost two kilos in those two weeks.\" Then, the changes in work habits, like using a doorstop and recording. The quote about the doorstop is \"I push it all way open and wedge it with a doorstop.\" Also, the part about lying to her mother: \"I said it’s fine, just a bit tiring...\" and the normalization: \"I’ve just got used to it.\"\n\nWait, the code should be 3-6 codes. Let me check again. The main points are the security incident, the stress effects, changes in work habits, emotional suppression, and normalization. That's five codes. Each with a supporting quote. Now, the interpretation: the interviewee is talking about a stressful experience with security, leading to personal and work changes. The tone is mixed because there's both negative experience and some coping mechanisms. Confidence in interpretation is high because the details are clear. I think that covers it.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 756,
+   "eval_count": 660,
+   "total_duration": 52129742000,
+   "load_duration": 4174208,
+   "prompt_eval_duration": 1700043000,
+   "eval_duration": 48972817000
+  },
+  "wall_seconds": 52.16
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:38:54.915707Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"security questioning\", \"quote\": \"Security called me into their office and questioned me for almost an hour: what time I went into the room, what time I came out, whether anyone else had come in while I was there.\"}, {\"label\": \"stress and physical effects\", \"quote\": \"I lost two kilos in those two weeks.\"}, {\"label\": \"work habit changes\", \"quote\": \"I push it all the way open and wedge it with a doorstop.\"}, {\"label\": \"emotional suppression\", \"quote\": \"I said it’s fine, just a bit tiring, then said I had to go and clean a room, and hung up.\"}, {\"label\": \"normalization of experience\", \"quote\": \"I’ve just got used to it, and this way everyone can feel easy.\"}], \"interpretation\": \"The interviewee describes a traumatic experience with security questioning that led to significant stress, changes in work habits, and emotional suppression, while also indicating she has normalized the situation over time.\", \"tone\": \"mixed\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a room attendant with two years of experience. She talks about an incident where she was questioned by security after a guest reported a missing bracelet. The security team went through her belongings, which made her uncomfortable. She mentions the stress she felt afterward, like not eating and losing weight. Then, she describes the changes she made in her work routine, like recording her cleaning and using a doorstop. She also mentions her mother's phone call, where she downplayed the situation.\n\nFirst, I need to code this using first-order coding. The codes should be short labels (2-6 words) and quotes from the passage. Let me identify key themes. The security incident is a big part. Then, the stress and physical effects. The changes in work habits. The emotional response, like lying to her mother. Also, the normalization of the situation.\n\nFor the first code, \"security questioning\" seems appropriate. The quote is \"Security called me into their office and questioned me for almost an hour...\" That's a direct quote. Next, the stress and physical effects: \"I lost two kilos in those two weeks.\" Then, the changes in work habits, like using a doorstop and recording. The quote about the doorstop is \"I push it all way open and wedge it with a doorstop.\" Also, the part about lying to her mother: \"I said it’s fine, just a bit tiring...\" and the normalization: \"I’ve just got used to it.\"\n\nWait, the code should be 3-6 codes. Let me check again. The main points are the security incident, the stress effects, changes in work habits, emotional suppression, and normalization. That's five codes. Each with a supporting quote. Now, the interpretation: the interviewee is talking about a stressful experience with security, leading to personal and work changes. The tone is mixed because there's both negative experience and some coping mechanisms. Confidence in interpretation is high because the details are clear. I think that covers it.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 52129742000,
+  "load_duration": 4174208,
+  "prompt_eval_count": 756,
+  "prompt_eval_cached_count": 370,
+  "prompt_eval_duration": 1700043000,
+  "eval_count": 660,
+  "eval_duration": 48972817000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 35 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "Security called me into their office and questioned me for almost an hour: what time I went into the room, what time I came out, whether anyone else had come in while I was there.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I lost two kilos in those two weeks.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I push it all the way open and wedge it with a doorstop.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I said it’s fine, just a bit tiring, then said I had to go and clean a room, and hung up.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I’ve just got used to it, and this way everyone can feel easy.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:38:02+00:00",
+ "finished_at": "2026-10-28T19:38:54+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

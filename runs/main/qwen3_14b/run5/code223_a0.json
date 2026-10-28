@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "223",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-desk supervisor, female, 7th year\n\n[Earlier in the interview]\n\nInterviewee: A month before the new deputy general manager arrived, the hotel had just announced two things: a pay freeze for all staff for a year, and year-end bonuses would now depend on the group’s results. Of the eight of us on the front desk, two had left and hadn’t been replaced. We were short on the night shift, so I, as supervisor, covered it myself: nine night shifts in one month. I applied to HR three times for more staff, and each time they said to wait a bit longer. The day before the deputy GM arrived, HR phoned the supervisors of every department and said that at the all-staff meeting the next day, supervisors should lead the applause to create a good atmosphere and avoid any awkward silences, and that after the meeting there’d be a group photo for the group’s official WeChat account. That month I worked two all-nighters in a row. I’d get home and fall asleep straight away on the sofa, and the next day I’d come into work without even having taken my make-up off.\n\n[Later in the interview]\n\nInterviewer: What impression has the new deputy general manager made on you?\n\nInterviewee: He’s very good at getting a room going. At the first all-staff meeting, as soon as he got up on stage he said, hello everyone, I’m the new one here, and I’ve mainly come today to give you all a raise... in knowledge. The whole room laughed. A few people were rocking back and forth with laughter, and the concierge team leader sitting next to me nearly knocked over a glass of water. Then he said, the most valuable thing in our hotel isn’t that crystal chandelier in the lobby, it’s every single person sitting here today. I was sitting in the front row, and I was the first to clap. The people behind joined in, and the applause went on for a long time. Up on stage he nodded, and added that from now on, if anyone had any ideas, they could email him directly, and he’d read every single one. After the meeting, when those of us on the front desk talk about it, we still imitate him saying ‘a raise in knowledge’, and laugh every time. The deputy GM really is a very accomplished speaker.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"staff shortages\",\n    \"quote\": \"two had left and hadn’t been replaced\"\n  },\n  {\n    \"label\": \"covering night shifts\",\n    \"quote\": \"I, as supervisor, covered it myself: nine night shifts in one month\"\n  },\n  {\n    \"label\": \"pay freeze\",\n    \"quote\": \"a pay freeze for all staff for a year\"\n  },\n  {\n    \"label\": \"humorous leadership\",\n    \"quote\": \"he said, hello everyone, I’m the new one here, and I’ve mainly come today to give you all a raise... in knowledge\"\n  },\n  {\n    \"label\": \"employee value emphasis\",\n    \"quote\": \"the most valuable thing in our hotel isn’t that crystal chandelier in the lobby, it’s every single person sitting here today\"\n  },\n  {\n    \"label\": \"improved team morale\",\n    \"quote\": \"we still imitate him saying ‘a raise in knowledge’, and laugh every time\"\n  }\n],\n\"interpretation\": \"The interviewee describes a period of intense workload and institutional pressure before the new deputy GM's arrival, followed by a shift toward positive team dynamics and employee recognition after the leader's engaging and empowering approach.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by looking at the interviewee's details. She's a front-desk supervisor with 7 years of experience. The passage has two parts: earlier and later in the interview.\n\nIn the first part, she talks about the challenges before the new deputy GM arrived. There's a pay freeze, staff shortages, her covering night shifts, and the pressure from HR to manage the atmosphere during the meeting. She mentions working all-nighters and coming to work without makeup. This seems to highlight stress, workload, and maybe some negative aspects of the situation.\n\nIn the later part, she discusses the deputy GM's impact. He made a funny remark about a \"raise in knowledge,\" which got a good laugh. He also emphasized the value of employees and opened channels for communication. The team still imitates his joke, showing a positive change and improved morale.\n\nFor coding, I need 3-6 first-order codes. Let's see. From the first part: \"staff shortages,\" \"covering night shifts,\" \"pay freeze,\" \"pressure from HR,\" \"overwork.\" From the second part: \"humorous leadership,\" \"employee value emphasis,\" \"open communication channel,\" \"improved team morale.\"\n\nSupporting quotes need to be exact. For example, \"two had left and hadn’t been replaced\" for staff shortages. The deputy GM's quote about the raise in knowledge for humorous leadership. The part where he says the most valuable thing is every person for employee value emphasis. The email part for open communication. The laughter and imitation for improved morale.\n\nInterpretation: She's describing a period of high stress and workload before the new leader, followed by a positive shift after the deputy GM's engaging and employee-focused approach.\n\nTone: Mixed, because there's both stress and positive change.\n\nConfidence: High, as the quotes clearly support the codes and interpretation.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 800,
+   "eval_count": 663,
+   "total_duration": 55216771584,
+   "load_duration": 5571875,
+   "prompt_eval_duration": 1826662000,
+   "eval_duration": 52571965000
+  },
+  "wall_seconds": 55.25
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T21:42:32.189208Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"staff shortages\",\n    \"quote\": \"two had left and hadn’t been replaced\"\n  },\n  {\n    \"label\": \"covering night shifts\",\n    \"quote\": \"I, as supervisor, covered it myself: nine night shifts in one month\"\n  },\n  {\n    \"label\": \"pay freeze\",\n    \"quote\": \"a pay freeze for all staff for a year\"\n  },\n  {\n    \"label\": \"humorous leadership\",\n    \"quote\": \"he said, hello everyone, I’m the new one here, and I’ve mainly come today to give you all a raise... in knowledge\"\n  },\n  {\n    \"label\": \"employee value emphasis\",\n    \"quote\": \"the most valuable thing in our hotel isn’t that crystal chandelier in the lobby, it’s every single person sitting here today\"\n  },\n  {\n    \"label\": \"improved team morale\",\n    \"quote\": \"we still imitate him saying ‘a raise in knowledge’, and laugh every time\"\n  }\n],\n\"interpretation\": \"The interviewee describes a period of intense workload and institutional pressure before the new deputy GM's arrival, followed by a shift toward positive team dynamics and employee recognition after the leader's engaging and empowering approach.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by looking at the interviewee's details. She's a front-desk supervisor with 7 years of experience. The passage has two parts: earlier and later in the interview.\n\nIn the first part, she talks about the challenges before the new deputy GM arrived. There's a pay freeze, staff shortages, her covering night shifts, and the pressure from HR to manage the atmosphere during the meeting. She mentions working all-nighters and coming to work without makeup. This seems to highlight stress, workload, and maybe some negative aspects of the situation.\n\nIn the later part, she discusses the deputy GM's impact. He made a funny remark about a \"raise in knowledge,\" which got a good laugh. He also emphasized the value of employees and opened channels for communication. The team still imitates his joke, showing a positive change and improved morale.\n\nFor coding, I need 3-6 first-order codes. Let's see. From the first part: \"staff shortages,\" \"covering night shifts,\" \"pay freeze,\" \"pressure from HR,\" \"overwork.\" From the second part: \"humorous leadership,\" \"employee value emphasis,\" \"open communication channel,\" \"improved team morale.\"\n\nSupporting quotes need to be exact. For example, \"two had left and hadn’t been replaced\" for staff shortages. The deputy GM's quote about the raise in knowledge for humorous leadership. The part where he says the most valuable thing is every person for employee value emphasis. The email part for open communication. The laughter and imitation for improved morale.\n\nInterpretation: She's describing a period of high stress and workload before the new leader, followed by a positive shift after the deputy GM's engaging and employee-focused approach.\n\nTone: Mixed, because there's both stress and positive change.\n\nConfidence: High, as the quotes clearly support the codes and interpretation.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 55216771584,
+  "load_duration": 5571875,
+  "prompt_eval_count": 800,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1826662000,
+  "eval_count": 663,
+  "eval_duration": 52571965000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "two had left and hadn’t been replaced",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I, as supervisor, covered it myself: nine night shifts in one month",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "a pay freeze for all staff for a year",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "he said, hello everyone, I’m the new one here, and I’ve mainly come today to give you all a raise... in knowledge",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the most valuable thing in our hotel isn’t that crystal chandelier in the lobby, it’s every single person sitting here today",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "we still imitate him saying ‘a raise in knowledge’, and laugh every time",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T21:41:36+00:00",
+ "finished_at": "2026-10-28T21:42:32+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

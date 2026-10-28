@@ -1,0 +1,181 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "218",
+ "list": "B",
+ "seed": 4,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-office cashier, male, 6th year\n\nInterviewer: I hear your former front-office manager left this year. What was the reason?\n\nInterviewee: She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too. That’s what the email said too, and all staff received it. Actually there were rumours about it last year, and she told us herself it was a good opportunity she didn’t want to miss. Her child happens to be at university in Shanghai as well. In the month before she left, Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. That’s done every time a manager leaves. They didn’t find any problems, and the audit findings were posted in the department group chat too. We on the cashier side helped by handing over some slips, and it was all done within a week. She even treated the Finance colleagues to afternoon tea. Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her. Her eyes went red too, and she said if any of us ever went to Shanghai, we had to look her up. She was a really nice person. Whenever a guest complained, she’d come out and stand between us and them, and at New Year she’d give each of us a red envelope, out of her own pocket. We still have a group chat, and every now and then she posts photos from Shanghai and asks whether we’ve been busy lately. The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some handover matters. Our front-office cashier system has been upgraded too. Now guests can pay by scanning a code, and invoices are much quicker.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 4
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career advancement opportunities\",\n      \"quote\": \"She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too.\"\n    },\n    {\n      \"label\": \"Transparent financial practices\",\n      \"quote\": \"Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. That’s done every time a manager leaves. They didn’t find any problems, and the audit findings were posted in the department group chat too.\"\n    },\n    {\n      \"label\": \"Emotional connection\",\n      \"quote\": \"Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her. Her eyes went red too, and she said if any of us ever went to Shanghai, we had to look her up.\"\n    },\n    {\n      \"label\": \"Collaborative transition\",\n      \"quote\": \"The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some handover matters.\"\n    },\n    {\n      \"label\": \"Technological adaptation\",\n      \"quote\": \"Our front-office cashier system has been upgraded too. Now guests can pay by scanning a code, and invoices are much quicker.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights the former manager's career growth, transparent financial processes, strong emotional bonds with colleagues, collaborative transition with the new manager, and the impact of technological upgrades on workflow.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a front-office cashier. The goal is to do first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee is a male cashier with 6 years of experience. The interviewer asks about the former manager's departure. The interviewee explains she moved to Shanghai for a higher position with better pay. There's mention of an exit audit by Finance, which found no issues. The former manager was well-liked, organized a farewell meal, and even treated Finance to tea. The new manager is nice but still learning, and there's a system upgrade allowing contactless payments.\n\nNow, I need to code this. First-order codes are labels that capture the essence of the interviewee's statements. Let's look for recurring themes. The first part talks about the manager's promotion and the reasons for leaving. That could be a code like \"Career advancement opportunities\" with a quote about the new position and better pay. \n\nNext, the exit audit and no issues found might relate to \"Transparent financial practices\" since the audit was conducted and results were shared. The interviewee mentions handing over slips and the audit findings in the group chat, so that's a good quote.\n\nThe manager's personal gestures, like the red envelopes and the farewell meal, suggest \"Personalized recognition\" or \"Emotional connection.\" The quote about the red envelopes and the meal fits here.\n\nThe new manager's actions, like calling the former manager for handover, could be \"Collaborative transition\" or \"Respect for prior leadership.\" The quote about phoning the former manager to ask about handover matters is relevant.\n\nThe system upgrade allowing contactless payments is a \"Technological adaptation\" code. The quote about scanning a code and quicker invoices supports this.\n\nWait, the user wants 3-6 codes. Let me check if these are distinct enough. Maybe \"Emotional connection\" and \"Personalized recognition\" are similar. Alternatively, the farewell meal and the red envelopes could be under \"Emotional connection\" as a broader code. Also, the new manager's respectful actions towards the former manager might be part of \"Collaborative transition.\"\n\nI need to make sure each code is distinct and the quotes are accurate. Let me list the codes again:\n\n1. Career advancement opportunities – \"She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too.\"\n\n2. Transparent financial practices – \"Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. That’s done every time a manager leaves. They didn’t find any problems, and the audit findings were posted in the department group chat too.\"\n\n3. Emotional connection – \"Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her. Her eyes went red too, and she said if any of us ever went to Shanghai, we had to look her up.\"\n\n4. Collaborative transition – \"The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some hand,over matters.\"\n\n5. Technological adaptation – \"Our front-office cashier system has been upgraded too. Now guests can pay by scanning a code, and invoices are much quicker.\"\n\nThat's five codes. The user allows 3-6, so five is acceptable. Now, the interpretation: The interviewee is highlighting the former manager's career move, the transparency in financial audits, the emotional bonds formed, the smooth transition with the new manager, and the technological upgrades. The tone is positive, as the interviewee seems to appreciate the manager's actions and the positive changes. Confidence is high, maybe 95, since the codes are all supported by direct quotes and the interpretation aligns with the content.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 720,
+   "eval_count": 1219,
+   "total_duration": 53767862000,
+   "load_duration": 553542,
+   "prompt_eval_duration": 861086000,
+   "eval_duration": 51945981000
+  },
+  "wall_seconds": 53.77
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:28:58.07752Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career advancement opportunities\",\n      \"quote\": \"She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too.\"\n    },\n    {\n      \"label\": \"Transparent financial practices\",\n      \"quote\": \"Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. That’s done every time a manager leaves. They didn’t find any problems, and the audit findings were posted in the department group chat too.\"\n    },\n    {\n      \"label\": \"Emotional connection\",\n      \"quote\": \"Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her. Her eyes went red too, and she said if any of us ever went to Shanghai, we had to look her up.\"\n    },\n    {\n      \"label\": \"Collaborative transition\",\n      \"quote\": \"The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some handover matters.\"\n    },\n    {\n      \"label\": \"Technological adaptation\",\n      \"quote\": \"Our front-office cashier system has been upgraded too. Now guests can pay by scanning a code, and invoices are much quicker.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights the former manager's career growth, transparent financial processes, strong emotional bonds with colleagues, collaborative transition with the new manager, and the impact of technological upgrades on workflow.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a front-office cashier. The goal is to do first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee is a male cashier with 6 years of experience. The interviewer asks about the former manager's departure. The interviewee explains she moved to Shanghai for a higher position with better pay. There's mention of an exit audit by Finance, which found no issues. The former manager was well-liked, organized a farewell meal, and even treated Finance to tea. The new manager is nice but still learning, and there's a system upgrade allowing contactless payments.\n\nNow, I need to code this. First-order codes are labels that capture the essence of the interviewee's statements. Let's look for recurring themes. The first part talks about the manager's promotion and the reasons for leaving. That could be a code like \"Career advancement opportunities\" with a quote about the new position and better pay. \n\nNext, the exit audit and no issues found might relate to \"Transparent financial practices\" since the audit was conducted and results were shared. The interviewee mentions handing over slips and the audit findings in the group chat, so that's a good quote.\n\nThe manager's personal gestures, like the red envelopes and the farewell meal, suggest \"Personalized recognition\" or \"Emotional connection.\" The quote about the red envelopes and the meal fits here.\n\nThe new manager's actions, like calling the former manager for handover, could be \"Collaborative transition\" or \"Respect for prior leadership.\" The quote about phoning the former manager to ask about handover matters is relevant.\n\nThe system upgrade allowing contactless payments is a \"Technological adaptation\" code. The quote about scanning a code and quicker invoices supports this.\n\nWait, the user wants 3-6 codes. Let me check if these are distinct enough. Maybe \"Emotional connection\" and \"Personalized recognition\" are similar. Alternatively, the farewell meal and the red envelopes could be under \"Emotional connection\" as a broader code. Also, the new manager's respectful actions towards the former manager might be part of \"Collaborative transition.\"\n\nI need to make sure each code is distinct and the quotes are accurate. Let me list the codes again:\n\n1. Career advancement opportunities – \"She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too.\"\n\n2. Transparent financial practices – \"Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. That’s done every time a manager leaves. They didn’t find any problems, and the audit findings were posted in the department group chat too.\"\n\n3. Emotional connection – \"Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her. Her eyes went red too, and she said if any of us ever went to Shanghai, we had to look her up.\"\n\n4. Collaborative transition – \"The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some hand,over matters.\"\n\n5. Technological adaptation – \"Our front-office cashier system has been upgraded too. Now guests can pay by scanning a code, and invoices are much quicker.\"\n\nThat's five codes. The user allows 3-6, so five is acceptable. Now, the interpretation: The interviewee is highlighting the former manager's career move, the transparency in financial audits, the emotional bonds formed, the smooth transition with the new manager, and the technological upgrades. The tone is positive, as the interviewee seems to appreciate the manager's actions and the positive changes. Confidence is high, maybe 95, since the codes are all supported by direct quotes and the interpretation aligns with the content.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 53767862000,
+  "load_duration": 553542,
+  "prompt_eval_count": 720,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 861086000,
+  "eval_count": 1219,
+  "eval_duration": 51945981000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 40 words > 30",
+   "codes[1].quote: 41 words > 30",
+   "codes[2].quote: 50 words > 30",
+   "codes[3].quote: 32 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "She’s gone to Shanghai. The group has opened a new flagship hotel there and asked her to go over as director of front office. It’s a level higher than her old job and the pay is a lot better too.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Finance did the usual exit audit and checked the signatures on some discount slips and complimentary-room slips. That’s done every time a manager leaves. They didn’t find any problems, and the audit findings were posted in the department group chat too.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Before she left, she took the whole front office out for a meal. We had a bit to drink, and several people cried and said they’d miss her. Her eyes went red too, and she said if any of us ever went to Shanghai, we had to look her up.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The new manager started last month. He’s nice too, just still getting to know how things work. Last week he even phoned the former manager specially to ask about some handover matters.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Our front-office cashier system has been upgraded too. Now guests can pay by scanning a code, and invoices are much quicker.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:28:04+00:00",
+ "finished_at": "2026-10-28T17:28:58+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 4,
+ "attempt": 0
+}

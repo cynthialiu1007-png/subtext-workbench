@@ -1,0 +1,164 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "215",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant team leader, male, 7th year\n\nInterviewer: How does your manager usually get on with everyone?\n\nInterviewee: The biggest thing about our manager is that he loves telling cold jokes, the really corny kind. He tells one at the morning briefing every single day, and when he’s finished he’s the first to laugh. For example, he says: why can’t eggs tell jokes? Because they’d crack up. Not one person in the room laughs. He’s the only one there enjoying himself. I’ve told him several times: boss, that joke really isn’t funny, could you stop telling them, you’re wasting everyone’s time. He says no, it’s his tradition. The morning briefing is only meant to be ten minutes, and we have to cover that day’s bookings, dishes that have sold out and special requests for the private rooms. One joke plus his explanation takes up three or four minutes, so everything after that has to be rushed. Several times new staff didn’t catch the allergy requests for the private rooms, and there were near misses when serving. Once a guest was allergic to peanuts and the server for that private room didn’t hear. The cold starter almost went out with peanuts in it. Luckily the runner stopped it. I formally raised it once at a department meeting and asked whether the briefing could cover the actual business first and leave the joke till the end. He said he’d consider it, and the next day he told one first as usual. After that a few of the long-serving staff just started turning up five minutes late, coming in after he’d finished, and he said we weren’t showing him any respect. I don’t think this is about respect. It’s about what the morning briefing is actually for. Last time head office came to do an employee satisfaction survey, I wrote this in the comments box. I was very specific, and even wrote down which day there’d been a near miss. So, our manager isn’t a bad person, it’s just that his jokes are too cold, and he won’t listen. I really can’t stand him.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Cold Jokes\",\n      \"quote\": \"why can’t eggs tell jokes? Because they’d crack up.\"\n    },\n    {\n      \"label\": \"Safety Risks\",\n      \"quote\": \"the server for that private room didn’t hear. The cold starter almost went out with peanuts in it.\"\n    },\n    {\n      \"label\": \"Manager's Refusal to Change\",\n      \"quote\": \"he said he’d consider it, and the next day he told one first as usual.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights how the manager's insistence on telling unfunny jokes during briefings undermines operational safety and effective communication, despite repeated concerns.\",\n  \"tone\": \"negative\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a Chinese restaurant team leader who's been in the job for seven years. The main topic is his manager's habit of telling cold jokes during morning briefings.\n\nThe interviewer asks about how the manager gets along with everyone. The interviewee responds by explaining the manager's jokes, which are not funny and disrupt the briefing. There's a mention of near misses with allergies and the manager's refusal to change. The interviewee also mentions raising the issue in a meeting and the manager's response, leading to staff lateness. The interviewee concludes that the manager isn't bad, but the jokes are a problem.\n\nFirst, I need to extract first-order codes. Let's look for key themes. The manager's jokes are a big point. The interviewee mentions the jokes being \"cold\" and \"corny,\" which could be a code. Then there's the disruption of the briefing, like rushing through important info. The near misses with allergies indicate a safety issue. The manager's refusal to change despite feedback is another theme. The interviewee's frustration and the staff's lateness as a result. Also, the formal complaint to head office shows the interviewee's attempt to address the issue.\n\nSo possible codes: \"Cold Jokes,\" \"Disrupted Briefings,\" \"Safety Risks,\" \"Manager's Refusal to Change,\" \"Staff Frustration,\" \"Formal Complaint.\" But the user wants 3-6 codes. Let me check the quotes. The quote about the joke \"why can’t eggs tell jokes?\" is a good example for \"Cold Jokes.\" The part about rushing after the joke leads to near misses could be \"Safety Risks.\" The manager's refusal to stop is \"Manager's Refusal to Change.\" The interviewee's frustration is \"Staff Frustration.\" The formal complaint is \"Formal Complaint.\" That's five codes. Maybe combine some? Or maybe \"Disrupted Briefings\" as another code.\n\nWait, the user example had three codes. Let me see. The key points are the manager's jokes, the impact on briefings (disrupted), the safety issues (near misses), and the manager's refusal. Also, the staff's lateness as a consequence. Maybe \"Staff Disengagement\" instead of frustration. Let me structure the codes with quotes.\n\nFirst code: \"Cold Jokes\" with the quote about the eggs joke. Second: \"Disrupted Briefings\" with the part about rushing. Third: \"Safety Risks\" with the near miss example. Fourth: \"Manager's Refusal to Change\" with the part about the manager not listening. Fifth: \"Staff Disengagement\" with the lateness. But the user might prefer fewer codes. Let me check the example again. The user's example had three codes. Let me see if I can group some. Maybe \"Cold Jokes\" as one, \"Disrupted Briefings and Safety Risks\" as another, and \"Manager's Refusal to Change\" as third. But the quotes need to be specific. Alternatively, \"Cold Jokes,\" \"Safety Risks,\" and \"Manager's Refusal to Change.\" That's three codes. Let me check the quotes. The eggs joke is a good example for cold jokes. The near miss with peanuts is safety risk. The manager not listening is refusal to change. That's three codes. The interpretation would be that the manager's jokes disrupt the briefing, leading to safety issues, and his refusal to change causes staff frustration. The tone is negative. Confidence is high, maybe 90. Let me make sure each code has a quote. The first code: \"Cold Jokes\" with the eggs joke. Second: \"Safety Risks\" with the peanut example. Third: \"Manager's Refusal to Change\" with the part about the manager not listening. The interpretation would be that the manager's jokes interfere with effective briefings, leading to safety issues, and his resistance to change causes staff frustration. Tone is negative. Confidence 90. That seems to fit.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 743,
+   "eval_count": 1027,
+   "total_duration": 45420980083,
+   "load_duration": 445125,
+   "prompt_eval_duration": 864045000,
+   "eval_duration": 43789038000
+  },
+  "wall_seconds": 45.43
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:17:58.897815Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Cold Jokes\",\n      \"quote\": \"why can’t eggs tell jokes? Because they’d crack up.\"\n    },\n    {\n      \"label\": \"Safety Risks\",\n      \"quote\": \"the server for that private room didn’t hear. The cold starter almost went out with peanuts in it.\"\n    },\n    {\n      \"label\": \"Manager's Refusal to Change\",\n      \"quote\": \"he said he’d consider it, and the next day he told one first as usual.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights how the manager's insistence on telling unfunny jokes during briefings undermines operational safety and effective communication, despite repeated concerns.\",\n  \"tone\": \"negative\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a Chinese restaurant team leader who's been in the job for seven years. The main topic is his manager's habit of telling cold jokes during morning briefings.\n\nThe interviewer asks about how the manager gets along with everyone. The interviewee responds by explaining the manager's jokes, which are not funny and disrupt the briefing. There's a mention of near misses with allergies and the manager's refusal to change. The interviewee also mentions raising the issue in a meeting and the manager's response, leading to staff lateness. The interviewee concludes that the manager isn't bad, but the jokes are a problem.\n\nFirst, I need to extract first-order codes. Let's look for key themes. The manager's jokes are a big point. The interviewee mentions the jokes being \"cold\" and \"corny,\" which could be a code. Then there's the disruption of the briefing, like rushing through important info. The near misses with allergies indicate a safety issue. The manager's refusal to change despite feedback is another theme. The interviewee's frustration and the staff's lateness as a result. Also, the formal complaint to head office shows the interviewee's attempt to address the issue.\n\nSo possible codes: \"Cold Jokes,\" \"Disrupted Briefings,\" \"Safety Risks,\" \"Manager's Refusal to Change,\" \"Staff Frustration,\" \"Formal Complaint.\" But the user wants 3-6 codes. Let me check the quotes. The quote about the joke \"why can’t eggs tell jokes?\" is a good example for \"Cold Jokes.\" The part about rushing after the joke leads to near misses could be \"Safety Risks.\" The manager's refusal to stop is \"Manager's Refusal to Change.\" The interviewee's frustration is \"Staff Frustration.\" The formal complaint is \"Formal Complaint.\" That's five codes. Maybe combine some? Or maybe \"Disrupted Briefings\" as another code.\n\nWait, the user example had three codes. Let me see. The key points are the manager's jokes, the impact on briefings (disrupted), the safety issues (near misses), and the manager's refusal. Also, the staff's lateness as a consequence. Maybe \"Staff Disengagement\" instead of frustration. Let me structure the codes with quotes.\n\nFirst code: \"Cold Jokes\" with the quote about the eggs joke. Second: \"Disrupted Briefings\" with the part about rushing. Third: \"Safety Risks\" with the near miss example. Fourth: \"Manager's Refusal to Change\" with the part about the manager not listening. Fifth: \"Staff Disengagement\" with the lateness. But the user might prefer fewer codes. Let me check the example again. The user's example had three codes. Let me see if I can group some. Maybe \"Cold Jokes\" as one, \"Disrupted Briefings and Safety Risks\" as another, and \"Manager's Refusal to Change\" as third. But the quotes need to be specific. Alternatively, \"Cold Jokes,\" \"Safety Risks,\" and \"Manager's Refusal to Change.\" That's three codes. Let me check the quotes. The eggs joke is a good example for cold jokes. The near miss with peanuts is safety risk. The manager not listening is refusal to change. That's three codes. The interpretation would be that the manager's jokes disrupt the briefing, leading to safety issues, and his refusal to change causes staff frustration. The tone is negative. Confidence is high, maybe 90. Let me make sure each code has a quote. The first code: \"Cold Jokes\" with the eggs joke. Second: \"Safety Risks\" with the peanut example. Third: \"Manager's Refusal to Change\" with the part about the manager not listening. The interpretation would be that the manager's jokes interfere with effective briefings, leading to safety issues, and his resistance to change causes staff frustration. Tone is negative. Confidence 90. That seems to fit.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 45420980083,
+  "load_duration": 445125,
+  "prompt_eval_count": 743,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 864045000,
+  "eval_count": 1027,
+  "eval_duration": 43789038000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "why can’t eggs tell jokes? Because they’d crack up.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the server for that private room didn’t hear. The cold starter almost went out with peanuts in it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "he said he’d consider it, and the next day he told one first as usual.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:17:13+00:00",
+ "finished_at": "2026-10-28T16:17:58+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

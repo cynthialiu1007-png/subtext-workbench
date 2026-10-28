@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "203",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Western restaurant server, female, 5th year\n\n[Earlier in the interview]\n\nInterviewee: The year before last, the supervisor post at our Western restaurant was vacant once before. Three people applied. I was one of them, and the other two were Xiao Lin and Ah Mei. In the end the job went to the manager’s nephew. He’d only been here six months and couldn’t even tell one wine vintage from another. When guests asked him, he’d come and ask me. Xiao Lin was later moved to the staff canteen, and Ah Mei was rated unsatisfactory in her appraisal the following year and left not long after. That time, because I was further down the list, the result came out before it was even my turn to be interviewed. The announcement was only posted for one day, and was taken down the next. After that the manager had a talk with me once. He said I was dependable, the floor couldn’t do without me, I should keep up the good work, and there’d be plenty of chances in future. I said OK, thank you.\n\n[Later in the interview]\n\nInterviewer: The supervisor post at your Western restaurant has come up this time. Did you apply?\n\nInterviewee: No, I didn’t. I think things are fine as they are. I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in. Some even get me to keep a table for them. A supervisor has far too much to worry about: rotas, costing, handling complaints, writing reports, and several meetings a month on top of that. It’s not really for me. That’s what I told the manager too. He said he understood, the floor needs experienced people too, and I should keep up the good work. He also said that next time they choose an Outstanding Employee, I’ll be given priority. I feel the same way myself: doing a good job at what I’m doing now is enough, and I don’t necessarily have to move up. If a suitable opportunity comes along in future, we’ll see. The way things are now, it’s quite stable from month to month.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"unfair promotion\",\n      \"quote\": \"the job went to the manager’s nephew. He’d only been here six months and couldn’t even tell one wine vintage from another.\"\n    },\n    {\n      \"label\": \"colleagues' career setbacks\",\n      \"quote\": \"Xiao Lin was later moved to the staff canteen, and Ah Mei was rated unsatisfactory in her appraisal the following year and left not long after.\"\n    },\n    {\n      \"label\": \"missed promotion opportunity\",\n      \"quote\": \"the result came out before it was even my turn to be interviewed. The announcement was only posted for one day, and was taken down the next.\"\n    },\n    {\n      \"label\": \"manager's recognition\",\n      \"quote\": \"He said I was dependable, the floor couldn’t do without me, I should keep up the good work, and there’d be plenty of chances in future.\"\n    },\n    {\n      \"label\": \"contentment in current role\",\n      \"quote\": \"I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in.\"\n    },\n    {\n      \"label\": \"reluctance to take on supervisory responsibilities\",\n      \"quote\": \"A supervisor has far too much to worry about: rotas, costing, handling complaints, writing reports, and several meetings a month on top of that.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on past experiences of unfair promotions and colleagues' career setbacks, leading to her current contentment in her role as a server. She avoids supervisory responsibilities due to their demands and feels stable in her current position.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The first part is from earlier in the interview where she talks about a previous supervisor vacancy. She mentions that the manager's nephew got the job despite lacking experience, and others like Xiao Lin and Ah Mei were affected. She was passed over but received a talk from the manager acknowledging her reliability. \n\nThen, later in the interview, she's asked about applying for the current supervisor position. She says she didn't apply because she's comfortable in her current role, knows the guests, and has regulars who prefer her. She lists the responsibilities of a supervisor as too demanding and mentions the manager's understanding and the promise of being considered for Outstanding Employee. She feels content in her current position and is open to future opportunities if they arise.\n\nNow, for coding. First-order codes should be short labels based on her language. From the first part, she talks about the manager's nephew getting the job, which could be \"unfair promotion\" with the quote about the nephew not knowing wine vintages. Then, the other candidates being affected, so \"colleagues' career setbacks\" with the quote about Xiao Lin and Ah Mei. Her own experience of being passed over, \"missed promotion opportunity\" with the quote about the announcement being taken down. The manager's acknowledgment of her reliability, \"manager's recognition\" with the quote about being dependable.\n\nIn the later part, she mentions not applying for the supervisor role, so \"contentment in current role\" with the quote about being comfortable as a server. The reasons for not wanting to move up, \"reluctance to take on supervisory responsibilities\" with the quote about the workload. The manager's reassurance, \"manager's reassurance of future opportunities\" with the quote about Outstanding Employee. Her feeling of stability, \"perceived job stability\" with the quote about stability from month to month.\n\nInterpretation: She's reflecting on past unfair promotions and colleagues' negative outcomes, leading her to be content in her current role, avoiding supervisory responsibilities due to workload, and feeling stable. The tone seems mixed because there's both past negative experiences and current contentment. Confidence in interpretation is high, maybe 90, because the quotes clearly support the codes and the interpretation.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 762,
+   "eval_count": 845,
+   "total_duration": 64588484541,
+   "load_duration": 8240541,
+   "prompt_eval_duration": 1752699000,
+   "eval_duration": 62698703000
+  },
+  "wall_seconds": 64.61
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:16:37.137285Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"unfair promotion\",\n      \"quote\": \"the job went to the manager’s nephew. He’d only been here six months and couldn’t even tell one wine vintage from another.\"\n    },\n    {\n      \"label\": \"colleagues' career setbacks\",\n      \"quote\": \"Xiao Lin was later moved to the staff canteen, and Ah Mei was rated unsatisfactory in her appraisal the following year and left not long after.\"\n    },\n    {\n      \"label\": \"missed promotion opportunity\",\n      \"quote\": \"the result came out before it was even my turn to be interviewed. The announcement was only posted for one day, and was taken down the next.\"\n    },\n    {\n      \"label\": \"manager's recognition\",\n      \"quote\": \"He said I was dependable, the floor couldn’t do without me, I should keep up the good work, and there’d be plenty of chances in future.\"\n    },\n    {\n      \"label\": \"contentment in current role\",\n      \"quote\": \"I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in.\"\n    },\n    {\n      \"label\": \"reluctance to take on supervisory responsibilities\",\n      \"quote\": \"A supervisor has far too much to worry about: rotas, costing, handling complaints, writing reports, and several meetings a month on top of that.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on past experiences of unfair promotions and colleagues' career setbacks, leading to her current contentment in her role as a server. She avoids supervisory responsibilities due to their demands and feels stable in her current position.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The first part is from earlier in the interview where she talks about a previous supervisor vacancy. She mentions that the manager's nephew got the job despite lacking experience, and others like Xiao Lin and Ah Mei were affected. She was passed over but received a talk from the manager acknowledging her reliability. \n\nThen, later in the interview, she's asked about applying for the current supervisor position. She says she didn't apply because she's comfortable in her current role, knows the guests, and has regulars who prefer her. She lists the responsibilities of a supervisor as too demanding and mentions the manager's understanding and the promise of being considered for Outstanding Employee. She feels content in her current position and is open to future opportunities if they arise.\n\nNow, for coding. First-order codes should be short labels based on her language. From the first part, she talks about the manager's nephew getting the job, which could be \"unfair promotion\" with the quote about the nephew not knowing wine vintages. Then, the other candidates being affected, so \"colleagues' career setbacks\" with the quote about Xiao Lin and Ah Mei. Her own experience of being passed over, \"missed promotion opportunity\" with the quote about the announcement being taken down. The manager's acknowledgment of her reliability, \"manager's recognition\" with the quote about being dependable.\n\nIn the later part, she mentions not applying for the supervisor role, so \"contentment in current role\" with the quote about being comfortable as a server. The reasons for not wanting to move up, \"reluctance to take on supervisory responsibilities\" with the quote about the workload. The manager's reassurance, \"manager's reassurance of future opportunities\" with the quote about Outstanding Employee. Her feeling of stability, \"perceived job stability\" with the quote about stability from month to month.\n\nInterpretation: She's reflecting on past unfair promotions and colleagues' negative outcomes, leading her to be content in her current role, avoiding supervisory responsibilities due to workload, and feeling stable. The tone seems mixed because there's both past negative experiences and current contentment. Confidence in interpretation is high, maybe 90, because the quotes clearly support the codes and the interpretation.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 64588484541,
+  "load_duration": 8240541,
+  "prompt_eval_count": 762,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1752699000,
+  "eval_count": 845,
+  "eval_duration": 62698703000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "the job went to the manager’s nephew. He’d only been here six months and couldn’t even tell one wine vintage from another.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Xiao Lin was later moved to the staff canteen, and Ah Mei was rated unsatisfactory in her appraisal the following year and left not long after.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the result came out before it was even my turn to be interviewed. The announcement was only posted for one day, and was taken down the next.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He said I was dependable, the floor couldn’t do without me, I should keep up the good work, and there’d be plenty of chances in future.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "A supervisor has far too much to worry about: rotas, costing, handling complaints, writing reports, and several meetings a month on top of that.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:15:32+00:00",
+ "finished_at": "2026-10-28T19:16:37+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

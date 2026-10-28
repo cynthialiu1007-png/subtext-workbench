@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "123",
+ "list": "A",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Switchboard operator, male, 1st year\n\nInterviewer: You came here from another part of the country. How are you getting on with your colleagues?\n\nInterviewee: Really well. Everyone loves a joke. I’m from Guangdong and I’ve got a bit of an accent when I speak Mandarin, so my team leader gave me the nickname Little Canton, and now the whole front office calls me that. It sounds really friendly to me. Sometimes when guests from Hong Kong or Macau phone in, my colleagues shout, Little Canton, it’s for you, and I take the call in Cantonese. The guests are really pleased when they hear it, and one of them even wrote me a praise card specially. Later my team leader had me teach everyone a phrase of Cantonese at the morning briefing each week. Last week it was m goi, Cantonese for thank you. Everyone’s pronunciation was really strange, I couldn’t stop laughing, and they laughed too. One colleague wrote m goi on the back of their hand and practised it all day. At the last department dinner everyone was chatting in the local dialect. My team leader saw I couldn’t understand, so he got everyone to switch to Mandarin, and he even ordered a Cantonese dish specially, saying it was so Little Canton could have a taste of home. They go hiking together at weekends, and they added me to the group chat the very first time. That day everyone looked at their phones and laughed together at the photos of me hiking. I’d run out of steam halfway up, and two colleagues walked with me to the top, one in front and one behind. None of these jokes are mean-spirited, and I quite like them myself. Now I’m learning the local dialect from my colleagues too. It’s been almost three months, and I can understand more than half of it. Sometimes I even joke around with my team leader in the local dialect on purpose, and he says I’ve picked up bad habits. There’s a front-desk vacancy next month. My team leader encouraged me to apply. He said being able to speak two dialects is an advantage. I’ve already handed in my application.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Camaraderie and Inclusion\",\n      \"quote\": \"They go hiking together at weekends, and they added me to the group chat the very first time.\"\n    },\n    {\n      \"label\": \"Cultural Exchange and Language Learning\",\n      \"quote\": \"Now I’m learning the local dialect from my colleagues too. It’s been almost three months, and I can understand more than half of it.\"\n    },\n    {\n      \"label\": \"Humor and Nicknames\",\n      \"quote\": \"My team leader gave me the nickname Little Canton, and now the whole front office calls me that.\"\n    },\n    {\n      \"label\": \"Supportive Leadership\",\n      \"quote\": \"My team leader encouraged me to apply. He said being able to speak two dialects is an advantage.\"\n    },\n    {\n      \"label\": \"Positive Guest Interactions\",\n      \"quote\": \"The guests are really pleased when they hear it, and one of them even wrote me a praise card specially.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee feels fully integrated into the team through humor, language learning, and supportive leadership, leading to a positive and inclusive work environment.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage about a switchboard operator from Guangdong in his first year at a hotel. The goal is to do first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee talks about his experience with colleagues, the nickname \"Little Canton,\" interactions with guests, learning the local dialect, and his team leader's support. \n\nLooking for codes: The main themes seem to be about camaraderie with colleagues, cultural integration, humor and nicknames, language learning, and positive work environment. Let me check each part of the passage again.\n\nThe interviewee mentions colleagues loving jokes and giving him a nickname, which is friendly. That's a code about humor and nicknames. Then there's the part where he teaches Cantonese phrases, which relates to language learning and cultural exchange. The team leader's actions, like ordering a Cantonese dish and encouraging him to apply for a vacancy, suggest support and career development. The positive interactions with guests and the praise card indicate positive guest experiences. Also, the team's inclusive behavior, like adding him to the hiking group, shows integration and belonging.\n\nWait, the user specified 3-6 codes. Let me make sure each code is a distinct theme. Maybe \"Camaraderie and Inclusion\" covers the team's welcoming behavior. \"Cultural Exchange and Language Learning\" for the dialect lessons and his progress. \"Humor and Nicknames\" for the jokes and nickname. \"Supportive Leadership\" for the team leader's encouragement. \"Positive Work Environment\" for the overall positive atmosphere. That's five codes. But maybe some can be combined. Let me see.\n\nThe codes should be concise. \"Camaraderie and Inclusion\" might be too long. Maybe \"Team Camaraderie\" and \"Cultural Integration\" as separate codes. Also, the part about the praise card could be under \"Positive Guest Interactions.\" Let me check the quotes. The interviewee says the guests are pleased and one wrote a praise card. So that's a code about positive guest interactions. \n\nEach code needs a supporting quote. Let me pick the most relevant ones. The key points are the team's humor, the nickname, the language learning, the supportive leadership, and the positive environment. That's five codes. But the user allows up to six. Let me make sure each code is distinct and based on the quotes. \n\nNow, the interpretation: The interviewee is communicating that he feels welcomed and integrated into the team through humor and language learning, leading to a positive work experience. The tone is positive, and confidence is high since the interviewee's account is consistently positive with specific examples.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 758,
+   "eval_count": 841,
+   "total_duration": 38528849500,
+   "load_duration": 423250,
+   "prompt_eval_duration": 879313000,
+   "eval_duration": 36710775000
+  },
+  "wall_seconds": 38.53
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:49:23.242037Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Camaraderie and Inclusion\",\n      \"quote\": \"They go hiking together at weekends, and they added me to the group chat the very first time.\"\n    },\n    {\n      \"label\": \"Cultural Exchange and Language Learning\",\n      \"quote\": \"Now I’m learning the local dialect from my colleagues too. It’s been almost three months, and I can understand more than half of it.\"\n    },\n    {\n      \"label\": \"Humor and Nicknames\",\n      \"quote\": \"My team leader gave me the nickname Little Canton, and now the whole front office calls me that.\"\n    },\n    {\n      \"label\": \"Supportive Leadership\",\n      \"quote\": \"My team leader encouraged me to apply. He said being able to speak two dialects is an advantage.\"\n    },\n    {\n      \"label\": \"Positive Guest Interactions\",\n      \"quote\": \"The guests are really pleased when they hear it, and one of them even wrote me a praise card specially.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee feels fully integrated into the team through humor, language learning, and supportive leadership, leading to a positive and inclusive work environment.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage about a switchboard operator from Guangdong in his first year at a hotel. The goal is to do first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee talks about his experience with colleagues, the nickname \"Little Canton,\" interactions with guests, learning the local dialect, and his team leader's support. \n\nLooking for codes: The main themes seem to be about camaraderie with colleagues, cultural integration, humor and nicknames, language learning, and positive work environment. Let me check each part of the passage again.\n\nThe interviewee mentions colleagues loving jokes and giving him a nickname, which is friendly. That's a code about humor and nicknames. Then there's the part where he teaches Cantonese phrases, which relates to language learning and cultural exchange. The team leader's actions, like ordering a Cantonese dish and encouraging him to apply for a vacancy, suggest support and career development. The positive interactions with guests and the praise card indicate positive guest experiences. Also, the team's inclusive behavior, like adding him to the hiking group, shows integration and belonging.\n\nWait, the user specified 3-6 codes. Let me make sure each code is a distinct theme. Maybe \"Camaraderie and Inclusion\" covers the team's welcoming behavior. \"Cultural Exchange and Language Learning\" for the dialect lessons and his progress. \"Humor and Nicknames\" for the jokes and nickname. \"Supportive Leadership\" for the team leader's encouragement. \"Positive Work Environment\" for the overall positive atmosphere. That's five codes. But maybe some can be combined. Let me see.\n\nThe codes should be concise. \"Camaraderie and Inclusion\" might be too long. Maybe \"Team Camaraderie\" and \"Cultural Integration\" as separate codes. Also, the part about the praise card could be under \"Positive Guest Interactions.\" Let me check the quotes. The interviewee says the guests are pleased and one wrote a praise card. So that's a code about positive guest interactions. \n\nEach code needs a supporting quote. Let me pick the most relevant ones. The key points are the team's humor, the nickname, the language learning, the supportive leadership, and the positive environment. That's five codes. But the user allows up to six. Let me make sure each code is distinct and based on the quotes. \n\nNow, the interpretation: The interviewee is communicating that he feels welcomed and integrated into the team through humor and language learning, leading to a positive work experience. The tone is positive, and confidence is high since the interviewee's account is consistently positive with specific examples.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 38528849500,
+  "load_duration": 423250,
+  "prompt_eval_count": 758,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 879313000,
+  "eval_count": 841,
+  "eval_duration": 36710775000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "They go hiking together at weekends, and they added me to the group chat the very first time.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Now I’m learning the local dialect from my colleagues too. It’s been almost three months, and I can understand more than half of it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My team leader gave me the nickname Little Canton, and now the whole front office calls me that.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My team leader encouraged me to apply. He said being able to speak two dialects is an advantage.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The guests are really pleased when they hear it, and one of them even wrote me a praise card specially.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:48:44+00:00",
+ "finished_at": "2026-10-28T17:49:23+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

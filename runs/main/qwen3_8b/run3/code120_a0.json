@@ -1,0 +1,173 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "120",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Bellman, male, 1st year\n\nInterviewer: I hear you got a letter of praise from a guest last month?\n\nInterviewee: Oh, that. It’s nothing really, it’s all part of the job. That night a guest arrived with two small children. Her flight had been delayed and she didn’t get in until nearly midnight. One child was crying and the other had already fallen asleep. I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her. That’s all. The guest checked out early the next morning to catch her next flight. I was on my break when she left, so I didn’t see her. She wrote a few lines on the comment card when she checked out, and HR put it up on the noticeboard in the staff corridor, as they usually do. Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them. When I walked past after my shift I took a glance. It was about me all right. Then I went to the locker room to get changed. That evening I phoned my mum. Mostly we talked about her coming to visit me next month: which day’s train to book, where she’d stay. We talked for almost an hour, and I actually forgot to mention it. The next day I went to work as usual. My team leader read out my name at the morning briefing, everyone clapped, and then we moved straight on to assigning that day’s airport pick-ups. What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality. Last month I was late once and lost points, so I need to make them up this month. Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Helpful Actions\",\n      \"quote\": \"I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\"\n    },\n    {\n      \"label\": \"Recognition Process\",\n      \"quote\": \"HR put it up on the noticeboard in the staff corridor, as they usually do. Our hotel puts up a dozen or so every month...\"\n    },\n    {\n      \"label\": \"Performance Metrics Focus\",\n      \"quote\": \"What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality. Last month I was late once and lost points, so I need to make them up this month.\"\n    },\n    {\n      \"label\": \"Downplaying Achievements\",\n      \"quote\": \"Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee emphasizes routine helpfulness and downplays his actions, prioritizing performance metrics over recognition.\",\n  \"tone\": \"neutral\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a first-year male bellman who received a praise letter from a guest. He downplays the incident, mentioning he just did what was needed. \n\nLooking for key themes. He talks about the guest's situation, his actions, and the recognition. The main points are his helpfulness, the recognition process, and his focus on performance metrics. \n\nFirst code: Maybe \"Helpful Actions\" since he helped the guest with the baby. The quote about buying milk and warming it up fits here. \n\nSecond code: \"Recognition Process\" because he mentions the comment card and how the hotel displays them. The part about HR putting it up on the noticeboard is relevant. \n\nThird code: \"Performance Metrics Focus\" as he talks about the monthly appraisal based on luggage errors and punctuality. He mentions being late once and needing to make it up. \n\nFourth code: \"Downplaying Achievements\" since he says \"nothing special\" and \"anyone would have done the same.\" The quote about not needing to put it in specially supports this. \n\nWait, the user wants between 3-6 codes. Maybe add another one about the emotional aspect? Or maybe \"Emotional Support\" since he helped the guest with the baby. But the main codes seem to be the helpful actions, recognition process, performance metrics, and downplaying. \n\nCheck the quotes. Each code needs a supporting quote. The first code uses the milk and warming part. The second uses the HR noticeboard. Third uses the appraisal and being late. Fourth uses the downplaying. \n\nInterpretation: The interviewee values his role in helping guests but is more concerned with performance metrics than recognition. \n\nTone: Neutral, since he's not overly positive or negative. \n\nConfidence: Maybe 85, since the codes align well with the text.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 748,
+   "eval_count": 688,
+   "total_duration": 30973194250,
+   "load_duration": 387333,
+   "prompt_eval_duration": 858197000,
+   "eval_duration": 29229539000
+  },
+  "wall_seconds": 30.98
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:38:42.281096Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Helpful Actions\",\n      \"quote\": \"I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\"\n    },\n    {\n      \"label\": \"Recognition Process\",\n      \"quote\": \"HR put it up on the noticeboard in the staff corridor, as they usually do. Our hotel puts up a dozen or so every month...\"\n    },\n    {\n      \"label\": \"Performance Metrics Focus\",\n      \"quote\": \"What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality. Last month I was late once and lost points, so I need to make them up this month.\"\n    },\n    {\n      \"label\": \"Downplaying Achievements\",\n      \"quote\": \"Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee emphasizes routine helpfulness and downplays his actions, prioritizing performance metrics over recognition.\",\n  \"tone\": \"neutral\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a first-year male bellman who received a praise letter from a guest. He downplays the incident, mentioning he just did what was needed. \n\nLooking for key themes. He talks about the guest's situation, his actions, and the recognition. The main points are his helpfulness, the recognition process, and his focus on performance metrics. \n\nFirst code: Maybe \"Helpful Actions\" since he helped the guest with the baby. The quote about buying milk and warming it up fits here. \n\nSecond code: \"Recognition Process\" because he mentions the comment card and how the hotel displays them. The part about HR putting it up on the noticeboard is relevant. \n\nThird code: \"Performance Metrics Focus\" as he talks about the monthly appraisal based on luggage errors and punctuality. He mentions being late once and needing to make it up. \n\nFourth code: \"Downplaying Achievements\" since he says \"nothing special\" and \"anyone would have done the same.\" The quote about not needing to put it in specially supports this. \n\nWait, the user wants between 3-6 codes. Maybe add another one about the emotional aspect? Or maybe \"Emotional Support\" since he helped the guest with the baby. But the main codes seem to be the helpful actions, recognition process, performance metrics, and downplaying. \n\nCheck the quotes. Each code needs a supporting quote. The first code uses the milk and warming part. The second uses the HR noticeboard. Third uses the appraisal and being late. Fourth uses the downplaying. \n\nInterpretation: The interviewee values his role in helping guests but is more concerned with performance metrics than recognition. \n\nTone: Neutral, since he's not overly positive or negative. \n\nConfidence: Maybe 85, since the codes align well with the text.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 30973194250,
+  "load_duration": 387333,
+  "prompt_eval_count": 748,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 858197000,
+  "eval_count": 688,
+  "eval_duration": 29229539000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 44 words > 30",
+   "codes[2].quote: 40 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "HR put it up on the noticeboard in the staff corridor, as they usually do. Our hotel puts up a dozen or so every month...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality. Last month I was late once and lost points, so I need to make them up this month.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:38:11+00:00",
+ "finished_at": "2026-10-28T16:38:42+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "114",
+ "list": "A",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-desk receptionist, female, 3rd year\n\nInterviewer: The hotel switched to a new front-desk system this year. How have you found it?\n\nInterviewee: The new system was rolled out across the whole group. At the training, the instructor said it would raise efficiency by thirty percent, and the interface really does look better than the old one: the colours and icons are all very clear. Our supervisor also said at a meeting that we should embrace change and stop comparing everything with the old system, and everyone nodded. But these days, the first thing I do when I start my shift is copy out all of the day’s reservations by hand, in a hardcover notebook I bought myself: room number, name, arrival time, deposit, nothing left out. At handover I also go through the notebook with the colleague on the next shift to make sure nothing’s been missed. Before I leave, I photograph the in-house guest list in the system page by page and keep the photos on my phone, in a folder I set up specially. I’ve got over two hundred of them by now. Once last month the system froze, and there were a dozen or so people queuing in the lobby. One guest had a flight to catch and kept looking at his watch. So I went by my notebook and assigned rooms first, wrote out the deposit slips by hand, and once the system came back I entered everything again, one by one. I was at it until nearly midnight. That guest with the flight ended up leaving with a deposit slip I’d written by hand. After that day, our supervisor went to a stationery shop and bought the same kind of notebook, and she keeps it in her drawer. She didn’t tell anyone. Our night-shift colleagues still have the old system’s technician on WeChat, and when something goes wrong they go to him first rather than calling the new system’s support hotline. A few days ago the manager asked everyone how it was going, and we all said it was going fine. The new system’s interface really does look nice. Everyone agrees on that.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Manual Workarounds\",\n      \"quote\": \"I copy out all of the day’s reservations by hand, in a hardcover notebook I bought myself: room number, name, arrival time, deposit, nothing left out.\"\n    },\n    {\n      \"label\": \"System Reliability Issues\",\n      \"quote\": \"Once last month the system froze, and there were a dozen or so people queuing in the lobby.\"\n    },\n    {\n      \"label\": \"Hidden Resistance to Change\",\n      \"quote\": \"Our supervisor went to a stationery shop and bought the same kind of notebook, and she keeps it in her drawer. She didn’t tell anyone.\"\n    },\n    {\n      \"label\": \"Perceived vs Actual System Effectiveness\",\n      \"quote\": \"The new system’s interface really does look nice. Everyone agrees on that.\"\n    },\n    {\n      \"label\": \"Continued Use of Old Support\",\n      \"quote\": \"Our night-shift colleagues still have the old system’s technician on WeChat, and when something goes wrong they go to him first rather than calling the new system’s support hotline.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee describes her reliance on manual methods to compensate for the new system's unreliability, while the team maintains a facade of acceptance but continues using old support methods.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a front-desk receptionist who's been in the job for three years. She talks about the new hotel system they implemented. The interviewer asked about her experience with the new system.\n\nThe interviewee mentions that the system was supposed to increase efficiency by 30%, and the interface looks better. However, she uses a notebook to manually record reservations, which she copies by hand. She also takes photos of the guest list and has a folder on her phone. There's a story about the system freezing, and she had to handle it manually, even working until midnight. Her supervisor later bought the same notebook, but it's kept secret. The night shift still uses the old system's technician. Despite the manager's check-in, they all say it's going fine, but the interface is agreed to be nice.\n\nFirst, I need to identify the main themes or codes. Let's see. The first thing is her reliance on manual methods despite the new system. She uses a notebook and photos. That's a code about manual workarounds. Then there's the system's reliability issues, like the freeze. Another code could be the hidden support for the old system. The supervisor's secret notebook might indicate resistance to change. Also, the mention of the system's interface being nice but not reliable. Maybe a code about perceived vs. actual effectiveness. Also, the team's compliance with the manager's check-in but continued use of old methods. \n\nWait, the codes should be first-order, so they should be specific and not too broad. Let me list possible codes:\n\n1. Manual Workarounds: She uses a notebook and photos. \"I copy out all of the day’s reservations by hand... I photograph the in-house guest list...\"\n2. System Reliability Issues: The system froze, leading to manual handling. \"Once last month the system froze... I went by my notebook...\"\n3. Hidden Resistance to Change: Supervisor bought the notebook but kept it secret. \"Our supervisor went to a stationery shop... She didn’t tell anyone.\"\n4. Perceived vs. Actual System Effectiveness: The interface looks good, but the system isn't reliable. \"The new system’s interface really does look nice. Everyone agrees on that.\"\n5. Continued Use of Old Support: Night shift uses old technician. \"Our night-shift colleagues still have the old system’s technician on WeChat...\"\n6. Compliance with Management: They all say it's going fine despite issues. \"we all said it was going fine.\"\n\nBut the user asked for 3-6 codes. Maybe combine some. Let's see. The main themes are manual workarounds, system reliability, hidden resistance, and the facade of acceptance. \n\nSo codes could be:\n\n1. Manual Workarounds: She uses notebook and photos.\n2. System Reliability Issues: System freezes, leading to manual fixes.\n3. Hidden Resistance to Change: Supervisor's secret notebook.\n4. Perceived vs. Actual System Effectiveness: Interface looks good but system is unreliable.\n5. Continued Use of Old Support: Night shift uses old technician.\n\nBut maybe the first three are better. Let me check the quotes. The manual workarounds have the quote about copying reservations and photos. System reliability has the freeze incident. Hidden resistance is the supervisor's secret notebook. The perceived vs actual could be the interface comment. The continued use of old support is the night shift's technician. \n\nSo codes could be:\n\nManual Workarounds, System Reliability Issues, Hidden Resistance, Perceived vs Actual Effectiveness, Continued Old Support. That's five codes. Maybe that's okay. \n\nNow, interpretation: The interviewee is highlighting her reliance on manual methods to compensate for the new system's unreliability, while the team maintains a facade of acceptance but continues using old support methods. \n\nTone is mixed, as she's both critical of the system's issues and acknowledges its interface. Confidence might be around 80. Let me check the quotes again to ensure accuracy. The manual workarounds are clear. The system freeze is a key point. The supervisor's secret notebook shows hidden resistance. The interface comment is the perceived effectiveness. The night shift's technician is continued old support. \n\nYes, that seems to cover the main points. So the codes would be those five. Now, structure the JSON accordingly.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 741,
+   "eval_count": 1223,
+   "total_duration": 54168084625,
+   "load_duration": 352833,
+   "prompt_eval_duration": 863281000,
+   "eval_duration": 52520251000
+  },
+  "wall_seconds": 54.17
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:59:06.251797Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Manual Workarounds\",\n      \"quote\": \"I copy out all of the day’s reservations by hand, in a hardcover notebook I bought myself: room number, name, arrival time, deposit, nothing left out.\"\n    },\n    {\n      \"label\": \"System Reliability Issues\",\n      \"quote\": \"Once last month the system froze, and there were a dozen or so people queuing in the lobby.\"\n    },\n    {\n      \"label\": \"Hidden Resistance to Change\",\n      \"quote\": \"Our supervisor went to a stationery shop and bought the same kind of notebook, and she keeps it in her drawer. She didn’t tell anyone.\"\n    },\n    {\n      \"label\": \"Perceived vs Actual System Effectiveness\",\n      \"quote\": \"The new system’s interface really does look nice. Everyone agrees on that.\"\n    },\n    {\n      \"label\": \"Continued Use of Old Support\",\n      \"quote\": \"Our night-shift colleagues still have the old system’s technician on WeChat, and when something goes wrong they go to him first rather than calling the new system’s support hotline.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee describes her reliance on manual methods to compensate for the new system's unreliability, while the team maintains a facade of acceptance but continues using old support methods.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a front-desk receptionist who's been in the job for three years. She talks about the new hotel system they implemented. The interviewer asked about her experience with the new system.\n\nThe interviewee mentions that the system was supposed to increase efficiency by 30%, and the interface looks better. However, she uses a notebook to manually record reservations, which she copies by hand. She also takes photos of the guest list and has a folder on her phone. There's a story about the system freezing, and she had to handle it manually, even working until midnight. Her supervisor later bought the same notebook, but it's kept secret. The night shift still uses the old system's technician. Despite the manager's check-in, they all say it's going fine, but the interface is agreed to be nice.\n\nFirst, I need to identify the main themes or codes. Let's see. The first thing is her reliance on manual methods despite the new system. She uses a notebook and photos. That's a code about manual workarounds. Then there's the system's reliability issues, like the freeze. Another code could be the hidden support for the old system. The supervisor's secret notebook might indicate resistance to change. Also, the mention of the system's interface being nice but not reliable. Maybe a code about perceived vs. actual effectiveness. Also, the team's compliance with the manager's check-in but continued use of old methods. \n\nWait, the codes should be first-order, so they should be specific and not too broad. Let me list possible codes:\n\n1. Manual Workarounds: She uses a notebook and photos. \"I copy out all of the day’s reservations by hand... I photograph the in-house guest list...\"\n2. System Reliability Issues: The system froze, leading to manual handling. \"Once last month the system froze... I went by my notebook...\"\n3. Hidden Resistance to Change: Supervisor bought the notebook but kept it secret. \"Our supervisor went to a stationery shop... She didn’t tell anyone.\"\n4. Perceived vs. Actual System Effectiveness: The interface looks good, but the system isn't reliable. \"The new system’s interface really does look nice. Everyone agrees on that.\"\n5. Continued Use of Old Support: Night shift uses old technician. \"Our night-shift colleagues still have the old system’s technician on WeChat...\"\n6. Compliance with Management: They all say it's going fine despite issues. \"we all said it was going fine.\"\n\nBut the user asked for 3-6 codes. Maybe combine some. Let's see. The main themes are manual workarounds, system reliability, hidden resistance, and the facade of acceptance. \n\nSo codes could be:\n\n1. Manual Workarounds: She uses notebook and photos.\n2. System Reliability Issues: System freezes, leading to manual fixes.\n3. Hidden Resistance to Change: Supervisor's secret notebook.\n4. Perceived vs. Actual System Effectiveness: Interface looks good but system is unreliable.\n5. Continued Use of Old Support: Night shift uses old technician.\n\nBut maybe the first three are better. Let me check the quotes. The manual workarounds have the quote about copying reservations and photos. System reliability has the freeze incident. Hidden resistance is the supervisor's secret notebook. The perceived vs actual could be the interface comment. The continued use of old support is the night shift's technician. \n\nSo codes could be:\n\nManual Workarounds, System Reliability Issues, Hidden Resistance, Perceived vs Actual Effectiveness, Continued Old Support. That's five codes. Maybe that's okay. \n\nNow, interpretation: The interviewee is highlighting her reliance on manual methods to compensate for the new system's unreliability, while the team maintains a facade of acceptance but continues using old support methods. \n\nTone is mixed, as she's both critical of the system's issues and acknowledges its interface. Confidence might be around 80. Let me check the quotes again to ensure accuracy. The manual workarounds are clear. The system freeze is a key point. The supervisor's secret notebook shows hidden resistance. The interface comment is the perceived effectiveness. The night shift's technician is continued old support. \n\nYes, that seems to cover the main points. So the codes would be those five. Now, structure the JSON accordingly.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 54168084625,
+  "load_duration": 352833,
+  "prompt_eval_count": 741,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 863281000,
+  "eval_count": 1223,
+  "eval_duration": 52520251000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "I copy out all of the day’s reservations by hand, in a hardcover notebook I bought myself: room number, name, arrival time, deposit, nothing left out.",
+    "tier": "near",
+    "similarity": 0.96,
+    "speaker": null
+   },
+   {
+    "quote": "Once last month the system froze, and there were a dozen or so people queuing in the lobby.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Our supervisor went to a stationery shop and bought the same kind of notebook, and she keeps it in her drawer. She didn’t tell anyone.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The new system’s interface really does look nice. Everyone agrees on that.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Our night-shift colleagues still have the old system’s technician on WeChat, and when something goes wrong they go to him first rather than calling the new system’s support hotline.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:58:12+00:00",
+ "finished_at": "2026-10-28T15:59:06+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

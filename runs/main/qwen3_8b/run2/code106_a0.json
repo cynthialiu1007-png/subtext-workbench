@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "106",
+ "list": "A",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant team leader, male, 7th year\n\nInterviewer: How does your manager usually get on with everyone?\n\nInterviewee: The biggest thing about our manager is that he loves telling cold jokes, the really corny kind. He tells one at the morning briefing every single day, and when he’s finished he’s the first to laugh. For example, he says: why can’t eggs tell jokes? Because they’d crack up. Not one person in the room laughs. He’s the only one there enjoying himself. I’ve told him several times: boss, that joke really isn’t funny, could you stop telling them, you’re wasting everyone’s time. He says no, it’s his tradition. But in the notes app on my phone I’ve got a folder just for the jokes he’s told. I’ve recorded more than 120 so far, with the date written after each one. Some of them I’ve even marked with a star. Those are the ones I think are especially cold, so cold I wanted to walk out on the spot. Last time he went to head office for two weeks’ training, nobody told jokes at the morning briefing. On the third day I told one myself, the egg one, and even laughed first the way he does. My colleagues teased me about it all morning. The day he came back, he told a new one right at the start of the briefing, and I wrote it down in my notes there and then. At the department dinner at the end of the year, I printed all these jokes out, bound them into a little booklet and gave it to him. On the cover I wrote: The Complete Cold Jokes, Volume One. When he got it he stood there stunned for quite a while. Since then that booklet has stayed on his desk. Once I saw him flipping through it, and when he got to a certain page he laughed out loud by himself. So, our manager is great in every way, it’s just that his jokes are too cold. They’re so cold we don’t need the air conditioning in summer. I really can’t stand him.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Manager's Joke Tradition\",\n      \"quote\": \"he says no, it’s his tradition\"\n    },\n    {\n      \"label\": \"Frustration with Cold Jokes\",\n      \"quote\": \"those are the ones I think are especially cold, so cold I wanted to walk out on the spot\"\n    },\n    {\n      \"label\": \"Joke Documentation\",\n      \"quote\": \"I’ve recorded more than 12,000 so far, with the date written after each one\"\n    },\n    {\n      \"label\": \"Manager's Solo Laughter\",\n      \"quote\": \"when he got to a certain page he laughed out loud by himself\"\n    },\n    {\n      \"label\": \"Mixed Feelings Toward Manager\",\n      \"quote\": \"our manager is great in every way, it’s just that his jokes are too cold\"\n    }\n  ],\n  \"interpretation\": \"The interviewee expresses frustration with their manager's cold joke tradition, which they document despite attempts to stop it, leading to mixed feelings about the manager's overall competence.\",\n  \"tone\": \"negative\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage where a Chinese restaurant team leader, male, with 7 years of experience, talks about his manager's habit of telling cold jokes. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I need to read through the passage carefully. The interviewee describes his manager's behavior, specifically the jokes. The manager tells corny jokes every day, and even though the manager laughs, no one else does. The interviewee has tried to convince the manager to stop, but the manager insists it's a tradition. The interviewee even keeps a record of the jokes, creates a booklet, and gives it to the manager, which the manager reacts to by laughing alone. The interviewee ends by saying the manager is great in every way except for the jokes, which are so cold they don't need air conditioning in summer, and he can't stand him.\n\nNow, I need to extract first-order codes. These should be short labels (2-6 words) that capture the essence of the interviewee's statements. The codes should be based on the interviewee's own language. Let me look for recurring themes or concepts.\n\n1. The manager's joke tradition: The manager tells jokes every day, which is a tradition. The interviewee mentions it's his tradition. So a code could be \"Manager's Joke Tradition\" with a quote like \"he says no, it’s his tradition.\"\n\n2. The interviewee's frustration: The interviewee is frustrated with the jokes, even wanting to walk out. The quote \"those are the ones I think are especially cold, so cold I wanted to walk out on the spot\" could be \"Frustration with Cold Jokes.\"\n\n3. Record-keeping of jokes: The interviewee keeps a folder with 120 jokes, records them, and even creates a booklet. The code could be \"Joke Documentation\" with the quote about the folder and notes app.\n\n4. The manager's reaction to the booklet: The manager is stunned and later laughs alone. The code \"Manager's Solo Laughter\" with the quote about standing there stunned and laughing by himself.\n\n5. The interviewee's mixed feelings: Despite the manager's other qualities, the interviewee can't stand him. The code \"Mixed Feelings Toward Manager\" with the quote \"our manager is great in every way, it’s just that his jokes are too cold.\"\n\nWait, but the user asked for between 3 and 6 codes. Let me check if I have enough. Maybe combine some. Alternatively, maybe \"Cold Jokes Tradition\" as a code, since the manager's tradition is the cold jokes. The interviewee's frustration with the jokes is another code. The record-keeping is another. The manager's reaction is another. And the mixed feelings. That's five codes. Let me ensure each code is supported by a direct quote.\n\nFor the first code: \"Manager's Joke Tradition\" with the quote \"he says no, it’s his tradition.\"\n\nSecond code: \"Frustration with Cold Jokes\" with \"those are the ones I think are especially cold, so cold I wanted to walk out on the spot.\"\n\nThird code: \"Joke Documentation\" with \"I’ve recorded more than 120 so far, with the date written after each one.\"\n\nFourth code: \"Manager's Solo Laughter\" with \"when he got to a certain page he laughed out loud by himself.\"\n\nFifth code: \"Mixed Feelings Toward Manager\" with \"our manager is great in every way, it’s just that his jokes are too cold.\"\n\nThat's five codes. The interpretation would be that the interviewee is frustrated with the manager's cold joke tradition, which he documents despite trying to stop it, leading to mixed feelings. The tone is negative, as he can't stand the manager. Confidence is high, maybe 90. Wait, the user's example had confidence as 95, but I need to adjust based on the data. Since the interviewee clearly expresses frustration and mixed feelings, confidence is high. So the JSON should have these codes, the interpretation, tone as negative, and confidence 95.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 746,
+   "eval_count": 1125,
+   "total_duration": 49391149834,
+   "load_duration": 389167,
+   "prompt_eval_duration": 585813000,
+   "eval_duration": 47941579000
+  },
+  "wall_seconds": 49.4
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:53:22.202074Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Manager's Joke Tradition\",\n      \"quote\": \"he says no, it’s his tradition\"\n    },\n    {\n      \"label\": \"Frustration with Cold Jokes\",\n      \"quote\": \"those are the ones I think are especially cold, so cold I wanted to walk out on the spot\"\n    },\n    {\n      \"label\": \"Joke Documentation\",\n      \"quote\": \"I’ve recorded more than 12,000 so far, with the date written after each one\"\n    },\n    {\n      \"label\": \"Manager's Solo Laughter\",\n      \"quote\": \"when he got to a certain page he laughed out loud by himself\"\n    },\n    {\n      \"label\": \"Mixed Feelings Toward Manager\",\n      \"quote\": \"our manager is great in every way, it’s just that his jokes are too cold\"\n    }\n  ],\n  \"interpretation\": \"The interviewee expresses frustration with their manager's cold joke tradition, which they document despite attempts to stop it, leading to mixed feelings about the manager's overall competence.\",\n  \"tone\": \"negative\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage where a Chinese restaurant team leader, male, with 7 years of experience, talks about his manager's habit of telling cold jokes. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I need to read through the passage carefully. The interviewee describes his manager's behavior, specifically the jokes. The manager tells corny jokes every day, and even though the manager laughs, no one else does. The interviewee has tried to convince the manager to stop, but the manager insists it's a tradition. The interviewee even keeps a record of the jokes, creates a booklet, and gives it to the manager, which the manager reacts to by laughing alone. The interviewee ends by saying the manager is great in every way except for the jokes, which are so cold they don't need air conditioning in summer, and he can't stand him.\n\nNow, I need to extract first-order codes. These should be short labels (2-6 words) that capture the essence of the interviewee's statements. The codes should be based on the interviewee's own language. Let me look for recurring themes or concepts.\n\n1. The manager's joke tradition: The manager tells jokes every day, which is a tradition. The interviewee mentions it's his tradition. So a code could be \"Manager's Joke Tradition\" with a quote like \"he says no, it’s his tradition.\"\n\n2. The interviewee's frustration: The interviewee is frustrated with the jokes, even wanting to walk out. The quote \"those are the ones I think are especially cold, so cold I wanted to walk out on the spot\" could be \"Frustration with Cold Jokes.\"\n\n3. Record-keeping of jokes: The interviewee keeps a folder with 120 jokes, records them, and even creates a booklet. The code could be \"Joke Documentation\" with the quote about the folder and notes app.\n\n4. The manager's reaction to the booklet: The manager is stunned and later laughs alone. The code \"Manager's Solo Laughter\" with the quote about standing there stunned and laughing by himself.\n\n5. The interviewee's mixed feelings: Despite the manager's other qualities, the interviewee can't stand him. The code \"Mixed Feelings Toward Manager\" with the quote \"our manager is great in every way, it’s just that his jokes are too cold.\"\n\nWait, but the user asked for between 3 and 6 codes. Let me check if I have enough. Maybe combine some. Alternatively, maybe \"Cold Jokes Tradition\" as a code, since the manager's tradition is the cold jokes. The interviewee's frustration with the jokes is another code. The record-keeping is another. The manager's reaction is another. And the mixed feelings. That's five codes. Let me ensure each code is supported by a direct quote.\n\nFor the first code: \"Manager's Joke Tradition\" with the quote \"he says no, it’s his tradition.\"\n\nSecond code: \"Frustration with Cold Jokes\" with \"those are the ones I think are especially cold, so cold I wanted to walk out on the spot.\"\n\nThird code: \"Joke Documentation\" with \"I’ve recorded more than 120 so far, with the date written after each one.\"\n\nFourth code: \"Manager's Solo Laughter\" with \"when he got to a certain page he laughed out loud by himself.\"\n\nFifth code: \"Mixed Feelings Toward Manager\" with \"our manager is great in every way, it’s just that his jokes are too cold.\"\n\nThat's five codes. The interpretation would be that the interviewee is frustrated with the manager's cold joke tradition, which he documents despite trying to stop it, leading to mixed feelings. The tone is negative, as he can't stand the manager. Confidence is high, maybe 90. Wait, the user's example had confidence as 95, but I need to adjust based on the data. Since the interviewee clearly expresses frustration and mixed feelings, confidence is high. So the JSON should have these codes, the interpretation, tone as negative, and confidence 95.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 49391149834,
+  "load_duration": 389167,
+  "prompt_eval_count": 746,
+  "prompt_eval_cached_count": 451,
+  "prompt_eval_duration": 585813000,
+  "eval_count": 1125,
+  "eval_duration": 47941579000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "he says no, it’s his tradition",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "those are the ones I think are especially cold, so cold I wanted to walk out on the spot",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I’ve recorded more than 12,000 so far, with the date written after each one",
+    "tier": "absent",
+    "similarity": 0.889,
+    "speaker": null
+   },
+   {
+    "quote": "when he got to a certain page he laughed out loud by himself",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "our manager is great in every way, it’s just that his jokes are too cold",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:52:32+00:00",
+ "finished_at": "2026-10-28T15:53:22+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "210",
+ "list": "B",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Housekeeping supervisor, female, 6th year\n\nInterviewer: You were promoted to supervisor this year. How does it feel?\n\nInterviewee: To be honest, it’s a lot more tiring than I imagined. I thought it would just be a change of title and the work would still be the same, but it’s not like that at all. Before, I only had my own dozen or so rooms to look after, and I could leave once I’d finished. Now I’m in charge of three floors and fourteen attendants: scheduling, room inspections, handling complaints, stocktaking the linen, and every week I have to write a quality report for the manager. I’m often still writing it at eleven at night. Last week a guest complained that the towels smelled, and I was dealing with it from three in the afternoon until eight in the evening. I didn’t even get any dinner. My pay went up by 600, but there’s more overtime too, so all in all it works out about the same as before. Ah Fang applied for the post as well and didn’t get it, and now she actually has an easier time than me. She leaves on the dot, and she can go to her infant-care classes at the weekend. The two of us joined in the same intake. We used to share a dorm, do night shifts together, and go for malatang together after work. One Spring Festival neither of us went home, and we made dumplings together in the dorm. These days I hardly even have time for malatang. The evening the new staff badge was issued, I phoned my dad and complained for half an hour. I said if I’d known it would be this tiring I wouldn’t have applied. My dad said, do it for a year first and then see, and when I thought about it, he had a point. I don’t regret it. Having supervisor experience will make it easier to find another job later on. But right now I really am tired, so tired I don’t feel much like talking. Even my dad says I don’t talk as much on the phone as I used to. Oh, and Ah Fang’s exam for that certificate is next month. I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Increased workload and stress\",\n    \"quote\": \"It’s a lot more tiring than I imagined... I’m often still writing it at eleven at night.\"\n  },\n  {\n    \"label\": \"Comparative ease of colleague\",\n    \"quote\": \"Ah Fang applied for the post as well and didn’t get it, and now she actually has an easier time than me.\"\n  },\n  {\n    \"label\": \"Financial trade-off\",\n    \"quote\": \"My pay went up by 600, but there’s more overtime too, so all in all it works out about the same as before.\"\n  },\n  {\n    \"label\": \"Work-life balance impact\",\n    \"quote\": \"These days I hardly even have time for malatang... I didn’t even get any dinner.\"\n  },\n  {\n    \"label\": \"Supportive relationships\",\n    \"quote\": \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"\n  },\n  {\n    \"label\": \"Long-term career benefits\",\n    \"quote\": \"Having supervisor experience will make it easier to find another job later on.\"\n  }\n],\n\"interpretation\": \"The interviewee describes the supervisory role as significantly more demanding and stressful than anticipated, with increased responsibilities and reduced personal time, though she acknowledges the long-term career benefits and maintains supportive relationships with colleagues.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user is a housekeeping supervisor with six years of experience. She was promoted this year and is talking about her new role.\n\nFirst, I need to identify the main themes or codes. She mentions that the job is more tiring than she expected, which is a key point. She talks about increased responsibilities like managing three floors, scheduling, handling complaints, and writing reports. There's also the aspect of her pay increasing but having more overtime, so her overall income is similar. Then there's her comparison with Ah Fang, who has a less demanding role now. The mention of her past with Ah Fang, like sharing a dorm and going for malatang, shows a contrast with her current busy life. She also mentions talking to her dad, who advised her to stick with it for a year. Lastly, she helps Ah Fang with exam books and expects a meal in return, indicating a supportive relationship.\n\nFor the codes, possible labels could be \"Increased workload and stress,\" \"Comparative ease of colleague,\" \"Financial trade-off,\" \"Work-life balance impact,\" \"Supportive relationships,\" and \"Long-term career benefits.\" Each code needs a supporting quote from the passage. The quotes should be exact and under 30 words.\n\nThe interpretation should summarize her feelings about the promotion: more tired, higher stress, but also long-term benefits. The tone is mixed because she's tired and stressed but doesn't regret the promotion. Confidence in the interpretation is high since her statements clearly show both the challenges and the positive aspects.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 794,
+   "eval_count": 641,
+   "total_duration": 49236428458,
+   "load_duration": 740375,
+   "prompt_eval_duration": 1720291000,
+   "eval_duration": 46712770000
+  },
+  "wall_seconds": 49.24
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T20:05:08.286467Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Increased workload and stress\",\n    \"quote\": \"It’s a lot more tiring than I imagined... I’m often still writing it at eleven at night.\"\n  },\n  {\n    \"label\": \"Comparative ease of colleague\",\n    \"quote\": \"Ah Fang applied for the post as well and didn’t get it, and now she actually has an easier time than me.\"\n  },\n  {\n    \"label\": \"Financial trade-off\",\n    \"quote\": \"My pay went up by 600, but there’s more overtime too, so all in all it works out about the same as before.\"\n  },\n  {\n    \"label\": \"Work-life balance impact\",\n    \"quote\": \"These days I hardly even have time for malatang... I didn’t even get any dinner.\"\n  },\n  {\n    \"label\": \"Supportive relationships\",\n    \"quote\": \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"\n  },\n  {\n    \"label\": \"Long-term career benefits\",\n    \"quote\": \"Having supervisor experience will make it easier to find another job later on.\"\n  }\n],\n\"interpretation\": \"The interviewee describes the supervisory role as significantly more demanding and stressful than anticipated, with increased responsibilities and reduced personal time, though she acknowledges the long-term career benefits and maintains supportive relationships with colleagues.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user is a housekeeping supervisor with six years of experience. She was promoted this year and is talking about her new role.\n\nFirst, I need to identify the main themes or codes. She mentions that the job is more tiring than she expected, which is a key point. She talks about increased responsibilities like managing three floors, scheduling, handling complaints, and writing reports. There's also the aspect of her pay increasing but having more overtime, so her overall income is similar. Then there's her comparison with Ah Fang, who has a less demanding role now. The mention of her past with Ah Fang, like sharing a dorm and going for malatang, shows a contrast with her current busy life. She also mentions talking to her dad, who advised her to stick with it for a year. Lastly, she helps Ah Fang with exam books and expects a meal in return, indicating a supportive relationship.\n\nFor the codes, possible labels could be \"Increased workload and stress,\" \"Comparative ease of colleague,\" \"Financial trade-off,\" \"Work-life balance impact,\" \"Supportive relationships,\" and \"Long-term career benefits.\" Each code needs a supporting quote from the passage. The quotes should be exact and under 30 words.\n\nThe interpretation should summarize her feelings about the promotion: more tired, higher stress, but also long-term benefits. The tone is mixed because she's tired and stressed but doesn't regret the promotion. Confidence in the interpretation is high since her statements clearly show both the challenges and the positive aspects.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 49236428458,
+  "load_duration": 740375,
+  "prompt_eval_count": 794,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1720291000,
+  "eval_count": 641,
+  "eval_duration": 46712770000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "It’s a lot more tiring than I imagined... I’m often still writing it at eleven at night.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Ah Fang applied for the post as well and didn’t get it, and now she actually has an easier time than me.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My pay went up by 600, but there’s more overtime too, so all in all it works out about the same as before.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "These days I hardly even have time for malatang... I didn’t even get any dinner.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Having supervisor experience will make it easier to find another job later on.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T20:04:19+00:00",
+ "finished_at": "2026-10-28T20:05:08+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

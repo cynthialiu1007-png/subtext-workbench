@@ -1,0 +1,179 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "108",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Concierge team leader, male, 12th year\n\nInterviewer: You’ve been here twelve years and seen several general managers come and go. What do you think of the current one?\n\nInterviewee: The current one... (thinks for a moment) He’s good, he’s good. He doesn’t have much contact with us on the front line. If we run into him in the lobby, he nods. The year before last my son had an operation, and at home around that time... (stops and waves his hand) never mind. Anyway, it all got sorted out in the end. My son’s doing well now. He’s at junior high, and he’s taller than me. He had his mid-term exams last month and got 98 in maths. I took a photo of his report and sent it to a whole lot of relatives. At this year’s annual party, the general manager came over to our table to make a toast. Normally I don’t touch a drop, but that day I stood up and drank a whole glass of baijiu. When I got home I was sick half the night. My colleagues said I was sucking up to him, and I didn’t explain. There used to be a company money tree outside his office door. Later it withered, so I brought a clivia from home to replace it and told Admin it had been found in the company storeroom. Every Wednesday afternoon, while he’s in his meeting, I go up and water it, and check the leaves while I’m there. Once he happened to open the door and come out, and asked me whose plant it was. I said I didn’t know, maybe Admin had put it there. (Glances at the voice recorder) Don’t put this in. It wouldn’t look good. People would think I had some kind of connection with the boss. In a job like ours, being too close to the boss is no good thing. Anyway, he’s a good leader. Just write that. If you want to know about the concierge team’s work, you can ask about other things, like how we book cars and restaurants for guests. I can explain all that clearly.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"GM is good but distant\", \"quote\": \"He’s good, he’s good. He doesn’t have much contact with us on the front line.\"}, {\"label\": \"Personal story of GM not reaching out\", \"quote\": \"The year before last my son had an operation, and at home around that time... never mind.\"}, {\"label\": \"Drinking at annual party to impress GM\", \"quote\": \"I stood up and drank a whole glass of baijiu.\"}, {\"label\": \"Plant maintenance as subtle connection\", \"quote\": \"Every Wednesday afternoon... check the leaves while I’m there.\"}, {\"label\": \"Avoiding perception of favoritism\", \"quote\": \"Don’t put this in. It wouldn’t look good. People would think I had some kind of connection with the boss.\"}], \"interpretation\": \"The interviewee acknowledges the GM's competence but highlights the need to maintain professional distance, using anecdotes to illustrate both the GM's leadership and the employee's careful navigation of workplace dynamics to avoid perceptions of favoritism.\", \"tone\": \"mixed\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. He's a concierge team leader with 12 years of experience. The interviewer is asking about the current general manager. The interviewee starts by saying the current GM is good but doesn't have much contact with frontline staff. He mentions a personal story about his son's surgery, which he seems to be using as an example of how the GM didn't reach out, but things got resolved. Then there's the part where the GM came to their table at the annual party, and he drank a glass of baijiu, got sick, and colleagues thought he was trying to suck up. \n\nHe also talks about the plant outside the GM's office, replacing the money tree with a clivia, watering it every Wednesday, and the incident where the GM found out. He explicitly says not to put that in the recording, fearing it might look like he has a connection with the boss. He ends by saying the GM is a good leader but shifts the conversation to other aspects of the job.\n\nFirst, I need to code this. The key points are: the GM is good but distant, the interviewee's personal story about the son and the GM not contacting him, the annual party incident, the plant and the GM's reaction, and the interviewee's caution about appearing too close to the boss. \n\nCodes could be things like \"GM is good but distant\", \"Personal story of GM not reaching out\", \"Drinking at annual party to impress GM\", \"Plant maintenance as subtle connection\", and \"Avoiding perception of favoritism\". Each code needs a quote. For example, \"He’s good, he’s good. He doesn’t have much contact with us on the front line.\" for the first code. \n\nThe interpretation would be that the interviewee acknowledges the GM's competence but feels a need to maintain a professional distance, using anecdotes to illustrate both the GM's leadership and the employee's careful navigation of workplace dynamics. The tone seems mixed because there's both positive comments about the GM and underlying concerns about favoritism. Confidence in interpretation is high because the quotes clearly support the points made.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 765,
+   "eval_count": 685,
+   "total_duration": 52487539166,
+   "load_duration": 504500,
+   "prompt_eval_duration": 1762093000,
+   "eval_duration": 50569054000
+  },
+  "wall_seconds": 52.49
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:41:55.804874Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"GM is good but distant\", \"quote\": \"He’s good, he’s good. He doesn’t have much contact with us on the front line.\"}, {\"label\": \"Personal story of GM not reaching out\", \"quote\": \"The year before last my son had an operation, and at home around that time... never mind.\"}, {\"label\": \"Drinking at annual party to impress GM\", \"quote\": \"I stood up and drank a whole glass of baijiu.\"}, {\"label\": \"Plant maintenance as subtle connection\", \"quote\": \"Every Wednesday afternoon... check the leaves while I’m there.\"}, {\"label\": \"Avoiding perception of favoritism\", \"quote\": \"Don’t put this in. It wouldn’t look good. People would think I had some kind of connection with the boss.\"}], \"interpretation\": \"The interviewee acknowledges the GM's competence but highlights the need to maintain professional distance, using anecdotes to illustrate both the GM's leadership and the employee's careful navigation of workplace dynamics to avoid perceptions of favoritism.\", \"tone\": \"mixed\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. He's a concierge team leader with 12 years of experience. The interviewer is asking about the current general manager. The interviewee starts by saying the current GM is good but doesn't have much contact with frontline staff. He mentions a personal story about his son's surgery, which he seems to be using as an example of how the GM didn't reach out, but things got resolved. Then there's the part where the GM came to their table at the annual party, and he drank a glass of baijiu, got sick, and colleagues thought he was trying to suck up. \n\nHe also talks about the plant outside the GM's office, replacing the money tree with a clivia, watering it every Wednesday, and the incident where the GM found out. He explicitly says not to put that in the recording, fearing it might look like he has a connection with the boss. He ends by saying the GM is a good leader but shifts the conversation to other aspects of the job.\n\nFirst, I need to code this. The key points are: the GM is good but distant, the interviewee's personal story about the son and the GM not contacting him, the annual party incident, the plant and the GM's reaction, and the interviewee's caution about appearing too close to the boss. \n\nCodes could be things like \"GM is good but distant\", \"Personal story of GM not reaching out\", \"Drinking at annual party to impress GM\", \"Plant maintenance as subtle connection\", and \"Avoiding perception of favoritism\". Each code needs a quote. For example, \"He’s good, he’s good. He doesn’t have much contact with us on the front line.\" for the first code. \n\nThe interpretation would be that the interviewee acknowledges the GM's competence but feels a need to maintain a professional distance, using anecdotes to illustrate both the GM's leadership and the employee's careful navigation of workplace dynamics. The tone seems mixed because there's both positive comments about the GM and underlying concerns about favoritism. Confidence in interpretation is high because the quotes clearly support the points made.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 52487539166,
+  "load_duration": 504500,
+  "prompt_eval_count": 765,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1762093000,
+  "eval_count": 685,
+  "eval_duration": 50569054000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[1].label: 7 words",
+   "codes[2].label: 7 words"
+  ],
+  "quotes": [
+   {
+    "quote": "He’s good, he’s good. He doesn’t have much contact with us on the front line.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The year before last my son had an operation, and at home around that time... never mind.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I stood up and drank a whole glass of baijiu.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Every Wednesday afternoon... check the leaves while I’m there.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Don’t put this in. It wouldn’t look good. People would think I had some kind of connection with the boss.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:41:03+00:00",
+ "finished_at": "2026-10-28T19:41:55+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

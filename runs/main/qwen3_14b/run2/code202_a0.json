@@ -1,0 +1,186 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "202",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant server, female, 1st year\n\nInterviewer: How does your restaurant manager usually lead the team?\n\nInterviewee: Our manager is a really nice person, honestly. He’s always punctual. He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings. If the lazy Susan on a table isn’t clean, he picks up a cloth and wipes it himself. He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing. His meetings are very well organised too. At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with. Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes. When the kitchen was slow sending dishes out, he went in himself to talk to the head chef, then came out and apologised to the guests table by table. Sister Wang has worked here for over ten years, and she says he’s the most willing manager she’s ever worked under when it comes to getting out on the floor. When I first started I couldn’t even hold a tray steady. When he saw, he didn’t tell me off. He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying. Later, when I could carry six soup bowls without spilling, he even praised me by name at the meeting. We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open. When colleagues from the other restaurants hear about it they’re quite envious, and two of them have even asked whether our restaurant is short of staff. Working under him, I feel I’m on solid ground.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Hands-on leadership\", \"quote\": \"He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot,\"}, {\"label\": \"Prompt problem resolution\", \"quote\": \"He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing.\"}, {\"label\": \"Supportive mentorship\", \"quote\": \"He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying.\"}, {\"label\": \"Open-door policy\", \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.\"}, {\"label\": \"Colleagues' positive reactions\", \"quote\": \"When colleagues from the other restaurants hear about it they’re quite envious, and two of them have even asked whether our restaurant is short of staff.\"}, {\"label\": \"Organized communication\", \"quote\": \"At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook,\"}], \"interpretation\": \"The interviewee describes her manager as approachable, proactive in problem-solving, and deeply supportive of staff development, creating a positive and secure work environment where employees feel valued and empowered to address issues directly.\", \"tone\": \"positive\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a Chinese restaurant server in her first year, talking about her manager. The key points she mentions are the manager's punctuality, hands-on approach, addressing issues immediately, organized meetings, helping out during busy times, and personal support in training her. \n\nFirst, I need to identify the first-order codes. These should be short labels that capture the main themes. Let me see: the manager is described as \"really nice,\" punctual, hands-on, leads by example, addresses problems promptly, organized meetings, supportive, open-door policy, and colleagues' positive reactions.\n\nFor each code, I need a quote. Let's pick the most relevant parts. For \"Hands-on leadership,\" she mentions the manager wiping a table himself. \"Prompt problem resolution\" when he called Engineering. \"Supportive mentorship\" with teaching her tray carrying. \"Open-door policy\" with the office door always open. \"Colleagues' positive reactions\" about being envious. \"Organized communication\" in meetings. \"Lead by example\" by helping during lunch.\n\nNow, the interpretation should summarize what she's saying. The manager is approachable, proactive, and supportive, which makes the employee feel secure and valued. The tone is clearly positive because all the examples are positive. Confidence is high because the quotes directly support the interpretation. Let me check the quotes again to ensure they're accurate and not longer than 30 words. Looks good. Codes should be 3-6, and I have six here. Maybe combine some? Wait, the user said between 3-6. Let me count again. Hands-on leadership, prompt problem resolution, supportive mentorship, open-door policy, colleagues' positive reactions, organized communication, lead by example. That's seven. Need to trim. Maybe combine \"organized communication\" and \"lead by example\" into one? Or check if some are redundant. \"Lead by example\" and \"hands-on leadership\" might be similar. Maybe keep the main ones and adjust. Let me pick the most distinct ones: hands-on leadership, prompt problem resolution, supportive mentorship, open-door policy, colleagues' positive reactions, organized communication. That's six. Okay, that should work.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 778,
+   "eval_count": 817,
+   "total_duration": 63308175667,
+   "load_duration": 8486500,
+   "prompt_eval_duration": 1747620000,
+   "eval_duration": 60645716000
+  },
+  "wall_seconds": 63.33
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:15:32.487173Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Hands-on leadership\", \"quote\": \"He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot,\"}, {\"label\": \"Prompt problem resolution\", \"quote\": \"He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing.\"}, {\"label\": \"Supportive mentorship\", \"quote\": \"He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying.\"}, {\"label\": \"Open-door policy\", \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.\"}, {\"label\": \"Colleagues' positive reactions\", \"quote\": \"When colleagues from the other restaurants hear about it they’re quite envious, and two of them have even asked whether our restaurant is short of staff.\"}, {\"label\": \"Organized communication\", \"quote\": \"At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook,\"}], \"interpretation\": \"The interviewee describes her manager as approachable, proactive in problem-solving, and deeply supportive of staff development, creating a positive and secure work environment where employees feel valued and empowered to address issues directly.\", \"tone\": \"positive\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a Chinese restaurant server in her first year, talking about her manager. The key points she mentions are the manager's punctuality, hands-on approach, addressing issues immediately, organized meetings, helping out during busy times, and personal support in training her. \n\nFirst, I need to identify the first-order codes. These should be short labels that capture the main themes. Let me see: the manager is described as \"really nice,\" punctual, hands-on, leads by example, addresses problems promptly, organized meetings, supportive, open-door policy, and colleagues' positive reactions.\n\nFor each code, I need a quote. Let's pick the most relevant parts. For \"Hands-on leadership,\" she mentions the manager wiping a table himself. \"Prompt problem resolution\" when he called Engineering. \"Supportive mentorship\" with teaching her tray carrying. \"Open-door policy\" with the office door always open. \"Colleagues' positive reactions\" about being envious. \"Organized communication\" in meetings. \"Lead by example\" by helping during lunch.\n\nNow, the interpretation should summarize what she's saying. The manager is approachable, proactive, and supportive, which makes the employee feel secure and valued. The tone is clearly positive because all the examples are positive. Confidence is high because the quotes directly support the interpretation. Let me check the quotes again to ensure they're accurate and not longer than 30 words. Looks good. Codes should be 3-6, and I have six here. Maybe combine some? Wait, the user said between 3-6. Let me count again. Hands-on leadership, prompt problem resolution, supportive mentorship, open-door policy, colleagues' positive reactions, organized communication, lead by example. That's seven. Need to trim. Maybe combine \"organized communication\" and \"lead by example\" into one? Or check if some are redundant. \"Lead by example\" and \"hands-on leadership\" might be similar. Maybe keep the main ones and adjust. Let me pick the most distinct ones: hands-on leadership, prompt problem resolution, supportive mentorship, open-door policy, colleagues' positive reactions, organized communication. That's six. Okay, that should work.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 63308175667,
+  "load_duration": 8486500,
+  "prompt_eval_count": 778,
+  "prompt_eval_cached_count": 358,
+  "prompt_eval_duration": 1747620000,
+  "eval_count": 817,
+  "eval_duration": 60645716000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 32 words > 30",
+   "codes[2].quote: 36 words > 30",
+   "codes[5].quote: 33 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot,",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "When colleagues from the other restaurants hear about it they’re quite envious, and two of them have even asked whether our restaurant is short of staff.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook,",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:14:29+00:00",
+ "finished_at": "2026-10-28T19:15:32+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

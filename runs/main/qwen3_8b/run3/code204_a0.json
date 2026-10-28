@@ -1,0 +1,178 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "204",
+ "list": "B",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet server, female, 3rd year\n\nInterviewer: Working banquets, have you ever come across guests who were particularly difficult to deal with?\n\nInterviewee: I wouldn’t say difficult. It’s all been within manageable limits. Last month there was a wedding banquet, and at the table next to the head table there was a male guest who’d had quite a lot to drink. When wine was being poured, there was some rather enthusiastic physical contact. Under department regulations, in such situations service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet. Carried on pouring the wine for that table at the time, then swapped service areas with a colleague. The report was also submitted according to procedure. The team leader signed it and wrote: noted, floor patrols to be stepped up going forward. The guest made no further service requests, the banquet concluded normally, and overall service was not affected. That’s it. It was handled fairly properly. This kind of situation isn’t anything unusual in the department either. It happens a few times every year, and it’s always handled through the same procedure. That wedding banquet actually went really well. They’d booked the Golden Goblet set menu, eighteen courses in all. The lobster and the leopard coral grouper were both prepared on the spot, and the cold platter came in eight different designs. The bride’s father even went to the kitchen specially to have his photo taken with the head chef, and said it was classier than any of the ones they’d been to last year. The banquet department is fully booked again next month with six events, and two of them were booked by guests who came to that wedding. The manager praised our whole team at the meeting. Recently we’ve been practising a new way of serving dishes with serving spoons and chopsticks. A table of ten has to be served in under four minutes. I can do it in three and a half now, which puts me second in the team, and the team leader says I should aim for first at next month’s competition.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Procedural Compliance\",\n      \"quote\": \"Under department regulations, in such situations service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet.\"\n    },\n    {\n      \"label\": \"Conflict Management\",\n      \"quote\": \"service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet.\"\n    },\n    {\n      \"label\": \"Positive Outcomes\",\n      \"quote\": \"the banquet concluded normally, and overall service was not affected.\"\n    },\n    {\n      \"label\": \"Team Recognition\",\n      \"quote\": \"the manager praised our whole team at the meeting.\"\n    },\n    {\n      \"label\": \"Performance Improvement\",\n      \"quote\": \"I can do it in three and a half now, which puts me second in the team, and the team leader says I should aim for first at next month’s competition.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee communicates effective handling of challenging situations through adherence to procedures, leading to positive outcomes and recognition, while also highlighting personal growth and team achievements.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to read through the interviewee's response carefully.\n\nThe interviewee is a banquet server, female, 3rd year. The interviewer asks about difficult guests. The interviewee responds by talking about a specific incident where a guest was overly enthusiastic after drinking. She mentions following procedures, submitting a report, and the team leader's response. Then she shifts to talking about the successful wedding banquet, the menu details, positive feedback from the bride's father, and her own performance improvements.\n\nSo, I need to identify the key themes here. Let's break it down. The first part is about handling a difficult guest situation, following protocols. Then there's the positive outcome of the banquet, the team's recognition, and her personal achievement. \n\nFirst-order codes should be short labels reflecting the content. Let me list possible codes. \n\n1. \"Procedural Compliance\" – she followed the rules, submitted the report. The quote: \"Under department regulations...submit a written report to the team leader.\"\n\n2. \"Conflict Management\" – handling the situation without confrontation. The quote: \"service staff are to remain courteous, avoid direct confrontation...\"\n\n3. \"Positive Outcomes\" – the banquet went well, positive feedback. The quote: \"the banquet concluded normally, and overall service was not affected.\"\n\nWait, but the user said to have between 3-6 codes. Let me check again. The interviewee also talks about the team's recognition and her own improvement. Maybe \"Team Recognition\" and \"Personal Achievement\" as codes. \n\nAnother point is the routine nature of such incidents: \"This kind of situation isn’t anything unusual in the department either.\" So maybe \"Routine Incidents\" as a code. \n\nAlso, the part about the new serving technique and her performance: \"practising a new way of serving dishes...I can do it in three and a half now...\" That's about \"Efficiency Training\" or \"Performance Improvement.\"\n\nWait, the user wants first-order codes, which are more about the content rather than the process. Let me make sure each code is a label that captures a theme from the passage. \n\nSo possible codes: \n\n1. Procedural Compliance – following the report protocol.\n2. Conflict Management – handling the guest without confrontation.\n3. Routine Incidents – such situations are common.\n4. Team Recognition – manager praised the team.\n5. Personal Achievement – her improved serving speed.\n6. Positive Outcomes – banquet was successful.\n\nBut the user might want 3-6. Let me check the quotes again. The key points are handling the incident, following procedures, the positive outcome of the banquet, team recognition, her personal improvement, and the routine nature of incidents. \n\nSo maybe 4-5 codes. Let me pick the most significant ones. \n\n1. Procedural Compliance: \"Under department regulations...submit a written report to the team leader.\"\n2. Conflict Management: \"service staff are to remain courteous, avoid direct...confrontation.\"\n3. Team Recognition: \"the manager praised our whole team at the meeting.\"\n4. Personal Achievement: \"I can do it in three and a half now...aim for first at next month’s competition.\"\n5. Positive Outcomes: \"the banquet concluded normally...overall service was not affected.\"\n\nWait, the positive outcomes might be covered by the successful banquet and the team's recognition. Maybe combine some. Alternatively, the successful banquet's outcome is a separate point. \n\nAlternatively, the interviewee emphasizes that the situation was handled properly and the banquet was successful. So maybe \"Proper Handling\" and \"Positive Outcomes.\" \n\nBut the user wants the codes to be in the interviewee's own language. Let me ensure the labels are close to that. \n\nAlso, the tone is positive, as she's talking about handling things well, the banquet's success, and her progress. Confidence level would be high since the details are specific and consistent. \n\nSo, final codes: Procedural Compliance, Conflict Management, Team Recognition, Personal Achievement, Positive Outcomes. That's five codes. Let me check if the quotes are under 30 words. The quotes provided in the example are short, so that's okay. \n\nInterpretation: The interviewee communicates effective handling of challenging situations through adherence to procedures, leading to positive outcomes and recognition. \n\nTone: Positive. Confidence: 95.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 743,
+   "eval_count": 1188,
+   "total_duration": 52605431625,
+   "load_duration": 498750,
+   "prompt_eval_duration": 860231000,
+   "eval_duration": 50966338000
+  },
+  "wall_seconds": 52.61
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:44:42.44795Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Procedural Compliance\",\n      \"quote\": \"Under department regulations, in such situations service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet.\"\n    },\n    {\n      \"label\": \"Conflict Management\",\n      \"quote\": \"service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet.\"\n    },\n    {\n      \"label\": \"Positive Outcomes\",\n      \"quote\": \"the banquet concluded normally, and overall service was not affected.\"\n    },\n    {\n      \"label\": \"Team Recognition\",\n      \"quote\": \"the manager praised our whole team at the meeting.\"\n    },\n    {\n      \"label\": \"Performance Improvement\",\n      \"quote\": \"I can do it in three and a half now, which puts me second in the team, and the team leader says I should aim for first at next month’s competition.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee communicates effective handling of challenging situations through adherence to procedures, leading to positive outcomes and recognition, while also highlighting personal growth and team achievements.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to read through the interviewee's response carefully.\n\nThe interviewee is a banquet server, female, 3rd year. The interviewer asks about difficult guests. The interviewee responds by talking about a specific incident where a guest was overly enthusiastic after drinking. She mentions following procedures, submitting a report, and the team leader's response. Then she shifts to talking about the successful wedding banquet, the menu details, positive feedback from the bride's father, and her own performance improvements.\n\nSo, I need to identify the key themes here. Let's break it down. The first part is about handling a difficult guest situation, following protocols. Then there's the positive outcome of the banquet, the team's recognition, and her personal achievement. \n\nFirst-order codes should be short labels reflecting the content. Let me list possible codes. \n\n1. \"Procedural Compliance\" – she followed the rules, submitted the report. The quote: \"Under department regulations...submit a written report to the team leader.\"\n\n2. \"Conflict Management\" – handling the situation without confrontation. The quote: \"service staff are to remain courteous, avoid direct confrontation...\"\n\n3. \"Positive Outcomes\" – the banquet went well, positive feedback. The quote: \"the banquet concluded normally, and overall service was not affected.\"\n\nWait, but the user said to have between 3-6 codes. Let me check again. The interviewee also talks about the team's recognition and her own improvement. Maybe \"Team Recognition\" and \"Personal Achievement\" as codes. \n\nAnother point is the routine nature of such incidents: \"This kind of situation isn’t anything unusual in the department either.\" So maybe \"Routine Incidents\" as a code. \n\nAlso, the part about the new serving technique and her performance: \"practising a new way of serving dishes...I can do it in three and a half now...\" That's about \"Efficiency Training\" or \"Performance Improvement.\"\n\nWait, the user wants first-order codes, which are more about the content rather than the process. Let me make sure each code is a label that captures a theme from the passage. \n\nSo possible codes: \n\n1. Procedural Compliance – following the report protocol.\n2. Conflict Management – handling the guest without confrontation.\n3. Routine Incidents – such situations are common.\n4. Team Recognition – manager praised the team.\n5. Personal Achievement – her improved serving speed.\n6. Positive Outcomes – banquet was successful.\n\nBut the user might want 3-6. Let me check the quotes again. The key points are handling the incident, following procedures, the positive outcome of the banquet, team recognition, her personal improvement, and the routine nature of incidents. \n\nSo maybe 4-5 codes. Let me pick the most significant ones. \n\n1. Procedural Compliance: \"Under department regulations...submit a written report to the team leader.\"\n2. Conflict Management: \"service staff are to remain courteous, avoid direct...confrontation.\"\n3. Team Recognition: \"the manager praised our whole team at the meeting.\"\n4. Personal Achievement: \"I can do it in three and a half now...aim for first at next month’s competition.\"\n5. Positive Outcomes: \"the banquet concluded normally...overall service was not affected.\"\n\nWait, the positive outcomes might be covered by the successful banquet and the team's recognition. Maybe combine some. Alternatively, the successful banquet's outcome is a separate point. \n\nAlternatively, the interviewee emphasizes that the situation was handled properly and the banquet was successful. So maybe \"Proper Handling\" and \"Positive Outcomes.\" \n\nBut the user wants the codes to be in the interviewee's own language. Let me ensure the labels are close to that. \n\nAlso, the tone is positive, as she's talking about handling things well, the banquet's success, and her progress. Confidence level would be high since the details are specific and consistent. \n\nSo, final codes: Procedural Compliance, Conflict Management, Team Recognition, Personal Achievement, Positive Outcomes. That's five codes. Let me check if the quotes are under 30 words. The quotes provided in the example are short, so that's okay. \n\nInterpretation: The interviewee communicates effective handling of challenging situations through adherence to procedures, leading to positive outcomes and recognition. \n\nTone: Positive. Confidence: 95.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 52605431625,
+  "load_duration": 498750,
+  "prompt_eval_count": 743,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 860231000,
+  "eval_count": 1188,
+  "eval_duration": 50966338000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[4].quote: 31 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "Under department regulations, in such situations service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the banquet concluded normally, and overall service was not affected.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the manager praised our whole team at the meeting.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I can do it in three and a half now, which puts me second in the team, and the team leader says I should aim for first at next month’s competition.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:43:49+00:00",
+ "finished_at": "2026-10-28T16:44:42+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

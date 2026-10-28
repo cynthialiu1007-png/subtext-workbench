@@ -1,0 +1,170 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "203",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Western restaurant server, female, 5th year\n\n[Earlier in the interview]\n\nInterviewee: The year before last, the supervisor post at our Western restaurant was vacant once before. Three people applied. I was one of them, and the other two were Xiao Lin and Ah Mei. In the end the job went to the manager’s nephew. He’d only been here six months and couldn’t even tell one wine vintage from another. When guests asked him, he’d come and ask me. Xiao Lin was later moved to the staff canteen, and Ah Mei was rated unsatisfactory in her appraisal the following year and left not long after. That time, because I was further down the list, the result came out before it was even my turn to be interviewed. The announcement was only posted for one day, and was taken down the next. After that the manager had a talk with me once. He said I was dependable, the floor couldn’t do without me, I should keep up the good work, and there’d be plenty of chances in future. I said OK, thank you.\n\n[Later in the interview]\n\nInterviewer: The supervisor post at your Western restaurant has come up this time. Did you apply?\n\nInterviewee: No, I didn’t. I think things are fine as they are. I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in. Some even get me to keep a table for them. A supervisor has far too much to worry about: rotas, costing, handling complaints, writing reports, and several meetings a month on top of that. It’s not really for me. That’s what I told the manager too. He said he understood, the floor needs experienced people too, and I should keep up the good work. He also said that next time they choose an Outstanding Employee, I’ll be given priority. I feel the same way myself: doing a good job at what I’m doing now is enough, and I don’t necessarily have to move up. If a suitable opportunity comes along in future, we’ll see. The way things are now, it’s quite stable from month to month.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Unfair Promotion Practices\", \"quote\": \"He’d only been here six months and couldn’t even tell one wine vintage from another.\"}, {\"label\": \"Perceived Inequity in Recognition\", \"quote\": \"The announcement was only posted for one day, and was taken down the next.\"}, {\"label\": \"Job Satisfaction and Comfort\", \"quote\": \"I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in.\"}, {\"label\": \"Resignation to Current Role\", \"quote\": \"It’s not really for me. That’s what I told the manager too.\"}], \"interpretation\": \"The interviewee feels the promotion process is biased and unfair, but she is content with her current role and chooses not to pursue higher positions due to the additional responsibilities.\", \"tone\": \"mixed\", \"confidence\": 90}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a female server in a Western restaurant, detailing her experiences with promotions and job satisfaction. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I'll read through the passage carefully. The interviewee talks about a previous time when a supervisor position was open, but the manager's nephew got it despite lacking qualifications. She mentions that two other applicants were moved or left, and she was told she was dependable but not chosen. Then, when the position opened again, she didn't apply because she prefers her current role, feels it's stable, and doesn't want the extra responsibilities of a supervisor.\n\nNow, I need to extract codes. Let me look for recurring themes. The first part is about unfair promotion practices. The manager's nephew got the job without proper qualifications, which suggests favoritism. The code here could be \"Unfair Promotion Practices\" with a quote about the nephew not knowing wine vintages.\n\nNext, the interviewee feels undervalued or overlooked. She was told she was dependable but not promoted, which might relate to \"Perceived Inequity in Recognition.\" The quote about being \"further down the list\" and the announcement being taken down quickly supports this.\n\nAnother theme is her contentment with her current role. She mentions being comfortable, knowing the guests, and regulars preferring her. This could be \"Job Satisfaction and Comfort\" with the quote about being comfortable and regulars asking for her.\n\nThere's also a sense of resignation or acceptance. She says she doesn't want the supervisor role because of the workload, and the manager acknowledges her role. This might be \"Resignation to Current Role\" with the quote about not wanting the extra responsibilities.\n\nWait, maybe \"Resignation\" is too negative. Alternatively, \"Acceptance of Current Role\" could be better. Also, the manager's acknowledgment of her value might relate to \"Manager's Acknowledgment of Value,\" but the quote about being told to keep up the good work might be part of the \"Perceived Inequity\" code.\n\nWait, the manager's comments might be part of the \"Perceived Inequity\" since he said she was dependable but not chosen. Also, the fact that she was given priority for the Outstanding Employee title might be a form of recognition, but she doesn't want to move up. So maybe \"Manager's Acknowledgment of Value\" is a code, but the quote is about the manager saying she should keep up the good work.\n\nAlternatively, maybe \"Manager's Support and Recognition\" as a code. But the key points here are the unfair promotion, her satisfaction with her role, and the manager's recognition. Let me check the quotes again.\n\nThe first quote about the nephew not knowing wine vintages is about unfair promotion. The second part where she says she didn't apply for the supervisor role because of the workload is about her contentment. The manager's comments about her being dependable and being given priority for the Outstanding Employee title could be part of \"Manager's Acknowledgment of Value.\"\n\nBut the user wants between 3-6 codes. Let me make sure each code is distinct. Maybe:\n\n1. Unfair Promotion Practices: \"He’d only been here six months and couldn’t even tell one wine vintage from another.\"\n2. Perceived Inequity in Recognition: \"The announcement was only posted for one day, and was taken down the next.\"\n3. Job Satisfaction and Comfort: \"I’m comfortable doing a server’s job, I know the guests...\"\n4. Resignation to Current Role: \"It’s not really for me. That’s what I told the manager too.\"\n5. Manager's Acknowledgment of Value: \"He said I was dependable, the floor couldn’t do without me...\"\n6. Acceptance of Stability: \"The way things are now, it’s quite stable from month to month.\"\n\nWait, maybe \"Acceptance of Stability\" is part of \"Job Satisfaction and Comfort.\" Let me check the quotes again. The last part about stability is part of her contentment. So maybe combining some codes. Alternatively, \"Stability and Comfort\" as a code. But the user might prefer distinct codes. Let me ensure each code is a unique theme.\n\nAlternatively, \"Perceived Inequity in Recognition\" could include the announcement being taken down quickly and her being told she was dependable but not chosen. The manager's comments might be part of that. Also, the fact that she was given priority for the Outstanding Employee could be a form of recognition, but she doesn't want to move up. \n\nI think the main codes would be:\n\n1. Unfair Promotion Practices\n2. Perceived Inequity in Recognition\n3. Job Satisfaction and Comfort\n4. Resignation to Current Role\n5. Manager's Acknowledgment of Value\n\nBut the user wants 3-6 codes. Maybe 4 is sufficient. Let me check the quotes again. The first code is about the nephew's lack of qualifications. The second is about the announcement being taken down and her being told she was dependable but not chosen. The third is her comfort and regulars. The fourth is her not wanting the supervisor role. The fifth is the manager's acknowledgment. But maybe the manager's acknowledgment is part of the perceived inequity. \n\nAlternatively, the codes could be:\n\n1. Unfair Promotion Practices\n2. Perceived Inequity in Recognition\n3. Job Satisfaction and Comfort\n4. Resign, Acceptance of Current Role\n\nThat's four codes. Let me check the quotes again. The first quote is about the nephew's lack of knowledge. The second quote is about the announcement being taken down. The third is about being comfortable. The fourth is about not wanting the supervisor role. The manager's comments could be part of the \"Perceived Inequity\" code. \n\nSo the codes would be:\n\n1. Unfair Promotion Practices: \"He’d only been here six months and couldn’t even tell one wine vintage from another.\"\n2. Perceived Inequity in Recognition: \"The announcement was only posted for one day, and was taken down the next.\"\n3. Job Satisfaction and Comfort: \"I’m comfortable doing a server’s job, I know the guests...\"\n4. Resignation to Current Role: \"It’s not really for me. That’s what I told the manager too.\"\n\nThat's four codes. The interpretation would be that the interviewee feels the promotion process is unfair and she's content with her current role, leading to resignation from seeking higher positions. The tone is negative due to the unfair practices but neutral in her current satisfaction. Confidence is high, maybe 90.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 762,
+   "eval_count": 1581,
+   "total_duration": 70186360167,
+   "load_duration": 363042,
+   "prompt_eval_duration": 868600000,
+   "eval_duration": 69212794000
+  },
+  "wall_seconds": 70.19
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:34:29.490902Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Unfair Promotion Practices\", \"quote\": \"He’d only been here six months and couldn’t even tell one wine vintage from another.\"}, {\"label\": \"Perceived Inequity in Recognition\", \"quote\": \"The announcement was only posted for one day, and was taken down the next.\"}, {\"label\": \"Job Satisfaction and Comfort\", \"quote\": \"I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in.\"}, {\"label\": \"Resignation to Current Role\", \"quote\": \"It’s not really for me. That’s what I told the manager too.\"}], \"interpretation\": \"The interviewee feels the promotion process is biased and unfair, but she is content with her current role and chooses not to pursue higher positions due to the additional responsibilities.\", \"tone\": \"mixed\", \"confidence\": 90}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a female server in a Western restaurant, detailing her experiences with promotions and job satisfaction. The goal is to perform first-order coding, which involves identifying themes or codes from the data.\n\nFirst, I'll read through the passage carefully. The interviewee talks about a previous time when a supervisor position was open, but the manager's nephew got it despite lacking qualifications. She mentions that two other applicants were moved or left, and she was told she was dependable but not chosen. Then, when the position opened again, she didn't apply because she prefers her current role, feels it's stable, and doesn't want the extra responsibilities of a supervisor.\n\nNow, I need to extract codes. Let me look for recurring themes. The first part is about unfair promotion practices. The manager's nephew got the job without proper qualifications, which suggests favoritism. The code here could be \"Unfair Promotion Practices\" with a quote about the nephew not knowing wine vintages.\n\nNext, the interviewee feels undervalued or overlooked. She was told she was dependable but not promoted, which might relate to \"Perceived Inequity in Recognition.\" The quote about being \"further down the list\" and the announcement being taken down quickly supports this.\n\nAnother theme is her contentment with her current role. She mentions being comfortable, knowing the guests, and regulars preferring her. This could be \"Job Satisfaction and Comfort\" with the quote about being comfortable and regulars asking for her.\n\nThere's also a sense of resignation or acceptance. She says she doesn't want the supervisor role because of the workload, and the manager acknowledges her role. This might be \"Resignation to Current Role\" with the quote about not wanting the extra responsibilities.\n\nWait, maybe \"Resignation\" is too negative. Alternatively, \"Acceptance of Current Role\" could be better. Also, the manager's acknowledgment of her value might relate to \"Manager's Acknowledgment of Value,\" but the quote about being told to keep up the good work might be part of the \"Perceived Inequity\" code.\n\nWait, the manager's comments might be part of the \"Perceived Inequity\" since he said she was dependable but not chosen. Also, the fact that she was given priority for the Outstanding Employee title might be a form of recognition, but she doesn't want to move up. So maybe \"Manager's Acknowledgment of Value\" is a code, but the quote is about the manager saying she should keep up the good work.\n\nAlternatively, maybe \"Manager's Support and Recognition\" as a code. But the key points here are the unfair promotion, her satisfaction with her role, and the manager's recognition. Let me check the quotes again.\n\nThe first quote about the nephew not knowing wine vintages is about unfair promotion. The second part where she says she didn't apply for the supervisor role because of the workload is about her contentment. The manager's comments about her being dependable and being given priority for the Outstanding Employee title could be part of \"Manager's Acknowledgment of Value.\"\n\nBut the user wants between 3-6 codes. Let me make sure each code is distinct. Maybe:\n\n1. Unfair Promotion Practices: \"He’d only been here six months and couldn’t even tell one wine vintage from another.\"\n2. Perceived Inequity in Recognition: \"The announcement was only posted for one day, and was taken down the next.\"\n3. Job Satisfaction and Comfort: \"I’m comfortable doing a server’s job, I know the guests...\"\n4. Resignation to Current Role: \"It’s not really for me. That’s what I told the manager too.\"\n5. Manager's Acknowledgment of Value: \"He said I was dependable, the floor couldn’t do without me...\"\n6. Acceptance of Stability: \"The way things are now, it’s quite stable from month to month.\"\n\nWait, maybe \"Acceptance of Stability\" is part of \"Job Satisfaction and Comfort.\" Let me check the quotes again. The last part about stability is part of her contentment. So maybe combining some codes. Alternatively, \"Stability and Comfort\" as a code. But the user might prefer distinct codes. Let me ensure each code is a unique theme.\n\nAlternatively, \"Perceived Inequity in Recognition\" could include the announcement being taken down quickly and her being told she was dependable but not chosen. The manager's comments might be part of that. Also, the fact that she was given priority for the Outstanding Employee could be a form of recognition, but she doesn't want to move up. \n\nI think the main codes would be:\n\n1. Unfair Promotion Practices\n2. Perceived Inequity in Recognition\n3. Job Satisfaction and Comfort\n4. Resignation to Current Role\n5. Manager's Acknowledgment of Value\n\nBut the user wants 3-6 codes. Maybe 4 is sufficient. Let me check the quotes again. The first code is about the nephew's lack of qualifications. The second is about the announcement being taken down and her being told she was dependable but not chosen. The third is her comfort and regulars. The fourth is her not wanting the supervisor role. The fifth is the manager's acknowledgment. But maybe the manager's acknowledgment is part of the perceived inequity. \n\nAlternatively, the codes could be:\n\n1. Unfair Promotion Practices\n2. Perceived Inequity in Recognition\n3. Job Satisfaction and Comfort\n4. Resign, Acceptance of Current Role\n\nThat's four codes. Let me check the quotes again. The first quote is about the nephew's lack of knowledge. The second quote is about the announcement being taken down. The third is about being comfortable. The fourth is about not wanting the supervisor role. The manager's comments could be part of the \"Perceived Inequity\" code. \n\nSo the codes would be:\n\n1. Unfair Promotion Practices: \"He’d only been here six months and couldn’t even tell one wine vintage from another.\"\n2. Perceived Inequity in Recognition: \"The announcement was only posted for one day, and was taken down the next.\"\n3. Job Satisfaction and Comfort: \"I’m comfortable doing a server’s job, I know the guests...\"\n4. Resignation to Current Role: \"It’s not really for me. That’s what I told the manager too.\"\n\nThat's four codes. The interpretation would be that the interviewee feels the promotion process is unfair and she's content with her current role, leading to resignation from seeking higher positions. The tone is negative due to the unfair practices but neutral in her current satisfaction. Confidence is high, maybe 90.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 70186360167,
+  "load_duration": 363042,
+  "prompt_eval_count": 762,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 868600000,
+  "eval_count": 1581,
+  "eval_duration": 69212794000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "He’d only been here six months and couldn’t even tell one wine vintage from another.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The announcement was only posted for one day, and was taken down the next.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "It’s not really for me. That’s what I told the manager too.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:33:19+00:00",
+ "finished_at": "2026-10-28T15:34:29+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

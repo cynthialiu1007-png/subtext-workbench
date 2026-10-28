@@ -1,0 +1,173 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "115",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Western restaurant server, female, 5th year\n\n[Earlier in the interview]\n\nInterviewee: Last year I started working towards my sommelier certification. I’ve passed Level 2 now, and next year I’m planning to take Level 3. Once I pass that I can work as a full-time sommelier in the restaurant. There are fewer than twenty people in our city with that certificate right now. When the manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon, and he also had me talk to guests about wine at our Friday wine evenings. The guest feedback has been really good, and a few regulars ask for me by name to make recommendations every time they come in. Last month a guest even wrote to the general manager specially to say the wine I recommended had made their wedding anniversary unforgettable. I’ve always felt that what I enjoy is dealing with guests and dealing with wine, not sitting in an office doing rotas. The goal I’ve set myself is to reach the highest level before I’m thirty-five.\n\n[Later in the interview]\n\nInterviewer: The supervisor post at your Western restaurant has come up this time. Did you apply?\n\nInterviewee: No, I didn’t. I think things are fine as they are. I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in. Some even get me to keep a table for them. A supervisor has far too much to worry about: rotas, costing, handling complaints, writing reports, and several meetings a month on top of that. It’s not really for me. That’s what I told the manager too. He said he understood, the floor needs experienced people too, and I should keep up the good work. He also said that next time they choose an Outstanding Employee, I’ll be given priority. I feel the same way myself: doing a good job at what I’m doing now is enough, and I don’t necessarily have to move up. If a suitable opportunity comes along in future, we’ll see. The way things are now, it’s quite stable from month to month.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career Development Support\",\n      \"quote\": \"The manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon, and he also had me talk to guests about wine at our Friday wine evenings.\"\n    },\n    {\n      \"label\": \"Positive Guest Engagement\",\n      \"quote\": \"a few regulars ask for me by name to make recommendations every time they come in. A guest even wrote to the general manager specially to say the wine I recommended had made their wedding anniversary unforgettable.\"\n    },\n    {\n      \"label\": \"Job Satisfaction and Comfort\",\n      \"quote\": \"I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in.\"\n    },\n    {\n      \"label\": \"Manager's Recognition\",\n      \"quote\": \"He also said that next time they choose an Outstanding Employee, I’ll be given priority.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee is focused on advancing her career through certification while maintaining job satisfaction in her current role, supported by positive guest interactions and managerial recognition.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a female server in a Western restaurant who's been there for five years. The task is to perform first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee talks about her pursuit of a sommelier certification, the manager's support, positive guest feedback, and her current job satisfaction. Then, when asked about a supervisor position, she declines, preferring her current role due to the workload and her comfort with it.\n\nLooking for codes: The first part mentions her certification journey and the manager's support. So maybe \"Career Development Support\" as a code, with a quote about the manager rearranging shifts. Then, her positive guest interactions could be \"Positive Guest Engagement\" with the quote about regulars asking for her. Her satisfaction with her current role might be \"Job Satisfaction and Comfort\" citing her preference over a supervisor role.\n\nWait, there's also the part where she mentions her goal to get the highest level before 35. That's about her career aspirations, so maybe \"Career Aspirations\" as another code. But the user said between 3-6 codes. Let me check again.\n\nAnother point is the manager's recognition, like being named Outstanding Employee. So \"Manager's Recognition\" could be a code, but maybe that's part of the first code. Also, her mention of stability in her current role could be \"Job Stability\" as a code. But I need to make sure each code is distinct and captures different aspects.\n\nWait, the user wants first-order codes, which are initial themes. Let me list possible codes:\n\n1. Career Development Support: The manager's support for her certification.\n2. Positive Guest Engagement: Her interactions leading to good feedback.\n3. Job Satisfaction and Comfort: Her preference for current role over supervisor.\n4. Career Aspirations: Her goal to get the highest certification.\n5. Manager's Recognition: The mention of being prioritized for Outstanding Employee.\n\nBut maybe some can be merged. For example, \"Career Development Support\" and \"Career Aspirations\" might be related. Alternatively, \"Manager's Support\" as a code. Also, the part about regulars asking for her by name is about her value to the business. Maybe \"Customer Value and Loyalty\" as a code.\n\nWait, the user example in the previous answer had codes like \"Career Development Support\", \"Positive Guest Engagement\", \"Job Satisfaction and Comfort\", and \"Manager's Recognition\". Let me check the quotes again.\n\nIn the first part, she mentions passing Level 2, planning Level 3, manager rearranging shifts, guest feedback, and regulars asking for her. The quote about the manager's support would be \"The manager found out, he rearranged my shifts...\" which fits \"Career Development Support\".\n\nThe quote about regulars asking for her by name is \"a few regulars ask for me by name to make recommendations every time they come in.\" That's \"Positive Guest Engagement\".\n\nHer statement about not wanting the supervisor role and preferring her current job is \"I’m comfortable doing a server’s job, I know the guests...\" which is \"Job Satisfaction and Comfort\".\n\nThe mention of being prioritized for Outstanding Employee is \"He also said that next time they choose an Outstanding Employee, I’ll be given priority.\" That's \"Manager's Recognition\".\n\nHer goal to reach the highest level before 35 is \"The goal I’ve set myself is to reach the highest level before I’m thirty-five.\" Which could be \"Career Aspirations\".\n\nBut the user example had four codes, so maybe the user wants three to six. Let me see if I can combine some. Alternatively, the manager's support and recognition might be part of the same code. But perhaps it's better to have separate codes for different aspects.\n\nSo the codes would be:\n\n1. Career Development Support\n2. Positive Guest Engagement\n3. Job Satisfaction and Comfort\n4. Manager's Recognition\n5. Career Aspirations\n\nBut the user might prefer fewer codes. Let me check the example again. The previous example had four codes. So maybe four is acceptable. Let me adjust.\n\nAlternatively, \"Manager's Support and Recognition\" as a code, combining the rearranging shifts and the recognition. But that might be too broad. Alternatively, keep them separate.\n\nThe interpretation should tie these codes together. The interviewee is focused on her career growth, positive interactions with guests, job satisfaction, and the manager's support. The tone is positive, as she's content with her role and has opportunities for advancement. Confidence level would be high since the codes are directly supported by quotes.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 756,
+   "eval_count": 1224,
+   "total_duration": 53189632208,
+   "load_duration": 1934875,
+   "prompt_eval_duration": 857410000,
+   "eval_duration": 52288918000
+  },
+  "wall_seconds": 53.19
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:35:32.362726Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career Development Support\",\n      \"quote\": \"The manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon, and he also had me talk to guests about wine at our Friday wine evenings.\"\n    },\n    {\n      \"label\": \"Positive Guest Engagement\",\n      \"quote\": \"a few regulars ask for me by name to make recommendations every time they come in. A guest even wrote to the general manager specially to say the wine I recommended had made their wedding anniversary unforgettable.\"\n    },\n    {\n      \"label\": \"Job Satisfaction and Comfort\",\n      \"quote\": \"I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in.\"\n    },\n    {\n      \"label\": \"Manager's Recognition\",\n      \"quote\": \"He also said that next time they choose an Outstanding Employee, I’ll be given priority.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee is focused on advancing her career through certification while maintaining job satisfaction in her current role, supported by positive guest interactions and managerial recognition.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a female server in a Western restaurant who's been there for five years. The task is to perform first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee talks about her pursuit of a sommelier certification, the manager's support, positive guest feedback, and her current job satisfaction. Then, when asked about a supervisor position, she declines, preferring her current role due to the workload and her comfort with it.\n\nLooking for codes: The first part mentions her certification journey and the manager's support. So maybe \"Career Development Support\" as a code, with a quote about the manager rearranging shifts. Then, her positive guest interactions could be \"Positive Guest Engagement\" with the quote about regulars asking for her. Her satisfaction with her current role might be \"Job Satisfaction and Comfort\" citing her preference over a supervisor role.\n\nWait, there's also the part where she mentions her goal to get the highest level before 35. That's about her career aspirations, so maybe \"Career Aspirations\" as another code. But the user said between 3-6 codes. Let me check again.\n\nAnother point is the manager's recognition, like being named Outstanding Employee. So \"Manager's Recognition\" could be a code, but maybe that's part of the first code. Also, her mention of stability in her current role could be \"Job Stability\" as a code. But I need to make sure each code is distinct and captures different aspects.\n\nWait, the user wants first-order codes, which are initial themes. Let me list possible codes:\n\n1. Career Development Support: The manager's support for her certification.\n2. Positive Guest Engagement: Her interactions leading to good feedback.\n3. Job Satisfaction and Comfort: Her preference for current role over supervisor.\n4. Career Aspirations: Her goal to get the highest certification.\n5. Manager's Recognition: The mention of being prioritized for Outstanding Employee.\n\nBut maybe some can be merged. For example, \"Career Development Support\" and \"Career Aspirations\" might be related. Alternatively, \"Manager's Support\" as a code. Also, the part about regulars asking for her by name is about her value to the business. Maybe \"Customer Value and Loyalty\" as a code.\n\nWait, the user example in the previous answer had codes like \"Career Development Support\", \"Positive Guest Engagement\", \"Job Satisfaction and Comfort\", and \"Manager's Recognition\". Let me check the quotes again.\n\nIn the first part, she mentions passing Level 2, planning Level 3, manager rearranging shifts, guest feedback, and regulars asking for her. The quote about the manager's support would be \"The manager found out, he rearranged my shifts...\" which fits \"Career Development Support\".\n\nThe quote about regulars asking for her by name is \"a few regulars ask for me by name to make recommendations every time they come in.\" That's \"Positive Guest Engagement\".\n\nHer statement about not wanting the supervisor role and preferring her current job is \"I’m comfortable doing a server’s job, I know the guests...\" which is \"Job Satisfaction and Comfort\".\n\nThe mention of being prioritized for Outstanding Employee is \"He also said that next time they choose an Outstanding Employee, I’ll be given priority.\" That's \"Manager's Recognition\".\n\nHer goal to reach the highest level before 35 is \"The goal I’ve set myself is to reach the highest level before I’m thirty-five.\" Which could be \"Career Aspirations\".\n\nBut the user example had four codes, so maybe the user wants three to six. Let me see if I can combine some. Alternatively, the manager's support and recognition might be part of the same code. But perhaps it's better to have separate codes for different aspects.\n\nSo the codes would be:\n\n1. Career Development Support\n2. Positive Guest Engagement\n3. Job Satisfaction and Comfort\n4. Manager's Recognition\n5. Career Aspirations\n\nBut the user might prefer fewer codes. Let me check the example again. The previous example had four codes. So maybe four is acceptable. Let me adjust.\n\nAlternatively, \"Manager's Support and Recognition\" as a code, combining the rearranging shifts and the recognition. But that might be too broad. Alternatively, keep them separate.\n\nThe interpretation should tie these codes together. The interviewee is focused on her career growth, positive interactions with guests, job satisfaction, and the manager's support. The tone is positive, as she's content with her role and has opportunities for advancement. Confidence level would be high since the codes are directly supported by quotes.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 53189632208,
+  "load_duration": 1934875,
+  "prompt_eval_count": 756,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 857410000,
+  "eval_count": 1224,
+  "eval_duration": 52288918000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 32 words > 30",
+   "codes[1].quote: 37 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "The manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon, and he also had me talk to guests about wine at our Friday wine evenings.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "a few regulars ask for me by name to make recommendations every time they come in. A guest even wrote to the general manager specially to say the wine I recommended had made their wedding anniversary unforgettable.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He also said that next time they choose an Outstanding Employee, I’ll be given priority.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:34:39+00:00",
+ "finished_at": "2026-10-28T16:35:32+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

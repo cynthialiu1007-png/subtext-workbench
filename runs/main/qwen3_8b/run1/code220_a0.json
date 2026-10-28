@@ -1,0 +1,184 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "220",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet server, male, 3rd year\n\nInterviewer: How much of the banquet service charge do you frontline staff get?\n\nInterviewee: The service charge is distributed centrally according to hotel regulations. The proportions are determined by management. We on the front line are not involved. There’s a line on the payslip called service bonus. The figure is different every month. How exactly it’s calculated, we don’t really know, and we don’t really need to know. It gets paid every month anyway. Last year a colleague asked once in the group chat what the proportions of the service charge were and whether they could be made public. Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them. After that nobody asked about it in the group chat again. He’s still there now. He’s doing fine. Sometimes we run into each other in the staff corridor and say hello. He talks less than he used to, and he doesn’t say much in the group chat any more. Anyway, the hotel has its regulations. It’s not something for us to think about. We just need to do our own service well. Actually, the benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine. It’s much better than the hotel I was at before. There’s also a year-end bonus. Last year it was a month and a half’s pay. Next month is the peak wedding season. Every weekend we’ll have three events, setting up from nine in the morning and clearing the tables until ten at night. Recently we’ve been practising new napkin folds. There’s one called the peacock fan that takes more than twenty folds, and I can already do it pretty quickly. My team leader says I fold better than anyone else in this intake, and I might move up a grade before New Year. If you’re interested, you could come and watch us set up at the weekend. It looks really impressive. Lots of the new people take photos and post them on WeChat Moments.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Lack of Transparency in Service Charge Distribution\",\n      \"quote\": \"The proportions are determined by management. We on the front line are not involved. How exactly it’s calculated, we don’t really know, and we don’t really need to know.\"\n    },\n    {\n      \"label\": \"Power Dynamics and Control\",\n      \"quote\": \"Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them.\"\n    },\n    {\n      \"label\": \"Job Satisfaction and Benefits\",\n      \"quote\": \"The benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine.\"\n    },\n    {\n      \"label\": \"Work Intensity During Peak Season\",\n      \"quote\": \"Next month is the peak wedding season. Every weekend we’ll have three events, setting up from nine in the morning and clearing the tables until ten at night.\"\n    },\n    {\n      \"label\": \"Professional Growth and Skill Development\",\n      \"quote\": \"Recently we’ve been practising new napkin folds. There’s one called the peacock fan that takes more than twenty folds, and I can already do it pretty quickly.\"\n    },\n    {\n      \"label\": \"Pride in Work and Team Collaboration\",\n      \"quote\": \"If you’re interested, you could come and watch us set up at the weekend. It looks really impressive.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights systemic opacity in service charge distribution and potential repercussions for questioning it, but also emphasizes job benefits, high work intensity, opportunities for skill development, and pride in team collaboration.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a banquet server, male, 3rd year. The task is to perform first-order coding, which involves identifying themes or codes from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee answers the interviewer's question about the service charge distribution. He explains that it's handled centrally by management, not involving frontline staff. There's a mention of a service bonus on the payslip, but the calculation is unclear. Then there's a story about a colleague who asked about the proportions and was moved to dishwashing, implying some form of punishment or reprimand. The interviewee notes that the hotel's regulations are non-negotiable, and they just need to focus on their work.\n\nHe also talks about the benefits: meals, accommodation, dorm rooms, year-end bonus, and the workload during peak season. There's mention of training in napkin folds, the peacock fan, and the team leader's praise. The interviewee ends by inviting the interviewer to watch the setup, showing pride in their work.\n\nNow, I need to identify the first-order codes. Let's start with the service charge distribution. The interviewee mentions it's managed by the hotel, not frontline staff. That's a code about lack of transparency. The colleague's story about being moved to dishwashing suggests a code related to power dynamics or control. The benefits part can be a code about job satisfaction or perks. The workload during peak season could be a code about work intensity. The training and skill development part might be a code about professional growth. The invitation to watch the setup shows pride or showcasing work.\n\nWait, the user wants 3-6 codes. Let me make sure each code is a label from the interviewee's language. The first code could be \"Lack of Transparency in Service Charge\" with the quote about not knowing how it's calculated. The second code might be \"Power Dynamics and Control\" from the colleague's story. Third, \"Job Satisfaction and Benefits\" from the benefits mentioned. Fourth, \"Work Intensity During Peak Season\" from the peak wedding season. Fifth, \"Professional Growth and Skill Development\" from the napkin folds. Sixth, \"Pride in Work and Team Collaboration\" from the invitation to watch. But maybe some codes can be merged. Let me check the quotes again.\n\nThe quote about the service bonus being unclear is a good code. The colleague's story about being moved to dishwashing shows that questioning the system can lead to consequences, which is about power dynamics. The benefits part is about job satisfaction. The peak season workload is work intensity. Training and skill development is another code. The invitation to watch shows pride. That's six codes. But the user might prefer fewer. Let me see the example response. The example had codes like \"Lack of Transparency in Service Charge Distribution\", \"Power Dynamics and Control\", \"Job Satisfaction and Benefits\", \"Work Intensity During Peak Season\", \"Professional Growth and Skill Development\", and \"Pride in Work and Team Collaboration\". That's six. So I can follow that structure.\n\nNow, the interpretation: The interviewee is communicating that while there's a lack of transparency in service charge distribution and potential for retaliation against those who question it, the job offers good benefits and opportunities for growth, despite high work intensity. The tone is mixed, as there are both negative aspects (transparency, control) and positive (benefits, growth). Confidence is 85, as the codes are well-supported by the quotes.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 747,
+   "eval_count": 1107,
+   "total_duration": 48410070667,
+   "load_duration": 435583,
+   "prompt_eval_duration": 933013000,
+   "eval_duration": 47419166000
+  },
+  "wall_seconds": 48.41
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:45:49.177478Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Lack of Transparency in Service Charge Distribution\",\n      \"quote\": \"The proportions are determined by management. We on the front line are not involved. How exactly it’s calculated, we don’t really know, and we don’t really need to know.\"\n    },\n    {\n      \"label\": \"Power Dynamics and Control\",\n      \"quote\": \"Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them.\"\n    },\n    {\n      \"label\": \"Job Satisfaction and Benefits\",\n      \"quote\": \"The benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine.\"\n    },\n    {\n      \"label\": \"Work Intensity During Peak Season\",\n      \"quote\": \"Next month is the peak wedding season. Every weekend we’ll have three events, setting up from nine in the morning and clearing the tables until ten at night.\"\n    },\n    {\n      \"label\": \"Professional Growth and Skill Development\",\n      \"quote\": \"Recently we’ve been practising new napkin folds. There’s one called the peacock fan that takes more than twenty folds, and I can already do it pretty quickly.\"\n    },\n    {\n      \"label\": \"Pride in Work and Team Collaboration\",\n      \"quote\": \"If you’re interested, you could come and watch us set up at the weekend. It looks really impressive.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee highlights systemic opacity in service charge distribution and potential repercussions for questioning it, but also emphasizes job benefits, high work intensity, opportunities for skill development, and pride in team collaboration.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a banquet server, male, 3rd year. The task is to perform first-order coding, which involves identifying themes or codes from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee answers the interviewer's question about the service charge distribution. He explains that it's handled centrally by management, not involving frontline staff. There's a mention of a service bonus on the payslip, but the calculation is unclear. Then there's a story about a colleague who asked about the proportions and was moved to dishwashing, implying some form of punishment or reprimand. The interviewee notes that the hotel's regulations are non-negotiable, and they just need to focus on their work.\n\nHe also talks about the benefits: meals, accommodation, dorm rooms, year-end bonus, and the workload during peak season. There's mention of training in napkin folds, the peacock fan, and the team leader's praise. The interviewee ends by inviting the interviewer to watch the setup, showing pride in their work.\n\nNow, I need to identify the first-order codes. Let's start with the service charge distribution. The interviewee mentions it's managed by the hotel, not frontline staff. That's a code about lack of transparency. The colleague's story about being moved to dishwashing suggests a code related to power dynamics or control. The benefits part can be a code about job satisfaction or perks. The workload during peak season could be a code about work intensity. The training and skill development part might be a code about professional growth. The invitation to watch the setup shows pride or showcasing work.\n\nWait, the user wants 3-6 codes. Let me make sure each code is a label from the interviewee's language. The first code could be \"Lack of Transparency in Service Charge\" with the quote about not knowing how it's calculated. The second code might be \"Power Dynamics and Control\" from the colleague's story. Third, \"Job Satisfaction and Benefits\" from the benefits mentioned. Fourth, \"Work Intensity During Peak Season\" from the peak wedding season. Fifth, \"Professional Growth and Skill Development\" from the napkin folds. Sixth, \"Pride in Work and Team Collaboration\" from the invitation to watch. But maybe some codes can be merged. Let me check the quotes again.\n\nThe quote about the service bonus being unclear is a good code. The colleague's story about being moved to dishwashing shows that questioning the system can lead to consequences, which is about power dynamics. The benefits part is about job satisfaction. The peak season workload is work intensity. Training and skill development is another code. The invitation to watch shows pride. That's six codes. But the user might prefer fewer. Let me see the example response. The example had codes like \"Lack of Transparency in Service Charge Distribution\", \"Power Dynamics and Control\", \"Job Satisfaction and Benefits\", \"Work Intensity During Peak Season\", \"Professional Growth and Skill Development\", and \"Pride in Work and Team Collaboration\". That's six. So I can follow that structure.\n\nNow, the interpretation: The interviewee is communicating that while there's a lack of transparency in service charge distribution and potential for retaliation against those who question it, the job offers good benefits and opportunities for growth, despite high work intensity. The tone is mixed, as there are both negative aspects (transparency, control) and positive (benefits, growth). Confidence is 85, as the codes are well-supported by the quotes.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 48410070667,
+  "load_duration": 435583,
+  "prompt_eval_count": 747,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 933013000,
+  "eval_count": 1107,
+  "eval_duration": 47419166000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].label: 7 words"
+  ],
+  "quotes": [
+   {
+    "quote": "The proportions are determined by management. We on the front line are not involved. How exactly it’s calculated, we don’t really know, and we don’t really need to know.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Next month is the peak wedding season. Every weekend we’ll have three events, setting up from nine in the morning and clearing the tables until ten at night.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Recently we’ve been practising new napkin folds. There’s one called the peacock fan that takes more than twenty folds, and I can already do it pretty quickly.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "If you’re interested, you could come and watch us set up at the weekend. It looks really impressive.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:45:00+00:00",
+ "finished_at": "2026-10-28T15:45:49+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

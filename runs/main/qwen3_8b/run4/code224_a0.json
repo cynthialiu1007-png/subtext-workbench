@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "224",
+ "list": "B",
+ "seed": 4,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Concierge team leader, male, 12th year\n\nInterviewer: You’ve been here twelve years and seen several general managers come and go. What do you think of the current one?\n\nInterviewee: The current one? He’s all right, I suppose. Nothing out of the ordinary. He doesn’t have much contact with us on the front line. If we run into him in the lobby, he nods. The year before last my son had an operation, and things were pretty hard at home around that time. I took leave through the normal procedure. HR approved half a month, the union gave me a 2,000-yuan support payment as the rules provide, and my colleagues in the department chipped in a bit too. There are set rules for all of that. It has nothing to do with which general manager is in charge. My son’s doing well now. He’s at junior high, and he’s taller than me. He had his mid-term exams last month and got 98 in maths. I took a photo of his report and sent it to a whole lot of relatives. At this year’s annual party, the general manager came over to our table to make a toast. He said a few words about our hard work and everyone raised their glasses. I was drinking a soft drink, he didn’t pay any attention, and he turned and went on to the next table. There used to be a money tree outside his office door. Later it withered and Admin replaced it with a new one. I only heard that from other people. We don’t usually go up to that floor. My colleagues say he’s capable when it comes to running the business. Occupancy is a bit higher than under the last one. He’s just a bit distant from us, and all he talks about in meetings is numbers. In all my years here, I’ve probably said no more than ten sentences to him altogether. To be honest, it doesn’t make much difference to us who the general manager is. What matters to us is mainly the department manager. Anyway, he’s a competent leader. Just write that. If you want to know about the concierge team’s work, you can ask about other things, like how we book cars and restaurants for guests. I can explain all that clearly.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 4
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Distant Leadership\",\n      \"quote\": \"He doesn’t have much contact with us on the front line. If we run into him in the lobby, he nods.\"\n    },\n    {\n      \"label\": \"Competent but Detached\",\n      \"quote\": \"He’s just a bit distant from us, and all he talks about in meetings is numbers.\"\n    },\n    {\n      \"label\": \"Colleague Solidarity\",\n      \"quote\": \"My colleagues in the department chipped in a bit too.\"\n    },\n    {\n      \"label\": \"Formal Interactions\",\n      \"quote\": \"He said a few words about our hard work and everyone raised their glasses.\"\n    },\n    {\n      \"label\": \"Focus on Operations\",\n      \"quote\": \"Occupancy is a bit higher than under the last one.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee portrays the current general manager as competent but emotionally distant, prioritizing operational metrics over personal engagement with staff. Workplace procedures and colleague support are more impactful than leadership changes.\",\n  \"tone\": \"neutral\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a concierge team leader who's been in the job for 12 years. The interviewer asked about the current general manager, and the interviewee's response is quite detailed.\n\nFirst, I need to do first-order coding. That means identifying key themes or concepts from the interviewee's answers. Let me read through the passage again to pick out the main points.\n\nThe interviewee mentions the current GM is \"all right, I suppose\" and that there's no special contact. He talks about taking leave for his son's operation, getting HR approval, union support, and colleagues helping. Then he mentions the annual party where the GM toasted them, but didn't pay attention to him. There's a mention of the money tree being replaced, and the GM being competent in running the business but focused on numbers. The interviewee also says that the GM's presence doesn't affect them much, and they care more about the department manager.\n\nSo, possible codes could be: \"Routine HR Support\" because he mentions the standard procedures for leave and support. Then \"Distant Leadership\" since the GM is described as not engaging much. \"Competent but Detached\" as the GM is seen as capable but not approachable. \"Colleague Solidarity\" because the colleagues chipped in and supported him. \"Formal Interactions\" from the toast at the party where the GM didn't pay attention. Lastly, \"Focus on Operations\" since the GM talks about numbers and occupancy rates.\n\nWait, the user wants 3-6 codes. Let me check if these make sense. The interviewee also mentions that the GM's presence doesn't make much difference, which ties into the \"Distant Leadership\" and \"Competent but Detached.\" Also, the part about the money tree and the replacement might relate to the GM's management style, but maybe that's too specific. Alternatively, maybe \"Administrative Changes\" for the money tree replacement. But the main point is the GM's approach.\n\nAnother code could be \"Workplace Support Systems\" for the HR and union support. Or \"Procedural Fairness\" since the processes are followed. The interviewee also talks about the son's exam results and sending the photo, which might relate to personal life, but maybe not a code here. The main focus is on the GM's impact and the workplace dynamics.\n\nSo, codes could be: 1. Distant Leadership, 2. Competent but Detached, 3. Colleague Solidarity, 4. Formal Interactions, 5. Procedural Fairness, 6. Focus on Operations. But maybe that's too many. Let me pick the most relevant ones. The user example had 3-6, so maybe 5 is okay. Alternatively, combine some. Let me check the quotes again for the codes.\n\nThe key quotes are: \"He doesn’t have much contact with us on the front line.\" That's Distant Leadership. \"He’s just a bit distant from us, and all he talks about in meetings is numbers.\" Competent but Detached. \"HR approved half a month, the union gave me a 2,000-yuan support payment...\" Colleague Solidarity. \"He said a few words about our hard work and everyone raised their glasses.\" Formal Interactions. \"Occupancy is a bit higher than under the last one. He’s just a bit distant...\" Focus on Operations. \"To be honest, it doesn’t make much difference to us who the general manager is.\" Procedural Fairness or maybe not. Maybe \"Workplace Support Systems\" for the HR and union part. \n\nWait, the user wants codes that are 2-6 words. Let me make sure each code is concise. \"Distant Leadership\" is good. \"Competent but Detached\" works. \"Colleague Solidarity\" for the colleagues helping. \"Formal Interactions\" for the toast. \"Focus on Operations\" for the numbers and occupancy. That's five codes. Maybe that's acceptable. Now, the interpretation: the interviewee is communicating that the current GM is competent but detached, with minimal interaction, and that workplace procedures and colleague support are more important than the GM's presence. The tone is neutral, as the interviewee doesn't express strong positive or negative feelings. Confidence is high, maybe 90. Let me check the quotes again to ensure the codes are supported.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 786,
+   "eval_count": 1167,
+   "total_duration": 50906174041,
+   "load_duration": 397875,
+   "prompt_eval_duration": 907833000,
+   "eval_duration": 49864727000
+  },
+  "wall_seconds": 50.91
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:33:13.677406Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Distant Leadership\",\n      \"quote\": \"He doesn’t have much contact with us on the front line. If we run into him in the lobby, he nods.\"\n    },\n    {\n      \"label\": \"Competent but Detached\",\n      \"quote\": \"He’s just a bit distant from us, and all he talks about in meetings is numbers.\"\n    },\n    {\n      \"label\": \"Colleague Solidarity\",\n      \"quote\": \"My colleagues in the department chipped in a bit too.\"\n    },\n    {\n      \"label\": \"Formal Interactions\",\n      \"quote\": \"He said a few words about our hard work and everyone raised their glasses.\"\n    },\n    {\n      \"label\": \"Focus on Operations\",\n      \"quote\": \"Occupancy is a bit higher than under the last one.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee portrays the current general manager as competent but emotionally distant, prioritizing operational metrics over personal engagement with staff. Workplace procedures and colleague support are more impactful than leadership changes.\",\n  \"tone\": \"neutral\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a concierge team leader who's been in the job for 12 years. The interviewer asked about the current general manager, and the interviewee's response is quite detailed.\n\nFirst, I need to do first-order coding. That means identifying key themes or concepts from the interviewee's answers. Let me read through the passage again to pick out the main points.\n\nThe interviewee mentions the current GM is \"all right, I suppose\" and that there's no special contact. He talks about taking leave for his son's operation, getting HR approval, union support, and colleagues helping. Then he mentions the annual party where the GM toasted them, but didn't pay attention to him. There's a mention of the money tree being replaced, and the GM being competent in running the business but focused on numbers. The interviewee also says that the GM's presence doesn't affect them much, and they care more about the department manager.\n\nSo, possible codes could be: \"Routine HR Support\" because he mentions the standard procedures for leave and support. Then \"Distant Leadership\" since the GM is described as not engaging much. \"Competent but Detached\" as the GM is seen as capable but not approachable. \"Colleague Solidarity\" because the colleagues chipped in and supported him. \"Formal Interactions\" from the toast at the party where the GM didn't pay attention. Lastly, \"Focus on Operations\" since the GM talks about numbers and occupancy rates.\n\nWait, the user wants 3-6 codes. Let me check if these make sense. The interviewee also mentions that the GM's presence doesn't make much difference, which ties into the \"Distant Leadership\" and \"Competent but Detached.\" Also, the part about the money tree and the replacement might relate to the GM's management style, but maybe that's too specific. Alternatively, maybe \"Administrative Changes\" for the money tree replacement. But the main point is the GM's approach.\n\nAnother code could be \"Workplace Support Systems\" for the HR and union support. Or \"Procedural Fairness\" since the processes are followed. The interviewee also talks about the son's exam results and sending the photo, which might relate to personal life, but maybe not a code here. The main focus is on the GM's impact and the workplace dynamics.\n\nSo, codes could be: 1. Distant Leadership, 2. Competent but Detached, 3. Colleague Solidarity, 4. Formal Interactions, 5. Procedural Fairness, 6. Focus on Operations. But maybe that's too many. Let me pick the most relevant ones. The user example had 3-6, so maybe 5 is okay. Alternatively, combine some. Let me check the quotes again for the codes.\n\nThe key quotes are: \"He doesn’t have much contact with us on the front line.\" That's Distant Leadership. \"He’s just a bit distant from us, and all he talks about in meetings is numbers.\" Competent but Detached. \"HR approved half a month, the union gave me a 2,000-yuan support payment...\" Colleague Solidarity. \"He said a few words about our hard work and everyone raised their glasses.\" Formal Interactions. \"Occupancy is a bit higher than under the last one. He’s just a bit distant...\" Focus on Operations. \"To be honest, it doesn’t make much difference to us who the general manager is.\" Procedural Fairness or maybe not. Maybe \"Workplace Support Systems\" for the HR and union part. \n\nWait, the user wants codes that are 2-6 words. Let me make sure each code is concise. \"Distant Leadership\" is good. \"Competent but Detached\" works. \"Colleague Solidarity\" for the colleagues helping. \"Formal Interactions\" for the toast. \"Focus on Operations\" for the numbers and occupancy. That's five codes. Maybe that's acceptable. Now, the interpretation: the interviewee is communicating that the current GM is competent but detached, with minimal interaction, and that workplace procedures and colleague support are more important than the GM's presence. The tone is neutral, as the interviewee doesn't express strong positive or negative feelings. Confidence is high, maybe 90. Let me check the quotes again to ensure the codes are supported.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 50906174041,
+  "load_duration": 397875,
+  "prompt_eval_count": 786,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 907833000,
+  "eval_count": 1167,
+  "eval_duration": 49864727000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "He doesn’t have much contact with us on the front line. If we run into him in the lobby, he nods.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He’s just a bit distant from us, and all he talks about in meetings is numbers.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My colleagues in the department chipped in a bit too.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He said a few words about our hard work and everyone raised their glasses.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Occupancy is a bit higher than under the last one.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:32:22+00:00",
+ "finished_at": "2026-10-28T17:33:13+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 4,
+ "attempt": 0
+}

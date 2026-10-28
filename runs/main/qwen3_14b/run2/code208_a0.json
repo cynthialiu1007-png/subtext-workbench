@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "208",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-office reservations agent, female, 2nd year\n\nInterviewer: What’s your manager’s style like in meetings?\n\nInterviewee: Our manager is quite funny. His meetings are hardly ever awkward or quiet. At last month’s department meeting, he put a group booking form I’d done up on the big screen. On that form I’d typed the guest’s surname wrong: I’d put 章 instead of 张, which are both pronounced Zhang. He said, look, everyone, our department has produced a Director Zhang, from now on when you see her you’ll have to call her boss. Everyone laughed, and I laughed too. I even stood up, gave everyone a bow, and said afternoon tea was on me. After the meeting I went to the toilets and stayed in there for over twenty minutes, and only came out after I’d redone my make-up. A colleague knocked on the door and asked if I was feeling unwell. I said I was fine, I’d just eaten something that disagreed with me. I still paid for afternoon tea that afternoon: twenty milk teas, over 400 yuan. Since then I check every form three times, going line by line with a ruler held under the text, and when I’ve finished I get the colleague next to me to check it again for me. I basically leave an hour later than everyone else, and I’ve started eating lunch at my desk too, checking forms while I eat. At last week’s meeting he put up another colleague’s form and made a similar joke. I laughed louder than anyone, and after I’d finished laughing I kept gripping my pen, so tightly my knuckles went white. Once I got back to my desk, I asked that colleague for her form and checked it again for her. That’s just what our manager is like. He jokes with everyone, and everyone says he doesn’t put on airs. I think it’s nice to have a bit of laughter in meetings. It keeps the mood relaxed and nobody feels tense.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Manager's Humorous Approach\",\n      \"quote\": \"Our manager is quite funny. His meetings are hardly ever awkward or quiet.\"\n    },\n    {\n      \"label\": \"Embarrassment and Laughter\",\n      \"quote\": \"He said, look, everyone, our department has produced a Director Zhang, from now on when you see her you’ll have to call her boss. Everyone laughed, and I laughed too.\"\n    },\n    {\n      \"label\": \"Increased Attention to Detail\",\n      \"quote\": \"I check every form three times, going line by line with a ruler held under the text.\"\n    },\n    {\n      \"label\": \"Colleague Support\",\n      \"quote\": \"A colleague knocked on the door and asked if I was feeling unwell.\"\n    },\n    {\n      \"label\": \"Workplace Atmosphere\",\n      \"quote\": \"I think it’s nice to have a bit of laughter in meetings. It keeps the mood relaxed and nobody feels tense.\"\n    },\n    {\n      \"label\": \"Self-Imposed Workload\",\n      \"quote\": \"I basically leave an hour later than everyone else, and I’ve started eating lunch at my desk too.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee describes her manager's use of humor in meetings as both a source of embarrassment and a means of maintaining a relaxed workplace environment, which has led her to adopt more meticulous work habits to avoid mistakes.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's talking about her manager's style in meetings. The manager is described as funny, and the examples given are about him pointing out mistakes in a humorous way, like the surname mix-up with 章 and 张. The interviewee laughs, even though she's embarrassed, and later takes extra steps to double-check her work. \n\nFirst, I need to code this with first-order codes. The main themes here seem to be the manager's humor, the impact on the employee (both positive and negative), the work habits developed as a result, and the overall effect on the workplace atmosphere. \n\nFor the codes, possible labels could be \"Manager's Humorous Approach\", \"Embarrassment and Laughter\", \"Increased Attention to Detail\", \"Colleague Support\", \"Workplace Atmosphere\", and \"Self-Imposed Workload\". Each code needs a quote from the passage. Let me check the quotes again. \n\n\"Manager is quite funny. His meetings are hardly ever awkward or quiet.\" That's a direct quote. Then, when she talks about the mistake and the joke, \"He said, look, everyone... you’ll have to call her boss.\" The part where she laughs and then stays in the toilet for twenty minutes, and the colleague asking if she's unwell. The part about checking forms three times and getting a colleague to check again. Also, the part where she laughs louder and grips the pen tightly. And the last sentence about the manager's approach keeping the mood relaxed.\n\nInterpretation: The interviewee describes her manager's use of humor in meetings, which leads to both embarrassment and a more relaxed environment, but also results in her taking extra precautions to avoid mistakes. \n\nTone: It's a mix of positive (laughter, relaxed mood) and negative (embarrassment, extra work). So mixed.\n\nConfidence: I'm pretty confident here, maybe 90. The quotes clearly support the codes and the interpretation.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 725,
+   "eval_count": 738,
+   "total_duration": 57074302583,
+   "load_duration": 6346042,
+   "prompt_eval_duration": 1084143000,
+   "eval_duration": 54929289000
+  },
+  "wall_seconds": 57.1
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:21:23.526944Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Manager's Humorous Approach\",\n      \"quote\": \"Our manager is quite funny. His meetings are hardly ever awkward or quiet.\"\n    },\n    {\n      \"label\": \"Embarrassment and Laughter\",\n      \"quote\": \"He said, look, everyone, our department has produced a Director Zhang, from now on when you see her you’ll have to call her boss. Everyone laughed, and I laughed too.\"\n    },\n    {\n      \"label\": \"Increased Attention to Detail\",\n      \"quote\": \"I check every form three times, going line by line with a ruler held under the text.\"\n    },\n    {\n      \"label\": \"Colleague Support\",\n      \"quote\": \"A colleague knocked on the door and asked if I was feeling unwell.\"\n    },\n    {\n      \"label\": \"Workplace Atmosphere\",\n      \"quote\": \"I think it’s nice to have a bit of laughter in meetings. It keeps the mood relaxed and nobody feels tense.\"\n    },\n    {\n      \"label\": \"Self-Imposed Workload\",\n      \"quote\": \"I basically leave an hour later than everyone else, and I’ve started eating lunch at my desk too.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee describes her manager's use of humor in meetings as both a source of embarrassment and a means of maintaining a relaxed workplace environment, which has led her to adopt more meticulous work habits to avoid mistakes.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's talking about her manager's style in meetings. The manager is described as funny, and the examples given are about him pointing out mistakes in a humorous way, like the surname mix-up with 章 and 张. The interviewee laughs, even though she's embarrassed, and later takes extra steps to double-check her work. \n\nFirst, I need to code this with first-order codes. The main themes here seem to be the manager's humor, the impact on the employee (both positive and negative), the work habits developed as a result, and the overall effect on the workplace atmosphere. \n\nFor the codes, possible labels could be \"Manager's Humorous Approach\", \"Embarrassment and Laughter\", \"Increased Attention to Detail\", \"Colleague Support\", \"Workplace Atmosphere\", and \"Self-Imposed Workload\". Each code needs a quote from the passage. Let me check the quotes again. \n\n\"Manager is quite funny. His meetings are hardly ever awkward or quiet.\" That's a direct quote. Then, when she talks about the mistake and the joke, \"He said, look, everyone... you’ll have to call her boss.\" The part where she laughs and then stays in the toilet for twenty minutes, and the colleague asking if she's unwell. The part about checking forms three times and getting a colleague to check again. Also, the part where she laughs louder and grips the pen tightly. And the last sentence about the manager's approach keeping the mood relaxed.\n\nInterpretation: The interviewee describes her manager's use of humor in meetings, which leads to both embarrassment and a more relaxed environment, but also results in her taking extra precautions to avoid mistakes. \n\nTone: It's a mix of positive (laughter, relaxed mood) and negative (embarrassment, extra work). So mixed.\n\nConfidence: I'm pretty confident here, maybe 90. The quotes clearly support the codes and the interpretation.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 57074302583,
+  "load_duration": 6346042,
+  "prompt_eval_count": 725,
+  "prompt_eval_cached_count": 459,
+  "prompt_eval_duration": 1084143000,
+  "eval_count": 738,
+  "eval_duration": 54929289000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Our manager is quite funny. His meetings are hardly ever awkward or quiet.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He said, look, everyone, our department has produced a Director Zhang, from now on when you see her you’ll have to call her boss. Everyone laughed, and I laughed too.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I check every form three times, going line by line with a ruler held under the text.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "A colleague knocked on the door and asked if I was feeling unwell.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I think it’s nice to have a bit of laughter in meetings. It keeps the mood relaxed and nobody feels tense.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I basically leave an hour later than everyone else, and I’ve started eating lunch at my desk too.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:20:26+00:00",
+ "finished_at": "2026-10-28T19:21:23+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

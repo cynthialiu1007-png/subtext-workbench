@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "113",
+ "list": "A",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Housekeeping supervisor, female, 6th year\n\nInterviewer: You were promoted to supervisor this year. How does it feel?\n\nInterviewee: It’s just a change of title, really. The work’s still the same. This time the decision was made following a comprehensive departmental assessment. There were several candidates, none of us knew the outcome, and the list was posted on Friday afternoon. Ah Fang applied too. She’s actually better suited than me. She makes beds faster than I do, she’s had more letters of praise from guests, and last year she won second prize in the housekeeping skills competition. The two of us joined in the same intake. We used to share a dorm, do night shifts together, and go for malatang together after work. One Spring Festival neither of us went home, and we made dumplings together in the dorm. After the new staff badge was issued, I kept it in my bag for a week before I started wearing it. That evening when I got home, I took it out again, put it on the table and looked at it for a while. I took a photo and sent it to my dad. He replied with a thumbs-up, then phoned and asked me all sorts of questions: how many people I’m in charge of, how much my pay went up, whether I should treat the relatives to a meal. I said no need, what’s there to celebrate. As for Ah Fang, I talked it over with the manager and we’re trying to give her weekends off as much as possible. She’s studying for an infant-care certificate and has classes at the weekend. We still have meals together, but she doesn’t really ask me about work any more, and I don’t really bring it up either. Anyway, everyone has accepted the outcome, and the department is running quite normally. Oh, and Ah Fang’s exam for that certificate is next month. I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Change of Title\",\n      \"quote\": \"It’s just a change of title, really. The work’s still the same.\"\n    },\n    {\n      \"label\": \"Competition Among Peers\",\n      \"quote\": \"She’s actually better suited than me. She makes beds faster than I do, she’s had more letters of praise from guests...\"\n    },\n    {\n      \"label\": \"Camaraderie and Shared Experiences\",\n      \"quote\": \"We used to share a dorm, do night shifts together, and go for malatang together after work.\"\n    },\n    {\n      \"label\": \"Personal Pride and Family Communication\",\n      \"quote\": \"I took a photo and sent it to my dad. He replied with a thumbs-up, then phoned and asked me all sorts of questions...\"\n    },\n    {\n      \"label\": \"Professional Boundaries\",\n      \"quote\": \"We still have meals together, but she doesn’t really ask me about work any more, and I don’t really bring it up either.\"\n    },\n    {\n      \"label\": \"Support and Mentorship\",\n      \"quote\": \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee views the promotion as a title change with minimal role shift, acknowledges peer competition, maintains camaraderie, balances personal pride with family expectations, and supports a colleague's professional growth.\",\n  \"tone\": \"neutral\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a housekeeping supervisor, a female with 6 years of experience. The interviewer asked about her promotion, and her response is quite detailed.\n\nFirst, I need to identify first-order codes. These should be short labels based on the interviewee's language. Let me read through her answer again. She mentions the promotion being a \"change of title,\" which suggests that the role isn't much different. Then she talks about the selection process, mentioning several candidates and Ah Fang being better suited. That points to a code about competition or peer comparison. \n\nShe also mentions shared experiences like working together, doing night shifts, and making dumplings. That's about camaraderie or teamwork. The part where she took a photo of her badge and sent it to her dad, and the manager's questions about her new role, might relate to personal pride or family expectations. \n\nAh Fang's situation, where they still have meals together but don't discuss work anymore, could indicate a code about professional boundaries or the impact of promotion on relationships. Also, the mention of Ah Fang's exam and the borrowed books shows support or mentorship. \n\nWait, the user wants between 3-6 codes. Let me check each part again. The key points are: the promotion as a title change, the selection process with competition, the camaraderie with Ah Fang, the personal pride in the badge, the manager's expectations, and the support for Ah Fang's studies. \n\nSo possible codes: \"Change of Title,\" \"Competition Among Peers,\" \"Camaraderie and Shared Experiences,\" \"Personal Pride and Family Communication,\" \"Professional Boundaries,\" and \"Support and Mentorship.\" That's six codes. Each needs a supporting quote. Let me verify the quotes are exact and within 30 words. \n\nFor \"Change of Title,\" the quote is \"It’s just a change of title, really. The work’s still the same.\" For \"Competition Among Peers,\" \"She’s actually better suited than me. She makes beds faster...\" For \"Camaraderie and Shared Experiences,\" \"We used to share a dorm, do night shifts together, and go for malatang together after work.\" \"Personal Pride and Family Communication\" could be \"I took a photo and sent it to my dad. He replied with a thumbs-up...\" \"Professional Boundaries\" might be \"We still have meals together, but she doesn’t really ask me about work any more...\" And \"Support and Mentorship\" would be \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"\n\nInterpretation: The interviewee views the promotion as a title change with minimal role shift, acknowledges peer competition, maintains camaraderie, balances personal pride with family expectations, and supports a colleague's professional growth. The tone seems neutral, as she's discussing the situation matter-of-factly without overt positivity or negativity. Confidence level is high, maybe 90, since the quotes directly support the codes.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 730,
+   "eval_count": 975,
+   "total_duration": 43454941666,
+   "load_duration": 427916,
+   "prompt_eval_duration": 871349000,
+   "eval_duration": 42480431000
+  },
+  "wall_seconds": 43.47
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:24:26.8459Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Change of Title\",\n      \"quote\": \"It’s just a change of title, really. The work’s still the same.\"\n    },\n    {\n      \"label\": \"Competition Among Peers\",\n      \"quote\": \"She’s actually better suited than me. She makes beds faster than I do, she’s had more letters of praise from guests...\"\n    },\n    {\n      \"label\": \"Camaraderie and Shared Experiences\",\n      \"quote\": \"We used to share a dorm, do night shifts together, and go for malatang together after work.\"\n    },\n    {\n      \"label\": \"Personal Pride and Family Communication\",\n      \"quote\": \"I took a photo and sent it to my dad. He replied with a thumbs-up, then phoned and asked me all sorts of questions...\"\n    },\n    {\n      \"label\": \"Professional Boundaries\",\n      \"quote\": \"We still have meals together, but she doesn’t really ask me about work any more, and I don’t really bring it up either.\"\n    },\n    {\n      \"label\": \"Support and Mentorship\",\n      \"quote\": \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee views the promotion as a title change with minimal role shift, acknowledges peer competition, maintains camaraderie, balances personal pride with family expectations, and supports a colleague's professional growth.\",\n  \"tone\": \"neutral\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a housekeeping supervisor, a female with 6 years of experience. The interviewer asked about her promotion, and her response is quite detailed.\n\nFirst, I need to identify first-order codes. These should be short labels based on the interviewee's language. Let me read through her answer again. She mentions the promotion being a \"change of title,\" which suggests that the role isn't much different. Then she talks about the selection process, mentioning several candidates and Ah Fang being better suited. That points to a code about competition or peer comparison. \n\nShe also mentions shared experiences like working together, doing night shifts, and making dumplings. That's about camaraderie or teamwork. The part where she took a photo of her badge and sent it to her dad, and the manager's questions about her new role, might relate to personal pride or family expectations. \n\nAh Fang's situation, where they still have meals together but don't discuss work anymore, could indicate a code about professional boundaries or the impact of promotion on relationships. Also, the mention of Ah Fang's exam and the borrowed books shows support or mentorship. \n\nWait, the user wants between 3-6 codes. Let me check each part again. The key points are: the promotion as a title change, the selection process with competition, the camaraderie with Ah Fang, the personal pride in the badge, the manager's expectations, and the support for Ah Fang's studies. \n\nSo possible codes: \"Change of Title,\" \"Competition Among Peers,\" \"Camaraderie and Shared Experiences,\" \"Personal Pride and Family Communication,\" \"Professional Boundaries,\" and \"Support and Mentorship.\" That's six codes. Each needs a supporting quote. Let me verify the quotes are exact and within 30 words. \n\nFor \"Change of Title,\" the quote is \"It’s just a change of title, really. The work’s still the same.\" For \"Competition Among Peers,\" \"She’s actually better suited than me. She makes beds faster...\" For \"Camaraderie and Shared Experiences,\" \"We used to share a dorm, do night shifts together, and go for malatang together after work.\" \"Personal Pride and Family Communication\" could be \"I took a photo and sent it to my dad. He replied with a thumbs-up...\" \"Professional Boundaries\" might be \"We still have meals together, but she doesn’t really ask me about work any more...\" And \"Support and Mentorship\" would be \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"\n\nInterpretation: The interviewee views the promotion as a title change with minimal role shift, acknowledges peer competition, maintains camaraderie, balances personal pride with family expectations, and supports a colleague's professional growth. The tone seems neutral, as she's discussing the situation matter-of-factly without overt positivity or negativity. Confidence level is high, maybe 90, since the quotes directly support the codes.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 43454941666,
+  "load_duration": 427916,
+  "prompt_eval_count": 730,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 871349000,
+  "eval_count": 975,
+  "eval_duration": 42480431000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "It’s just a change of title, really. The work’s still the same.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "She’s actually better suited than me. She makes beds faster than I do, she’s had more letters of praise from guests...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We used to share a dorm, do night shifts together, and go for malatang together after work.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I took a photo and sent it to my dad. He replied with a thumbs-up, then phoned and asked me all sorts of questions...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We still have meals together, but she doesn’t really ask me about work any more, and I don’t really bring it up either.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:23:43+00:00",
+ "finished_at": "2026-10-28T15:24:26+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

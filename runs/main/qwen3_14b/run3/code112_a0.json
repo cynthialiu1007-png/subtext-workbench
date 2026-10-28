@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "112",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet server, male, 3rd year\n\nInterviewer: How much of the banquet service charge do you frontline staff get?\n\nInterviewee: The service charge is distributed centrally according to hotel regulations. The formula is set out clearly in the staff handbook. It’s calculated using a length-of-service coefficient and a grade coefficient, and the breakdown is posted on the noticeboard once a month. There’s a line on the payslip called service bonus. I check it every month and take a photo of it on my phone to keep. To be honest, I’m not happy with the formula. Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8. But at the three weddings every weekend, it’s basically us young ones carrying the drinks, moving the tables and chairs and clearing up. The long-serving staff just stand to one side giving directions, and they get nearly twice as much as we do. Last year I asked once in the group chat whether the number of events worked could be included too. My supervisor said that would have to wait to be discussed at the staff representatives’ meeting, and told me to write a proposal. I wrote it and handed it in. This year’s meeting is next month, and I’m going to raise it again. Seven or eight colleagues have already signed it. My supervisor didn’t say anything against it, and even reminded me to get the numbers right and not make any mistakes. Actually, the benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine. It’s much better than the hotel I was at before. There’s also a year-end bonus. Last year it was a month and a half’s pay. It’s just the service charge part that I think is unfair. You can write that as it is, and you can put my name on it too. Next month is the peak wedding season. Every weekend we’ll have three events, and everyone’s bound to start talking about this again. I hope we get a result this year.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Service charge distribution dissatisfaction\", \"quote\": \"To be honest, I’m not happy with the formula.\"}, {\"label\": \"Proposal for fairer distribution\", \"quote\": \"I wrote it and handed it in.\"}, {\"label\": \"Support from colleagues\", \"quote\": \"Seven or eight colleagues have already signed it.\"}, {\"label\": \"Workload vs. compensation disparity\", \"quote\": \"It’s basically us young ones carrying the drinks... and they get nearly twice as much as we do.\"}, {\"label\": \"Positive aspects of benefits\", \"quote\": \"The benefits here are pretty good overall.\"}, {\"label\": \"Hope for resolution\", \"quote\": \"I hope we get a result this year.\"}], \"interpretation\": \"The interviewee expresses dissatisfaction with the service charge distribution formula, which he believes unfairly advantages long-serving staff over younger employees who do more physical work. He has proposed changes to this system, gained colleague support, and remains hopeful for a resolution during the upcoming staff meeting.\", \"tone\": \"mixed\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. He's a banquet server with three years of experience. The main topic here is the service charge distribution.\n\nFirst, he mentions that the service charge is distributed based on a formula in the handbook, which includes length-of-service and grade coefficients. He checks his payslip monthly and takes photos. This seems like he's being thorough but also points out his dissatisfaction with the formula. The key point here is that he's not happy with the current system, especially since longer-serving staff get more despite the younger employees doing more work.\n\nHe also talks about trying to change this by proposing an amendment last year, which was deferred to a staff meeting. This year, he's planning to bring it up again with the support of seven or eight colleagues. His supervisor didn't oppose it, which might indicate some support or at least no active opposition.\n\nThen he mentions the benefits like meals, accommodation, and a year-end bonus, which are positive aspects. However, his main concern is the unfairness in the service charge distribution. He's hopeful for a resolution during the peak season.\n\nFor coding, I need to identify 3-6 first-order codes. Let's see: \"Service charge distribution dissatisfaction\" because he clearly states he's not happy with the formula. \"Proposal for fairer distribution\" since he's planning to raise the issue again. \"Support from colleagues\" as seven or eight have signed the proposal. \"Workload vs. compensation disparity\" because he points out that younger staff do more work but get less. \"Positive aspects of benefits\" for the good points like accommodation and bonuses. \"Hope for resolution\" as he's optimistic about the upcoming meeting.\n\nThe interpretation should capture his main concerns about the distribution and his efforts to change it, along with the positive aspects he mentions. The tone is mixed because there's both dissatisfaction and some positive elements. Confidence in the interpretation is high because the interviewee clearly states his points and actions taken.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 750,
+   "eval_count": 635,
+   "total_duration": 48848886500,
+   "load_duration": 397542,
+   "prompt_eval_duration": 1761957000,
+   "eval_duration": 46971986000
+  },
+  "wall_seconds": 48.86
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:45:11.52838Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Service charge distribution dissatisfaction\", \"quote\": \"To be honest, I’m not happy with the formula.\"}, {\"label\": \"Proposal for fairer distribution\", \"quote\": \"I wrote it and handed it in.\"}, {\"label\": \"Support from colleagues\", \"quote\": \"Seven or eight colleagues have already signed it.\"}, {\"label\": \"Workload vs. compensation disparity\", \"quote\": \"It’s basically us young ones carrying the drinks... and they get nearly twice as much as we do.\"}, {\"label\": \"Positive aspects of benefits\", \"quote\": \"The benefits here are pretty good overall.\"}, {\"label\": \"Hope for resolution\", \"quote\": \"I hope we get a result this year.\"}], \"interpretation\": \"The interviewee expresses dissatisfaction with the service charge distribution formula, which he believes unfairly advantages long-serving staff over younger employees who do more physical work. He has proposed changes to this system, gained colleague support, and remains hopeful for a resolution during the upcoming staff meeting.\", \"tone\": \"mixed\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. He's a banquet server with three years of experience. The main topic here is the service charge distribution.\n\nFirst, he mentions that the service charge is distributed based on a formula in the handbook, which includes length-of-service and grade coefficients. He checks his payslip monthly and takes photos. This seems like he's being thorough but also points out his dissatisfaction with the formula. The key point here is that he's not happy with the current system, especially since longer-serving staff get more despite the younger employees doing more work.\n\nHe also talks about trying to change this by proposing an amendment last year, which was deferred to a staff meeting. This year, he's planning to bring it up again with the support of seven or eight colleagues. His supervisor didn't oppose it, which might indicate some support or at least no active opposition.\n\nThen he mentions the benefits like meals, accommodation, and a year-end bonus, which are positive aspects. However, his main concern is the unfairness in the service charge distribution. He's hopeful for a resolution during the peak season.\n\nFor coding, I need to identify 3-6 first-order codes. Let's see: \"Service charge distribution dissatisfaction\" because he clearly states he's not happy with the formula. \"Proposal for fairer distribution\" since he's planning to raise the issue again. \"Support from colleagues\" as seven or eight have signed the proposal. \"Workload vs. compensation disparity\" because he points out that younger staff do more work but get less. \"Positive aspects of benefits\" for the good points like accommodation and bonuses. \"Hope for resolution\" as he's optimistic about the upcoming meeting.\n\nThe interpretation should capture his main concerns about the distribution and his efforts to change it, along with the positive aspects he mentions. The tone is mixed because there's both dissatisfaction and some positive elements. Confidence in the interpretation is high because the interviewee clearly states his points and actions taken.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 48848886500,
+  "load_duration": 397542,
+  "prompt_eval_count": 750,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1761957000,
+  "eval_count": 635,
+  "eval_duration": 46971986000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "To be honest, I’m not happy with the formula.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I wrote it and handed it in.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Seven or eight colleagues have already signed it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "It’s basically us young ones carrying the drinks... and they get nearly twice as much as we do.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The benefits here are pretty good overall.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I hope we get a result this year.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:44:22+00:00",
+ "finished_at": "2026-10-28T19:45:11+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

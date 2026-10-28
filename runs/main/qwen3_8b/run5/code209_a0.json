@@ -1,0 +1,184 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "209",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Bartender, male, 4th year\n\n[Earlier in the interview]\n\nInterviewee: This September I was promoted to head bartender, which means I can set the drinks menu myself. I spent two months developing a set of signature cocktails made with local osmanthus and rice wine, six in all. After the manager tasted them, he had me try them out at weekends first, and last Saturday was the first time they were officially on the menu. Before that I’d always worked under my mentor. I’d never run the whole bar on my own. That afternoon my parents even phoned specially and told me to take photos and send them, and my brother said he’d bring his girlfriend over to support me. I hardly slept the night before. I went over the recipe and the order of service for each drink one more time, polished every glass myself one by one, and had the ice frozen two hours in advance. The manager patted me on the shoulder and said, don’t be nervous, just do it the way you practised.\n\n[Later in the interview]\n\nInterviewer: What was the shift like last Saturday night?\n\nInterviewee: It was pretty busy that night. The customers just kept coming, and after ten it was basically full. I was on the bar on my own, from six in the evening until nearly two. After the last table left, I cleaned up the bar, wiped every glass and put them back on the rack, then made myself a drink: the last one on that night’s menu. I sat behind the bar, switched the music to songs I like, drank it slowly, and only then locked up and went home. By the time I got home it was nearly three. That night’s takings were the highest this month, almost half as much again as a normal Saturday. The next morning the manager sent a red envelope in the group chat and said thanks for all the hard work, and he also said he’d give me an Outstanding Employee certificate next month. All in all, it was a pretty good night.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Taking Ownership of Innovation\",\n      \"quote\": \"I spent two months developing a set of signature cocktails made with local osmanthus and rice wine, six in all.\"\n    },\n    {\n      \"label\": \"Family Support and Emotional Investment\",\n      \"quote\": \"My parents even phoned specially and told me to take photos and send them, and my brother said he’d bring his girlfriend over to support me.\"\n    },\n    {\n      \"label\": \"Meticulous Preparation and Detail\",\n      \"quote\": \"Polished every glass myself one by one, and had the ice frozen two hours in advance.\"\n    },\n    {\n      \"label\": \"Successful Night and Recognition\",\n      \"quote\": \"That night’s takings were the highest this month, almost half as much again as a normal Saturday.\"\n    },\n    {\n      \"label\": \"Professional Recognition and Rewards\",\n      \"quote\": \"The manager sent a red envelope in the group chat and said thanks for all the hard work, and he also said he’d give me an Outstanding Employee certificate next month.\"\n    },\n    {\n      \"label\": \"Personal Satisfaction and Closure\",\n      \"quote\": \"I sat behind the bar, switched the music to songs I like, drank it slowly, and only then locked up and went home.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on his successful transition to leadership, highlighting the pride in his creative work, the support from family, and the validation through professional recognition and personal fulfillment.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this qualitative coding task. The user provided an interview passage from a bartender who was promoted to head bartender. The task is to perform first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee talks about his promotion, the preparation for the new menu, the support from family, and the outcome of the first night. The interviewer asks about the shift, and the interviewee describes the busy night, the success in sales, and the manager's recognition.\n\nNow, for first-order codes. Each code should be a label (2-6 words) and a supporting quote. The labels should be close to the interviewee's language. Let's look for recurring themes. \n\nThe first part mentions his promotion and taking ownership of the menu. The quote about developing signature cocktails and the manager's approval could be a code about \"Taking Ownership of Innovation\" or something similar. The family support is mentioned, so maybe \"Family Support and Emotional Investment.\" The preparation and attention to detail, like polishing glasses and freezing ice, might be \"Attention to Detail and Preparation.\" \n\nThen, in the later part, the busy night and high takings could be \"Successful Outcome and Recognition.\" Also, the manager's red envelope and certificate might relate to \"Professional Recognition and Rewards.\" The interviewee's personal satisfaction, like drinking the last cocktail and feeling accomplished, could be \"Personal Satisfaction and Closure.\"\n\nWait, the user wants 3-6 codes. Let me check again. The key elements are: promotion and taking charge, family support, meticulous preparation, successful night, recognition, and personal fulfillment. Maybe combining some. \n\nThe first code could be \"Promotion and Leadership Responsibility\" with the quote about being promoted and setting the menu. The second code \"Family Support and Emotional Investment\" using the part where family called and supported. Third, \"Attention to Detail and Preparation\" with the polishing glasses and freezing ice. Fourth, \"Successful Night and High Sales\" referencing the takings. Fifth, \"Professional Recognition and Rewards\" from the manager's red envelope. Lastly, \"Personal Satisfaction and Closure\" from drinking the last cocktail and feeling accomplished. \n\nBut the user said 3-6 codes. Maybe some of these can be merged. For example, the first code could be \"Taking Ownership of Innovation\" with the signature cocktails. Family support as a code. Preparation as another. Then, the successful outcome, recognition, and personal satisfaction. That's six codes. \n\nWait, the quotes need to be exact and under 30 words. Let me verify each quote. The first quote from the interviewee: \"This September I was promoted to head bartender... and had the ice frozen two hours in advance.\" That's a bit long. Maybe shorten to \"I spent two months developing... and had the ice frozen two hours in advance.\" \n\nAnother quote: \"It was pretty busy that night... and only then locked up and went home.\" \n\nThen, \"That night’s takings were the highest... and he also said he’d give me an Outstanding Employee certificate next month.\" \n\nAnd \"I sat behind the bar... and drank it slowly...\" \n\nSo, the codes would be: \n\n1. Taking Ownership of Innovation: \"I spent two months developing a set of signature cocktails... and had the ice frozen two hours in advance.\"\n\n2. Family Support and Emotional Investment: \"My parents even phoned specially... and my brother said he’d bring his girlfriend over to support me.\"\n\n3. Attention to Detail and Preparation: \"Polished every glass myself one by one... and had the ice frozen two hours in advance.\"\n\nWait, the third code might overlap with the first. Maybe \"Meticulous Preparation and Detail\" with the polishing glasses and ice. \n\nThen, \"Successful Night and Recognition\": \"That night’s takings were the... Outstanding Employee certificate next month.\"\n\nAnd \"Personal Satisfaction and Closure\": \"I sat behind the bar... and drank it slowly...\"\n\nThat's five codes. The interpretation would be that the interviewee is communicating his pride and success in taking on leadership, with family support and meticulous preparation leading to a successful outcome and recognition. The tone is positive, confidence level around 90. \n\nI need to make sure each code has a unique label and the quotes are accurate. Let me check again.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 730,
+   "eval_count": 1235,
+   "total_duration": 53707720917,
+   "load_duration": 418083,
+   "prompt_eval_duration": 866972000,
+   "eval_duration": 52684155000
+  },
+  "wall_seconds": 53.71
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:56:57.956195Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Taking Ownership of Innovation\",\n      \"quote\": \"I spent two months developing a set of signature cocktails made with local osmanthus and rice wine, six in all.\"\n    },\n    {\n      \"label\": \"Family Support and Emotional Investment\",\n      \"quote\": \"My parents even phoned specially and told me to take photos and send them, and my brother said he’d bring his girlfriend over to support me.\"\n    },\n    {\n      \"label\": \"Meticulous Preparation and Detail\",\n      \"quote\": \"Polished every glass myself one by one, and had the ice frozen two hours in advance.\"\n    },\n    {\n      \"label\": \"Successful Night and Recognition\",\n      \"quote\": \"That night’s takings were the highest this month, almost half as much again as a normal Saturday.\"\n    },\n    {\n      \"label\": \"Professional Recognition and Rewards\",\n      \"quote\": \"The manager sent a red envelope in the group chat and said thanks for all the hard work, and he also said he’d give me an Outstanding Employee certificate next month.\"\n    },\n    {\n      \"label\": \"Personal Satisfaction and Closure\",\n      \"quote\": \"I sat behind the bar, switched the music to songs I like, drank it slowly, and only then locked up and went home.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on his successful transition to leadership, highlighting the pride in his creative work, the support from family, and the validation through professional recognition and personal fulfillment.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this qualitative coding task. The user provided an interview passage from a bartender who was promoted to head bartender. The task is to perform first-order coding, which means identifying key themes or concepts from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee talks about his promotion, the preparation for the new menu, the support from family, and the outcome of the first night. The interviewer asks about the shift, and the interviewee describes the busy night, the success in sales, and the manager's recognition.\n\nNow, for first-order codes. Each code should be a label (2-6 words) and a supporting quote. The labels should be close to the interviewee's language. Let's look for recurring themes. \n\nThe first part mentions his promotion and taking ownership of the menu. The quote about developing signature cocktails and the manager's approval could be a code about \"Taking Ownership of Innovation\" or something similar. The family support is mentioned, so maybe \"Family Support and Emotional Investment.\" The preparation and attention to detail, like polishing glasses and freezing ice, might be \"Attention to Detail and Preparation.\" \n\nThen, in the later part, the busy night and high takings could be \"Successful Outcome and Recognition.\" Also, the manager's red envelope and certificate might relate to \"Professional Recognition and Rewards.\" The interviewee's personal satisfaction, like drinking the last cocktail and feeling accomplished, could be \"Personal Satisfaction and Closure.\"\n\nWait, the user wants 3-6 codes. Let me check again. The key elements are: promotion and taking charge, family support, meticulous preparation, successful night, recognition, and personal fulfillment. Maybe combining some. \n\nThe first code could be \"Promotion and Leadership Responsibility\" with the quote about being promoted and setting the menu. The second code \"Family Support and Emotional Investment\" using the part where family called and supported. Third, \"Attention to Detail and Preparation\" with the polishing glasses and freezing ice. Fourth, \"Successful Night and High Sales\" referencing the takings. Fifth, \"Professional Recognition and Rewards\" from the manager's red envelope. Lastly, \"Personal Satisfaction and Closure\" from drinking the last cocktail and feeling accomplished. \n\nBut the user said 3-6 codes. Maybe some of these can be merged. For example, the first code could be \"Taking Ownership of Innovation\" with the signature cocktails. Family support as a code. Preparation as another. Then, the successful outcome, recognition, and personal satisfaction. That's six codes. \n\nWait, the quotes need to be exact and under 30 words. Let me verify each quote. The first quote from the interviewee: \"This September I was promoted to head bartender... and had the ice frozen two hours in advance.\" That's a bit long. Maybe shorten to \"I spent two months developing... and had the ice frozen two hours in advance.\" \n\nAnother quote: \"It was pretty busy that night... and only then locked up and went home.\" \n\nThen, \"That night’s takings were the highest... and he also said he’d give me an Outstanding Employee certificate next month.\" \n\nAnd \"I sat behind the bar... and drank it slowly...\" \n\nSo, the codes would be: \n\n1. Taking Ownership of Innovation: \"I spent two months developing a set of signature cocktails... and had the ice frozen two hours in advance.\"\n\n2. Family Support and Emotional Investment: \"My parents even phoned specially... and my brother said he’d bring his girlfriend over to support me.\"\n\n3. Attention to Detail and Preparation: \"Polished every glass myself one by one... and had the ice frozen two hours in advance.\"\n\nWait, the third code might overlap with the first. Maybe \"Meticulous Preparation and Detail\" with the polishing glasses and ice. \n\nThen, \"Successful Night and Recognition\": \"That night’s takings were the... Outstanding Employee certificate next month.\"\n\nAnd \"Personal Satisfaction and Closure\": \"I sat behind the bar... and drank it slowly...\"\n\nThat's five codes. The interpretation would be that the interviewee is communicating his pride and success in taking on leadership, with family support and meticulous preparation leading to a successful outcome and recognition. The tone is positive, confidence level around 90. \n\nI need to make sure each code has a unique label and the quotes are accurate. Let me check again.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 53707720917,
+  "load_duration": 418083,
+  "prompt_eval_count": 730,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 866972000,
+  "eval_count": 1235,
+  "eval_duration": 52684155000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[4].quote: 31 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "I spent two months developing a set of signature cocktails made with local osmanthus and rice wine, six in all.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My parents even phoned specially and told me to take photos and send them, and my brother said he’d bring his girlfriend over to support me.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Polished every glass myself one by one, and had the ice frozen two hours in advance.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "That night’s takings were the highest this month, almost half as much again as a normal Saturday.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The manager sent a red envelope in the group chat and said thanks for all the hard work, and he also said he’d give me an Outstanding Employee certificate next month.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I sat behind the bar, switched the music to songs I like, drank it slowly, and only then locked up and went home.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:56:04+00:00",
+ "finished_at": "2026-10-28T17:56:57+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

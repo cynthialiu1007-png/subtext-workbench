@@ -1,0 +1,170 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "121",
+ "list": "A",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet hall team leader, female, 8th year\n\n[Earlier in the interview]\n\nInterviewee: Before the takeover, our banquet hall didn’t really have any manuals. Experienced staff trained the new ones, and everything came down to working it out for yourself. Every team leader had their own way of doing things, and new staff didn’t know whose instructions to follow. One day they’d get told off by this one, the next day by that one. One young woman left after three months. Once, at a wedding banquet, two team leaders served the courses in two different orders: one table got the fish first, another got the soup first. The bride’s father lost his temper on the spot and said we were unprofessional. When it came to deciding who was responsible, nobody could say whose way was the right one, and in the end I was docked half a month’s pay, because I was on duty that day. But of those two team leaders, one was my mentor and the other was from the same hometown as the manager, so I didn’t dare offend either of them. At that time I really did think about quitting. I couldn’t sleep properly before any banquet, afraid something else would go wrong that nobody could explain. Looking back now, those years were really exhausting.\n\n[Later in the interview]\n\nInterviewer: After the hotel was taken over, how did your work change?\n\nInterviewee: Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual, and we’re assessed on it every quarter. The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same. Now every event in the banquet hall follows the procedure. There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry. We long-serving staff, to be honest, adapted even faster than the young ones. Now it doesn’t matter who’s on duty. You just follow the manual.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Inconsistent Training Methods\",\n      \"quote\": \"Experienced staff trained the new ones, and everything came down to working it out for yourself.\"\n    },\n    {\n      \"label\": \"Accountability Issues\",\n      \"quote\": \"When it came to deciding who was responsible, nobody could say whose way was the right one, and in the end I was docked half a month’s pay.\"\n    },\n    {\n      \"label\": \"Workplace Stress and Exhaustion\",\n      \"quote\": \"I couldn’t sleep properly before any banquet, afraid something else would go wrong that nobody could explain.\"\n    },\n    {\n      \"label\": \"Standardized Procedures\",\n      \"quote\": \"Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee describes a shift from a chaotic, inconsistent work environment with unclear accountability to a structured, standardized system that reduces errors and improves performance.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a banquet team leader who has been in the job for 8 years. She talks about the changes before and after the hotel takeover.\n\nLooking at the earlier part of the interview, she mentions that before the takeover, there were no manuals. Training was informal, and there was inconsistency. Different team leaders had their own methods, leading to confusion and even a situation where a guest got angry because the service order was wrong. She felt responsible and considered quitting. This seems to highlight issues with lack of standardization and poor accountability.\n\nThen, after the takeover, everything became standardized with manuals. They have assessments, and the new brand emphasizes internationalization. Mistakes decreased, and they got recognition. The long-serving staff adapted quickly, which might indicate that the new system is more structured and fair.\n\nFor the codes, I need 3-6 first-order codes. Let me think. The first part talks about inconsistency and lack of guidelines. Maybe \"Inconsistent Training Methods\" as a code. The quote about experienced staff training new ones and different ways of doing things fits here. \n\nAnother code could be \"Accountability Issues\" because she was docked pay for a mistake that wasn't clear who was responsible. The quote about being docked half a month's pay because she was on duty that day. \n\nThen, there's the stress and exhaustion she felt, so \"Workplace Stress and Exhaustion\" as a code. The quote about not sleeping properly before banquets and thinking about quitting. \n\nIn the later part, the standardization is a key point. \"Standardized Procedures\" as a code, with the quote about everything being written into the manual. \n\nAlso, the positive outcome of fewer mistakes and recognition could be \"Improved Performance and Recognition.\" The quote about the model unit certificate. \n\nWait, but the user asked for 3-6 codes. Maybe I can combine some. Let me check again. The main themes are lack of standards, accountability, stress, and then improvement with standardization. So maybe four codes. \n\nInterpretation: The interviewee is describing the transition from a chaotic, inconsistent work environment with unclear accountability to a structured, standardized system that reduces errors and improves performance. \n\nTone: Mixed, because she had negative experiences before but positive after. \n\nConfidence: 90, since the quotes clearly support the interpretation.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 771,
+   "eval_count": 760,
+   "total_duration": 33397193417,
+   "load_duration": 424583,
+   "prompt_eval_duration": 899340000,
+   "eval_duration": 32436318000
+  },
+  "wall_seconds": 33.4
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:04:16.01053Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Inconsistent Training Methods\",\n      \"quote\": \"Experienced staff trained the new ones, and everything came down to working it out for yourself.\"\n    },\n    {\n      \"label\": \"Accountability Issues\",\n      \"quote\": \"When it came to deciding who was responsible, nobody could say whose way was the right one, and in the end I was docked half a month’s pay.\"\n    },\n    {\n      \"label\": \"Workplace Stress and Exhaustion\",\n      \"quote\": \"I couldn’t sleep properly before any banquet, afraid something else would go wrong that nobody could explain.\"\n    },\n    {\n      \"label\": \"Standardized Procedures\",\n      \"quote\": \"Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee describes a shift from a chaotic, inconsistent work environment with unclear accountability to a structured, standardized system that reduces errors and improves performance.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a banquet team leader who has been in the job for 8 years. She talks about the changes before and after the hotel takeover.\n\nLooking at the earlier part of the interview, she mentions that before the takeover, there were no manuals. Training was informal, and there was inconsistency. Different team leaders had their own methods, leading to confusion and even a situation where a guest got angry because the service order was wrong. She felt responsible and considered quitting. This seems to highlight issues with lack of standardization and poor accountability.\n\nThen, after the takeover, everything became standardized with manuals. They have assessments, and the new brand emphasizes internationalization. Mistakes decreased, and they got recognition. The long-serving staff adapted quickly, which might indicate that the new system is more structured and fair.\n\nFor the codes, I need 3-6 first-order codes. Let me think. The first part talks about inconsistency and lack of guidelines. Maybe \"Inconsistent Training Methods\" as a code. The quote about experienced staff training new ones and different ways of doing things fits here. \n\nAnother code could be \"Accountability Issues\" because she was docked pay for a mistake that wasn't clear who was responsible. The quote about being docked half a month's pay because she was on duty that day. \n\nThen, there's the stress and exhaustion she felt, so \"Workplace Stress and Exhaustion\" as a code. The quote about not sleeping properly before banquets and thinking about quitting. \n\nIn the later part, the standardization is a key point. \"Standardized Procedures\" as a code, with the quote about everything being written into the manual. \n\nAlso, the positive outcome of fewer mistakes and recognition could be \"Improved Performance and Recognition.\" The quote about the model unit certificate. \n\nWait, but the user asked for 3-6 codes. Maybe I can combine some. Let me check again. The main themes are lack of standards, accountability, stress, and then improvement with standardization. So maybe four codes. \n\nInterpretation: The interviewee is describing the transition from a chaotic, inconsistent work environment with unclear accountability to a structured, standardized system that reduces errors and improves performance. \n\nTone: Mixed, because she had negative experiences before but positive after. \n\nConfidence: 90, since the quotes clearly support the interpretation.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 33397193417,
+  "load_duration": 424583,
+  "prompt_eval_count": 771,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 899340000,
+  "eval_count": 760,
+  "eval_duration": 32436318000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Experienced staff trained the new ones, and everything came down to working it out for yourself.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "When it came to deciding who was responsible, nobody could say whose way was the right one, and in the end I was docked half a month’s pay.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I couldn’t sleep properly before any banquet, afraid something else would go wrong that nobody could explain.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:03:42+00:00",
+ "finished_at": "2026-10-28T16:04:16+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

@@ -1,0 +1,185 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "109",
+ "list": "A",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Concierge, male, 2nd year\n\nInterviewer: This year the hotel brought in a new rule that frontline staff can approve compensation of up to 500 yuan themselves. How has that worked out in the concierge team?\n\nInterviewee: It’s all right, I guess. It’s just a small change to the procedure, and it doesn’t make much difference to us in the concierge team. We very rarely have to actually pay out compensation. Most of the time we’re booking cars, storing luggage, recommending restaurants and buying show tickets for guests. Things that need compensation come up maybe once or twice a month, and the amounts are mostly very small, like an umbrella wrecked by the wind or a cake box squashed in storage, a few dozen yuan at most. Before, if a guest’s luggage got damaged, we had to phone the duty manager first. Now we can deal with it ourselves first and just fill in a form afterwards. I’ve only used it once so far. Last month a guest’s suitcase handle got caught on our luggage trolley and snapped, and I put in 120 yuan for the repair. I filled in the form the same day and my supervisor signed it without saying anything. The guest was very polite about it. He said it was an old suitcase anyway and there was no need to pay. I still put it through according to the rules and wrote the reason clearly on the form, so there wouldn’t be any confusion later. The front desk uses it more. They get more complaints than we do: room problems, noise, breakfast, all sorts. They say it really has made things a lot easier. They used to phone the duty manager seven or eight times a night, and now it’s less than half that. I heard the rule was brought in by the group across the board, the same at every hotel, and Finance puts together a summary once a month to see how much each department has used. We don’t really know how they came up with the figure of 500. Anyway, for me, it just means fewer phone calls, I suppose. Nothing much else has changed.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Rare Compensation Needs\",\n    \"quote\": \"Things that need compensation come up maybe once or twice a month, and the amounts are mostly very small, like an umbrella wrecked by the wind or a cake box squashed in storage, a few dozen yuan at most.\"\n  },\n  {\n    \"label\": \"Simplified Procedure\",\n    \"quote\": \"Now we can deal with it ourselves first and just fill in a form afterwards.\"\n  },\n  {\n    \"label\": \"Front Desk Heavier Use\",\n    \"quote\": \"They say it really has made things a lot easier. They used to phone the duty manager seven or eight times a night, and now it’s less than half that.\"\n  },\n  {\n    \"label\": \"Guest Cooperation\",\n    \"quote\": \"The guest was very polite about it. He said it was an old suitcase anyway and there was no need to pay.\"\n  },\n  {\n    \"label\": \"Standardized Policy\",\n    \"quote\": \"The rule was brought in by the group across the board, the same at every hotel, and Finance puts together a summary once a month to see how much each department has used.\"\n  },\n  {\n    \"label\": \"Minimal Impact on Daily Work\",\n    \"quote\": \"Anyway, for me, it just means fewer phone calls, I suppose. Nothing much else has changed.\"\n  }\n],\n\"interpretation\": \"The interviewee describes the new compensation policy as having minimal impact on the concierge team due to the rarity of compensation cases, but acknowledges it is more useful for the front desk. He emphasizes the procedural change and the policy's standardized implementation across the hotel group.\",\n\"tone\": \"neutral\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user wants me to code this passage using first-order coding, so I need to identify the key themes or concepts mentioned by the interviewee.\n\nFirst, the interviewee talks about the new rule allowing frontline staff to approve compensation up to 500 yuan. He mentions that in the concierge team, they rarely have to use this because their tasks are more about booking cars, storing luggage, etc., and compensation issues are rare. So maybe a code like \"Rare Compensation Needs\" with a quote about the frequency of compensation cases.\n\nNext, he explains that when they do need to compensate, they can handle it themselves now instead of calling the duty manager. That's a change in procedure. So a code like \"Simplified Procedure\" with the quote about dealing with it themselves and filling a form.\n\nHe also mentions that the front desk uses this more because they have more complaints. So maybe \"Front Desk Heavier Use\" with the quote about the front desk's higher usage.\n\nThe interviewee also notes that the guest was polite and didn't need payment, but he still followed the rules. That could be \"Guest Cooperation\" with the quote about the guest's reaction.\n\nHe mentions that the rule was implemented across all hotels and Finance tracks usage. That might be \"Standardized Policy\" with the quote about the group-wide rule and monthly summaries.\n\nLastly, he says it's just fewer phone calls and not much else has changed. So \"Minimal Impact on Daily Work\" with the quote about fewer calls and no major changes.\n\nFor the interpretation, the interviewee is saying that the new rule has minimal impact on the concierge team since their compensation needs are rare, but it's more useful for the front desk. The overall tone is neutral because he's not overly positive or negative, just stating facts. Confidence would be high since the quotes are directly from the text and the codes are well-supported.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 752,
+   "eval_count": 766,
+   "total_duration": 58987042333,
+   "load_duration": 1504500,
+   "prompt_eval_duration": 1761990000,
+   "eval_duration": 57055727000
+  },
+  "wall_seconds": 59.01
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T18:16:26.298006Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Rare Compensation Needs\",\n    \"quote\": \"Things that need compensation come up maybe once or twice a month, and the amounts are mostly very small, like an umbrella wrecked by the wind or a cake box squashed in storage, a few dozen yuan at most.\"\n  },\n  {\n    \"label\": \"Simplified Procedure\",\n    \"quote\": \"Now we can deal with it ourselves first and just fill in a form afterwards.\"\n  },\n  {\n    \"label\": \"Front Desk Heavier Use\",\n    \"quote\": \"They say it really has made things a lot easier. They used to phone the duty manager seven or eight times a night, and now it’s less than half that.\"\n  },\n  {\n    \"label\": \"Guest Cooperation\",\n    \"quote\": \"The guest was very polite about it. He said it was an old suitcase anyway and there was no need to pay.\"\n  },\n  {\n    \"label\": \"Standardized Policy\",\n    \"quote\": \"The rule was brought in by the group across the board, the same at every hotel, and Finance puts together a summary once a month to see how much each department has used.\"\n  },\n  {\n    \"label\": \"Minimal Impact on Daily Work\",\n    \"quote\": \"Anyway, for me, it just means fewer phone calls, I suppose. Nothing much else has changed.\"\n  }\n],\n\"interpretation\": \"The interviewee describes the new compensation policy as having minimal impact on the concierge team due to the rarity of compensation cases, but acknowledges it is more useful for the front desk. He emphasizes the procedural change and the policy's standardized implementation across the hotel group.\",\n\"tone\": \"neutral\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user wants me to code this passage using first-order coding, so I need to identify the key themes or concepts mentioned by the interviewee.\n\nFirst, the interviewee talks about the new rule allowing frontline staff to approve compensation up to 500 yuan. He mentions that in the concierge team, they rarely have to use this because their tasks are more about booking cars, storing luggage, etc., and compensation issues are rare. So maybe a code like \"Rare Compensation Needs\" with a quote about the frequency of compensation cases.\n\nNext, he explains that when they do need to compensate, they can handle it themselves now instead of calling the duty manager. That's a change in procedure. So a code like \"Simplified Procedure\" with the quote about dealing with it themselves and filling a form.\n\nHe also mentions that the front desk uses this more because they have more complaints. So maybe \"Front Desk Heavier Use\" with the quote about the front desk's higher usage.\n\nThe interviewee also notes that the guest was polite and didn't need payment, but he still followed the rules. That could be \"Guest Cooperation\" with the quote about the guest's reaction.\n\nHe mentions that the rule was implemented across all hotels and Finance tracks usage. That might be \"Standardized Policy\" with the quote about the group-wide rule and monthly summaries.\n\nLastly, he says it's just fewer phone calls and not much else has changed. So \"Minimal Impact on Daily Work\" with the quote about fewer calls and no major changes.\n\nFor the interpretation, the interviewee is saying that the new rule has minimal impact on the concierge team since their compensation needs are rare, but it's more useful for the front desk. The overall tone is neutral because he's not overly positive or negative, just stating facts. Confidence would be high since the quotes are directly from the text and the codes are well-supported.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 58987042333,
+  "load_duration": 1504500,
+  "prompt_eval_count": 752,
+  "prompt_eval_cached_count": 308,
+  "prompt_eval_duration": 1761990000,
+  "eval_count": 766,
+  "eval_duration": 57055727000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 39 words > 30",
+   "codes[4].quote: 33 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "Things that need compensation come up maybe once or twice a month, and the amounts are mostly very small, like an umbrella wrecked by the wind or a cake box squashed in storage, a few dozen yuan at most.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Now we can deal with it ourselves first and just fill in a form afterwards.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "They say it really has made things a lot easier. They used to phone the duty manager seven or eight times a night, and now it’s less than half that.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The guest was very polite about it. He said it was an old suitcase anyway and there was no need to pay.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The rule was brought in by the group across the board, the same at every hotel, and Finance puts together a summary once a month to see how much each department has used.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Anyway, for me, it just means fewer phone calls, I suppose. Nothing much else has changed.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:15:27+00:00",
+ "finished_at": "2026-10-28T18:16:26+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

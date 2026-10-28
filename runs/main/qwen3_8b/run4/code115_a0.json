@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "115",
+ "list": "A",
+ "seed": 4,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Western restaurant server, female, 5th year\n\n[Earlier in the interview]\n\nInterviewee: Last year I started working towards my sommelier certification. I’ve passed Level 2 now, and next year I’m planning to take Level 3. Once I pass that I can work as a full-time sommelier in the restaurant. There are fewer than twenty people in our city with that certificate right now. When the manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon, and he also had me talk to guests about wine at our Friday wine evenings. The guest feedback has been really good, and a few regulars ask for me by name to make recommendations every time they come in. Last month a guest even wrote to the general manager specially to say the wine I recommended had made their wedding anniversary unforgettable. I’ve always felt that what I enjoy is dealing with guests and dealing with wine, not sitting in an office doing rotas. The goal I’ve set myself is to reach the highest level before I’m thirty-five.\n\n[Later in the interview]\n\nInterviewer: The supervisor post at your Western restaurant has come up this time. Did you apply?\n\nInterviewee: No, I didn’t. I think things are fine as they are. I’m comfortable doing a server’s job, I know the guests, and lots of regulars ask for me when they come in. Some even get me to keep a table for them. A supervisor has far too much to worry about: rotas, costing, handling complaints, writing reports, and several meetings a month on top of that. It’s not really for me. That’s what I told the manager too. He said he understood, the floor needs experienced people too, and I should keep up the good work. He also said that next time they choose an Outstanding Employee, I’ll be given priority. I feel the same way myself: doing a good job at what I’m doing now is enough, and I don’t necessarily have to move up. If a suitable opportunity comes along in future, we’ll see. The way things are now, it’s quite stable from month to month.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 4
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career Aspirations\",\n      \"quote\": \"I’ve passed Level 2 now, and next year I’m planning to take Level 3.\"\n    },\n    {\n      \"label\": \"Guest Engagement\",\n      \"quote\": \"a few regulars ask for me by name to make recommendations every time they come in.\"\n    },\n    {\n      \"label\": \"Job Satisfaction\",\n      \"quote\": \"I’ve always felt that what I enjoy is dealing with guests and dealing with wine, not sitting in an office doing rotas.\"\n    },\n    {\n      \"label\": \"Manager Support\",\n      \"quote\": \"The manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon...\"\n    },\n    {\n      \"label\": \"Contentment with Current Role\",\n      \"quote\": \"I think things are fine as they are. I’m comfortable doing a server’s job...\"\n    }\n  ],\n  \"interpretation\": \"The interviewee is committed to her career growth through certification while finding fulfillment in her current role, valuing guest interactions over managerial responsibilities.\",\n  \"tone\": \"positive\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to read through the interviewee's responses carefully. \n\nStarting with the earlier part, she's talking about her sommelier certification. She mentions passing Level 2 and planning for Level 3. The manager adjusted her shifts and had her engage with guests during wine evenings. Guests gave positive feedback, and even a guest wrote to the GM about her recommendation. She values interacting with guests and wine over office work. Her goal is to get the highest certification before 35.\n\nThen, the interviewer asks about the supervisor position. She didn't apply, feeling it's not for her. She lists the responsibilities of a supervisor and finds them overwhelming. The manager supported her decision, and she feels content with her current role. She's satisfied with stability and doesn't feel the need to move up unless an opportunity arises.\n\nFor the codes, I need 3-6 first-order codes. Let me look for key themes. \n\n1. Career Development: She's pursuing certification, which shows she's advancing in her role. The quote about passing Level 2 and planning Level 3 fits here.\n\n2. Positive Work Relationships: The guest feedback and being asked by regulars indicates positive interactions. The quote about guests asking for her by name is relevant.\n\n3. Job Satisfaction: She enjoys her current role, which is about dealing with guests and wine. The quote about preferring server's job over office work.\n\n4. Manager Support: The manager rearranged shifts and supported her certification. The quote about the manager understanding her choice for supervisor role.\n\nWait, maybe that's four codes. Let me check again. Another point is her contentment with current role and stability. Maybe \"Contentment with Current Role\" as a code. Also, her long-term goal of certification before 35 could be part of Career Development. \n\nWait, the user wants 3-6 codes. Let me make sure each code is distinct. Maybe \"Career Aspirations\" instead of Career Development? Or \"Professional Growth\". \n\nAlternatively, \"Manager Support\" as a code, since the manager adjusted her schedule and supported her. Then \"Guest Engagement\" for the positive feedback. \"Job Satisfaction\" for her preference over office work. \"Contentment with Current Role\" for her decision not to apply for supervisor. \n\nThat's five codes. Let me check the quotes. Each code needs a supporting quote. \n\n1. Career Aspirations: \"I’ve passed Level 2 now, and next year I’m planning to take Level 3.\" \n\n2. Guest Engagement: \"a few regulars ask for me by name to make recommendations every time they come in.\" \n\n3. Job Satisfaction: \"I’ve always felt that what I enjoy is dealing with guests and dealing with wine, not sitting in an office doing rotas.\"\n\n4. Manager Support: \"The manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon...\"\n\n5. Contentment with Current Role: \"I think things are fine as they are. I’m comfortable doing a server’s job...\"\n\nWait, the fifth code might be \"Contentment with Current Role\" and the fourth is \"Manager Support\". \n\nInterpretation: The interviewee is committed to her career growth through certification while finding fulfillment in her current role, valuing guest interactions over managerial responsibilities. \n\nTone: Positive, since she's satisfied and has positive outcomes. \n\nConfidence: Maybe 90, as the codes seem to align well with her statements.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 756,
+   "eval_count": 987,
+   "total_duration": 43044281125,
+   "load_duration": 356416,
+   "prompt_eval_duration": 878625000,
+   "eval_duration": 42031355000
+  },
+  "wall_seconds": 43.05
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:09:01.58361Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Career Aspirations\",\n      \"quote\": \"I’ve passed Level 2 now, and next year I’m planning to take Level 3.\"\n    },\n    {\n      \"label\": \"Guest Engagement\",\n      \"quote\": \"a few regulars ask for me by name to make recommendations every time they come in.\"\n    },\n    {\n      \"label\": \"Job Satisfaction\",\n      \"quote\": \"I’ve always felt that what I enjoy is dealing with guests and dealing with wine, not sitting in an office doing rotas.\"\n    },\n    {\n      \"label\": \"Manager Support\",\n      \"quote\": \"The manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon...\"\n    },\n    {\n      \"label\": \"Contentment with Current Role\",\n      \"quote\": \"I think things are fine as they are. I’m comfortable doing a server’s job...\"\n    }\n  ],\n  \"interpretation\": \"The interviewee is committed to her career growth through certification while finding fulfillment in her current role, valuing guest interactions over managerial responsibilities.\",\n  \"tone\": \"positive\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to read through the interviewee's responses carefully. \n\nStarting with the earlier part, she's talking about her sommelier certification. She mentions passing Level 2 and planning for Level 3. The manager adjusted her shifts and had her engage with guests during wine evenings. Guests gave positive feedback, and even a guest wrote to the GM about her recommendation. She values interacting with guests and wine over office work. Her goal is to get the highest certification before 35.\n\nThen, the interviewer asks about the supervisor position. She didn't apply, feeling it's not for her. She lists the responsibilities of a supervisor and finds them overwhelming. The manager supported her decision, and she feels content with her current role. She's satisfied with stability and doesn't feel the need to move up unless an opportunity arises.\n\nFor the codes, I need 3-6 first-order codes. Let me look for key themes. \n\n1. Career Development: She's pursuing certification, which shows she's advancing in her role. The quote about passing Level 2 and planning Level 3 fits here.\n\n2. Positive Work Relationships: The guest feedback and being asked by regulars indicates positive interactions. The quote about guests asking for her by name is relevant.\n\n3. Job Satisfaction: She enjoys her current role, which is about dealing with guests and wine. The quote about preferring server's job over office work.\n\n4. Manager Support: The manager rearranged shifts and supported her certification. The quote about the manager understanding her choice for supervisor role.\n\nWait, maybe that's four codes. Let me check again. Another point is her contentment with current role and stability. Maybe \"Contentment with Current Role\" as a code. Also, her long-term goal of certification before 35 could be part of Career Development. \n\nWait, the user wants 3-6 codes. Let me make sure each code is distinct. Maybe \"Career Aspirations\" instead of Career Development? Or \"Professional Growth\". \n\nAlternatively, \"Manager Support\" as a code, since the manager adjusted her schedule and supported her. Then \"Guest Engagement\" for the positive feedback. \"Job Satisfaction\" for her preference over office work. \"Contentment with Current Role\" for her decision not to apply for supervisor. \n\nThat's five codes. Let me check the quotes. Each code needs a supporting quote. \n\n1. Career Aspirations: \"I’ve passed Level 2 now, and next year I’m planning to take Level 3.\" \n\n2. Guest Engagement: \"a few regulars ask for me by name to make recommendations every time they come in.\" \n\n3. Job Satisfaction: \"I’ve always felt that what I enjoy is dealing with guests and dealing with wine, not sitting in an office doing rotas.\"\n\n4. Manager Support: \"The manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon...\"\n\n5. Contentment with Current Role: \"I think things are fine as they are. I’m comfortable doing a server’s job...\"\n\nWait, the fifth code might be \"Contentment with Current Role\" and the fourth is \"Manager Support\". \n\nInterpretation: The interviewee is committed to her career growth through certification while finding fulfillment in her current role, valuing guest interactions over managerial responsibilities. \n\nTone: Positive, since she's satisfied and has positive outcomes. \n\nConfidence: Maybe 90, as the codes seem to align well with her statements.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 43044281125,
+  "load_duration": 356416,
+  "prompt_eval_count": 756,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 878625000,
+  "eval_count": 987,
+  "eval_duration": 42031355000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "I’ve passed Level 2 now, and next year I’m planning to take Level 3.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "a few regulars ask for me by name to make recommendations every time they come in.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I’ve always felt that what I enjoy is dealing with guests and dealing with wine, not sitting in an office doing rotas.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The manager found out, he rearranged my shifts so I could go to classes every Thursday afternoon...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I think things are fine as they are. I’m comfortable doing a server’s job...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:08:18+00:00",
+ "finished_at": "2026-10-28T17:09:01+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 4,
+ "attempt": 0
+}

@@ -1,0 +1,181 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "221",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Room attendant, male, 11th year\n\nInterviewer: Your floor got a new team leader this year. How is everyone getting on with her?\n\nInterviewee: The new team leader is a young woman born after 1995, poached from another hotel. I heard she was known over there for being strict. She’s not much older than my daughter. She’s extremely particular: pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed. In eleven years nobody had ever checked my work like that. The old team leader would take one look and sign off. For the first month I went home every day and complained to my wife: this girl is far too fussy, she has no human touch at all, she’ll drive everyone out sooner or later. But the week she handled her first group inspection, I stayed on after my shift three days in a row and helped her go through every room on the twelfth floor. She didn’t ask me to stay. I stayed on my own. After that, whenever my wife made dumplings, I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for. Anyway, the next day the box would be back, washed clean, and sometimes there’d be a packet of tea from her hometown in it. Once she got called in by the manager over a guest complaint and came out with red eyes. Two other long-serving staff and I went to the manager and told him what had happened that day from start to finish. We said that guest had come looking for trouble in the first place and it had nothing to do with her, and the manager never brought it up again after that. Next month she’s being transferred to the new branch as a supervisor. The manager asked us if we had any comments about her. I said no, she’s fine. Anyway, someone that fussy, it’s just as well she’s going. We’ll get some peace and quiet, and we won’t have a torch shining on us all day while we work.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n        \"label\": \"Strict inspection standards\",\n        \"quote\": \"She’s extremely particular: pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed.\"\n    },\n    {\n        \"label\": \"Initial frustration with new leader\",\n        \"quote\": \"For the first month I went home every day and complained to my wife: this girl is far too fussy, she has no human touch at all, she’ll drive everyone out sooner or later.\"\n    },\n    {\n        \"label\": \"Mutual support and respect\",\n        \"quote\": \"After that, whenever my wife made dumplings, I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for.\"\n    },\n    {\n        \"label\": \"Advocacy for team leader\",\n        \"quote\": \"We said that guest had come looking for trouble in the first place and it had nothing to do with her, and the manager never brought it up again after that.\"\n    },\n    {\n        \"label\": \"Relief at team leader's transfer\",\n        \"quote\": \"Anyway, someone that fussy, it’s just as well she’s going. We’ll get some peace and quiet, and we won’t have a torch shining on us all day while we work.\"\n    }\n],\n\"interpretation\": \"The interviewee initially resists the new team leader's strict standards but gradually develops mutual respect through small acts of support, ultimately feeling relieved when she transfers due to her intense approach.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user is a male room attendant with 11 years of experience. He's talking about the new team leader, a young woman who's strict with her standards. Initially, he's frustrated with her attention to detail and the way she inspects rooms, even comparing her to his daughter's age. He mentions complaining to his wife and thinking she's too fussy.\n\nBut then there's a shift. He helped her during a group inspection, and after that, there's a mutual exchange of gifts—dumplings and tea. Then there's an incident where the team leader was called in by the manager over a guest complaint. The interviewee and others supported her, leading the manager to drop the issue. Finally, the team leader is moving to a new branch, and the interviewee says they're relieved she's going, so they can have peace and quiet.\n\nFor coding, I need first-order codes. Let me pick key themes. The initial frustration with her strictness, the help he provided, the reciprocal gestures (dumplings and tea), the support during the guest complaint, and the relief at her transfer. Each code should have a short label and a quote. \n\nInterpretation: He starts off negative but then shows a change in attitude, leading to mutual respect and eventual relief. The tone is mixed because there's both initial frustration and later acceptance. Confidence in interpretation is high since the narrative clearly shows the shift from negative to positive and then relief.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 759,
+   "eval_count": 670,
+   "total_duration": 52503772375,
+   "load_duration": 5309417,
+   "prompt_eval_duration": 1097287000,
+   "eval_duration": 49816416000
+  },
+  "wall_seconds": 52.53
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T18:49:06.816134Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n        \"label\": \"Strict inspection standards\",\n        \"quote\": \"She’s extremely particular: pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed.\"\n    },\n    {\n        \"label\": \"Initial frustration with new leader\",\n        \"quote\": \"For the first month I went home every day and complained to my wife: this girl is far too fussy, she has no human touch at all, she’ll drive everyone out sooner or later.\"\n    },\n    {\n        \"label\": \"Mutual support and respect\",\n        \"quote\": \"After that, whenever my wife made dumplings, I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for.\"\n    },\n    {\n        \"label\": \"Advocacy for team leader\",\n        \"quote\": \"We said that guest had come looking for trouble in the first place and it had nothing to do with her, and the manager never brought it up again after that.\"\n    },\n    {\n        \"label\": \"Relief at team leader's transfer\",\n        \"quote\": \"Anyway, someone that fussy, it’s just as well she’s going. We’ll get some peace and quiet, and we won’t have a torch shining on us all day while we work.\"\n    }\n],\n\"interpretation\": \"The interviewee initially resists the new team leader's strict standards but gradually develops mutual respect through small acts of support, ultimately feeling relieved when she transfers due to her intense approach.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user is a male room attendant with 11 years of experience. He's talking about the new team leader, a young woman who's strict with her standards. Initially, he's frustrated with her attention to detail and the way she inspects rooms, even comparing her to his daughter's age. He mentions complaining to his wife and thinking she's too fussy.\n\nBut then there's a shift. He helped her during a group inspection, and after that, there's a mutual exchange of gifts—dumplings and tea. Then there's an incident where the team leader was called in by the manager over a guest complaint. The interviewee and others supported her, leading the manager to drop the issue. Finally, the team leader is moving to a new branch, and the interviewee says they're relieved she's going, so they can have peace and quiet.\n\nFor coding, I need first-order codes. Let me pick key themes. The initial frustration with her strictness, the help he provided, the reciprocal gestures (dumplings and tea), the support during the guest complaint, and the relief at her transfer. Each code should have a short label and a quote. \n\nInterpretation: He starts off negative but then shows a change in attitude, leading to mutual respect and eventual relief. The tone is mixed because there's both initial frustration and later acceptance. Confidence in interpretation is high since the narrative clearly shows the shift from negative to positive and then relief.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 52503772375,
+  "load_duration": 5309417,
+  "prompt_eval_count": 759,
+  "prompt_eval_cached_count": 487,
+  "prompt_eval_duration": 1097287000,
+  "eval_count": 670,
+  "eval_duration": 49816416000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 33 words > 30",
+   "codes[1].quote: 34 words > 30",
+   "codes[2].quote: 31 words > 30",
+   "codes[3].quote: 31 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "She’s extremely particular: pillow corners have to line up, the folded edge of the bath towel has to face outwards, and when she inspects a room she shines a torch under the bed.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "For the first month I went home every day and complained to my wife: this girl is far too fussy, she has no human touch at all, she’ll drive everyone out sooner or later.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "After that, whenever my wife made dumplings, I’d pack an extra box and bring it in, and leave it in the cupboard in her workroom without saying who it was for.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We said that guest had come looking for trouble in the first place and it had nothing to do with her, and the manager never brought it up again after that.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Anyway, someone that fussy, it’s just as well she’s going. We’ll get some peace and quiet, and we won’t have a torch shining on us all day while we work.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:48:14+00:00",
+ "finished_at": "2026-10-28T18:49:06+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

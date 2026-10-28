@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "219",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Room attendant, female, 2nd year\n\nInterviewer: Is there anything at work that’s made a particularly strong impression on you?\n\nInterviewee: Last month a guest phoned after checking out to say a gold bracelet had gone missing from the bedside table, and I was the one who’d cleaned that room. A colleague from Security came over and asked me questions for a few minutes, what time I went into the room and what time I came out, then had a look at my cleaning trolley as the procedure requires. It took about ten minutes altogether. He was very polite about it, and even told me it was just routine and not to worry. Once he was done, he let me go back to cleaning rooms. It didn’t hold anything up. I said I’d cooperate, that it was only right, the hotel has rules, anyone would have to be checked. The next day the guest found it herself, in the inner pocket of her make-up bag. The lobby manager phoned to let me know, and I said it’s fine, I’m glad it’s been found. The guest was quite embarrassed about it. Before checking out she made a point of leaving a box of walnut shortbread from her hometown for me at the front desk, with a little card that said, sorry for the trouble. I took it to the staff canteen at lunchtime and shared it with my colleagues, and everyone joked that next time something like this happens, I should get the guest to bring a couple more boxes. Now when I clean a room, I do it the same as before, leaving the door half open as the standard says and hanging up the cleaning sign. Later my team leader mentioned it at a meeting. She said it had been handled well, Security and Housekeeping had worked well together, and this is the procedure we should follow from now on. Around that time my mum phoned and asked how work was going. I said it’s fine, and told her about the shortbread. She laughed for ages and said the guests at our hotel have very good manners.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Security Procedure Followed\",\n      \"quote\": \"A colleague from Security came over and asked me questions for a few minutes, what time I went into the room and what time I came out, then had a look at my cleaning trolley as the procedure requires.\"\n    },\n    {\n      \"label\": \"Guest Gratitude\",\n      \"quote\": \"The guest was quite embarrassed about it. Before checking out she made a point of leaving a box of walnut shortbread from her hometown for me at the front desk, with a little card that said, sorry for the trouble.\"\n    },\n    {\n      \"label\": \"Team Collaboration\",\n      \"quote\": \"Later my team leader mentioned it at a meeting. She said it had been handled well, Security and Housekeeping had worked well together, and this is the procedure we should follow from now on.\"\n    },\n    {\n      \"label\": \"Positive Outcome\",\n      \"quote\": \"The next day the guest found it herself, in the inner pocket of her make-up bag. The lobby manager phoned to let me know, and I said it’s fine, I’m glad it’s been found.\"\n    },\n    {\n      \"label\": \"Workplace Support\",\n      \"quote\": \"I took it to the staff canteen at lunchtime and shared it with my colleagues, and everyone joked that next time something like this happens, I should get the guest to bring a couple more boxes.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on a stressful incident involving a guest's lost item, highlighting how the hotel's procedures were followed, the positive resolution, and the appreciation from both the guest and colleagues, which reinforced a sense of teamwork and support.\",\n  \"tone\": \"positive\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a room attendant who had an incident where a guest's bracelet went missing. She was checked by Security, but the guest later found it. The guest left a thank-you gift, and her team leader praised the handling of the situation.\n\nFirst, I need to identify the key themes or codes. Let me start by looking for repeated concepts or emotions. The main event is the incident with the bracelet. The interviewee mentions the Security procedure, which is part of the process. Then there's the guest's apology and the gift, which shows positive interactions. The team leader's feedback is about collaboration. Also, the interviewee's attitude towards the situation seems positive despite the stress.\n\nPossible codes could be: \"Routine Security Check,\" \"Collaborative Teamwork,\" \"Guest Appreciation,\" \"Professional Demeanor,\" \"Positive Outcome,\" and \"Workplace Support.\" Each code needs a supporting quote. For example, \"Routine Security Check\" can be supported by the part where Security checked her trolley. \"Collaborative Teamwork\" would be the team leader's comment about working well together. \"Guest Appreciation\" is the shortbread and the note. \"Professional Demeanor\" is her cooperation and not worrying. \"Positive Outcome\" is the guest finding the bracelet. \"Workplace Support\" is the team leader's feedback and the shared treat.\n\nWait, maybe \"Professional Demeanor\" is a bit vague. Let me check the quotes again. The interviewee says she cooperated and that it was the hotel's rules. So maybe \"Compliance with Procedures\" instead. But the original code was \"Professional Demeanor.\" Hmm. Alternatively, \"Handling with Dignity\" might fit better. But the user wants codes close to the interviewee's language. The interviewee says \"it was only right, the hotel has rules, anyone would have to be checked.\" So \"Compliance with Rules\" could be a code. But the team leader's praise is about teamwork. \n\nI need to make sure each code is 2-6 words and the quote is exact. Let me list the codes again. Maybe \"Security Procedure Followed\" for the check. \"Guest Gratitude\" for the shortbread. \"Team Collaboration\" for the team leader's comment. \"Positive Outcome\" for the bracelet being found. \"Professional Cooperation\" for her willingness to comply. \"Workplace Support\" for the team leader's feedback and sharing the treat. \n\nWait, the user said between 3-6 codes. Let me see. The example response had 5 codes. Let me check the original passage again. The key elements are the security check, the guest's gratitude, the team's collaboration, the positive outcome, and the workplace support. That's five codes. Let me make sure each code is supported by a direct quote. For example, the security check: \"A colleague from Security came over and asked me questions... the procedure requires.\" Guest gratitude: the shortbread and note. Team collaboration: the team leader's comment. Positive outcome: the bracelet found. Workplace support: sharing the treat and the team leader's praise. That's five codes. \n\nNow, the interpretation: The interviewee is communicating that despite a stressful situation, the process was handled professionally, leading to a positive outcome and appreciation from guests and colleagues. The tone is positive, and confidence is high. That should be around 85 confidence. Okay, that should cover it.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 737,
+   "eval_count": 1122,
+   "total_duration": 49197140041,
+   "load_duration": 1375083,
+   "prompt_eval_duration": 890850000,
+   "eval_duration": 48164320000
+  },
+  "wall_seconds": 49.2
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:21:02.157991Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Security Procedure Followed\",\n      \"quote\": \"A colleague from Security came over and asked me questions for a few minutes, what time I went into the room and what time I came out, then had a look at my cleaning trolley as the procedure requires.\"\n    },\n    {\n      \"label\": \"Guest Gratitude\",\n      \"quote\": \"The guest was quite embarrassed about it. Before checking out she made a point of leaving a box of walnut shortbread from her hometown for me at the front desk, with a little card that said, sorry for the trouble.\"\n    },\n    {\n      \"label\": \"Team Collaboration\",\n      \"quote\": \"Later my team leader mentioned it at a meeting. She said it had been handled well, Security and Housekeeping had worked well together, and this is the procedure we should follow from now on.\"\n    },\n    {\n      \"label\": \"Positive Outcome\",\n      \"quote\": \"The next day the guest found it herself, in the inner pocket of her make-up bag. The lobby manager phoned to let me know, and I said it’s fine, I’m glad it’s been found.\"\n    },\n    {\n      \"label\": \"Workplace Support\",\n      \"quote\": \"I took it to the staff canteen at lunchtime and shared it with my colleagues, and everyone joked that next time something like this happens, I should get the guest to bring a couple more boxes.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on a stressful incident involving a guest's lost item, highlighting how the hotel's procedures were followed, the positive resolution, and the appreciation from both the guest and colleagues, which reinforced a sense of teamwork and support.\",\n  \"tone\": \"positive\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a room attendant who had an incident where a guest's bracelet went missing. She was checked by Security, but the guest later found it. The guest left a thank-you gift, and her team leader praised the handling of the situation.\n\nFirst, I need to identify the key themes or codes. Let me start by looking for repeated concepts or emotions. The main event is the incident with the bracelet. The interviewee mentions the Security procedure, which is part of the process. Then there's the guest's apology and the gift, which shows positive interactions. The team leader's feedback is about collaboration. Also, the interviewee's attitude towards the situation seems positive despite the stress.\n\nPossible codes could be: \"Routine Security Check,\" \"Collaborative Teamwork,\" \"Guest Appreciation,\" \"Professional Demeanor,\" \"Positive Outcome,\" and \"Workplace Support.\" Each code needs a supporting quote. For example, \"Routine Security Check\" can be supported by the part where Security checked her trolley. \"Collaborative Teamwork\" would be the team leader's comment about working well together. \"Guest Appreciation\" is the shortbread and the note. \"Professional Demeanor\" is her cooperation and not worrying. \"Positive Outcome\" is the guest finding the bracelet. \"Workplace Support\" is the team leader's feedback and the shared treat.\n\nWait, maybe \"Professional Demeanor\" is a bit vague. Let me check the quotes again. The interviewee says she cooperated and that it was the hotel's rules. So maybe \"Compliance with Procedures\" instead. But the original code was \"Professional Demeanor.\" Hmm. Alternatively, \"Handling with Dignity\" might fit better. But the user wants codes close to the interviewee's language. The interviewee says \"it was only right, the hotel has rules, anyone would have to be checked.\" So \"Compliance with Rules\" could be a code. But the team leader's praise is about teamwork. \n\nI need to make sure each code is 2-6 words and the quote is exact. Let me list the codes again. Maybe \"Security Procedure Followed\" for the check. \"Guest Gratitude\" for the shortbread. \"Team Collaboration\" for the team leader's comment. \"Positive Outcome\" for the bracelet being found. \"Professional Cooperation\" for her willingness to comply. \"Workplace Support\" for the team leader's feedback and sharing the treat. \n\nWait, the user said between 3-6 codes. Let me see. The example response had 5 codes. Let me check the original passage again. The key elements are the security check, the guest's gratitude, the team's collaboration, the positive outcome, and the workplace support. That's five codes. Let me make sure each code is supported by a direct quote. For example, the security check: \"A colleague from Security came over and asked me questions... the procedure requires.\" Guest gratitude: the shortbread and note. Team collaboration: the team leader's comment. Positive outcome: the bracelet found. Workplace support: sharing the treat and the team leader's praise. That's five codes. \n\nNow, the interpretation: The interviewee is communicating that despite a stressful situation, the process was handled professionally, leading to a positive outcome and appreciation from guests and colleagues. The tone is positive, and confidence is high. That should be around 85 confidence. Okay, that should cover it.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 49197140041,
+  "load_duration": 1375083,
+  "prompt_eval_count": 737,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 890850000,
+  "eval_count": 1122,
+  "eval_duration": 48164320000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 39 words > 30",
+   "codes[1].quote: 40 words > 30",
+   "codes[2].quote: 34 words > 30",
+   "codes[3].quote: 34 words > 30",
+   "codes[4].quote: 36 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "A colleague from Security came over and asked me questions for a few minutes, what time I went into the room and what time I came out, then had a look at my cleaning trolley as the procedure requires.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The guest was quite embarrassed about it. Before checking out she made a point of leaving a box of walnut shortbread from her hometown for me at the front desk, with a little card that said, sorry for the trouble.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Later my team leader mentioned it at a meeting. She said it had been handled well, Security and Housekeeping had worked well together, and this is the procedure we should follow from now on.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The next day the guest found it herself, in the inner pocket of her make-up bag. The lobby manager phoned to let me know, and I said it’s fine, I’m glad it’s been found.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I took it to the staff canteen at lunchtime and shared it with my colleagues, and everyone joked that next time something like this happens, I should get the guest to bring a couple more boxes.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:20:12+00:00",
+ "finished_at": "2026-10-28T16:21:02+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

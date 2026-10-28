@@ -1,0 +1,178 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "118",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Public-area cleaner, male, 4th year\n\nInterviewer: What’s the atmosphere like in your department?\n\nInterviewee: The atmosphere couldn’t be better. Our supervisor often says our department is one big family, we’re all family here. We’re family, after all, so of course nobody keeps score. This Spring Festival I worked twelve days straight. On New Year’s Eve I worked from seven in the morning until eleven at night, running back and forth between the lobby, the lifts and the toilets. We’re family, after all, so of course we should be together at New Year. New Year’s Eve dinner was a box of dumplings handed out by the canteen. I ate it in the store room, then went straight back to mopping. Xiao Li in our team, his grandmother was in hospital, and he wanted to take two days off to go back and see her. The supervisor told him, as family you can’t just walk away from your duties at a time like this, everyone’s holding the fort, if you leave who’s going to cover for you? So in the end Xiao Li didn’t go. We’re family, after all, we have to be understanding with each other. The day his grandmother was discharged, he phoned home from the stairwell, and after the call he stood there for a long time. About overtime pay, someone asked once in the group chat. The supervisor said, among family, talking about money just hurts feelings, it’ll all be considered together at the end of the year. The result of considering it all together at the end of the year was that everyone got a bottle of cooking oil and a thank-you card, and on the card was the word family again. At the end of the year our supervisor was named one of the group’s Outstanding Managers. When he went up on stage to give his speech at the award ceremony, he said what he was proudest of was building a team that’s like a family, that doesn’t make demands and doesn’t count the cost. At that point he even paused to wipe his eyes. All of us in the audience applauded, and I clapped pretty hard. Honestly, a department as warm as ours really is hard to find these days. Xiao Li ended up leaving the following month. His resignation letter was very polite. It thanked the family for looking after him.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"family-like team environment\",\n    \"quote\": \"Our supervisor often says our department is one big family, we’re all family here.\"\n  },\n  {\n    \"label\": \"no overtime pay, but family considerations\",\n    \"quote\": \"the supervisor said, among family, talking about money just hurts feelings, it’ll all be considered together at the end of the year.\"\n  },\n  {\n    \"label\": \"work-life balance conflicts due to family expectations\",\n    \"quote\": \"the supervisor told him, as family you can’t just walk away from your duties at a time like this, everyone’s holding the fort.\"\n  },\n  {\n    \"label\": \"emotional team bonding and recognition\",\n    \"quote\": \"he even paused to wipe his eyes. All of us in the audience applauded, and I clapped pretty hard.\"\n  },\n  {\n    \"label\": \"employee departure despite strong team culture\",\n    \"quote\": \"Xiao Li ended up leaving the following month. His resignation letter was very polite.\"\n  }\n],\n\"interpretation\": \"The interviewee describes a department characterized by a strong, family-like team culture, emphasizing unity and mutual support, but also highlights challenges such as lack of overtime compensation and work-life balance issues. Despite these tensions, the emotional bonds and recognition within the team are deeply felt.\",\n\"tone\": \"mixed\",\n\"confidence\": 90\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a public-area cleaner with four years of experience. He's talking about the atmosphere in his department, describing it as a family. He mentions working long hours during the Spring Festival, the supervisor's role in enforcing the family concept, and the situation with Xiao Li who couldn't take time off to visit his grandmother. The supervisor's response and the end-of-year rewards like cooking oil and thank-you cards are also mentioned. The supervisor's emotional moment during the award ceremony and Xiao Li leaving the following month are highlighted.\n\nFirst, I need to identify the first-order codes. These should be short labels (2-6 words) that capture key themes from the interviewee's statements. Looking at the quotes, the repeated use of \"family\" is central. So \"family-like team environment\" is a code, supported by the quote about the supervisor saying they're all family. \n\nAnother theme is the lack of overtime pay, which the supervisor addresses by saying talking about money hurts feelings. That's a code about \"no overtime pay, but family considerations.\" The mention of Xiao Li not being able to take leave because of the family concept is another point, leading to a code like \"work-life balance conflicts due to family expectations.\" \n\nThe emotional impact on the supervisor and the team during the award ceremony could be another code, perhaps \"emotional team bonding and recognition.\" Then, the fact that Xiao Li left despite the family environment might be a code about \"employee departure despite strong team culture.\" \n\nNext, the interpretation: The interviewee is highlighting the strong family-like atmosphere in the department, but also the challenges it brings, like lack of overtime pay and work-life balance issues. The team's unity is emphasized, but there's a mention of Xiao Li leaving, indicating that even a strong culture can't prevent all departures.\n\nThe tone seems mixed. There are positive aspects (family, support, recognition) but also negative (no overtime pay, Xiao Li leaving). So the tone is mixed.\n\nConfidence in interpretation: I think the interpretation is accurate based on the quotes provided. The interviewee clearly discusses both the positives and the challenges, so confidence is around 90.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 798,
+   "eval_count": 758,
+   "total_duration": 58035468000,
+   "load_duration": 1530458,
+   "prompt_eval_duration": 1681858000,
+   "eval_duration": 56229374000
+  },
+  "wall_seconds": 58.04
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:50:24.150927Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"family-like team environment\",\n    \"quote\": \"Our supervisor often says our department is one big family, we’re all family here.\"\n  },\n  {\n    \"label\": \"no overtime pay, but family considerations\",\n    \"quote\": \"the supervisor said, among family, talking about money just hurts feelings, it’ll all be considered together at the end of the year.\"\n  },\n  {\n    \"label\": \"work-life balance conflicts due to family expectations\",\n    \"quote\": \"the supervisor told him, as family you can’t just walk away from your duties at a time like this, everyone’s holding the fort.\"\n  },\n  {\n    \"label\": \"emotional team bonding and recognition\",\n    \"quote\": \"he even paused to wipe his eyes. All of us in the audience applauded, and I clapped pretty hard.\"\n  },\n  {\n    \"label\": \"employee departure despite strong team culture\",\n    \"quote\": \"Xiao Li ended up leaving the following month. His resignation letter was very polite.\"\n  }\n],\n\"interpretation\": \"The interviewee describes a department characterized by a strong, family-like team culture, emphasizing unity and mutual support, but also highlights challenges such as lack of overtime compensation and work-life balance issues. Despite these tensions, the emotional bonds and recognition within the team are deeply felt.\",\n\"tone\": \"mixed\",\n\"confidence\": 90\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The interviewee is a public-area cleaner with four years of experience. He's talking about the atmosphere in his department, describing it as a family. He mentions working long hours during the Spring Festival, the supervisor's role in enforcing the family concept, and the situation with Xiao Li who couldn't take time off to visit his grandmother. The supervisor's response and the end-of-year rewards like cooking oil and thank-you cards are also mentioned. The supervisor's emotional moment during the award ceremony and Xiao Li leaving the following month are highlighted.\n\nFirst, I need to identify the first-order codes. These should be short labels (2-6 words) that capture key themes from the interviewee's statements. Looking at the quotes, the repeated use of \"family\" is central. So \"family-like team environment\" is a code, supported by the quote about the supervisor saying they're all family. \n\nAnother theme is the lack of overtime pay, which the supervisor addresses by saying talking about money hurts feelings. That's a code about \"no overtime pay, but family considerations.\" The mention of Xiao Li not being able to take leave because of the family concept is another point, leading to a code like \"work-life balance conflicts due to family expectations.\" \n\nThe emotional impact on the supervisor and the team during the award ceremony could be another code, perhaps \"emotional team bonding and recognition.\" Then, the fact that Xiao Li left despite the family environment might be a code about \"employee departure despite strong team culture.\" \n\nNext, the interpretation: The interviewee is highlighting the strong family-like atmosphere in the department, but also the challenges it brings, like lack of overtime pay and work-life balance issues. The team's unity is emphasized, but there's a mention of Xiao Li leaving, indicating that even a strong culture can't prevent all departures.\n\nThe tone seems mixed. There are positive aspects (family, support, recognition) but also negative (no overtime pay, Xiao Li leaving). So the tone is mixed.\n\nConfidence in interpretation: I think the interpretation is accurate based on the quotes provided. The interviewee clearly discusses both the positives and the challenges, so confidence is around 90.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 58035468000,
+  "load_duration": 1530458,
+  "prompt_eval_count": 798,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1681858000,
+  "eval_count": 758,
+  "eval_duration": 56229374000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[2].label: 7 words"
+  ],
+  "quotes": [
+   {
+    "quote": "Our supervisor often says our department is one big family, we’re all family here.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the supervisor said, among family, talking about money just hurts feelings, it’ll all be considered together at the end of the year.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the supervisor told him, as family you can’t just walk away from your duties at a time like this, everyone’s holding the fort.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "he even paused to wipe his eyes. All of us in the audience applauded, and I clapped pretty hard.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Xiao Li ended up leaving the following month. His resignation letter was very polite.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:49:26+00:00",
+ "finished_at": "2026-10-28T19:50:24+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

@@ -1,0 +1,179 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "204",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet server, female, 3rd year\n\nInterviewer: Working banquets, have you ever come across guests who were particularly difficult to deal with?\n\nInterviewee: I wouldn’t say difficult. It’s all been within manageable limits. Last month there was a wedding banquet, and at the table next to the head table there was a male guest who’d had quite a lot to drink. When wine was being poured, there was some rather enthusiastic physical contact. Under department regulations, in such situations service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet. Carried on pouring the wine for that table at the time, then swapped service areas with a colleague. The report was also submitted according to procedure. The team leader signed it and wrote: noted, floor patrols to be stepped up going forward. The guest made no further service requests, the banquet concluded normally, and overall service was not affected. That’s it. It was handled fairly properly. This kind of situation isn’t anything unusual in the department either. It happens a few times every year, and it’s always handled through the same procedure. That wedding banquet actually went really well. They’d booked the Golden Goblet set menu, eighteen courses in all. The lobster and the leopard coral grouper were both prepared on the spot, and the cold platter came in eight different designs. The bride’s father even went to the kitchen specially to have his photo taken with the head chef, and said it was classier than any of the ones they’d been to last year. The banquet department is fully booked again next month with six events, and two of them were booked by guests who came to that wedding. The manager praised our whole team at the meeting. Recently we’ve been practising a new way of serving dishes with serving spoons and chopsticks. A table of ten has to be served in under four minutes. I can do it in three and a half now, which puts me second in the team, and the team leader says I should aim for first at next month’s competition.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Handling difficult guest with protocol\",\n    \"quote\": \"Under department regulations, in such situations service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet.\"\n  },\n  {\n    \"label\": \"Successful banquet despite incident\",\n    \"quote\": \"That wedding banquet actually went really well. They’d booked the Golden Goblet set menu, eighteen courses in all.\"\n  },\n  {\n    \"label\": \"Team procedure compliance\",\n    \"quote\": \"The report was also submitted according to procedure. The team leader signed it and wrote: noted, floor patrols to be stepped up going forward.\"\n  },\n  {\n    \"label\": \"Positive feedback on service\",\n    \"quote\": \"The bride’s father even went to the kitchen specially to have his photo taken with the head chef, and said it was classier than any of the ones they’d been to last year.\"\n  },\n  {\n    \"label\": \"Personal performance improvement\",\n    \"quote\": \"I can do it in three and a half now, which puts me second in the team, and the team leader says I should aim for first at next month’s competition.\"\n  }\n],\n\"interpretation\": \"The interviewee describes handling a challenging guest situation professionally by following established procedures, emphasizing the successful resolution of the incident and the overall positive outcome of the banquet. She also highlights her personal growth and team achievements.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a banquet server in her third year. The interviewer asked about dealing with difficult guests, and she talks about a specific incident where a guest was drunk and made physical contact. She mentions following procedures: remaining courteous, submitting a report, and then the team leader's response.\n\nFirst, I need to identify the first-order codes. The key points here are the handling of the difficult guest, adherence to procedures, the outcome of the situation, and then the positive aspects of the banquet's success and her personal achievements. \n\nFor the codes, maybe \"Handling difficult guest with protocol\" because she followed the department's regulations. Then \"Successful banquet despite incident\" since the banquet went well and the team was praised. \"Team procedure compliance\" could be another code as she mentions submitting the report and the team leader's note. Also, \"Positive feedback on service\" from the bride's father and the manager's praise. Lastly, \"Personal performance improvement\" regarding her speed in serving and aiming for first place.\n\nThe interpretation should capture that she managed the incident professionally, the banquet was successful, and her personal growth. The tone seems mixed because there's a challenging situation but also positive outcomes. Confidence is high since the details are clear and consistent.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 743,
+   "eval_count": 586,
+   "total_duration": 44803926666,
+   "load_duration": 470791,
+   "prompt_eval_duration": 1182396000,
+   "eval_duration": 42599808000
+  },
+  "wall_seconds": 44.81
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T18:33:27.773239Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Handling difficult guest with protocol\",\n    \"quote\": \"Under department regulations, in such situations service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet.\"\n  },\n  {\n    \"label\": \"Successful banquet despite incident\",\n    \"quote\": \"That wedding banquet actually went really well. They’d booked the Golden Goblet set menu, eighteen courses in all.\"\n  },\n  {\n    \"label\": \"Team procedure compliance\",\n    \"quote\": \"The report was also submitted according to procedure. The team leader signed it and wrote: noted, floor patrols to be stepped up going forward.\"\n  },\n  {\n    \"label\": \"Positive feedback on service\",\n    \"quote\": \"The bride’s father even went to the kitchen specially to have his photo taken with the head chef, and said it was classier than any of the ones they’d been to last year.\"\n  },\n  {\n    \"label\": \"Personal performance improvement\",\n    \"quote\": \"I can do it in three and a half now, which puts me second in the team, and the team leader says I should aim for first at next month’s competition.\"\n  }\n],\n\"interpretation\": \"The interviewee describes handling a challenging guest situation professionally by following established procedures, emphasizing the successful resolution of the incident and the overall positive outcome of the banquet. She also highlights her personal growth and team achievements.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a banquet server in her third year. The interviewer asked about dealing with difficult guests, and she talks about a specific incident where a guest was drunk and made physical contact. She mentions following procedures: remaining courteous, submitting a report, and then the team leader's response.\n\nFirst, I need to identify the first-order codes. The key points here are the handling of the difficult guest, adherence to procedures, the outcome of the situation, and then the positive aspects of the banquet's success and her personal achievements. \n\nFor the codes, maybe \"Handling difficult guest with protocol\" because she followed the department's regulations. Then \"Successful banquet despite incident\" since the banquet went well and the team was praised. \"Team procedure compliance\" could be another code as she mentions submitting the report and the team leader's note. Also, \"Positive feedback on service\" from the bride's father and the manager's praise. Lastly, \"Personal performance improvement\" regarding her speed in serving and aiming for first place.\n\nThe interpretation should capture that she managed the incident professionally, the banquet was successful, and her personal growth. The tone seems mixed because there's a challenging situation but also positive outcomes. Confidence is high since the details are clear and consistent.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 44803926666,
+  "load_duration": 470791,
+  "prompt_eval_count": 743,
+  "prompt_eval_cached_count": 386,
+  "prompt_eval_duration": 1182396000,
+  "eval_count": 586,
+  "eval_duration": 42599808000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[3].quote: 33 words > 30",
+   "codes[4].quote: 31 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "Under department regulations, in such situations service staff are to remain courteous, avoid direct confrontation, and submit a written report to the team leader upon conclusion of the banquet.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "That wedding banquet actually went really well. They’d booked the Golden Goblet set menu, eighteen courses in all.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The report was also submitted according to procedure. The team leader signed it and wrote: noted, floor patrols to be stepped up going forward.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The bride’s father even went to the kitchen specially to have his photo taken with the head chef, and said it was classier than any of the ones they’d been to last year.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I can do it in three and a half now, which puts me second in the team, and the team leader says I should aim for first at next month’s competition.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:32:42+00:00",
+ "finished_at": "2026-10-28T18:33:27+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

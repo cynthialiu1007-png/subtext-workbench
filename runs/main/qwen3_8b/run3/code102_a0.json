@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "102",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Room attendant, female, 5th year\n\nInterviewer: A while ago there was a news report about some hotels wiping cups with towels. How are cups usually cleaned here?\n\nInterviewee: We do everything to standard. The cups are taken to the workroom and put into the special disinfection cabinet. Once they’re disinfected they get a plastic seal put over them, and then they go back to the rooms. It was all taught in training, and we were tested on it too. After that news report came out, the hotel even held a special meeting and added two more disinfection cabinets on every floor. Now there are four per floor. One cycle takes forty minutes, and there’s basically no waiting. The disinfection log has to be signed every day as well, and the supervisor collects it before she goes off duty. Each of us has to do sixteen rooms a day, with four cups per room, and at twelve noon the supervisor checks on our progress. There really is a lot of work. Sometimes we don’t even have time for lunch. We’ve raised it with the manager several times, asking whether it could be brought down to fourteen rooms. The manager said he’s considering it, and we still haven’t heard anything. I’m not happy about that, and you can put it in. But when it comes to the cups, nobody dares cut corners. When the supervisor inspects a room, she picks up the cups and holds them up to the light. If there’s the slightest water mark, it has to be redone. Last month a new colleague lost points because of that. She didn’t say anything about it afterwards, and the next day she came in half an hour early to practise. The other floors are the same. It’s standard across the whole hotel. If you’d like to see, I can take you to the workroom in a bit to look at the disinfection cabinets. They’re right by the lifts, and the daily disinfection log is posted by the door. We can also talk about the new bedding we changed to this year while we’re at it. The guest feedback has been really good. You can write about that too. Our manager chose the bedding himself. He cares a lot about it.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Strict Cleaning Protocols\",\n      \"quote\": \"The cups are taken to the workroom and put into the special disinfection cabinet. Once they’re disinfected they get a plastic seal put over them\"\n    },\n    {\n      \"label\": \"Supervisor Oversight\",\n      \"quote\": \"When the supervisor inspects a room, she picks up the cups and holds them up to the light. If there’s the slightest water mark, it has to be redone\"\n    },\n    {\n      \"label\": \"High Workload\",\n      \"quote\": \"Each of us has to do sixteen rooms a day, with four cups per room, and at twelve noon the supervisor checks on our progress\"\n    },\n    {\n      \"label\": \"Management Response\",\n      \"quote\": \"The manager said he’s considering it, and we still haven’t heard anything. I’m not happy about that\"\n    },\n    {\n      \"label\": \"Attention to Detail\",\n      \"quote\": \"Last month a new colleague lost points because of that. She didn’t say anything about it afterwards, and the next day she came in half an hour early to practise\"\n    },\n    {\n      \"label\": \"Quality Focus\",\n      \"quote\": \"The guest feedback has been really good. You can write about that too. Our manager chose the bedding himself. He cares a lot about it\"\n    }\n  ],\n  \"interpretation\": \"The interviewee emphasizes rigorous cleaning standards and attention to detail, but also expresses frustration with excessive workloads and slow management responses to employee concerns.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to read through the interviewee's response carefully. The interviewee is a female room attendant with 5 years of experience. The interviewer asks about cup cleaning procedures, and the interviewee explains their process.\n\nFirst, I'll identify key themes. She mentions using a disinfection cabinet, plastic seals, and daily logs. That seems like a code related to strict protocols. Then, there's the part about the manager adding more cabinets and the supervisor checking work. That might relate to oversight or accountability. \n\nShe also talks about the workload—16 rooms a day, sometimes no time for lunch. That's a code about high workload. The manager considering reducing to 14 rooms but not acting yet could be a code about management response or lack of support. \n\nThe part where the supervisor checks cups under light and the colleague practicing shows attention to detail and pressure to meet standards. Another code could be about pressure to meet standards. \n\nThe mention of guest feedback being good and the manager choosing the bedding might indicate quality focus or pride in work. \n\nWait, the user wants 3-6 codes. Let me make sure each code is a short label with a quote. The quotes need to be exact and under 30 words. \n\nSo possible codes: \n1. Strict Cleaning Protocols (quote about disinfection cabinet and plastic seal)\n2. Supervisor Oversight (quote about supervisor checking cups under light)\n3. High Workload (quote about 16 rooms a day and no lunch)\n4. Management Response (quote about manager considering reducing rooms)\n5. Attention to Detail (quote about the colleague practicing)\n6. Quality Focus (quote about guest feedback and manager's choice of bedding)\n\nBut maybe some can be combined. Let me check the interpretation. The interviewee is communicating about rigorous cleaning standards, high workload, and management's response. The tone is mixed—some negative about workload and management, but positive about standards. Confidence level? Maybe 85. \n\nI need to ensure each code is distinct and supported by the quotes. Let me finalize the codes and their quotes.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 772,
+   "eval_count": 798,
+   "total_duration": 36052755000,
+   "load_duration": 425791,
+   "prompt_eval_duration": 858842000,
+   "eval_duration": 34352045000
+  },
+  "wall_seconds": 36.05
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:25:41.436954Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Strict Cleaning Protocols\",\n      \"quote\": \"The cups are taken to the workroom and put into the special disinfection cabinet. Once they’re disinfected they get a plastic seal put over them\"\n    },\n    {\n      \"label\": \"Supervisor Oversight\",\n      \"quote\": \"When the supervisor inspects a room, she picks up the cups and holds them up to the light. If there’s the slightest water mark, it has to be redone\"\n    },\n    {\n      \"label\": \"High Workload\",\n      \"quote\": \"Each of us has to do sixteen rooms a day, with four cups per room, and at twelve noon the supervisor checks on our progress\"\n    },\n    {\n      \"label\": \"Management Response\",\n      \"quote\": \"The manager said he’s considering it, and we still haven’t heard anything. I’m not happy about that\"\n    },\n    {\n      \"label\": \"Attention to Detail\",\n      \"quote\": \"Last month a new colleague lost points because of that. She didn’t say anything about it afterwards, and the next day she came in half an hour early to practise\"\n    },\n    {\n      \"label\": \"Quality Focus\",\n      \"quote\": \"The guest feedback has been really good. You can write about that too. Our manager chose the bedding himself. He cares a lot about it\"\n    }\n  ],\n  \"interpretation\": \"The interviewee emphasizes rigorous cleaning standards and attention to detail, but also expresses frustration with excessive workloads and slow management responses to employee concerns.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to read through the interviewee's response carefully. The interviewee is a female room attendant with 5 years of experience. The interviewer asks about cup cleaning procedures, and the interviewee explains their process.\n\nFirst, I'll identify key themes. She mentions using a disinfection cabinet, plastic seals, and daily logs. That seems like a code related to strict protocols. Then, there's the part about the manager adding more cabinets and the supervisor checking work. That might relate to oversight or accountability. \n\nShe also talks about the workload—16 rooms a day, sometimes no time for lunch. That's a code about high workload. The manager considering reducing to 14 rooms but not acting yet could be a code about management response or lack of support. \n\nThe part where the supervisor checks cups under light and the colleague practicing shows attention to detail and pressure to meet standards. Another code could be about pressure to meet standards. \n\nThe mention of guest feedback being good and the manager choosing the bedding might indicate quality focus or pride in work. \n\nWait, the user wants 3-6 codes. Let me make sure each code is a short label with a quote. The quotes need to be exact and under 30 words. \n\nSo possible codes: \n1. Strict Cleaning Protocols (quote about disinfection cabinet and plastic seal)\n2. Supervisor Oversight (quote about supervisor checking cups under light)\n3. High Workload (quote about 16 rooms a day and no lunch)\n4. Management Response (quote about manager considering reducing rooms)\n5. Attention to Detail (quote about the colleague practicing)\n6. Quality Focus (quote about guest feedback and manager's choice of bedding)\n\nBut maybe some can be combined. Let me check the interpretation. The interviewee is communicating about rigorous cleaning standards, high workload, and management's response. The tone is mixed—some negative about workload and management, but positive about standards. Confidence level? Maybe 85. \n\nI need to ensure each code is distinct and supported by the quotes. Let me finalize the codes and their quotes.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 36052755000,
+  "load_duration": 425791,
+  "prompt_eval_count": 772,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 858842000,
+  "eval_count": 798,
+  "eval_duration": 34352045000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "The cups are taken to the workroom and put into the special disinfection cabinet. Once they’re disinfected they get a plastic seal put over them",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "When the supervisor inspects a room, she picks up the cups and holds them up to the light. If there’s the slightest water mark, it has to be redone",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Each of us has to do sixteen rooms a day, with four cups per room, and at twelve noon the supervisor checks on our progress",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The manager said he’s considering it, and we still haven’t heard anything. I’m not happy about that",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last month a new colleague lost points because of that. She didn’t say anything about it afterwards, and the next day she came in half an hour early to practise",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The guest feedback has been really good. You can write about that too. Our manager chose the bedding himself. He cares a lot about it",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:25:05+00:00",
+ "finished_at": "2026-10-28T16:25:41+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

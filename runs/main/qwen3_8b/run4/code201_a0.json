@@ -1,0 +1,179 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "201",
+ "list": "B",
+ "seed": 4,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet hall team leader, female, 8th year\n\n[Earlier in the interview]\n\nInterviewee: Before the takeover, our banquet hall didn’t really have any manuals. Experienced staff trained the new ones, and everything came down to working it out for yourself. Back then I had a lot of my own ways of doing things. There was an old professor who held his birthday banquet with us every year. His teeth weren’t good, so each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask. One year, at his eightieth birthday, he’d had a little to drink, took my hand and said, young lady, you’re more attentive than my own children. After that, his family asked for me by name every time they booked a banquet, and I even won the group’s Service Star award because of it. In the first month after the takeover, out of old habit, I swapped a guest’s glass for a slightly bigger one. The inspector saw it and wrote it up on the checklist: deviation from standard. That month my appraisal score was the lowest in the whole team.\n\n[Later in the interview]\n\nInterviewer: After the hotel was taken over, how did your work change?\n\nInterviewee: Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual, and we’re assessed on it every quarter. The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same. Now every event in the banquet hall follows the procedure. There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry. We long-serving staff, to be honest, adapted even faster than the young ones. Now it doesn’t matter who’s on duty. You just follow the manual.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 4
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Personalized Service\",\n      \"quote\": \"Each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.\"\n    },\n    {\n      \"label\": \"Standardization Impact\",\n      \"quote\": \"In the first month after the takeover, out of old habit, I swapped a guest’s glass for a slightly bigger one. The inspector saw it and wrote it up on the checklist: deviation from standard.\"\n    },\n    {\n      \"label\": \"Positive Outcomes from Standardization\",\n      \"quote\": \"Our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry.\"\n    },\n    {\n      \"label\": \"Adaptation of Experienced Staff\",\n      \"quote\": \"We long-serving staff, to be honest, adapted even faster than the young ones.\"\n    },\n    {\n      \"label\": \"Systematic Evaluation\",\n      \"quote\": \"We’re assessed on it every quarter. The inspector comes every month, and our scores have always been near the top.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on the shift from personalized, experience-based practices to standardized procedures, highlighting both the challenges of transition and the benefits of consistency and recognition.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage. The interviewee is a banquet team leader with 8 years of experience. She talks about the change from a manual-free environment to a standardized system post-takeover.\n\nLooking at the earlier part, she mentions the old ways where experienced staff trained new ones. She had her own methods, like adjusting the professor's food. This shows her personal approach and the lack of formal guidelines. The incident with the inspector after the takeover leading to a low score is a key point here. That's probably a code about the impact of standardization.\n\nIn the later part, she discusses the new manual and how everything is standardized. The positive outcomes are fewer mistakes and higher scores. The mention of the model unit certificate shows the benefits. Also, she notes that experienced staff adapted faster, which might relate to the transition period.\n\nFirst-order codes should capture the main themes. Let's see. The first part has her personal methods and the problem with the inspector. Maybe codes like \"Personalized Service\" and \"Standardization Impact.\" Then the later part talks about the new system, so \"Standardized Procedures\" and \"Positive Outcomes.\" Also, the transition period might be a code about adaptation.\n\nWait, the user wants 3-6 codes. Let me list possible ones. The first part has her personal approach, the incident with the inspector, and the transition. The later part has the new system's benefits and adaptation. Maybe codes like \"Personalized Service,\" \"Standardization Impact,\" \"Positive Outcomes from Standardization,\" \"Adaptation of Experienced Staff,\" and \"Systematic Evaluation.\" That's five codes. Let me check the quotes. The quote about the professor's portion is for personalized service. The inspector's report is the impact of standardization. The model unit certificate is positive outcomes. The adaptation part is about experienced staff adapting. The systematic evaluation refers to the quarterly assessments.\n\nInterpretation: The interviewee is showing how the shift to standardization improved consistency and performance, though it initially disrupted her personalized approach. Tone is mixed, as she had negative experiences at first but positive outcomes later. Confidence is high, maybe 90. Need to make sure each code has a supporting quote. Let me verify the quotes are exact and within 30 words. Also, ensure the codes are concise and in the interviewee's language.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 746,
+   "eval_count": 813,
+   "total_duration": 37215131000,
+   "load_duration": 865041,
+   "prompt_eval_duration": 860345000,
+   "eval_duration": 35511713000
+  },
+  "wall_seconds": 37.22
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:15:47.063496Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n      \"label\": \"Personalized Service\",\n      \"quote\": \"Each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.\"\n    },\n    {\n      \"label\": \"Standardization Impact\",\n      \"quote\": \"In the first month after the takeover, out of old habit, I swapped a guest’s glass for a slightly bigger one. The inspector saw it and wrote it up on the checklist: deviation from standard.\"\n    },\n    {\n      \"label\": \"Positive Outcomes from Standardization\",\n      \"quote\": \"Our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry.\"\n    },\n    {\n      \"label\": \"Adaptation of Experienced Staff\",\n      \"quote\": \"We long-serving staff, to be honest, adapted even faster than the young ones.\"\n    },\n    {\n      \"label\": \"Systematic Evaluation\",\n      \"quote\": \"We’re assessed on it every quarter. The inspector comes every month, and our scores have always been near the top.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee reflects on the shift from personalized, experience-based practices to standardized procedures, highlighting both the challenges of transition and the benefits of consistency and recognition.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 90\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage. The interviewee is a banquet team leader with 8 years of experience. She talks about the change from a manual-free environment to a standardized system post-takeover.\n\nLooking at the earlier part, she mentions the old ways where experienced staff trained new ones. She had her own methods, like adjusting the professor's food. This shows her personal approach and the lack of formal guidelines. The incident with the inspector after the takeover leading to a low score is a key point here. That's probably a code about the impact of standardization.\n\nIn the later part, she discusses the new manual and how everything is standardized. The positive outcomes are fewer mistakes and higher scores. The mention of the model unit certificate shows the benefits. Also, she notes that experienced staff adapted faster, which might relate to the transition period.\n\nFirst-order codes should capture the main themes. Let's see. The first part has her personal methods and the problem with the inspector. Maybe codes like \"Personalized Service\" and \"Standardization Impact.\" Then the later part talks about the new system, so \"Standardized Procedures\" and \"Positive Outcomes.\" Also, the transition period might be a code about adaptation.\n\nWait, the user wants 3-6 codes. Let me list possible ones. The first part has her personal approach, the incident with the inspector, and the transition. The later part has the new system's benefits and adaptation. Maybe codes like \"Personalized Service,\" \"Standardization Impact,\" \"Positive Outcomes from Standardization,\" \"Adaptation of Experienced Staff,\" and \"Systematic Evaluation.\" That's five codes. Let me check the quotes. The quote about the professor's portion is for personalized service. The inspector's report is the impact of standardization. The model unit certificate is positive outcomes. The adaptation part is about experienced staff adapting. The systematic evaluation refers to the quarterly assessments.\n\nInterpretation: The interviewee is showing how the shift to standardization improved consistency and performance, though it initially disrupted her personalized approach. Tone is mixed, as she had negative experiences at first but positive outcomes later. Confidence is high, maybe 90. Need to make sure each code has a supporting quote. Let me verify the quotes are exact and within 30 words. Also, ensure the codes are concise and in the interviewee's language.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 37215131000,
+  "load_duration": 865041,
+  "prompt_eval_count": 746,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 860345000,
+  "eval_count": 813,
+  "eval_duration": 35511713000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[1].quote: 35 words > 30",
+   "codes[2].quote: 36 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "Each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "In the first month after the takeover, out of old habit, I swapped a guest’s glass for a slightly bigger one. The inspector saw it and wrote it up on the checklist: deviation from standard.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We long-serving staff, to be honest, adapted even faster than the young ones.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We’re assessed on it every quarter. The inspector comes every month, and our scores have always been near the top.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:15:09+00:00",
+ "finished_at": "2026-10-28T17:15:47+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 4,
+ "attempt": 0
+}

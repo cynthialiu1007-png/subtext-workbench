@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "119",
+ "list": "A",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Laundry linen-room worker, female, 15th year\n\n[Earlier in the interview]\n\nInterviewee: I reach retirement age next March, and the paperwork got started last month. My knees haven’t been great these past couple of years. If I push the linen trolley for long they start to hurt, and the doctor has told me to stand less and bend less. My daughter finished her master’s the year before last, found a job in Shanghai and rents her own place, so we don’t need to worry about her any more. My husband has been retired for two years. He spends every day at home planning travel routes and keeps telling me to hurry up and retire. He says we’ll go to Yunnan first, then Xinjiang. I’ve even got a countdown app on my phone. My colleagues all know about it, and every day at work they ask me how many days are left. My team leader says she’ll throw me a farewell party next month, and I said, then I’d better start thinking now about what to say.\n\n[Later in the interview]\n\nInterviewer: What are your plans for life from here on?\n\nInterviewee: Plans? Just to have a rest, I suppose. Fifteen years of work, it’s about time I had a rest. Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes. It’s been ages since I visited the relatives back in my hometown, too, and my younger sister keeps saying she’ll teach me mahjong. She says all I know how to do is go to work. A few of us from the linen room have agreed to get together once a month for tea and a chat. To be honest, after all these years here, I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees. The new people all come and ask me. Last winter that tumble dryer broke down, and the Engineering people spent two days on it without fixing it. In the end I was the one who found the fault, just by the sound. But you’ve always got to look ahead, haven’t you? When you’ve finished writing this up, let me have a look too.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Physical health challenges\", \"quote\": \"My knees haven’t been great these past couple of years.\"}, {\"label\": \"Retirement anticipation\", \"quote\": \"I reach retirement age next March... I’ve even got a countdown app on my phone.\"}, {\"label\": \"Colleague interactions\", \"quote\": \"My colleagues all know about it, and every day at work they ask me how many days are left.\"}, {\"label\": \"Post-retirement plans\", \"quote\": \"Go for a walk in the park... learn to cook a few new dishes.\"}, {\"label\": \"Professional competence\", \"quote\": \"I know the temper of every machine... I was the one who found the fault, just by the sound.\"}], \"interpretation\": \"The interviewee is looking forward to retirement, has a strong social network at work, and feels valued for her expertise. She is planning an active and social post-retirement life.\", \"tone\": \"positive\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by reading through the passage carefully. The interviewee is a laundry linen-room worker with 15 years of experience, female, and she's approaching retirement. The earlier part talks about her retirement plans, her knees, and her colleagues' reactions. The later part discusses her post-retirement activities and her experience with machinery.\n\nFirst, for coding, I need to identify 3-6 first-order codes. Let me look for key themes. She mentions her knees and the doctor's advice, which points to physical health challenges. Then, her retirement and the countdown app, colleagues' interest, and the farewell party indicate anticipation of retirement. She also talks about her plans after retirement: walking, square dancing, cooking, visiting family, and mahjong. There's also her expertise with the machines and solving the dryer issue, which shows her professional competence and maybe a sense of pride or legacy. The part about looking ahead might relate to future planning or adaptability.\n\nSo possible codes: physical health challenges (knees, doctor's advice), retirement anticipation (countdown app, colleagues asking, farewell party), post-retirement plans (activities like walking, dancing, cooking), professional competence (machine knowledge, solving the dryer problem), and maybe a sense of legacy or passing on knowledge (others ask her about machines). Another angle could be her relationship with colleagues (team leader's party, group meetings).\n\nFor the interpretation, she's looking forward to retirement, has a supportive social network, and feels her expertise is valued. The tone seems positive, especially towards the end, but there's a mention of physical issues which might be neutral or slightly negative. However, she's handling it with a positive outlook.\n\nConfidence in interpretation: High, since she's clearly looking forward to retirement and has plans, despite the physical challenges. The codes capture her health, retirement, plans, and professional aspects.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 782,
+   "eval_count": 598,
+   "total_duration": 46020425875,
+   "load_duration": 5395834,
+   "prompt_eval_duration": 1772038000,
+   "eval_duration": 44060216000
+  },
+  "wall_seconds": 46.05
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:08:35.176256Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Physical health challenges\", \"quote\": \"My knees haven’t been great these past couple of years.\"}, {\"label\": \"Retirement anticipation\", \"quote\": \"I reach retirement age next March... I’ve even got a countdown app on my phone.\"}, {\"label\": \"Colleague interactions\", \"quote\": \"My colleagues all know about it, and every day at work they ask me how many days are left.\"}, {\"label\": \"Post-retirement plans\", \"quote\": \"Go for a walk in the park... learn to cook a few new dishes.\"}, {\"label\": \"Professional competence\", \"quote\": \"I know the temper of every machine... I was the one who found the fault, just by the sound.\"}], \"interpretation\": \"The interviewee is looking forward to retirement, has a strong social network at work, and feels valued for her expertise. She is planning an active and social post-retirement life.\", \"tone\": \"positive\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by reading through the passage carefully. The interviewee is a laundry linen-room worker with 15 years of experience, female, and she's approaching retirement. The earlier part talks about her retirement plans, her knees, and her colleagues' reactions. The later part discusses her post-retirement activities and her experience with machinery.\n\nFirst, for coding, I need to identify 3-6 first-order codes. Let me look for key themes. She mentions her knees and the doctor's advice, which points to physical health challenges. Then, her retirement and the countdown app, colleagues' interest, and the farewell party indicate anticipation of retirement. She also talks about her plans after retirement: walking, square dancing, cooking, visiting family, and mahjong. There's also her expertise with the machines and solving the dryer issue, which shows her professional competence and maybe a sense of pride or legacy. The part about looking ahead might relate to future planning or adaptability.\n\nSo possible codes: physical health challenges (knees, doctor's advice), retirement anticipation (countdown app, colleagues asking, farewell party), post-retirement plans (activities like walking, dancing, cooking), professional competence (machine knowledge, solving the dryer problem), and maybe a sense of legacy or passing on knowledge (others ask her about machines). Another angle could be her relationship with colleagues (team leader's party, group meetings).\n\nFor the interpretation, she's looking forward to retirement, has a supportive social network, and feels her expertise is valued. The tone seems positive, especially towards the end, but there's a mention of physical issues which might be neutral or slightly negative. However, she's handling it with a positive outlook.\n\nConfidence in interpretation: High, since she's clearly looking forward to retirement and has plans, despite the physical challenges. The codes capture her health, retirement, plans, and professional aspects.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 46020425875,
+  "load_duration": 5395834,
+  "prompt_eval_count": 782,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1772038000,
+  "eval_count": 598,
+  "eval_duration": 44060216000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "My knees haven’t been great these past couple of years.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I reach retirement age next March... I’ve even got a countdown app on my phone.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My colleagues all know about it, and every day at work they ask me how many days are left.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Go for a walk in the park... learn to cook a few new dishes.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I know the temper of every machine... I was the one who found the fault, just by the sound.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:07:49+00:00",
+ "finished_at": "2026-10-28T19:08:35+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

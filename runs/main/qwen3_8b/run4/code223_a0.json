@@ -1,0 +1,187 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "223",
+ "list": "B",
+ "seed": 4,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Front-desk supervisor, female, 7th year\n\n[Earlier in the interview]\n\nInterviewee: A month before the new deputy general manager arrived, the hotel had just announced two things: a pay freeze for all staff for a year, and year-end bonuses would now depend on the group’s results. Of the eight of us on the front desk, two had left and hadn’t been replaced. We were short on the night shift, so I, as supervisor, covered it myself: nine night shifts in one month. I applied to HR three times for more staff, and each time they said to wait a bit longer. The day before the deputy GM arrived, HR phoned the supervisors of every department and said that at the all-staff meeting the next day, supervisors should lead the applause to create a good atmosphere and avoid any awkward silences, and that after the meeting there’d be a group photo for the group’s official WeChat account. That month I worked two all-nighters in a row. I’d get home and fall asleep straight away on the sofa, and the next day I’d come into work without even having taken my make-up off.\n\n[Later in the interview]\n\nInterviewer: What impression has the new deputy general manager made on you?\n\nInterviewee: He’s very good at getting a room going. At the first all-staff meeting, as soon as he got up on stage he said, hello everyone, I’m the new one here, and I’ve mainly come today to give you all a raise... in knowledge. The whole room laughed. A few people were rocking back and forth with laughter, and the concierge team leader sitting next to me nearly knocked over a glass of water. Then he said, the most valuable thing in our hotel isn’t that crystal chandelier in the lobby, it’s every single person sitting here today. I was sitting in the front row, and I was the first to clap. The people behind joined in, and the applause went on for a long time. Up on stage he nodded, and added that from now on, if anyone had any ideas, they could email him directly, and he’d read every single one. After the meeting, when those of us on the front desk talk about it, we still imitate him saying ‘a raise in knowledge’, and laugh every time. The deputy GM really is a very accomplished speaker.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 4
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\":[{\"label\":\"Workload and Burnout\",\"quote\":\"I worked two all-nighters in a row. I’d get home and fall asleep straight away on the sofa, and the next day I’d come into work without even having taken my make-up off.\"},{\"label\":\"Management Neglect\",\"quote\":\"HR phoned the supervisors of every department and said that at the all-staff meeting the next day, supervisors should lead the applause to create a good atmosphere and avoid any awkward silences, and that after the meeting there’d be a group photo for the group’s official WeChat account.\"},{\"label\":\"Leadership Engagement\",\"quote\":\"He’s very good at getting a room going. At the first all-staff meeting, as soon as he got up on stage he said, hello everyone, I’m the new one here, and I’ve mainly come today to give you all a raise... in knowledge.\"},{\"label\":\"Empowerment and Recognition\",\"quote\":\"the most valuable thing in our hotel isn’t that crystal chandelier in the lobby, it’s every single person sitting here today.\"},{\"label\":\"Humor and Team Bonding\",\"quote\":\"we still imitate him saying ‘a raise in knowledge’, and laugh every time.\"},{\"label\":\"Organizational Rituals\",\"quote\":\"HR phoned the supervisors of every department and said that at the all-staff meeting the next day, supervisors should lead the applause to create a good atmosphere and avoid any awkward silences, and that after the meeting there’d be a group photo for the group’s official WeChat account.\"}],\"interpretation\":\"The interviewee experienced significant workload and management neglect, but the new deputy GM's approach brought positive change through engagement and empowerment.\",\"tone\":\"mixed\",\"confidence\":85}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand what first-order coding entails. From what I remember, first-order codes are initial labels that capture the essence of the data without interpretation. They should be based directly on the text, using the interviewee's own words.\n\nLooking at the passage, the interviewee is a front-desk supervisor who's been there for seven years. She talks about the challenges she faced, like a pay freeze, lack of staff, and HR's response. Then there's the new deputy GM who made an impact with his speech. \n\nSo, the first step is to identify key themes. The first part mentions the pay freeze and staff shortages. She mentions applying to HR multiple times but not getting help. The HR's instruction to create a good atmosphere by clapping might be a code. Then the deputy GM's speech, where he talks about a raise in knowledge and the value of employees, which seems positive.\n\nI need to extract 3-6 codes. Let's see. The first part has issues with workload and management neglect. The HR's directive about the meeting could be a code about organizational rituals. The deputy GM's approach is positive, so maybe \"Leadership Engagement\" or \"Empowerment\". The laughter and imitation of his speech could be \"Humor and Team Bonding\". \n\nWait, the quote about the deputy GM's speech where he says \"a raise in knowledge\" is a key point. Also, the part where he emphasizes every employee's value. So maybe \"Leadership Engagement\" and \"Empowerment\". The HR's instruction to clap is a ritual, but maybe the code is \"Organizational Rituals\" or \"Management Communication\". \n\nAnother code could be \"Workload and Burnout\" from her working night shifts and exhaustion. Then, the positive impact of the deputy GM's approach, maybe \"Positive Leadership Impact\". \n\nWait, the user wants the codes to be short labels, 2-6 words. Let me check each quote. For example, the quote about the pay freeze and staff shortages: \"A month before the new deputy general manager arrived, the hotel had just announced two things: a pay freeze for all staff for a year, and year-end bonuses would now depend on the group’s results.\" That could be \"Pay Freeze and Performance Bonuses\".\n\nThen, the part about HR not replacing staff: \"two had left and hadn’t been replaced. We were short on the night shift, so I, as supervisor, covered it myself: nine night shifts in one month.\" That's about staff shortages and workload, maybe \"Staff Shortages and Overwork\".\n\nThe HR's instruction to create a good atmosphere: \"HR phoned the supervisors... to lead the applause... avoid awkward silences... group photo for WeChat.\" So \"Organizational Rituals\" or \"Management Communication\".\n\nThe deputy GM's speech: \"He’s very good at getting a room going. At the first all-staff meeting... give you all a raise... in knowledge.\" So \"Leadership Engagement\" or \"Humor and Team Bonding\".\n\nThe part where he emphasizes employees' value: \"the most valuable thing... every single person here.\" That's about empowerment, so \"Empowerment and Recognition\".\n\nThen, the laughter and imitation: \"we still imitate him saying ‘a raise in knowledge’, and laugh every time.\" So \"Humor and Team Bonding\" again.\n\nPutting it all together, the codes might be:\n\n1. Pay Freeze and Performance Bonuses\n2. Staff Shortages and Overwork\n3. Organizational Rituals\n4. Leadership Engagement\n5. Empowerment and Recognition\n6. Humor and Team Bonding\n\nBut the user said 3-6 codes. Maybe combine some. Alternatively, maybe focus on the main themes. The interviewee's experience is about the negative aspects (pay freeze, staff issues) and the positive change with the new deputy GM. So codes could be:\n\n- Workload and Burnout (from her working night shifts)\n- Management Neglect (HR not replacing staff)\n- Organizational Rituals (clapping directive)\n- Leadership Engagement (deputy GM's speech)\n- Empowerment and Recognition (his emphasis on employees)\n- Humor and Team Bonding (laughter and imitation)\n\nBut need to ensure each code has a supporting quote. Let me check the quotes again.\n\nFor \"Workload and Burnout\": \"I worked two all-nighters in a row. I’d get home and fall asleep straight away on the sofa, and the next day I’d come into work without even having taken my make-up off.\"\n\nFor \"Management Neglect\": \"HR phoned the supervisors... said to wait a bit longer.\"\n\nFor \"Organizational Rituals\": \"HR phoned the supervisors... to lead the applause... avoid awkward silences... group photo for WeChat.\"\n\nFor \"Leadership Engagement\": \"He’s very good at getting a room going. At the first all-staff meeting... give you all a raise... in knowledge.\"\n\nFor \"Empowerment and Recognition\": \"the most valuable thing... every single person here.\"\n\nFor \"Humor and Team Bond,\": \"we still imitate him saying ‘a raise in knowledge’, and laugh every time.\"\n\nThat's six codes. The interpretation would be that the interviewee experienced significant workload and management neglect, but the new deputy GM's approach brought positive change through engagement and empowerment. The tone is mixed, with negative and positive elements. Confidence might be around 85.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 800,
+   "eval_count": 1508,
+   "total_duration": 66302941334,
+   "load_duration": 376875,
+   "prompt_eval_duration": 836792000,
+   "eval_duration": 64716811000
+  },
+  "wall_seconds": 66.31
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T17:32:22.756851Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\":[{\"label\":\"Workload and Burnout\",\"quote\":\"I worked two all-nighters in a row. I’d get home and fall asleep straight away on the sofa, and the next day I’d come into work without even having taken my make-up off.\"},{\"label\":\"Management Neglect\",\"quote\":\"HR phoned the supervisors of every department and said that at the all-staff meeting the next day, supervisors should lead the applause to create a good atmosphere and avoid any awkward silences, and that after the meeting there’d be a group photo for the group’s official WeChat account.\"},{\"label\":\"Leadership Engagement\",\"quote\":\"He’s very good at getting a room going. At the first all-staff meeting, as soon as he got up on stage he said, hello everyone, I’m the new one here, and I’ve mainly come today to give you all a raise... in knowledge.\"},{\"label\":\"Empowerment and Recognition\",\"quote\":\"the most valuable thing in our hotel isn’t that crystal chandelier in the lobby, it’s every single person sitting here today.\"},{\"label\":\"Humor and Team Bonding\",\"quote\":\"we still imitate him saying ‘a raise in knowledge’, and laugh every time.\"},{\"label\":\"Organizational Rituals\",\"quote\":\"HR phoned the supervisors of every department and said that at the all-staff meeting the next day, supervisors should lead the applause to create a good atmosphere and avoid any awkward silences, and that after the meeting there’d be a group photo for the group’s official WeChat account.\"}],\"interpretation\":\"The interviewee experienced significant workload and management neglect, but the new deputy GM's approach brought positive change through engagement and empowerment.\",\"tone\":\"mixed\",\"confidence\":85}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand what first-order coding entails. From what I remember, first-order codes are initial labels that capture the essence of the data without interpretation. They should be based directly on the text, using the interviewee's own words.\n\nLooking at the passage, the interviewee is a front-desk supervisor who's been there for seven years. She talks about the challenges she faced, like a pay freeze, lack of staff, and HR's response. Then there's the new deputy GM who made an impact with his speech. \n\nSo, the first step is to identify key themes. The first part mentions the pay freeze and staff shortages. She mentions applying to HR multiple times but not getting help. The HR's instruction to create a good atmosphere by clapping might be a code. Then the deputy GM's speech, where he talks about a raise in knowledge and the value of employees, which seems positive.\n\nI need to extract 3-6 codes. Let's see. The first part has issues with workload and management neglect. The HR's directive about the meeting could be a code about organizational rituals. The deputy GM's approach is positive, so maybe \"Leadership Engagement\" or \"Empowerment\". The laughter and imitation of his speech could be \"Humor and Team Bonding\". \n\nWait, the quote about the deputy GM's speech where he says \"a raise in knowledge\" is a key point. Also, the part where he emphasizes every employee's value. So maybe \"Leadership Engagement\" and \"Empowerment\". The HR's instruction to clap is a ritual, but maybe the code is \"Organizational Rituals\" or \"Management Communication\". \n\nAnother code could be \"Workload and Burnout\" from her working night shifts and exhaustion. Then, the positive impact of the deputy GM's approach, maybe \"Positive Leadership Impact\". \n\nWait, the user wants the codes to be short labels, 2-6 words. Let me check each quote. For example, the quote about the pay freeze and staff shortages: \"A month before the new deputy general manager arrived, the hotel had just announced two things: a pay freeze for all staff for a year, and year-end bonuses would now depend on the group’s results.\" That could be \"Pay Freeze and Performance Bonuses\".\n\nThen, the part about HR not replacing staff: \"two had left and hadn’t been replaced. We were short on the night shift, so I, as supervisor, covered it myself: nine night shifts in one month.\" That's about staff shortages and workload, maybe \"Staff Shortages and Overwork\".\n\nThe HR's instruction to create a good atmosphere: \"HR phoned the supervisors... to lead the applause... avoid awkward silences... group photo for WeChat.\" So \"Organizational Rituals\" or \"Management Communication\".\n\nThe deputy GM's speech: \"He’s very good at getting a room going. At the first all-staff meeting... give you all a raise... in knowledge.\" So \"Leadership Engagement\" or \"Humor and Team Bonding\".\n\nThe part where he emphasizes employees' value: \"the most valuable thing... every single person here.\" That's about empowerment, so \"Empowerment and Recognition\".\n\nThen, the laughter and imitation: \"we still imitate him saying ‘a raise in knowledge’, and laugh every time.\" So \"Humor and Team Bonding\" again.\n\nPutting it all together, the codes might be:\n\n1. Pay Freeze and Performance Bonuses\n2. Staff Shortages and Overwork\n3. Organizational Rituals\n4. Leadership Engagement\n5. Empowerment and Recognition\n6. Humor and Team Bonding\n\nBut the user said 3-6 codes. Maybe combine some. Alternatively, maybe focus on the main themes. The interviewee's experience is about the negative aspects (pay freeze, staff issues) and the positive change with the new deputy GM. So codes could be:\n\n- Workload and Burnout (from her working night shifts)\n- Management Neglect (HR not replacing staff)\n- Organizational Rituals (clapping directive)\n- Leadership Engagement (deputy GM's speech)\n- Empowerment and Recognition (his emphasis on employees)\n- Humor and Team Bonding (laughter and imitation)\n\nBut need to ensure each code has a supporting quote. Let me check the quotes again.\n\nFor \"Workload and Burnout\": \"I worked two all-nighters in a row. I’d get home and fall asleep straight away on the sofa, and the next day I’d come into work without even having taken my make-up off.\"\n\nFor \"Management Neglect\": \"HR phoned the supervisors... said to wait a bit longer.\"\n\nFor \"Organizational Rituals\": \"HR phoned the supervisors... to lead the applause... avoid awkward silences... group photo for WeChat.\"\n\nFor \"Leadership Engagement\": \"He’s very good at getting a room going. At the first all-staff meeting... give you all a raise... in knowledge.\"\n\nFor \"Empowerment and Recognition\": \"the most valuable thing... every single person here.\"\n\nFor \"Humor and Team Bond,\": \"we still imitate him saying ‘a raise in knowledge’, and laugh every time.\"\n\nThat's six codes. The interpretation would be that the interviewee experienced significant workload and management neglect, but the new deputy GM's approach brought positive change through engagement and empowerment. The tone is mixed, with negative and positive elements. Confidence might be around 85.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 66302941334,
+  "load_duration": 376875,
+  "prompt_eval_count": 800,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 836792000,
+  "eval_count": 1508,
+  "eval_duration": 64716811000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 33 words > 30",
+   "codes[1].quote: 48 words > 30",
+   "codes[2].quote: 43 words > 30",
+   "codes[5].quote: 48 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "I worked two all-nighters in a row. I’d get home and fall asleep straight away on the sofa, and the next day I’d come into work without even having taken my make-up off.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "HR phoned the supervisors of every department and said that at the all-staff meeting the next day, supervisors should lead the applause to create a good atmosphere and avoid any awkward silences, and that after the meeting there’d be a group photo for the group’s official WeChat account.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He’s very good at getting a room going. At the first all-staff meeting, as soon as he got up on stage he said, hello everyone, I’m the new one here, and I’ve mainly come today to give you all a raise... in knowledge.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the most valuable thing in our hotel isn’t that crystal chandelier in the lobby, it’s every single person sitting here today.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "we still imitate him saying ‘a raise in knowledge’, and laugh every time.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "HR phoned the supervisors of every department and said that at the all-staff meeting the next day, supervisors should lead the applause to create a good atmosphere and avoid any awkward silences, and that after the meeting there’d be a group photo for the group’s official WeChat account.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T17:31:16+00:00",
+ "finished_at": "2026-10-28T17:32:22+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 4,
+ "attempt": 0
+}

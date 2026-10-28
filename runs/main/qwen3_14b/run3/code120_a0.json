@@ -1,0 +1,188 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "120",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Bellman, male, 1st year\n\nInterviewer: I hear you got a letter of praise from a guest last month?\n\nInterviewee: Oh, that. It’s nothing really, it’s all part of the job. That night a guest arrived with two small children. Her flight had been delayed and she didn’t get in until nearly midnight. One child was crying and the other had already fallen asleep. I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her. That’s all. The guest checked out early the next morning to catch her next flight. I was on my break when she left, so I didn’t see her. She wrote a few lines on the comment card when she checked out, and HR put it up on the noticeboard in the staff corridor, as they usually do. Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them. When I walked past after my shift I took a glance. It was about me all right. Then I went to the locker room to get changed. That evening I phoned my mum. Mostly we talked about her coming to visit me next month: which day’s train to book, where she’d stay. We talked for almost an hour, and I actually forgot to mention it. The next day I went to work as usual. My team leader read out my name at the morning briefing, everyone clapped, and then we moved straight on to assigning that day’s airport pick-ups. What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality. Last month I was late once and lost points, so I need to make them up this month. Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Helping guest with child and milk\",\n    \"quote\": \"I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\"\n  },\n  {\n    \"label\": \"Downplaying the praise as routine\",\n    \"quote\": \"Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\"\n  },\n  {\n    \"label\": \"Team reaction to praise\",\n    \"quote\": \"My team leader read out my name at the morning briefing, everyone clapped, and then we moved straight on to assigning that day’s airport pick-ups.\"\n  },\n  {\n    \"label\": \"Focus on appraisal criteria over recognition\",\n    \"quote\": \"What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality.\"\n  },\n  {\n    \"label\": \"Hotel's regular practice of displaying praise letters\",\n    \"quote\": \"Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them.\"\n  },\n  {\n    \"label\": \"Personal life unrelated to the praise letter\",\n    \"quote\": \"That evening I phoned my mum. Mostly we talked about her coming to visit me next month: which day’s train to book, where she’d stay. We talked for almost an hour, and I actually forgot to mention it.\"\n  }\n],\n\"interpretation\": \"The interviewee helped a guest in a challenging situation but downplays the recognition, emphasizing that it's part of the job and not special. He's more concerned about his appraisal based on punctuality and luggage errors, indicating that the praise is a minor event compared to his professional performance metrics.\",\n\"tone\": \"mixed\",\n\"confidence\": 90\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. He's a first-year bellman who received a praise letter from a guest. The main event was helping a guest with a crying child and providing milk. The interviewee downplays the incident, saying it's part of the job. He mentions that the hotel regularly posts such letters, and others get multiple ones, so it's not a big deal. He also talks about the team leader's reaction and the upcoming appraisal, which focuses on punctuality and luggage errors. He seems to feel that his action was just routine and not special.\n\nNow, for the coding. First, the main themes here. The first code could be about the incident itself, like \"Helping guest with child and milk\". The quote would be \"I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\" That's a direct quote and captures the action.\n\nNext, the interviewee downplays the praise. So a code like \"Downplaying the praise as routine\". The quote here is \"Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\" That shows his attitude towards the recognition.\n\nAnother code could be about the team's reaction. The team leader reading out his name and clapping. The quote: \"My team leader read out my name at the morning briefing, everyone clapped, and then we moved straight on to assigning that day’s airport pick-ups.\" That's a direct quote showing the team's response.\n\nHe also mentions the appraisal system. The code here might be \"Focus on appraisal criteria over recognition\". The quote is \"What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality.\" This highlights his concern about performance metrics.\n\nThen, the mention of the hotel's practice of posting praise letters. So a code like \"Hotel's regular practice of displaying praise letters\". The quote: \"Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them.\" This shows the context of how common these letters are.\n\nLastly, the interviewee's personal life, like talking to his mom. The code could be \"Personal life unrelated to the praise letter\". The quote: \"That evening I phoned my mum. Mostly we talked about her coming to visit me next month: which day’s train to book, where she’d stay. We talked for almost an hour, and I actually forgot to mention it.\" This shows that the praise letter wasn't a major topic in his personal conversation.\n\nInterpretation: The interviewee helped a guest in a challenging situation but downplays the recognition, emphasizing that it's part of the job and not special. He's more concerned about his appraisal based on punctuality and luggage errors, indicating that the praise is a minor event compared to his professional performance metrics.\n\nTone: Mixed. He's positive about helping the guest but neutral or even slightly negative about the recognition and the appraisal system.\n\nConfidence: 90. The interpretation seems solid based on the quotes and the context provided. The interviewee's own words clearly show his downplaying of the event and focus on other aspects.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 748,
+   "eval_count": 1156,
+   "total_duration": 88859915000,
+   "load_duration": 437834,
+   "prompt_eval_duration": 1094152000,
+   "eval_duration": 86120305000
+  },
+  "wall_seconds": 88.88
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:52:37.720375Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Helping guest with child and milk\",\n    \"quote\": \"I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\"\n  },\n  {\n    \"label\": \"Downplaying the praise as routine\",\n    \"quote\": \"Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\"\n  },\n  {\n    \"label\": \"Team reaction to praise\",\n    \"quote\": \"My team leader read out my name at the morning briefing, everyone clapped, and then we moved straight on to assigning that day’s airport pick-ups.\"\n  },\n  {\n    \"label\": \"Focus on appraisal criteria over recognition\",\n    \"quote\": \"What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality.\"\n  },\n  {\n    \"label\": \"Hotel's regular practice of displaying praise letters\",\n    \"quote\": \"Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them.\"\n  },\n  {\n    \"label\": \"Personal life unrelated to the praise letter\",\n    \"quote\": \"That evening I phoned my mum. Mostly we talked about her coming to visit me next month: which day’s train to book, where she’d stay. We talked for almost an hour, and I actually forgot to mention it.\"\n  }\n],\n\"interpretation\": \"The interviewee helped a guest in a challenging situation but downplays the recognition, emphasizing that it's part of the job and not special. He's more concerned about his appraisal based on punctuality and luggage errors, indicating that the praise is a minor event compared to his professional performance metrics.\",\n\"tone\": \"mixed\",\n\"confidence\": 90\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. He's a first-year bellman who received a praise letter from a guest. The main event was helping a guest with a crying child and providing milk. The interviewee downplays the incident, saying it's part of the job. He mentions that the hotel regularly posts such letters, and others get multiple ones, so it's not a big deal. He also talks about the team leader's reaction and the upcoming appraisal, which focuses on punctuality and luggage errors. He seems to feel that his action was just routine and not special.\n\nNow, for the coding. First, the main themes here. The first code could be about the incident itself, like \"Helping guest with child and milk\". The quote would be \"I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.\" That's a direct quote and captures the action.\n\nNext, the interviewee downplays the praise. So a code like \"Downplaying the praise as routine\". The quote here is \"Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.\" That shows his attitude towards the recognition.\n\nAnother code could be about the team's reaction. The team leader reading out his name and clapping. The quote: \"My team leader read out my name at the morning briefing, everyone clapped, and then we moved straight on to assigning that day’s airport pick-ups.\" That's a direct quote showing the team's response.\n\nHe also mentions the appraisal system. The code here might be \"Focus on appraisal criteria over recognition\". The quote is \"What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality.\" This highlights his concern about performance metrics.\n\nThen, the mention of the hotel's practice of posting praise letters. So a code like \"Hotel's regular practice of displaying praise letters\". The quote: \"Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them.\" This shows the context of how common these letters are.\n\nLastly, the interviewee's personal life, like talking to his mom. The code could be \"Personal life unrelated to the praise letter\". The quote: \"That evening I phoned my mum. Mostly we talked about her coming to visit me next month: which day’s train to book, where she’d stay. We talked for almost an hour, and I actually forgot to mention it.\" This shows that the praise letter wasn't a major topic in his personal conversation.\n\nInterpretation: The interviewee helped a guest in a challenging situation but downplays the recognition, emphasizing that it's part of the job and not special. He's more concerned about his appraisal based on punctuality and luggage errors, indicating that the praise is a minor event compared to his professional performance metrics.\n\nTone: Mixed. He's positive about helping the guest but neutral or even slightly negative about the recognition and the appraisal system.\n\nConfidence: 90. The interpretation seems solid based on the quotes and the context provided. The interviewee's own words clearly show his downplaying of the event and focus on other aspects.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 88859915000,
+  "load_duration": 437834,
+  "prompt_eval_count": 748,
+  "prompt_eval_cached_count": 476,
+  "prompt_eval_duration": 1094152000,
+  "eval_count": 1156,
+  "eval_duration": 86120305000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 44 words > 30",
+   "codes[4].label: 7 words",
+   "codes[4].quote: 32 words > 30",
+   "codes[5].label: 7 words",
+   "codes[5].quote: 38 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "I helped her take her luggage up to the room, and saw her rummaging in her bag for formula, so I went down to the convenience store, bought a carton of milk, warmed it up in hot water and took it up to her.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Honestly, anyone would have done the same in that situation. There’s nothing special about it. You don’t need to put it in specially.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My team leader read out my name at the morning briefing, everyone clapped, and then we moved straight on to assigning that day’s airport pick-ups.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "What I care about more is the appraisal at the end of the month. That’s mainly based on luggage errors and punctuality.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Our hotel puts up a dozen or so every month, for the front desk, housekeeping and concierge, and some people get three or four a month, so nobody makes much of them.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "That evening I phoned my mum. Mostly we talked about her coming to visit me next month: which day’s train to book, where she’d stay. We talked for almost an hour, and I actually forgot to mention it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:51:08+00:00",
+ "finished_at": "2026-10-28T19:52:37+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

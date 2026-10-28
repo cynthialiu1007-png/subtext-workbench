@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "220",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet server, male, 3rd year\n\nInterviewer: How much of the banquet service charge do you frontline staff get?\n\nInterviewee: The service charge is distributed centrally according to hotel regulations. The proportions are determined by management. We on the front line are not involved. There’s a line on the payslip called service bonus. The figure is different every month. How exactly it’s calculated, we don’t really know, and we don’t really need to know. It gets paid every month anyway. Last year a colleague asked once in the group chat what the proportions of the service charge were and whether they could be made public. Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them. After that nobody asked about it in the group chat again. He’s still there now. He’s doing fine. Sometimes we run into each other in the staff corridor and say hello. He talks less than he used to, and he doesn’t say much in the group chat any more. Anyway, the hotel has its regulations. It’s not something for us to think about. We just need to do our own service well. Actually, the benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine. It’s much better than the hotel I was at before. There’s also a year-end bonus. Last year it was a month and a half’s pay. Next month is the peak wedding season. Every weekend we’ll have three events, setting up from nine in the morning and clearing the tables until ten at night. Recently we’ve been practising new napkin folds. There’s one called the peacock fan that takes more than twenty folds, and I can already do it pretty quickly. My team leader says I fold better than anyone else in this intake, and I might move up a grade before New Year. If you’re interested, you could come and watch us set up at the weekend. It looks really impressive. Lots of the new people take photos and post them on WeChat Moments.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Centralized Service Charge Management\",\n      \"quote\": \"The service charge is distributed centrally according to hotel regulations. The proportions are determined by management.\"\n    },\n    {\n      \"label\": \"Unclear Compensation Structure\",\n      \"quote\": \"How exactly it’s calculated, we don’t really know, and we don’t really need to know.\"\n    },\n    {\n      \"label\": \"Power Dynamics and Control\",\n      \"quote\": \"Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them.\"\n    },\n    {\n      \"label\": \"Competitive Employee Benefits\",\n      \"quote\": \"Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine.\"\n    },\n    {\n      \"label\": \"Professional Development Opportunities\",\n      \"quote\": \"My team leader says I fold better than anyone else in this intake, and I might move up a grade before New Year.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee communicates that frontline staff have limited control over compensation structures and are subject to management's decisions, but they receive good benefits and opportunities for advancement.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a banquet server, male, 3rd year. The interviewer asks about the service charge distribution. The interviewee explains that it's handled centrally by management, not involving frontline staff. He mentions the service bonus on payslips, not knowing the calculation, and a colleague's experience when he asked about it. The colleague was moved to dishwashing, and now he's less talkative. Then he talks about the benefits like meals, accommodation, dorms, and a year-end bonus. He also mentions the busy wedding season, long hours, practicing napkin folds, and potential promotion.\n\nFirst, I need to identify the key themes or codes. Let me list possible codes. The first part is about the service charge distribution. The interviewee says it's managed by management, not involving frontline staff. So maybe a code like \"Centralized Service Charge Management\" with the quote about management determining proportions. Then there's the colleague's experience and the move to dishwashing, which might relate to \"Power Dynamics and Control\" as management controls the information. The colleague's silence after being moved could be part of that. \n\nAnother code could be \"Unclear Compensation Structure\" since the service bonus is unclear in calculation. Then, the benefits mentioned like meals, accommodation, and dorms could be \"Competitive Employee Benefits.\" The mention of the year-end bonus and good overall benefits supports this. \n\nThe part about the colleague's experience and the team leader's praise might relate to \"Workplace Hierarchies and Recognition,\" where the team leader acknowledges his skills. Also, the mention of practicing new techniques and potential promotion could be \"Professional Development Opportunities.\" \n\nWait, the user wants 3-6 codes. Let me check again. The colleague's situation might also relate to \"Fear of Speaking Out\" or \"Whistleblower Retaliation,\" but the interviewee doesn't say the colleague was punished, just moved. Maybe \"Power Dynamics\" is better. \n\nAlso, the part about the busy season and long hours could be \"High Workload and Pressure,\" but the interviewee seems to accept it as part of the job. The last part about the team leader's praise and potential promotion is positive. \n\nSo possible codes: Centralized Service Charge Management, Unclear Compensation Structure, Power Dynamics and Control, Competitive Employee Benefits, Professional Development Opportunities. That's five codes. \n\nInterpretation: The interviewee communicates that frontline staff have limited control over compensation structures and are subject to management's decisions, but they receive good benefits and opportunities for advancement. \n\nTone: Mixed, because there's both negative aspects (unclear compensation, power dynamics) and positive (benefits, professional growth). \n\nConfidence: 85, since the codes seem to fit the passage and the interpretation covers the main points.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 747,
+   "eval_count": 876,
+   "total_duration": 39133283125,
+   "load_duration": 393166,
+   "prompt_eval_duration": 875789000,
+   "eval_duration": 37259332000
+  },
+  "wall_seconds": 39.13
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:21:41.310091Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Centralized Service Charge Management\",\n      \"quote\": \"The service charge is distributed centrally according to hotel regulations. The proportions are determined by management.\"\n    },\n    {\n      \"label\": \"Unclear Compensation Structure\",\n      \"quote\": \"How exactly it’s calculated, we don’t really know, and we don’t really need to know.\"\n    },\n    {\n      \"label\": \"Power Dynamics and Control\",\n      \"quote\": \"Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them.\"\n    },\n    {\n      \"label\": \"Competitive Employee Benefits\",\n      \"quote\": \"Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine.\"\n    },\n    {\n      \"label\": \"Professional Development Opportunities\",\n      \"quote\": \"My team leader says I fold better than anyone else in this intake, and I might move up a grade before New Year.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee communicates that frontline staff have limited control over compensation structures and are subject to management's decisions, but they receive good benefits and opportunities for advancement.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a banquet server, male, 3rd year. The interviewer asks about the service charge distribution. The interviewee explains that it's handled centrally by management, not involving frontline staff. He mentions the service bonus on payslips, not knowing the calculation, and a colleague's experience when he asked about it. The colleague was moved to dishwashing, and now he's less talkative. Then he talks about the benefits like meals, accommodation, dorms, and a year-end bonus. He also mentions the busy wedding season, long hours, practicing napkin folds, and potential promotion.\n\nFirst, I need to identify the key themes or codes. Let me list possible codes. The first part is about the service charge distribution. The interviewee says it's managed by management, not involving frontline staff. So maybe a code like \"Centralized Service Charge Management\" with the quote about management determining proportions. Then there's the colleague's experience and the move to dishwashing, which might relate to \"Power Dynamics and Control\" as management controls the information. The colleague's silence after being moved could be part of that. \n\nAnother code could be \"Unclear Compensation Structure\" since the service bonus is unclear in calculation. Then, the benefits mentioned like meals, accommodation, and dorms could be \"Competitive Employee Benefits.\" The mention of the year-end bonus and good overall benefits supports this. \n\nThe part about the colleague's experience and the team leader's praise might relate to \"Workplace Hierarchies and Recognition,\" where the team leader acknowledges his skills. Also, the mention of practicing new techniques and potential promotion could be \"Professional Development Opportunities.\" \n\nWait, the user wants 3-6 codes. Let me check again. The colleague's situation might also relate to \"Fear of Speaking Out\" or \"Whistleblower Retaliation,\" but the interviewee doesn't say the colleague was punished, just moved. Maybe \"Power Dynamics\" is better. \n\nAlso, the part about the busy season and long hours could be \"High Workload and Pressure,\" but the interviewee seems to accept it as part of the job. The last part about the team leader's praise and potential promotion is positive. \n\nSo possible codes: Centralized Service Charge Management, Unclear Compensation Structure, Power Dynamics and Control, Competitive Employee Benefits, Professional Development Opportunities. That's five codes. \n\nInterpretation: The interviewee communicates that frontline staff have limited control over compensation structures and are subject to management's decisions, but they receive good benefits and opportunities for advancement. \n\nTone: Mixed, because there's both negative aspects (unclear compensation, power dynamics) and positive (benefits, professional growth). \n\nConfidence: 85, since the codes seem to fit the passage and the interpretation covers the main points.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 39133283125,
+  "load_duration": 393166,
+  "prompt_eval_count": 747,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 875789000,
+  "eval_count": 876,
+  "eval_duration": 37259332000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "The service charge is distributed centrally according to hotel regulations. The proportions are determined by management.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "How exactly it’s calculated, we don’t really know, and we don’t really need to know.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Later he was moved to the dishwashing room. It was said to be a normal job rotation. Every department has them.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My team leader says I fold better than anyone else in this intake, and I might move up a grade before New Year.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:21:02+00:00",
+ "finished_at": "2026-10-28T16:21:41+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

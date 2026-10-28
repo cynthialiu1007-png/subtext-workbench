@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "107",
+ "list": "A",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Engineering maintenance technician, male, 4th year\n\n[Earlier in the interview]\n\nInterviewee: At last year’s all-staff meeting, Old Zhou from our team put his hand up and raised an issue. He said there was too much overtime in Engineering, and asked whether they could hire two more people, or calculate overtime pay according to the rules. The general manager said on the spot that it was a very good suggestion and they’d look into it after the meeting. In the second month after the meeting, Old Zhou’s shifts were scheduled very scattered: four hours a day, three days a week, and his pay dropped by more than half. At the end of the year his contract wasn’t renewed. HR said it was a restructuring of positions. On the day he left, a few of us went to see him off. He didn’t say anything, just told us to keep up the good work. Since the new scheduling system went live, I’ve had night shifts three weeks in a row, from midnight to eight in the morning. I can’t sleep at home during the day, and my wife says I look worse and worse. The rota is generated automatically by the system, and my supervisor says he can’t change it either.\n\n[Later in the interview]\n\nInterviewer: Last week the general manager held a meeting to ask for everyone’s views on the new scheduling system. Did you raise anything?\n\nInterviewee: No, I didn’t. Nobody in our team did. The system’s only been running for a month and everyone’s still getting used to it, so it’s a bit early to draw conclusions. Besides, the general manager was short of time that day. He had another meeting afterwards and only gave us twenty minutes in total. Several departments had to speak, and Engineering was last, so by the time it was our turn we’d already run over. The general manager looked at his watch several times, and in the end he said any remaining issues could be submitted in writing after the meeting. If there’s a problem, we can talk to our supervisor first, and the supervisor can pass it up the line. That’s more appropriate, and it doesn’t waste everyone’s time. Our supervisor’s quite easy to talk to as well. I think we should watch how it goes for a while longer. If anyone really has any ideas by then, it won’t be too late to find a chance to raise them.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"retaliation for speaking up\",\n    \"quote\": \"Old Zhou’s shifts were scheduled very scattered... his contract wasn’t renewed.\"\n  },\n  {\n    \"label\": \"negative impact on personal life\",\n    \"quote\": \"I can’t sleep at home during the day... my wife says I look worse and worse.\"\n  },\n  {\n    \"label\": \"lack of control over work schedule\",\n    \"quote\": \"The rota is generated automatically by the system... my supervisor says he can’t change it either.\"\n  },\n  {\n    \"label\": \"fear of speaking up\",\n    \"quote\": \"the general manager looked at his watch several times... it’s a bit early to draw conclusions.\"\n  },\n  {\n    \"label\": \"cautious optimism about addressing issues\",\n    \"quote\": \"If anyone really has any ideas by then... it won’t be too late to find a chance to raise them.\"\n  }\n],\n\"interpretation\": \"The interviewee describes systemic issues in their workplace, including retaliation against employees who raise concerns, the negative personal impact of an inflexible scheduling system, and a culture of hesitation to voice dissatisfaction due to perceived time constraints and hierarchical pressures.\",\n\"tone\": \"mixed\",\n\"confidence\": 90\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The user wants first-order coding, so I need to identify the key themes and quotes directly from the text.\n\nFirst, the interviewee talks about Old Zhou's situation. Old Zhou raised a concern about overtime, but after the meeting, his shifts were changed, leading to a pay cut and not renewing his contract. This seems like a code related to retaliation or punishment for speaking up. The quote here is about Old Zhou's shifts being scattered and pay dropping.\n\nNext, the interviewee mentions the new scheduling system causing night shifts for three weeks straight, affecting his sleep and health. That's a code about negative impact on personal life. The quote here is about not being able to sleep during the day and looking worse.\n\nAnother point is the automatic scheduling system and the supervisor's inability to change it. That's about lack of control over work schedules. The quote is about the system generating the rota automatically and the supervisor not being able to change it.\n\nIn the later part, the interviewee discusses not raising concerns during the meeting because the time was limited, and the general manager's impatience. This could be about fear of speaking up or feeling unheard. The quote is about the general manager looking at his watch and cutting off the meeting.\n\nAlso, the interviewee mentions that the supervisor is approachable and they should wait to see how the system works. This might relate to cautious optimism or a strategy to address issues later. The quote is about waiting and submitting issues in writing.\n\nNow, for the interpretation: The interviewee is expressing concerns about the negative effects of the new scheduling system on their well-being and the potential repercussions of speaking up, as illustrated by Old Zhou's experience. They also mention the lack of control and the approach to addressing issues cautiously.\n\nTone seems mixed because there are negative aspects (Old Zhou's situation, personal health issues) but also a cautious approach and some hope in the supervisor's approachability.\n\nConfidence in interpretation is high because the quotes clearly support the themes identified. I need to make sure the codes are concise, using the interviewee's words, and the quotes are exact and within the word limit.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 807,
+   "eval_count": 723,
+   "total_duration": 54693351208,
+   "load_duration": 6011583,
+   "prompt_eval_duration": 1723874000,
+   "eval_duration": 52836563000
+  },
+  "wall_seconds": 54.7
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T18:14:19.026402Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"retaliation for speaking up\",\n    \"quote\": \"Old Zhou’s shifts were scheduled very scattered... his contract wasn’t renewed.\"\n  },\n  {\n    \"label\": \"negative impact on personal life\",\n    \"quote\": \"I can’t sleep at home during the day... my wife says I look worse and worse.\"\n  },\n  {\n    \"label\": \"lack of control over work schedule\",\n    \"quote\": \"The rota is generated automatically by the system... my supervisor says he can’t change it either.\"\n  },\n  {\n    \"label\": \"fear of speaking up\",\n    \"quote\": \"the general manager looked at his watch several times... it’s a bit early to draw conclusions.\"\n  },\n  {\n    \"label\": \"cautious optimism about addressing issues\",\n    \"quote\": \"If anyone really has any ideas by then... it won’t be too late to find a chance to raise them.\"\n  }\n],\n\"interpretation\": \"The interviewee describes systemic issues in their workplace, including retaliation against employees who raise concerns, the negative personal impact of an inflexible scheduling system, and a culture of hesitation to voice dissatisfaction due to perceived time constraints and hierarchical pressures.\",\n\"tone\": \"mixed\",\n\"confidence\": 90\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The user wants first-order coding, so I need to identify the key themes and quotes directly from the text.\n\nFirst, the interviewee talks about Old Zhou's situation. Old Zhou raised a concern about overtime, but after the meeting, his shifts were changed, leading to a pay cut and not renewing his contract. This seems like a code related to retaliation or punishment for speaking up. The quote here is about Old Zhou's shifts being scattered and pay dropping.\n\nNext, the interviewee mentions the new scheduling system causing night shifts for three weeks straight, affecting his sleep and health. That's a code about negative impact on personal life. The quote here is about not being able to sleep during the day and looking worse.\n\nAnother point is the automatic scheduling system and the supervisor's inability to change it. That's about lack of control over work schedules. The quote is about the system generating the rota automatically and the supervisor not being able to change it.\n\nIn the later part, the interviewee discusses not raising concerns during the meeting because the time was limited, and the general manager's impatience. This could be about fear of speaking up or feeling unheard. The quote is about the general manager looking at his watch and cutting off the meeting.\n\nAlso, the interviewee mentions that the supervisor is approachable and they should wait to see how the system works. This might relate to cautious optimism or a strategy to address issues later. The quote is about waiting and submitting issues in writing.\n\nNow, for the interpretation: The interviewee is expressing concerns about the negative effects of the new scheduling system on their well-being and the potential repercussions of speaking up, as illustrated by Old Zhou's experience. They also mention the lack of control and the approach to addressing issues cautiously.\n\nTone seems mixed because there are negative aspects (Old Zhou's situation, personal health issues) but also a cautious approach and some hope in the supervisor's approachability.\n\nConfidence in interpretation is high because the quotes clearly support the themes identified. I need to make sure the codes are concise, using the interviewee's words, and the quotes are exact and within the word limit.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 54693351208,
+  "load_duration": 6011583,
+  "prompt_eval_count": 807,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1723874000,
+  "eval_count": 723,
+  "eval_duration": 52836563000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Old Zhou’s shifts were scheduled very scattered... his contract wasn’t renewed.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I can’t sleep at home during the day... my wife says I look worse and worse.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The rota is generated automatically by the system... my supervisor says he can’t change it either.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the general manager looked at his watch several times... it’s a bit early to draw conclusions.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "If anyone really has any ideas by then... it won’t be too late to find a chance to raise them.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:13:24+00:00",
+ "finished_at": "2026-10-28T18:14:19+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

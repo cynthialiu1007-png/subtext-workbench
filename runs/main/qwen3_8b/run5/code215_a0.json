@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "215",
+ "list": "B",
+ "seed": 5,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant team leader, male, 7th year\n\nInterviewer: How does your manager usually get on with everyone?\n\nInterviewee: The biggest thing about our manager is that he loves telling cold jokes, the really corny kind. He tells one at the morning briefing every single day, and when he’s finished he’s the first to laugh. For example, he says: why can’t eggs tell jokes? Because they’d crack up. Not one person in the room laughs. He’s the only one there enjoying himself. I’ve told him several times: boss, that joke really isn’t funny, could you stop telling them, you’re wasting everyone’s time. He says no, it’s his tradition. The morning briefing is only meant to be ten minutes, and we have to cover that day’s bookings, dishes that have sold out and special requests for the private rooms. One joke plus his explanation takes up three or four minutes, so everything after that has to be rushed. Several times new staff didn’t catch the allergy requests for the private rooms, and there were near misses when serving. Once a guest was allergic to peanuts and the server for that private room didn’t hear. The cold starter almost went out with peanuts in it. Luckily the runner stopped it. I formally raised it once at a department meeting and asked whether the briefing could cover the actual business first and leave the joke till the end. He said he’d consider it, and the next day he told one first as usual. After that a few of the long-serving staff just started turning up five minutes late, coming in after he’d finished, and he said we weren’t showing him any respect. I don’t think this is about respect. It’s about what the morning briefing is actually for. Last time head office came to do an employee satisfaction survey, I wrote this in the comments box. I was very specific, and even wrote down which day there’d been a near miss. So, our manager isn’t a bad person, it’s just that his jokes are too cold, and he won’t listen. I really can’t stand him.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 5
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Cold Jokes Tradition\",\n      \"quote\": \"The biggest thing about our manager is that he loves telling cold jokes, the really corny kind.\"\n    },\n    {\n      \"label\": \"Disrupted Briefing\",\n      \"quote\": \"One joke plus his explanation takes up three or four minutes, so everything after that has to be rushed.\"\n    },\n    {\n      \"label\": \"Near Miss Consequences\",\n      \"quote\": \"Once a guest was allergic to peanuts and the server for that private room didn’t hear. The cold starter almost went out with peanuts in it.\"\n    },\n    {\n      \"label\": \"Respect vs. Efficiency Conflict\",\n      \"quote\": \"He said we weren’t showing him any respect. I don’t think this is about respect. It’s about what the morning briefing is actually for.\"\n    },\n    {\n      \"label\": \"Frustration with Management\",\n      \"quote\": \"I really can’t stand him.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee expresses frustration with their manager's rigid tradition of telling unfunny jokes during briefings, which disrupts work processes and compromises service safety, despite repeated concerns.\",\n  \"tone\": \"negative\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a Chinese restaurant team leader. The goal is to perform first-order coding, which involves identifying key themes or codes from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee is a male team leader with 7 years of experience. The interviewer asks about the manager's relationship with the team. The interviewee's answer is detailed, explaining the manager's habit of telling cold jokes during morning briefings. There are several points here: the manager's insistence on jokes, the impact on the briefing's purpose, the near misses in service due to time constraints, and the interviewee's frustration.\n\nNow, I need to extract the first-order codes. These should be short labels (2-6 words) that capture the essence of the interviewee's statements. Let me list possible codes:\n\n1. **Cold Jokes Tradition**: The manager's daily joke routine, even when not funny. The example given is the egg joke. The interviewee mentions it's his tradition.\n\n2. **Disrupted Briefing**: The jokes take time, causing the actual briefing content (bookings, allergies) to be rushed. This leads to errors like near misses.\n\n3. **Respect vs. Efficiency**: The manager's reaction to the interviewee's suggestion, making staff late as a form of \"respect,\" which the interviewee disputes. This shows a conflict between perceived respect and actual efficiency.\n\n4. **Near Misses**: Specific incidents where the jokes caused issues, like the peanut allergy almost being served. This indicates the negative impact of the jokes on service quality.\n\n5. **Formal Complaint**: The interviewee's action of writing a specific comment in the survey, mentioning the near miss day. This shows a formal attempt to address the issue.\n\n6. **Frustration with Management**: The interviewee's overall sentiment towards the manager, stating they can't stand him. This is a clear emotional response.\n\nWait, the user asked for between 3 and 6 codes. Let me check if these are all relevant. The first three might be the most critical. The near misses and formal complaint are specific instances, but they might be part of the disrupted briefing code. Alternatively, \"Disrupted Briefing\" could encompass both the time taken and the resulting errors. The \"Respect vs. Efficiency\" is a key theme. \"Cold Jokes Tradition\" is another. The frustration is the overall tone.\n\nSo, maybe the main codes are:\n\n1. Cold Jokes Tradition\n2. Disrupted Brief, leading to Near Misses\n3. Respect vs. Efficiency Conflict\n4. Frustration with Management\n\nBut the user wants 3-6. Let me check the quotes. The interviewee says the manager's jokes are \"too cold,\" and he won't listen. That's the main issue. The disrupted briefing leading to near misses is a consequence. The respect vs. efficiency is the manager's reaction. The formal complaint is an action taken. So perhaps:\n\nCodes:\n- Cold Jokes Tradition\n- Disrupted Briefing\n- Near Miss Consequences\n- Respect vs. Efficiency\n- Frustration with Management\n\nBut maybe \"Disrupted Briefing\" can include the near misses. Alternatively, \"Near Miss Consequences\" as a separate code. The formal complaint is an action, but maybe it's part of the frustration. \n\nThe interpretation would be that the manager's insistence on cold jokes during briefings disrupts the actual work, leading to safety issues, and the interviewee feels the manager isn't listening to their concerns. The tone is negative. Confidence is high since the interviewee clearly expresses frustration and specific incidents.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 743,
+   "eval_count": 1033,
+   "total_duration": 46388876042,
+   "load_duration": 431083,
+   "prompt_eval_duration": 582498000,
+   "eval_duration": 44080231000
+  },
+  "wall_seconds": 46.39
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T18:01:09.536164Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Cold Jokes Tradition\",\n      \"quote\": \"The biggest thing about our manager is that he loves telling cold jokes, the really corny kind.\"\n    },\n    {\n      \"label\": \"Disrupted Briefing\",\n      \"quote\": \"One joke plus his explanation takes up three or four minutes, so everything after that has to be rushed.\"\n    },\n    {\n      \"label\": \"Near Miss Consequences\",\n      \"quote\": \"Once a guest was allergic to peanuts and the server for that private room didn’t hear. The cold starter almost went out with peanuts in it.\"\n    },\n    {\n      \"label\": \"Respect vs. Efficiency Conflict\",\n      \"quote\": \"He said we weren’t showing him any respect. I don’t think this is about respect. It’s about what the morning briefing is actually for.\"\n    },\n    {\n      \"label\": \"Frustration with Management\",\n      \"quote\": \"I really can’t stand him.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee expresses frustration with their manager's rigid tradition of telling unfunny jokes during briefings, which disrupts work processes and compromises service safety, despite repeated concerns.\",\n  \"tone\": \"negative\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this coding task. The user provided an interview passage from a Chinese restaurant team leader. The goal is to perform first-order coding, which involves identifying key themes or codes from the interviewee's responses.\n\nFirst, I need to read through the passage carefully. The interviewee is a male team leader with 7 years of experience. The interviewer asks about the manager's relationship with the team. The interviewee's answer is detailed, explaining the manager's habit of telling cold jokes during morning briefings. There are several points here: the manager's insistence on jokes, the impact on the briefing's purpose, the near misses in service due to time constraints, and the interviewee's frustration.\n\nNow, I need to extract the first-order codes. These should be short labels (2-6 words) that capture the essence of the interviewee's statements. Let me list possible codes:\n\n1. **Cold Jokes Tradition**: The manager's daily joke routine, even when not funny. The example given is the egg joke. The interviewee mentions it's his tradition.\n\n2. **Disrupted Briefing**: The jokes take time, causing the actual briefing content (bookings, allergies) to be rushed. This leads to errors like near misses.\n\n3. **Respect vs. Efficiency**: The manager's reaction to the interviewee's suggestion, making staff late as a form of \"respect,\" which the interviewee disputes. This shows a conflict between perceived respect and actual efficiency.\n\n4. **Near Misses**: Specific incidents where the jokes caused issues, like the peanut allergy almost being served. This indicates the negative impact of the jokes on service quality.\n\n5. **Formal Complaint**: The interviewee's action of writing a specific comment in the survey, mentioning the near miss day. This shows a formal attempt to address the issue.\n\n6. **Frustration with Management**: The interviewee's overall sentiment towards the manager, stating they can't stand him. This is a clear emotional response.\n\nWait, the user asked for between 3 and 6 codes. Let me check if these are all relevant. The first three might be the most critical. The near misses and formal complaint are specific instances, but they might be part of the disrupted briefing code. Alternatively, \"Disrupted Briefing\" could encompass both the time taken and the resulting errors. The \"Respect vs. Efficiency\" is a key theme. \"Cold Jokes Tradition\" is another. The frustration is the overall tone.\n\nSo, maybe the main codes are:\n\n1. Cold Jokes Tradition\n2. Disrupted Brief, leading to Near Misses\n3. Respect vs. Efficiency Conflict\n4. Frustration with Management\n\nBut the user wants 3-6. Let me check the quotes. The interviewee says the manager's jokes are \"too cold,\" and he won't listen. That's the main issue. The disrupted briefing leading to near misses is a consequence. The respect vs. efficiency is the manager's reaction. The formal complaint is an action taken. So perhaps:\n\nCodes:\n- Cold Jokes Tradition\n- Disrupted Briefing\n- Near Miss Consequences\n- Respect vs. Efficiency\n- Frustration with Management\n\nBut maybe \"Disrupted Briefing\" can include the near misses. Alternatively, \"Near Miss Consequences\" as a separate code. The formal complaint is an action, but maybe it's part of the frustration. \n\nThe interpretation would be that the manager's insistence on cold jokes during briefings disrupts the actual work, leading to safety issues, and the interviewee feels the manager isn't listening to their concerns. The tone is negative. Confidence is high since the interviewee clearly expresses frustration and specific incidents.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 46388876042,
+  "load_duration": 431083,
+  "prompt_eval_count": 743,
+  "prompt_eval_cached_count": 451,
+  "prompt_eval_duration": 582498000,
+  "eval_count": 1033,
+  "eval_duration": 44080231000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "The biggest thing about our manager is that he loves telling cold jokes, the really corny kind.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "One joke plus his explanation takes up three or four minutes, so everything after that has to be rushed.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Once a guest was allergic to peanuts and the server for that private room didn’t hear. The cold starter almost went out with peanuts in it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He said we weren’t showing him any respect. I don’t think this is about respect. It’s about what the morning briefing is actually for.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I really can’t stand him.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:00:23+00:00",
+ "finished_at": "2026-10-28T18:01:09+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 5,
+ "attempt": 0
+}

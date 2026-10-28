@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "201",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet hall team leader, female, 8th year\n\n[Earlier in the interview]\n\nInterviewee: Before the takeover, our banquet hall didn’t really have any manuals. Experienced staff trained the new ones, and everything came down to working it out for yourself. Back then I had a lot of my own ways of doing things. There was an old professor who held his birthday banquet with us every year. His teeth weren’t good, so each time I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller. He never had to ask. One year, at his eightieth birthday, he’d had a little to drink, took my hand and said, young lady, you’re more attentive than my own children. After that, his family asked for me by name every time they booked a banquet, and I even won the group’s Service Star award because of it. In the first month after the takeover, out of old habit, I swapped a guest’s glass for a slightly bigger one. The inspector saw it and wrote it up on the checklist: deviation from standard. That month my appraisal score was the lowest in the whole team.\n\n[Later in the interview]\n\nInterviewer: After the hotel was taken over, how did your work change?\n\nInterviewee: Now everything’s standardised. Which hand to pour water with, how to fold the napkins, which words to say when serving a dish: it’s all written into the manual, and we’re assessed on it every quarter. The new brand calls it internationalisation: whichever city’s branch a guest goes to, the experience is the same. Now every event in the banquet hall follows the procedure. There are fewer mistakes and far fewer complaints. The inspector comes every month, and our scores have always been near the top. Last quarter our banquet hall was even named a model unit for standardisation by the group, and the certificate is hanging by the door of the service pantry. We long-serving staff, to be honest, adapted even faster than the young ones. Now it doesn’t matter who’s on duty. You just follow the manual.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n        \"label\": \"pre-takeover informal practices\",\n        \"quote\": \"Experienced staff trained the new ones, and everything came down to working it out for yourself.\"\n    },\n    {\n        \"label\": \"personalized guest service\",\n        \"quote\": \"I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller.\"\n    },\n    {\n        \"label\": \"standardization penalty\",\n        \"quote\": \"deviation from standard. That month my appraisal score was the lowest in the whole team.\"\n    },\n    {\n        \"label\": \"post-takeover standardization\",\n        \"quote\": \"Now everything’s standardised. Which hand to pour water with, how to fold the napkins...\"\n    },\n    {\n        \"label\": \"standardization benefits\",\n        \"quote\": \"fewer mistakes and far fewer complaints. Our scores have always been near the top.\"\n    },\n    {\n        \"label\": \"long-serving staff adaptation\",\n        \"quote\": \"We long-serving staff, to be honest, adapted even faster than the young ones.\"\n    }\n],\n\"interpretation\": \"The interviewee contrasts the flexibility of pre-takeover practices with the strict standardization post-takeover, noting both challenges (initial penalty for deviating from standards) and benefits (improved performance metrics and recognition). She highlights the tension between personal service and rigid protocols.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The user provided a detailed passage from an interview with a banquet hall team leader who has been in the job for 8 years. The interview has two parts: one earlier where she talks about her experience before and after the hotel takeover, and a later part where she discusses the changes post-takeover.\n\nFirst, I need to perform first-order coding. The codes should be short labels (2-6 words) based on the interviewee's language, with supporting quotes from the passage. Let's look at the key points in the passage.\n\nIn the earlier part, she mentions that before the takeover, there were no manuals, and training was done by experienced staff. She had her own ways, like adjusting the professor's meal, which led to a positive outcome (Service Star award). However, after the takeover, she made a mistake by swapping a glass, which was noted in the checklist, leading to a low appraisal score. This shows a contrast between pre and post-takeover practices.\n\nIn the later part, she talks about standardization after the takeover, with everything written in the manual, quarterly assessments, and the benefits like fewer mistakes and complaints. She also mentions that long-serving staff adapted faster, and the team now follows the manual strictly.\n\nNow, for the codes. Let's identify themes here. The first part mentions the lack of manuals and reliance on experience, which could be \"pre-takeover informal practices.\" The incident with the professor's meal shows personalized service, which is \"personalized guest service.\" The mistake after takeover leading to a low score could be \"standardization penalty.\" The post-takeover standardization is \"post-takeover standardization.\" The benefits of standardization like fewer complaints and model unit recognition are \"standardization benefits.\" Also, the adaptation of long-serving staff is \"long-serving staff adaptation.\"\n\nSupporting quotes need to be exact. For example, \"pre-takeover informal practices\" can use \"Experienced staff trained the new ones, and everything came down to working it out for yourself.\" For \"standardization penalty,\" \"I swapped a guest’s glass for a slightly bigger one... deviation from standard.\"\n\nInterpretation: The interviewee contrasts the flexibility of pre-takeover practices with the strict standardization post-takeover, noting both challenges and benefits. She acknowledges the initial difficulty in adapting but highlights the positive outcomes like fewer complaints and recognition.\n\nTone: Mixed. There's a mention of a negative experience (low score) but also positive outcomes (model unit, certificate).\n\nConfidence: High, as the quotes and interpretations align with the passage's content.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 746,
+   "eval_count": 856,
+   "total_duration": 66299077417,
+   "load_duration": 5162083,
+   "prompt_eval_duration": 1749349000,
+   "eval_duration": 63815409000
+  },
+  "wall_seconds": 66.33
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:14:29.116633Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n        \"label\": \"pre-takeover informal practices\",\n        \"quote\": \"Experienced staff trained the new ones, and everything came down to working it out for yourself.\"\n    },\n    {\n        \"label\": \"personalized guest service\",\n        \"quote\": \"I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller.\"\n    },\n    {\n        \"label\": \"standardization penalty\",\n        \"quote\": \"deviation from standard. That month my appraisal score was the lowest in the whole team.\"\n    },\n    {\n        \"label\": \"post-takeover standardization\",\n        \"quote\": \"Now everything’s standardised. Which hand to pour water with, how to fold the napkins...\"\n    },\n    {\n        \"label\": \"standardization benefits\",\n        \"quote\": \"fewer mistakes and far fewer complaints. Our scores have always been near the top.\"\n    },\n    {\n        \"label\": \"long-serving staff adaptation\",\n        \"quote\": \"We long-serving staff, to be honest, adapted even faster than the young ones.\"\n    }\n],\n\"interpretation\": \"The interviewee contrasts the flexibility of pre-takeover practices with the strict standardization post-takeover, noting both challenges (initial penalty for deviating from standards) and benefits (improved performance metrics and recognition). She highlights the tension between personal service and rigid protocols.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's responses carefully. The user provided a detailed passage from an interview with a banquet hall team leader who has been in the job for 8 years. The interview has two parts: one earlier where she talks about her experience before and after the hotel takeover, and a later part where she discusses the changes post-takeover.\n\nFirst, I need to perform first-order coding. The codes should be short labels (2-6 words) based on the interviewee's language, with supporting quotes from the passage. Let's look at the key points in the passage.\n\nIn the earlier part, she mentions that before the takeover, there were no manuals, and training was done by experienced staff. She had her own ways, like adjusting the professor's meal, which led to a positive outcome (Service Star award). However, after the takeover, she made a mistake by swapping a glass, which was noted in the checklist, leading to a low appraisal score. This shows a contrast between pre and post-takeover practices.\n\nIn the later part, she talks about standardization after the takeover, with everything written in the manual, quarterly assessments, and the benefits like fewer mistakes and complaints. She also mentions that long-serving staff adapted faster, and the team now follows the manual strictly.\n\nNow, for the codes. Let's identify themes here. The first part mentions the lack of manuals and reliance on experience, which could be \"pre-takeover informal practices.\" The incident with the professor's meal shows personalized service, which is \"personalized guest service.\" The mistake after takeover leading to a low score could be \"standardization penalty.\" The post-takeover standardization is \"post-takeover standardization.\" The benefits of standardization like fewer complaints and model unit recognition are \"standardization benefits.\" Also, the adaptation of long-serving staff is \"long-serving staff adaptation.\"\n\nSupporting quotes need to be exact. For example, \"pre-takeover informal practices\" can use \"Experienced staff trained the new ones, and everything came down to working it out for yourself.\" For \"standardization penalty,\" \"I swapped a guest’s glass for a slightly bigger one... deviation from standard.\"\n\nInterpretation: The interviewee contrasts the flexibility of pre-takeover practices with the strict standardization post-takeover, noting both challenges and benefits. She acknowledges the initial difficulty in adapting but highlights the positive outcomes like fewer complaints and recognition.\n\nTone: Mixed. There's a mention of a negative experience (low score) but also positive outcomes (model unit, certificate).\n\nConfidence: High, as the quotes and interpretations align with the passage's content.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 66299077417,
+  "load_duration": 5162083,
+  "prompt_eval_count": 746,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1749349000,
+  "eval_count": 856,
+  "eval_duration": 63815409000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Experienced staff trained the new ones, and everything came down to working it out for yourself.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I’d quietly ask the kitchen to make his portion a bit softer and cut it a bit smaller.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "deviation from standard. That month my appraisal score was the lowest in the whole team.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Now everything’s standardised. Which hand to pour water with, how to fold the napkins...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "fewer mistakes and far fewer complaints. Our scores have always been near the top.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We long-serving staff, to be honest, adapted even faster than the young ones.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:13:22+00:00",
+ "finished_at": "2026-10-28T19:14:29+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

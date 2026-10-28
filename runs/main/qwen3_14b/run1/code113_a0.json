@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "113",
+ "list": "A",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Housekeeping supervisor, female, 6th year\n\nInterviewer: You were promoted to supervisor this year. How does it feel?\n\nInterviewee: It’s just a change of title, really. The work’s still the same. This time the decision was made following a comprehensive departmental assessment. There were several candidates, none of us knew the outcome, and the list was posted on Friday afternoon. Ah Fang applied too. She’s actually better suited than me. She makes beds faster than I do, she’s had more letters of praise from guests, and last year she won second prize in the housekeeping skills competition. The two of us joined in the same intake. We used to share a dorm, do night shifts together, and go for malatang together after work. One Spring Festival neither of us went home, and we made dumplings together in the dorm. After the new staff badge was issued, I kept it in my bag for a week before I started wearing it. That evening when I got home, I took it out again, put it on the table and looked at it for a while. I took a photo and sent it to my dad. He replied with a thumbs-up, then phoned and asked me all sorts of questions: how many people I’m in charge of, how much my pay went up, whether I should treat the relatives to a meal. I said no need, what’s there to celebrate. As for Ah Fang, I talked it over with the manager and we’re trying to give her weekends off as much as possible. She’s studying for an infant-care certificate and has classes at the weekend. We still have meals together, but she doesn’t really ask me about work any more, and I don’t really bring it up either. Anyway, everyone has accepted the outcome, and the department is running quite normally. Oh, and Ah Fang’s exam for that certificate is next month. I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Promotion as title change\", \"quote\": \"It’s just a change of title, really. The work’s still the same.\"}, {\"label\": \"Ah Fang's qualifications\", \"quote\": \"She makes beds faster than I do, she’s had more letters of praise from guests, and last year she won second prize in the housekeeping skills competition.\"}, {\"label\": \"Shared history with Ah Fang\", \"quote\": \"We used to share a dorm, do night shifts together, and go for malatang together after work.\"}, {\"label\": \"Personal significance of badge\", \"quote\": \"After the new staff badge was issued, I kept it in my bag for a week before I started wearing it.\"}, {\"label\": \"Family's supportive reaction\", \"quote\": \"He replied with a thumbs-up, then phoned and asked me all sorts of questions: how many people I’m in charge of, how much my pay went up.\"}, {\"label\": \"Supporting Ah Fang's studies\", \"quote\": \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"}], \"interpretation\": \"The interviewee views her promotion as largely symbolic, acknowledges Ah Fang's superior qualifications, and maintains a supportive relationship with her despite professional competition. She emphasizes continuity in her work and personal connections with colleagues.\", \"tone\": \"mixed\", \"confidence\": 95}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a housekeeping supervisor with six years of experience. The interviewer asked about her promotion feelings. She mentions it's just a title change, so the work remains the same. That's interesting because she's not overly enthusiastic about the promotion itself, but maybe there's more to it.\n\nNext, she talks about the promotion process being based on a departmental assessment with several candidates. Ah Fang applied and is better suited, which shows some humility. She lists Ah Fang's strengths: faster bed-making, more guest praise, and a competition prize. They have a history together, sharing a dorm and night shifts, which adds a personal touch. The mention of making dumplings during Spring Festival shows a close relationship.\n\nThen, the part about the new staff badge. She kept it in her bag for a week before wearing it, took a photo for her dad, who responded with a thumbs-up and asked about her new role. This indicates her family's support and maybe some pride, but she downplays it by saying there's no need to celebrate. \n\nRegarding Ah Fang, she's trying to give her weekends off for studying an infant-care certificate. They still eat together, but work discussions have decreased. The interviewee mentions borrowing books for Ah Fang and expecting a meal in return. This shows a supportive relationship, even though Ah Fang is now a competitor in a way.\n\nNow, coding. First-order codes need to be short labels with quotes. Let's see:\n\n1. \"Promotion as title change\" – quote: \"It’s just a change of title, really. The work’s still the same.\"\n2. \"Ah Fang's qualifications\" – \"She makes beds faster... last year she won second prize...\"\n3. \"Shared history with Ah Fang\" – \"We used to share a dorm... made dumplings together...\"\n4. \"Personal significance of badge\" – \"After the new staff badge... looked at it for a while.\"\n5. \"Family's supportive reaction\" – \"He replied with a thumbs-up... asked me all sorts of questions.\"\n6. \"Supporting Ah Fang's studies\" – \"I borrowed two revision books... treat me to a meal once it’s over.\"\n\nInterpretation: She feels the promotion is more about recognition than change, acknowledges Ah Fang's merits, values their past relationship, and maintains a supportive dynamic even with Ah Fang's new role.\n\nTone seems mixed: there's some positivity in the family's reaction and support for Ah Fang, but also a neutral or slightly negative view on the promotion itself and the competition with Ah Fang.\n\nConfidence in interpretation is high because the quotes clearly support the points made. The codes cover different aspects of her experience and relationships.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 730,
+   "eval_count": 871,
+   "total_duration": 66592196792,
+   "load_duration": 4863625,
+   "prompt_eval_duration": 1754463000,
+   "eval_duration": 64688128000
+  },
+  "wall_seconds": 66.61
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T18:19:59.997742Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Promotion as title change\", \"quote\": \"It’s just a change of title, really. The work’s still the same.\"}, {\"label\": \"Ah Fang's qualifications\", \"quote\": \"She makes beds faster than I do, she’s had more letters of praise from guests, and last year she won second prize in the housekeeping skills competition.\"}, {\"label\": \"Shared history with Ah Fang\", \"quote\": \"We used to share a dorm, do night shifts together, and go for malatang together after work.\"}, {\"label\": \"Personal significance of badge\", \"quote\": \"After the new staff badge was issued, I kept it in my bag for a week before I started wearing it.\"}, {\"label\": \"Family's supportive reaction\", \"quote\": \"He replied with a thumbs-up, then phoned and asked me all sorts of questions: how many people I’m in charge of, how much my pay went up.\"}, {\"label\": \"Supporting Ah Fang's studies\", \"quote\": \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"}], \"interpretation\": \"The interviewee views her promotion as largely symbolic, acknowledges Ah Fang's superior qualifications, and maintains a supportive relationship with her despite professional competition. She emphasizes continuity in her work and personal connections with colleagues.\", \"tone\": \"mixed\", \"confidence\": 95}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a housekeeping supervisor with six years of experience. The interviewer asked about her promotion feelings. She mentions it's just a title change, so the work remains the same. That's interesting because she's not overly enthusiastic about the promotion itself, but maybe there's more to it.\n\nNext, she talks about the promotion process being based on a departmental assessment with several candidates. Ah Fang applied and is better suited, which shows some humility. She lists Ah Fang's strengths: faster bed-making, more guest praise, and a competition prize. They have a history together, sharing a dorm and night shifts, which adds a personal touch. The mention of making dumplings during Spring Festival shows a close relationship.\n\nThen, the part about the new staff badge. She kept it in her bag for a week before wearing it, took a photo for her dad, who responded with a thumbs-up and asked about her new role. This indicates her family's support and maybe some pride, but she downplays it by saying there's no need to celebrate. \n\nRegarding Ah Fang, she's trying to give her weekends off for studying an infant-care certificate. They still eat together, but work discussions have decreased. The interviewee mentions borrowing books for Ah Fang and expecting a meal in return. This shows a supportive relationship, even though Ah Fang is now a competitor in a way.\n\nNow, coding. First-order codes need to be short labels with quotes. Let's see:\n\n1. \"Promotion as title change\" – quote: \"It’s just a change of title, really. The work’s still the same.\"\n2. \"Ah Fang's qualifications\" – \"She makes beds faster... last year she won second prize...\"\n3. \"Shared history with Ah Fang\" – \"We used to share a dorm... made dumplings together...\"\n4. \"Personal significance of badge\" – \"After the new staff badge... looked at it for a while.\"\n5. \"Family's supportive reaction\" – \"He replied with a thumbs-up... asked me all sorts of questions.\"\n6. \"Supporting Ah Fang's studies\" – \"I borrowed two revision books... treat me to a meal once it’s over.\"\n\nInterpretation: She feels the promotion is more about recognition than change, acknowledges Ah Fang's merits, values their past relationship, and maintains a supportive dynamic even with Ah Fang's new role.\n\nTone seems mixed: there's some positivity in the family's reaction and support for Ah Fang, but also a neutral or slightly negative view on the promotion itself and the competition with Ah Fang.\n\nConfidence in interpretation is high because the quotes clearly support the points made. The codes cover different aspects of her experience and relationships.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 66592196792,
+  "load_duration": 4863625,
+  "prompt_eval_count": 730,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1754463000,
+  "eval_count": 871,
+  "eval_duration": 64688128000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "It’s just a change of title, really. The work’s still the same.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "She makes beds faster than I do, she’s had more letters of praise from guests, and last year she won second prize in the housekeeping skills competition.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We used to share a dorm, do night shifts together, and go for malatang together after work.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "After the new staff badge was issued, I kept it in my bag for a week before I started wearing it.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He replied with a thumbs-up, then phoned and asked me all sorts of questions: how many people I’m in charge of, how much my pay went up.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:18:53+00:00",
+ "finished_at": "2026-10-28T18:20:00+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

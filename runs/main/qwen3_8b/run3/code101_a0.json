@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "101",
+ "list": "A",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant server, female, 1st year\n\nInterviewer: How does your restaurant manager usually lead the team?\n\nInterviewee: Our manager is a really nice person, honestly. He’s always punctual. He arrives at half past ten on the dot and is never late. His clothes are always neat, his leather shoes are polished to a shine and his shirts are always ironed. Among ourselves we say he’s the best-turned-out person in the whole F&B department. His meetings are very well organised too. For the Monday meeting every week he prepares slides and goes through revenue, table turnover and guest review scores page by page. The charts look great and he explains everything very clearly. Last month people from group headquarters came to inspect, and he took them all the way from the private dining rooms to the kitchen and presented everything really smoothly. When the head-office leaders got back, they even praised him by name in an email. Everyone says he’s especially good at giving reports. That’s universally acknowledged. Managers from the other restaurants come to him for his templates, and he once gave a special session in the department group chat on how to turn data into a story. As for what happens on the floor, he usually leaves that to Sister Wang. Sister Wang has worked here for over ten years and knows everything: guest complaints, slow dishes, scheduling and shift swaps. Whenever we have a problem we go to Sister Wang first, and only if she can’t handle it do we go and knock on the manager’s office door. When I first started I couldn’t hold a tray steady, and it was Sister Wang who stayed behind after her shift to teach me. She taught me for almost an hour, and the next day she even brought me an old tray to practise with at home. The manager doesn’t really have much to do with us. When he sees us he nods, and he knows a few of our names. The manager really is a nice person, and we don’t have any conflicts with him. He’s just quite busy, and his office door is usually closed. Sometimes when we’ve finished closing up, his light is still on. He’s probably preparing next week’s report.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Manager's Professional Appearance\",\n      \"quote\": \"His clothes are always neat, his leather shoes are polished to a shine and his shirts are always ironed.\"\n    },\n    {\n      \"label\": \"Organized Meetings and Reports\",\n      \"quote\": \"For the Monday meeting every week he prepares slides and goes through revenue, table turnover and guest review scores page by page.\"\n    },\n    {\n      \"label\": \"Respected by Higher Management\",\n      \"quote\": \"they even praised him by name in an email.\"\n    },\n    {\n      \"label\": \"Delegation to Experienced Staff\",\n      \"quote\": \"he usually leaves that to Sister Wang.\"\n    },\n    {\n      \"label\": \"Mentorship by Sister Wang\",\n      \"quote\": \"Sister Wang who stayed behind after her shift to teach me.\"\n    },\n    {\n      \"label\": \"Limited Manager-Staff Interaction\",\n      \"quote\": \"The manager doesn’t really have much to do with us.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee portrays the manager as a competent, organized leader respected by higher management, but notes he delegates daily operations to experienced staff like Sister Wang, who provides mentorship and direct support to frontline employees.\",\n  \"tone\": \"positive\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a new server in a Chinese restaurant, female, first year. The interviewer asks about the manager's leadership style.\n\nThe interviewee describes the manager as very punctual, well-dressed, and organized. She mentions his preparation for meetings, the positive feedback from headquarters, and how he's respected for his reports. However, she also notes that he doesn't interact much with the staff, leaving day-to-day issues to Sister Wang. Sister Wang is portrayed as a mentor and problem-solver, while the manager is more of a figurehead.\n\nSo, first-order codes should capture the main themes. Let me list possible codes. \n\n1. \"Manager's Professional Appearance\" – the description of his clothes and shoes. Quote: \"His clothes are always neat, his leather shoes are polished to a shine and his shirts are always ironed.\"\n\n2. \"Organized Meetings and Reports\" – the part about preparing slides and explaining data. Quote: \"For the Monday meeting every week he prepares slides... explains everything very clearly.\"\n\n3. \"Respected by Higher Management\" – the praise from headquarters. Quote: \"they even praised him by name in an email.\"\n\n4. \"Delegation to Experienced Staff\" – Sister Wang handling daily issues. Quote: \"he usually leaves that to Sister Wang.\"\n\n5. \"Mentorship by Sister Wang\" – her teaching the interviewee. Quote: \"Sister Wang who stayed behind... taught me for almost an hour.\"\n\n6. \"Limited Manager-Staff Interaction\" – the manager not engaging much. Quote: \"The manager doesn’t really have much to do with us.\"\n\nWait, the user asked for 3-6 codes. Maybe combine some. Let me check again. The main themes are the manager's professionalism, his organized approach, respect from higher-ups, delegation to Sister Wang, her mentorship, and the manager's limited interaction. That's six codes, which fits. \n\nInterpretation: The interviewee highlights the manager's professionalism and organizational skills, which earn him respect, but he delegates daily tasks to Sister Wang, who acts as a mentor. The manager is seen as a competent leader but has limited direct interaction with staff.\n\nTone: Positive, since the manager is praised, but there's a neutral note about his limited interaction. But the overall tone is positive as the manager is seen as a good leader.\n\nConfidence: Maybe 85, since the quotes clearly support each code and the interpretation seems accurate.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 757,
+   "eval_count": 822,
+   "total_duration": 36543527500,
+   "load_duration": 372959,
+   "prompt_eval_duration": 859172000,
+   "eval_duration": 34898942000
+  },
+  "wall_seconds": 36.54
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:25:05.378375Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Manager's Professional Appearance\",\n      \"quote\": \"His clothes are always neat, his leather shoes are polished to a shine and his shirts are always ironed.\"\n    },\n    {\n      \"label\": \"Organized Meetings and Reports\",\n      \"quote\": \"For the Monday meeting every week he prepares slides and goes through revenue, table turnover and guest review scores page by page.\"\n    },\n    {\n      \"label\": \"Respected by Higher Management\",\n      \"quote\": \"they even praised him by name in an email.\"\n    },\n    {\n      \"label\": \"Delegation to Experienced Staff\",\n      \"quote\": \"he usually leaves that to Sister Wang.\"\n    },\n    {\n      \"label\": \"Mentorship by Sister Wang\",\n      \"quote\": \"Sister Wang who stayed behind after her shift to teach me.\"\n    },\n    {\n      \"label\": \"Limited Manager-Staff Interaction\",\n      \"quote\": \"The manager doesn’t really have much to do with us.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee portrays the manager as a competent, organized leader respected by higher management, but notes he delegates daily operations to experienced staff like Sister Wang, who provides mentorship and direct support to frontline employees.\",\n  \"tone\": \"positive\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a new server in a Chinese restaurant, female, first year. The interviewer asks about the manager's leadership style.\n\nThe interviewee describes the manager as very punctual, well-dressed, and organized. She mentions his preparation for meetings, the positive feedback from headquarters, and how he's respected for his reports. However, she also notes that he doesn't interact much with the staff, leaving day-to-day issues to Sister Wang. Sister Wang is portrayed as a mentor and problem-solver, while the manager is more of a figurehead.\n\nSo, first-order codes should capture the main themes. Let me list possible codes. \n\n1. \"Manager's Professional Appearance\" – the description of his clothes and shoes. Quote: \"His clothes are always neat, his leather shoes are polished to a shine and his shirts are always ironed.\"\n\n2. \"Organized Meetings and Reports\" – the part about preparing slides and explaining data. Quote: \"For the Monday meeting every week he prepares slides... explains everything very clearly.\"\n\n3. \"Respected by Higher Management\" – the praise from headquarters. Quote: \"they even praised him by name in an email.\"\n\n4. \"Delegation to Experienced Staff\" – Sister Wang handling daily issues. Quote: \"he usually leaves that to Sister Wang.\"\n\n5. \"Mentorship by Sister Wang\" – her teaching the interviewee. Quote: \"Sister Wang who stayed behind... taught me for almost an hour.\"\n\n6. \"Limited Manager-Staff Interaction\" – the manager not engaging much. Quote: \"The manager doesn’t really have much to do with us.\"\n\nWait, the user asked for 3-6 codes. Maybe combine some. Let me check again. The main themes are the manager's professionalism, his organized approach, respect from higher-ups, delegation to Sister Wang, her mentorship, and the manager's limited interaction. That's six codes, which fits. \n\nInterpretation: The interviewee highlights the manager's professionalism and organizational skills, which earn him respect, but he delegates daily tasks to Sister Wang, who acts as a mentor. The manager is seen as a competent leader but has limited direct interaction with staff.\n\nTone: Positive, since the manager is praised, but there's a neutral note about his limited interaction. But the overall tone is positive as the manager is seen as a good leader.\n\nConfidence: Maybe 85, since the quotes clearly support each code and the interpretation seems accurate.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 36543527500,
+  "load_duration": 372959,
+  "prompt_eval_count": 757,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 859172000,
+  "eval_count": 822,
+  "eval_duration": 34898942000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "His clothes are always neat, his leather shoes are polished to a shine and his shirts are always ironed.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "For the Monday meeting every week he prepares slides and goes through revenue, table turnover and guest review scores page by page.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "they even praised him by name in an email.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "he usually leaves that to Sister Wang.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Sister Wang who stayed behind after her shift to teach me.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The manager doesn’t really have much to do with us.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:24:28+00:00",
+ "finished_at": "2026-10-28T16:25:05+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

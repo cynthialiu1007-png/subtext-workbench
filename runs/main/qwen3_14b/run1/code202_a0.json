@@ -1,0 +1,178 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "202",
+ "list": "B",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant server, female, 1st year\n\nInterviewer: How does your restaurant manager usually lead the team?\n\nInterviewee: Our manager is a really nice person, honestly. He’s always punctual. He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings. If the lazy Susan on a table isn’t clean, he picks up a cloth and wipes it himself. He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing. His meetings are very well organised too. At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with. Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes. When the kitchen was slow sending dishes out, he went in himself to talk to the head chef, then came out and apologised to the guests table by table. Sister Wang has worked here for over ten years, and she says he’s the most willing manager she’s ever worked under when it comes to getting out on the floor. When I first started I couldn’t even hold a tray steady. When he saw, he didn’t tell me off. He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying. Later, when I could carry six soup bowls without spilling, he even praised me by name at the meeting. We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open. When colleagues from the other restaurants hear about it they’re quite envious, and two of them have even asked whether our restaurant is short of staff. Working under him, I feel I’m on solid ground.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n    {\n        \"label\": \"Hands-on leadership\",\n        \"quote\": \"He doesn’t stand to one side giving orders. He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings.\"\n    },\n    {\n        \"label\": \"Proactive problem-solving\",\n        \"quote\": \"Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot...\"\n    },\n    {\n        \"label\": \"Mentorship and support\",\n        \"quote\": \"He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes...\"\n    },\n    {\n        \"label\": \"Open communication\",\n        \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.\"\n    },\n    {\n        \"label\": \"Team trust and morale\",\n        \"quote\": \"When colleagues from the other restaurants hear about it they’re quite envious... Working under him, I feel I’m on solid ground.\"\n    }\n],\n\"interpretation\": \"The interviewee describes her manager as highly engaged, approachable, and supportive, emphasizing his hands-on leadership, immediate problem-solving, and commitment to employee development. She highlights how his actions foster a trusting and motivated team environment.\",\n\"tone\": \"positive\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user wants first-order coding, so I need to identify the key themes or codes from the text. The interviewee is talking about her manager's leadership style, so that's a primary code. She mentions specific actions the manager takes, like being punctual, checking the service stations, and even helping with dishes. That seems like \"Hands-on leadership\" or \"Active involvement.\"\n\nAnother point is the manager's approach to problem-solving. He addresses issues immediately, like fixing the broken disinfection cabinet and involving the team in reporting problems. That might be \"Proactive problem-solving\" or \"Immediate action.\"\n\nThe manager's mentorship is also clear. He taught the interviewee how to carry trays and provided feedback. That could be \"Mentorship and support\" or \"Personal development.\"\n\nThe manager's communication style is emphasized, like the weekly meetings and open office door. Maybe \"Open communication\" or \"Transparent communication.\"\n\nThere's also the aspect of team morale and trust. The manager's actions make the team feel supported, and others are envious. That might be \"Team trust and morale\" or \"Positive work environment.\"\n\nNow, I need to extract quotes for each code. For example, \"He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet...\" is a good quote for proactive problem-solving. The part about teaching the interviewee would go under mentorship. The open office door and colleagues being envious could be under team trust.\n\nThe interpretation should summarize that the manager leads by example, is supportive, and fosters a collaborative environment. The tone is clearly positive, as the interviewee uses words like \"nice,\" \"solid ground,\" and mentions positive outcomes. Confidence would be high since the quotes clearly back up the interpretation.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 778,
+   "eval_count": 694,
+   "total_duration": 53271163250,
+   "load_duration": 5448208,
+   "prompt_eval_duration": 1746219000,
+   "eval_duration": 50582486000
+  },
+  "wall_seconds": 53.28
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T18:31:41.976424Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n    {\n        \"label\": \"Hands-on leadership\",\n        \"quote\": \"He doesn’t stand to one side giving orders. He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings.\"\n    },\n    {\n        \"label\": \"Proactive problem-solving\",\n        \"quote\": \"Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot...\"\n    },\n    {\n        \"label\": \"Mentorship and support\",\n        \"quote\": \"He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes...\"\n    },\n    {\n        \"label\": \"Open communication\",\n        \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.\"\n    },\n    {\n        \"label\": \"Team trust and morale\",\n        \"quote\": \"When colleagues from the other restaurants hear about it they’re quite envious... Working under him, I feel I’m on solid ground.\"\n    }\n],\n\"interpretation\": \"The interviewee describes her manager as highly engaged, approachable, and supportive, emphasizing his hands-on leadership, immediate problem-solving, and commitment to employee development. She highlights how his actions foster a trusting and motivated team environment.\",\n\"tone\": \"positive\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user wants first-order coding, so I need to identify the key themes or codes from the text. The interviewee is talking about her manager's leadership style, so that's a primary code. She mentions specific actions the manager takes, like being punctual, checking the service stations, and even helping with dishes. That seems like \"Hands-on leadership\" or \"Active involvement.\"\n\nAnother point is the manager's approach to problem-solving. He addresses issues immediately, like fixing the broken disinfection cabinet and involving the team in reporting problems. That might be \"Proactive problem-solving\" or \"Immediate action.\"\n\nThe manager's mentorship is also clear. He taught the interviewee how to carry trays and provided feedback. That could be \"Mentorship and support\" or \"Personal development.\"\n\nThe manager's communication style is emphasized, like the weekly meetings and open office door. Maybe \"Open communication\" or \"Transparent communication.\"\n\nThere's also the aspect of team morale and trust. The manager's actions make the team feel supported, and others are envious. That might be \"Team trust and morale\" or \"Positive work environment.\"\n\nNow, I need to extract quotes for each code. For example, \"He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet...\" is a good quote for proactive problem-solving. The part about teaching the interviewee would go under mentorship. The open office door and colleagues being envious could be under team trust.\n\nThe interpretation should summarize that the manager leads by example, is supportive, and fosters a collaborative environment. The tone is clearly positive, as the interviewee uses words like \"nice,\" \"solid ground,\" and mentions positive outcomes. Confidence would be high since the quotes clearly back up the interpretation.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 53271163250,
+  "load_duration": 5448208,
+  "prompt_eval_count": 778,
+  "prompt_eval_cached_count": 358,
+  "prompt_eval_duration": 1746219000,
+  "eval_count": 694,
+  "eval_duration": 50582486000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 36 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "He doesn’t stand to one side giving orders. He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes...",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "When colleagues from the other restaurants hear about it they’re quite envious... Working under him, I feel I’m on solid ground.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T18:30:48+00:00",
+ "finished_at": "2026-10-28T18:31:41+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

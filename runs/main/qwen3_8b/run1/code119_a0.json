@@ -1,0 +1,189 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "119",
+ "list": "A",
+ "seed": 1,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Laundry linen-room worker, female, 15th year\n\n[Earlier in the interview]\n\nInterviewee: I reach retirement age next March, and the paperwork got started last month. My knees haven’t been great these past couple of years. If I push the linen trolley for long they start to hurt, and the doctor has told me to stand less and bend less. My daughter finished her master’s the year before last, found a job in Shanghai and rents her own place, so we don’t need to worry about her any more. My husband has been retired for two years. He spends every day at home planning travel routes and keeps telling me to hurry up and retire. He says we’ll go to Yunnan first, then Xinjiang. I’ve even got a countdown app on my phone. My colleagues all know about it, and every day at work they ask me how many days are left. My team leader says she’ll throw me a farewell party next month, and I said, then I’d better start thinking now about what to say.\n\n[Later in the interview]\n\nInterviewer: What are your plans for life from here on?\n\nInterviewee: Plans? Just to have a rest, I suppose. Fifteen years of work, it’s about time I had a rest. Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes. It’s been ages since I visited the relatives back in my hometown, too, and my younger sister keeps saying she’ll teach me mahjong. She says all I know how to do is go to work. A few of us from the linen room have agreed to get together once a month for tea and a chat. To be honest, after all these years here, I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees. The new people all come and ask me. Last winter that tumble dryer broke down, and the Engineering people spent two days on it without fixing it. In the end I was the one who found the fault, just by the sound. But you’ve always got to look ahead, haven’t you? When you’ve finished writing this up, let me have a look too.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 1
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Retirement Preparation\",\n      \"quote\": \"Plans? Just to have a rest, I suppose. Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes.\"\n    },\n    {\n      \"label\": \"Health Challenges\",\n      \"quote\": \"My knees haven’t been great these past couple of years. If I push the linen trolley for long they start to hurt, and the doctor has told me to stand less and bend less.\"\n    },\n    {\n      \"label\": \"Workplace Relationships\",\n      \"quote\": \"My colleagues all know about it, and every day at work they ask me how many days are left. My team leader says she’ll throw me a farewell party next month.\"\n    },\n    {\n      \"label\": \"Career Reflection\",\n      \"quote\": \"Fifteen years of work, it’s about time I had a rest. I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees.\"\n    },\n    {\n      \"label\": \"Family Support\",\n      \"quote\": \"My daughter finished her master’s the year before last, found a job in Shanghai and rents her own place, so we don’t need to worry about her any more. My husband has been retired for two years.\"\n    },\n    {\n      \"label\": \"Mentorship Role\",\n      \"quote\": \"The new people all come and ask me. Last winter that tumble dryer broke down, and the Engineering people spent two days on it without fixing it. In the end I was the one who found the fault, just by the sound.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee is reflecting on her 15-year career, preparing for retirement while balancing health challenges, family support, and workplace relationships, with a mix of nostalgia and anticipation for her next chapter.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a female laundry worker with 15 years of experience. She's nearing retirement, has health issues, and her family is supportive. She's planning her retirement activities and mentions her colleagues and the work environment.\n\nFirst, I'll look for key themes. She talks about her physical limitations and retirement plans. There's mention of her family, especially her daughter and husband. Her colleagues and work environment are also part of the narrative. She's also reflecting on her career and the machines she's familiar with.\n\nFor the codes, I need 3-6 first-order codes. Let me list possible codes. \"Retirement Preparation\" comes to mind because she's planning her retirement. \"Workplace Relationships\" since she mentions colleagues and the team leader. \"Health Challenges\" because of her knee issues. \"Career Reflection\" as she talks about her 15 years. \"Family Support\" regarding her daughter and husband. \"Mentorship Role\" because she helps new employees.\n\nNow, the supporting quotes. For Retirement Preparation: \"Plans? Just to have a rest... learn to cook...\" Health Challenges: \"My knees haven’t been great... bend less.\" Workplace Relationships: \"My colleagues all know about it... what to say.\" Career Reflection: \"Fifteen years of work... had a rest.\" Family Support: \"My daughter finished her master’s... we don’t need to worry...\" Mentorship Role: \"The new people all come and ask me.\"\n\nInterpretation: The interviewee is reflecting on her career, preparing for retirement, and balancing health issues with family and workplace relationships. The tone seems mixed, as there's both positive aspects of retirement and negative health issues. Confidence level might be around 85, as the codes seem to fit well with the quotes.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 782,
+   "eval_count": 825,
+   "total_duration": 36174763500,
+   "load_duration": 1181000,
+   "prompt_eval_duration": 901534000,
+   "eval_duration": 35201555000
+  },
+  "wall_seconds": 36.18
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T15:28:17.91189Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Retirement Preparation\",\n      \"quote\": \"Plans? Just to have a rest, I suppose. Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes.\"\n    },\n    {\n      \"label\": \"Health Challenges\",\n      \"quote\": \"My knees haven’t been great these past couple of years. If I push the linen trolley for long they start to hurt, and the doctor has told me to stand less and bend less.\"\n    },\n    {\n      \"label\": \"Workplace Relationships\",\n      \"quote\": \"My colleagues all know about it, and every day at work they ask me how many days are left. My team leader says she’ll throw me a farewell party next month.\"\n    },\n    {\n      \"label\": \"Career Reflection\",\n      \"quote\": \"Fifteen years of work, it’s about time I had a rest. I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees.\"\n    },\n    {\n      \"label\": \"Family Support\",\n      \"quote\": \"My daughter finished her master’s the year before last, found a job in Shanghai and rents her own place, so we don’t need to worry about her any more. My husband has been retired for two years.\"\n    },\n    {\n      \"label\": \"Mentorship Role\",\n      \"quote\": \"The new people all come and ask me. Last winter that tumble dryer broke down, and the Engineering people spent two days on it without fixing it. In the end I was the one who found the fault, just by the sound.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee is reflecting on her 15-year career, preparing for retirement while balancing health challenges, family support, and workplace relationships, with a mix of nostalgia and anticipation for her next chapter.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the passage thoroughly. The interviewee is a female laundry worker with 15 years of experience. She's nearing retirement, has health issues, and her family is supportive. She's planning her retirement activities and mentions her colleagues and the work environment.\n\nFirst, I'll look for key themes. She talks about her physical limitations and retirement plans. There's mention of her family, especially her daughter and husband. Her colleagues and work environment are also part of the narrative. She's also reflecting on her career and the machines she's familiar with.\n\nFor the codes, I need 3-6 first-order codes. Let me list possible codes. \"Retirement Preparation\" comes to mind because she's planning her retirement. \"Workplace Relationships\" since she mentions colleagues and the team leader. \"Health Challenges\" because of her knee issues. \"Career Reflection\" as she talks about her 15 years. \"Family Support\" regarding her daughter and husband. \"Mentorship Role\" because she helps new employees.\n\nNow, the supporting quotes. For Retirement Preparation: \"Plans? Just to have a rest... learn to cook...\" Health Challenges: \"My knees haven’t been great... bend less.\" Workplace Relationships: \"My colleagues all know about it... what to say.\" Career Reflection: \"Fifteen years of work... had a rest.\" Family Support: \"My daughter finished her master’s... we don’t need to worry...\" Mentorship Role: \"The new people all come and ask me.\"\n\nInterpretation: The interviewee is reflecting on her career, preparing for retirement, and balancing health issues with family and workplace relationships. The tone seems mixed, as there's both positive aspects of retirement and negative health issues. Confidence level might be around 85, as the codes seem to fit well with the quotes.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 36174763500,
+  "load_duration": 1181000,
+  "prompt_eval_count": 782,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 901534000,
+  "eval_count": 825,
+  "eval_duration": 35201555000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 35 words > 30",
+   "codes[1].quote: 34 words > 30",
+   "codes[2].quote: 31 words > 30",
+   "codes[3].quote: 34 words > 30",
+   "codes[4].quote: 37 words > 30",
+   "codes[5].quote: 42 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "Plans? Just to have a rest, I suppose. Go for a walk in the park in the mornings, do some square dancing with the ladies from our estate, learn to cook a few new dishes.",
+    "tier": "absent",
+    "similarity": 0.794,
+    "speaker": null
+   },
+   {
+    "quote": "My knees haven’t been great these past couple of years. If I push the linen trolley for long they start to hurt, and the doctor has told me to stand less and bend less.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My colleagues all know about it, and every day at work they ask me how many days are left. My team leader says she’ll throw me a farewell party next month.",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Fifteen years of work, it’s about time I had a rest. I know the temper of every machine: which one rattles on the spin cycle, which one needs the temperature turned down two degrees.",
+    "tier": "stitched",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My daughter finished her master’s the year before last, found a job in Shanghai and rents her own place, so we don’t need to worry about her any more. My husband has been retired for two years.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The new people all come and ask me. Last winter that tumble dryer broke down, and the Engineering people spent two days on it without fixing it. In the end I was the one who found the fault, just by the sound.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T15:27:41+00:00",
+ "finished_at": "2026-10-28T15:28:17+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

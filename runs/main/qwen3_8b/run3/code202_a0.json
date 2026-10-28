@@ -1,0 +1,181 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "202",
+ "list": "B",
+ "seed": 3,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Chinese restaurant server, female, 1st year\n\nInterviewer: How does your restaurant manager usually lead the team?\n\nInterviewee: Our manager is a really nice person, honestly. He’s always punctual. He arrives at half past ten on the dot, and the first thing he does is walk round the floor, checking the service stations and the table settings. If the lazy Susan on a table isn’t clean, he picks up a cloth and wipes it himself. He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing. His meetings are very well organised too. At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with. Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes. When the kitchen was slow sending dishes out, he went in himself to talk to the head chef, then came out and apologised to the guests table by table. Sister Wang has worked here for over ten years, and she says he’s the most willing manager she’s ever worked under when it comes to getting out on the floor. When I first started I couldn’t even hold a tray steady. When he saw, he didn’t tell me off. He stayed behind after work and taught me how to support it with my wrist and palm. He taught me for twenty minutes, and the next day he came over to see how I was carrying. Later, when I could carry six soup bowls without spilling, he even praised me by name at the meeting. We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open. When colleagues from the other restaurants hear about it they’re quite envious, and two of them have even asked whether our restaurant is short of staff. Working under him, I feel I’m on solid ground.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 3
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Hands-On Leadership\",\n      \"quote\": \"He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing.\"\n    },\n    {\n      \"label\": \"Approachable Leadership\",\n      \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.\"\n    },\n    {\n      \"label\": \"Mentorship and Support\",\n      \"quote\": \"When I first started I couldn’t even hold a tray steady. When he saw, he didn’t tell me off. He stayed behind after work and taught me how to support it with my wrist and palm.\"\n    },\n    {\n      \"label\": \"Proactive Problem-Solving\",\n      \"quote\": \"Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes. When the kitchen was slow sending dishes out, he went in himself to talk to the head chef, then came out and apologised to the guests table by table.\"\n    },\n    {\n      \"label\": \"Organized Leadership\",\n      \"quote\": \"At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee portrays her manager as a supportive, hands-on leader who prioritizes employee development, proactive problem-solving, and open communication, creating a positive and structured work environment.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to read through the interviewee's response carefully. The interviewee is a new server in a Chinese restaurant, female, first year. The interviewer asked about the manager's leadership style.\n\nLooking at the interviewee's answer, she talks about the manager being punctual, checking the floor, cleaning tables, fixing the disinfection cabinet issue, organizing meetings, helping during busy times, communicating with the kitchen, mentoring the new employee, and being approachable. \n\nFirst, I need to identify key themes or codes. The manager's hands-on approach comes up multiple times. For example, he cleans tables himself, fixes issues immediately, and helps during busy periods. That could be a code like \"Hands-On Leadership\" with a quote about him wiping the lazy Susan.\n\nAnother point is the manager's attention to detail, like checking service stations and table settings. Maybe \"Attention to Detail\" as a code, using the quote about the disinfection cabinet.\n\nThe manager's approachability is mentioned with the open office door and colleagues being envious. \"Approachable Leadership\" could be a code here, using the part about the office door always being open.\n\nMentorship is another aspect. The manager taught the interviewee how to carry trays and praised her. \"Mentorship and Support\" would fit, using the quote about teaching her for twenty minutes.\n\nAlso, the manager's problem-solving is highlighted when he addressed the disinfection issue and helped during the busy lunchtime. \"Proactive Problem-Solving\" could be a code with that quote.\n\nLastly, the manager's organizational skills are mentioned with the weekly meetings and tracking issues. \"Organized Leadership\" might be another code, using the part about the Monday meetings.\n\nWait, the user said between 3 and 6 codes. Let me check if these are distinct enough. Maybe combine some. The mentorship and support could be part of the hands-on leadership. Or maybe \"Hands-On Leadership\" covers both the cleaning and mentoring. Then \"Approachable Leadership\" for the open door. \"Proactive Problem-Solving\" for addressing issues. \"Organized Leadership\" for meetings. And \"Attention to Detail\" for checking settings. That's five codes. Let me make sure each code is distinct and supported by quotes. The quotes need to be exact and under 30 words. Also, the interpretation should summarize the main points. The tone seems positive, and confidence level would be high since the interviewee is enthusiastic about the manager. Alright, that should cover it.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 778,
+   "eval_count": 941,
+   "total_duration": 42015294292,
+   "load_duration": 1148417,
+   "prompt_eval_duration": 852825000,
+   "eval_duration": 40332929000
+  },
+  "wall_seconds": 42.02
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T16:43:22.088034Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Hands-On Leadership\",\n      \"quote\": \"He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing.\"\n    },\n    {\n      \"label\": \"Approachable Leadership\",\n      \"quote\": \"We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.\"\n    },\n    {\n      \"label\": \"Mentorship and Support\",\n      \"quote\": \"When I first started I couldn’t even hold a tray steady. When he saw, he didn’t tell me off. He stayed behind after work and taught me how to support it with my wrist and palm.\"\n    },\n    {\n      \"label\": \"Proactive Problem-Solving\",\n      \"quote\": \"Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes. When the kitchen was slow sending dishes out, he went in himself to talk to the head chef, then came out and apologised to the guests table by table.\"\n    },\n    {\n      \"label\": \"Organized Leadership\",\n      \"quote\": \"At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with.\"\n    }\n  ],\n  \"interpretation\": \"The interviewee portrays her manager as a supportive, hands-on leader who prioritizes employee development, proactive problem-solving, and open communication, creating a positive and structured work environment.\",\n  \"tone\": \"positive\",\n  \"confidence\": 95\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to read through the interviewee's response carefully. The interviewee is a new server in a Chinese restaurant, female, first year. The interviewer asked about the manager's leadership style.\n\nLooking at the interviewee's answer, she talks about the manager being punctual, checking the floor, cleaning tables, fixing the disinfection cabinet issue, organizing meetings, helping during busy times, communicating with the kitchen, mentoring the new employee, and being approachable. \n\nFirst, I need to identify key themes or codes. The manager's hands-on approach comes up multiple times. For example, he cleans tables himself, fixes issues immediately, and helps during busy periods. That could be a code like \"Hands-On Leadership\" with a quote about him wiping the lazy Susan.\n\nAnother point is the manager's attention to detail, like checking service stations and table settings. Maybe \"Attention to Detail\" as a code, using the quote about the disinfection cabinet.\n\nThe manager's approachability is mentioned with the open office door and colleagues being envious. \"Approachable Leadership\" could be a code here, using the part about the office door always being open.\n\nMentorship is another aspect. The manager taught the interviewee how to carry trays and praised her. \"Mentorship and Support\" would fit, using the quote about teaching her for twenty minutes.\n\nAlso, the manager's problem-solving is highlighted when he addressed the disinfection issue and helped during the busy lunchtime. \"Proactive Problem-Solving\" could be a code with that quote.\n\nLastly, the manager's organizational skills are mentioned with the weekly meetings and tracking issues. \"Organized Leadership\" might be another code, using the part about the Monday meetings.\n\nWait, the user said between 3 and 6 codes. Let me check if these are distinct enough. Maybe combine some. The mentorship and support could be part of the hands-on leadership. Or maybe \"Hands-On Leadership\" covers both the cleaning and mentoring. Then \"Approachable Leadership\" for the open door. \"Proactive Problem-Solving\" for addressing issues. \"Organized Leadership\" for meetings. And \"Attention to Detail\" for checking settings. That's five codes. Let me make sure each code is distinct and supported by quotes. The quotes need to be exact and under 30 words. Also, the interpretation should summarize the main points. The tone seems positive, and confidence level would be high since the interviewee is enthusiastic about the manager. Alright, that should cover it.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 42015294292,
+  "load_duration": 1148417,
+  "prompt_eval_count": 778,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 852825000,
+  "eval_count": 941,
+  "eval_duration": 40332929000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 53 words > 30",
+   "codes[2].quote: 36 words > 30",
+   "codes[3].quote: 53 words > 30",
+   "codes[4].quote: 44 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "He doesn’t stand to one side giving orders. Once he found that the disinfection cabinet had been broken for two days and nobody had reported it. He phoned Engineering on the spot, and said in the group chat that from now on we should come straight to him with that kind of thing.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "We can go straight to him whenever we have a problem; we don’t have to go to anyone else first. His office door is almost always open.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "When I first started I couldn’t even hold a tray steady. When he saw, he didn’t tell me off. He stayed behind after work and taught me how to support it with my wrist and palm.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last month we were packed at lunchtime, and he changed into a uniform and came down to help us turn tables and run dishes. When the kitchen was slow sending dishes out, he went in himself to talk to the head chef, then came out and apologised to the guests table by table.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "At the Monday meeting every week, besides going through revenue and table turnover, he asks us one by one what problems we ran into the previous week, writes them down in a notebook, and the following week tells us how they were dealt with.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T16:42:40+00:00",
+ "finished_at": "2026-10-28T16:43:22+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 3,
+ "attempt": 0
+}

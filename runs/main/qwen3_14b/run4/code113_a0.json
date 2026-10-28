@@ -1,0 +1,184 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "113",
+ "list": "A",
+ "seed": 4,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Housekeeping supervisor, female, 6th year\n\nInterviewer: You were promoted to supervisor this year. How does it feel?\n\nInterviewee: It’s just a change of title, really. The work’s still the same. This time the decision was made following a comprehensive departmental assessment. There were several candidates, none of us knew the outcome, and the list was posted on Friday afternoon. Ah Fang applied too. She’s actually better suited than me. She makes beds faster than I do, she’s had more letters of praise from guests, and last year she won second prize in the housekeeping skills competition. The two of us joined in the same intake. We used to share a dorm, do night shifts together, and go for malatang together after work. One Spring Festival neither of us went home, and we made dumplings together in the dorm. After the new staff badge was issued, I kept it in my bag for a week before I started wearing it. That evening when I got home, I took it out again, put it on the table and looked at it for a while. I took a photo and sent it to my dad. He replied with a thumbs-up, then phoned and asked me all sorts of questions: how many people I’m in charge of, how much my pay went up, whether I should treat the relatives to a meal. I said no need, what’s there to celebrate. As for Ah Fang, I talked it over with the manager and we’re trying to give her weekends off as much as possible. She’s studying for an infant-care certificate and has classes at the weekend. We still have meals together, but she doesn’t really ask me about work any more, and I don’t really bring it up either. Anyway, everyone has accepted the outcome, and the department is running quite normally. Oh, and Ah Fang’s exam for that certificate is next month. I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 4
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"promotion as title change\",\n    \"quote\": \"It’s just a change of title, really. The work’s still the same.\"\n  },\n  {\n    \"label\": \"colleague rivalry and support\",\n    \"quote\": \"Ah Fang applied too. She’s actually better suited than me... We still have meals together, but she doesn’t really ask me about work any more, and I don’t really bring it up either.\"\n  },\n  {\n    \"label\": \"mixed feelings about promotion\",\n    \"quote\": \"I said no need, what’s there to celebrate.\"\n  },\n  {\n    \"label\": \"supportive colleague relationship\",\n    \"quote\": \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"\n  },\n  {\n    \"label\": \"family notification of promotion\",\n    \"quote\": \"I took a photo and sent it to my dad... He replied with a thumbs-up, then phoned and asked me all sorts of questions.\"\n  },\n  {\n    \"label\": \"departmental stability post-promotion\",\n    \"quote\": \"everyone has accepted the outcome, and the department is running quite normally.\"\n  }\n],\n\"interpretation\": \"The interviewee views her promotion as a largely symbolic change rather than a substantive shift in responsibilities. While she acknowledges a close colleague’s greater qualifications and their evolving relationship, she emphasizes continued support and departmental harmony despite the promotion.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a housekeeping supervisor with six years of experience. The interviewer asked about her promotion feelings, and she responds that it's just a title change, the work remains the same. She mentions a departmental assessment, multiple candidates, and Ah Fang's qualifications. They used to be close, sharing a dorm and working together. Now, Ah Fang is studying and they don't discuss work as much. She's supportive, even lending books.\n\nFirst, I need to code this. First-order coding should capture the main themes. Let's see: the promotion feels like a title change, so maybe \"promotion as title change\". Then, her relationship with Ah Fang, so \"colleague rivalry and support\". Her feelings about the promotion, maybe \"mixed feelings about promotion\". Also, the support between colleagues, \"supportive colleague relationship\". The mention of her father's reaction could be \"family notification of promotion\". And the department's normal functioning after the promotion, \"departmental stability post-promotion\".\n\nFor the interpretation, she's saying the promotion didn't change her role much, she's aware Ah Fang is more qualified, they have a history, and they're still supportive. The tone seems mixed because she's happy but also acknowledges Ah Fang's merits and the change in their dynamic. Confidence is high since the quotes are clear and the themes are well covered.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 730,
+   "eval_count": 618,
+   "total_duration": 46905553875,
+   "load_duration": 805458,
+   "prompt_eval_duration": 1790347000,
+   "eval_duration": 44955150000
+  },
+  "wall_seconds": 46.91
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T20:30:18.065573Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"promotion as title change\",\n    \"quote\": \"It’s just a change of title, really. The work’s still the same.\"\n  },\n  {\n    \"label\": \"colleague rivalry and support\",\n    \"quote\": \"Ah Fang applied too. She’s actually better suited than me... We still have meals together, but she doesn’t really ask me about work any more, and I don’t really bring it up either.\"\n  },\n  {\n    \"label\": \"mixed feelings about promotion\",\n    \"quote\": \"I said no need, what’s there to celebrate.\"\n  },\n  {\n    \"label\": \"supportive colleague relationship\",\n    \"quote\": \"I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.\"\n  },\n  {\n    \"label\": \"family notification of promotion\",\n    \"quote\": \"I took a photo and sent it to my dad... He replied with a thumbs-up, then phoned and asked me all sorts of questions.\"\n  },\n  {\n    \"label\": \"departmental stability post-promotion\",\n    \"quote\": \"everyone has accepted the outcome, and the department is running quite normally.\"\n  }\n],\n\"interpretation\": \"The interviewee views her promotion as a largely symbolic change rather than a substantive shift in responsibilities. While she acknowledges a close colleague’s greater qualifications and their evolving relationship, she emphasizes continued support and departmental harmony despite the promotion.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a housekeeping supervisor with six years of experience. The interviewer asked about her promotion feelings, and she responds that it's just a title change, the work remains the same. She mentions a departmental assessment, multiple candidates, and Ah Fang's qualifications. They used to be close, sharing a dorm and working together. Now, Ah Fang is studying and they don't discuss work as much. She's supportive, even lending books.\n\nFirst, I need to code this. First-order coding should capture the main themes. Let's see: the promotion feels like a title change, so maybe \"promotion as title change\". Then, her relationship with Ah Fang, so \"colleague rivalry and support\". Her feelings about the promotion, maybe \"mixed feelings about promotion\". Also, the support between colleagues, \"supportive colleague relationship\". The mention of her father's reaction could be \"family notification of promotion\". And the department's normal functioning after the promotion, \"departmental stability post-promotion\".\n\nFor the interpretation, she's saying the promotion didn't change her role much, she's aware Ah Fang is more qualified, they have a history, and they're still supportive. The tone seems mixed because she's happy but also acknowledges Ah Fang's merits and the change in their dynamic. Confidence is high since the quotes are clear and the themes are well covered.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 46905553875,
+  "load_duration": 805458,
+  "prompt_eval_count": 730,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1790347000,
+  "eval_count": 618,
+  "eval_duration": 44955150000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[1].quote: 33 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "It’s just a change of title, really. The work’s still the same.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Ah Fang applied too. She’s actually better suited than me... We still have meals together, but she doesn’t really ask me about work any more, and I don’t really bring it up either.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I said no need, what’s there to celebrate.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I borrowed two revision books from the library for her, and she says she’ll treat me to a meal once it’s over.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I took a photo and sent it to my dad... He replied with a thumbs-up, then phoned and asked me all sorts of questions.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "everyone has accepted the outcome, and the department is running quite normally.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T20:29:31+00:00",
+ "finished_at": "2026-10-28T20:30:18+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 4,
+ "attempt": 0
+}

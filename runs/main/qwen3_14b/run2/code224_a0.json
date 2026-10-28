@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "main",
+ "config_file": "config/main.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "224",
+ "list": "B",
+ "seed": 2,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Concierge team leader, male, 12th year\n\nInterviewer: You’ve been here twelve years and seen several general managers come and go. What do you think of the current one?\n\nInterviewee: The current one? He’s all right, I suppose. Nothing out of the ordinary. He doesn’t have much contact with us on the front line. If we run into him in the lobby, he nods. The year before last my son had an operation, and things were pretty hard at home around that time. I took leave through the normal procedure. HR approved half a month, the union gave me a 2,000-yuan support payment as the rules provide, and my colleagues in the department chipped in a bit too. There are set rules for all of that. It has nothing to do with which general manager is in charge. My son’s doing well now. He’s at junior high, and he’s taller than me. He had his mid-term exams last month and got 98 in maths. I took a photo of his report and sent it to a whole lot of relatives. At this year’s annual party, the general manager came over to our table to make a toast. He said a few words about our hard work and everyone raised their glasses. I was drinking a soft drink, he didn’t pay any attention, and he turned and went on to the next table. There used to be a money tree outside his office door. Later it withered and Admin replaced it with a new one. I only heard that from other people. We don’t usually go up to that floor. My colleagues say he’s capable when it comes to running the business. Occupancy is a bit higher than under the last one. He’s just a bit distant from us, and all he talks about in meetings is numbers. In all my years here, I’ve probably said no more than ten sentences to him altogether. To be honest, it doesn’t make much difference to us who the general manager is. What matters to us is mainly the department manager. Anyway, he’s a competent leader. Just write that. If you want to know about the concierge team’s work, you can ask about other things, like how we book cars and restaurants for guests. I can explain all that clearly.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 2
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Manager's distance from frontline staff\",\n    \"quote\": \"He doesn’t have much contact with us on the front line. If we run into him in the lobby, he nods.\"\n  },\n  {\n    \"label\": \"Support systems during personal hardship\",\n    \"quote\": \"HR approved half a month, the union gave me a 2,000-yuan support payment... my colleagues in the department chipped in a bit too.\"\n  },\n  {\n    \"label\": \"GM's focus on metrics over people\",\n    \"quote\": \"all he talks about in meetings is numbers.\"\n  },\n  {\n    \"label\": \"Limited interaction with upper management\",\n    \"quote\": \"I only heard that from other people. We don’t usually go up to that floor.\"\n  },\n  {\n    \"label\": \"Department manager's greater influence\",\n    \"quote\": \"What matters to us is mainly the department manager.\"\n  }\n],\n\"interpretation\": \"The interviewee describes the current general manager as competent but emotionally distant, with minimal interaction with frontline staff. He emphasizes that support during personal hardship came from formal systems (HR, union) and colleagues, not the GM, and that the department manager has a more direct impact on daily operations.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user wants me to code this passage using first-order coding, so I need to identify the main themes or codes based on what the interviewee is saying.\n\nFirst, the interviewee talks about the current general manager. He says the GM is \"all right\" but doesn't have much contact with frontline staff. There's a mention of the GM nodding when they meet and not paying attention during the annual party. That seems like a code about the manager's approachability or distance from employees.\n\nThen, there's the part about the interviewee's son's surgery and the support he received. He mentions HR, the union, and colleagues contributing. This points to support systems in place, maybe a code about organizational support or colleague solidarity.\n\nHe also mentions the GM's comment during the annual party, but the GM didn't interact with him personally. The interviewee notes that the GM is capable with numbers and occupancy rates are higher, but he's distant. That might be another code about the GM's focus on metrics over people.\n\nThe mention of the money tree being replaced and not going to that floor could relate to the GM's office environment or the interviewee's limited access to higher management. Maybe a code about limited interaction with upper management.\n\nHe also says that the department manager is more important to them, indicating that the GM's influence is less direct. That could be a code about the role of middle management versus upper management.\n\nLooking at the quotes, I need to pick the most relevant parts. For example, \"He doesn’t have much contact with us on the front line\" supports the distance code. The part about HR and colleagues giving support is for the support systems. The GM talking about numbers in meetings is about focus on metrics. The mention of the department manager being more important is about middle management's role.\n\nFor the interpretation, the interviewee is saying the current GM is competent but distant, and the real influence comes from the department manager. The tone seems mixed because there's some positive aspects (competent, higher occupancy) and negative (distant, limited interaction). Confidence would be high since the interviewee clearly states these points.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 786,
+   "eval_count": 735,
+   "total_duration": 56911072792,
+   "load_duration": 6310792,
+   "prompt_eval_duration": 1724445000,
+   "eval_duration": 54427249000
+  },
+  "wall_seconds": 56.92
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T19:34:51.996551Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Manager's distance from frontline staff\",\n    \"quote\": \"He doesn’t have much contact with us on the front line. If we run into him in the lobby, he nods.\"\n  },\n  {\n    \"label\": \"Support systems during personal hardship\",\n    \"quote\": \"HR approved half a month, the union gave me a 2,000-yuan support payment... my colleagues in the department chipped in a bit too.\"\n  },\n  {\n    \"label\": \"GM's focus on metrics over people\",\n    \"quote\": \"all he talks about in meetings is numbers.\"\n  },\n  {\n    \"label\": \"Limited interaction with upper management\",\n    \"quote\": \"I only heard that from other people. We don’t usually go up to that floor.\"\n  },\n  {\n    \"label\": \"Department manager's greater influence\",\n    \"quote\": \"What matters to us is mainly the department manager.\"\n  }\n],\n\"interpretation\": \"The interviewee describes the current general manager as competent but emotionally distant, with minimal interaction with frontline staff. He emphasizes that support during personal hardship came from formal systems (HR, union) and colleagues, not the GM, and that the department manager has a more direct impact on daily operations.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. The user wants me to code this passage using first-order coding, so I need to identify the main themes or codes based on what the interviewee is saying.\n\nFirst, the interviewee talks about the current general manager. He says the GM is \"all right\" but doesn't have much contact with frontline staff. There's a mention of the GM nodding when they meet and not paying attention during the annual party. That seems like a code about the manager's approachability or distance from employees.\n\nThen, there's the part about the interviewee's son's surgery and the support he received. He mentions HR, the union, and colleagues contributing. This points to support systems in place, maybe a code about organizational support or colleague solidarity.\n\nHe also mentions the GM's comment during the annual party, but the GM didn't interact with him personally. The interviewee notes that the GM is capable with numbers and occupancy rates are higher, but he's distant. That might be another code about the GM's focus on metrics over people.\n\nThe mention of the money tree being replaced and not going to that floor could relate to the GM's office environment or the interviewee's limited access to higher management. Maybe a code about limited interaction with upper management.\n\nHe also says that the department manager is more important to them, indicating that the GM's influence is less direct. That could be a code about the role of middle management versus upper management.\n\nLooking at the quotes, I need to pick the most relevant parts. For example, \"He doesn’t have much contact with us on the front line\" supports the distance code. The part about HR and colleagues giving support is for the support systems. The GM talking about numbers in meetings is about focus on metrics. The mention of the department manager being more important is about middle management's role.\n\nFor the interpretation, the interviewee is saying the current GM is competent but distant, and the real influence comes from the department manager. The tone seems mixed because there's some positive aspects (competent, higher occupancy) and negative (distant, limited interaction). Confidence would be high since the interviewee clearly states these points.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 56911072792,
+  "load_duration": 6310792,
+  "prompt_eval_count": 786,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 1724445000,
+  "eval_count": 735,
+  "eval_duration": 54427249000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "He doesn’t have much contact with us on the front line. If we run into him in the lobby, he nods.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "HR approved half a month, the union gave me a 2,000-yuan support payment... my colleagues in the department chipped in a bit too.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "all he talks about in meetings is numbers.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I only heard that from other people. We don’t usually go up to that floor.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "What matters to us is mainly the department manager.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T19:33:55+00:00",
+ "finished_at": "2026-10-28T19:34:52+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}
