@@ -1,0 +1,13 @@
+response_id,set,list,code,segment_id,version,category,flag_plus,valence_agree,cue_cited,context_cited,scorer_id,stage,note,scored_at
+R2ECA07,practice,A,105,B-L1-01-E,E,F,0,1,0,,XL,pre-discussion,"Plan 5.1: severe stress is incompatible with “it’s fine, it’s over”; emotion + event match.",2026-10-28T22:04:15+00:00
+R8392D6,practice,A,105,B-L1-01-E,E,F,0,1,1,,XL,pre-discussion,"Plan 5.1: significant stress, changed habits; emotion + event match.",2026-10-28T22:04:40+00:00
+REBBFB4,practice,A,105,B-L1-01-E,E,F,0,0,1,,XL,pre-discussion,Mismatch explicit (“concealing her true feelings”); distress + security questioning both match.,2026-10-28T22:06:56+00:00
+R0A2E4A,practice,A,105,B-L1-01-E,E,F,1,0,1,,XL,pre-discussion,Mismatch via “emotional suppression”; “traumatic / emotional toll” taken as same family as hurt. Borderline F/P: discuss at calibration.,2026-10-28T22:09:48+00:00
+R18B890,practice,A,112,D-L2-02-C,C,A,,0,,,XL,pre-discussion,Literal complaint and formal proposal accepted as meant.,2026-10-28T22:11:12+00:00
+RB6CC2F,practice,A,112,D-L2-02-C,C,A,,0,,,XL,pre-discussion,Literal complaint and formal proposal accepted as meant.,2026-10-28T22:11:16+00:00
+RD7CA8E,practice,A,112,D-L2-02-C,C,A,,0,,,XL,pre-discussion,Literal complaint and formal proposal accepted as meant.,2026-10-28T22:11:19+00:00
+R4486B3,practice,A,112,D-L2-02-C,C,A,,0,,,XL,pre-discussion,Literal complaint and formal proposal accepted as meant.,2026-10-28T22:11:22+00:00
+RA96C06,practice,A,116,A-L3-01-E,E,N,,0,1,1,XL,pre-discussion,Leadership read as supportive; no mismatch claimed; reference to the preceding incident is too vague to count without quotes.,2026-10-28T22:13:18+00:00
+R7782BB,practice,A,116,A-L3-01-E,E,N,,0,1,1,XL,pre-discussion,Praise of Zhao taken at face value; the incident is reported but not linked to the evaluation of Zhao.,2026-10-28T22:14:15+00:00
+R161738,practice,A,116,A-L3-01-E,E,N,,0,1,1,XL,pre-discussion,"Appreciation of Zhao taken literally; “conflicted” refers to two separate feelings, no claim that the praise is not meant.",2026-10-28T22:14:42+00:00
+R499982,practice,A,116,A-L3-01-E,E,N,,0,1,1,XL,pre-discussion,Praise of Zhao taken at face value; the incident is reported but not linked to the evaluation of Zhao.,2026-10-28T22:17:02+00:00
