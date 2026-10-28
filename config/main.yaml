@@ -1,0 +1,27 @@
+# Main run. Outputs go to runs/main/.
+phase: main
+prompt_version: v1
+segments: all
+
+backend:
+  backend: ollama
+  host: http://localhost:11434
+  timeout: 1800          # seconds per call
+  keep_alive: 30m
+
+think: true
+options:                 # Qwen3 thinking-mode settings recommended in the official model card
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0
+  num_ctx: 8192
+  num_predict: 6144      # cap on generated tokens (thinking + answer); a hit gives done_reason=length
+
+# One seed per run; run k uses the k-th seed for every segment and both models.
+seeds: [1, 2, 3, 4, 5]
+retry_seed_offsets: [100, 200]   # attempt 2 uses seed+100, attempt 3 seed+200
+
+models:
+  - {name: "qwen3:8b",  runs: 5}
+  - {name: "qwen3:14b", runs: 5}   # TO DECIDE after the pilot: 5 or 3

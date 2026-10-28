@@ -1,0 +1,28 @@
+# Pilot run. Outputs go to runs/pilot/ and are used only as calibration practice responses.
+phase: pilot
+prompt_version: v1
+segments: ["105", "112", "116"]   # B-L1-01-E, D-L2-02-C, A-L3-01-E
+
+backend:
+  backend: ollama
+  host: http://localhost:11434
+  timeout: 1800          # seconds per call
+  keep_alive: 30m
+
+think: true
+options:                 # Qwen3 thinking-mode settings recommended in the official model card
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0
+  num_ctx: 8192
+  num_predict: 6144      # cap on generated tokens (thinking + answer); a hit gives done_reason=length
+
+# One seed per run. Pilot seeds differ from the main-run seeds, so practice responses
+# can never coincide with responses that will be scored.
+seeds: [901, 902]
+retry_seed_offsets: [100, 200]   # attempt 2 uses seed+100, attempt 3 seed+200
+
+models:
+  - {name: "qwen3:8b",  runs: 2}
+  - {name: "qwen3:14b", runs: 2}
