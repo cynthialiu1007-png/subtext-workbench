@@ -13,6 +13,8 @@ cases = [
     ("label, no period", "Interviewee: He's very good at getting a room going", p124, "verbatim"),
     ("case + period",    "he's very good at getting a room going", p124, "loose"),
     ("elided",           "Our manager is a really nice person ... He’s always punctual", p101, "elided"),
+    ("stitched (reordered)", "I hope we get a result this year. Next month is the peak wedding season. Every weekend we’ll have three events, and everyone’s bound to start talking about this again.", P["112"]["passage"], "stitched"),
+    ("not stitched", "I hope we get a result this year. The manager promised to fix it by Friday.", P["112"]["passage"], "absent"),
     ("near (1 word off)","His clothes are always tidy, his leather shoes are polished to a shine", p101, "near"),
     ("fabricated",       "You speak English like a tourist", p101, "absent"),
     ("interviewer line", "How does your restaurant manager usually lead the team?", p101, "verbatim"),
@@ -21,7 +23,7 @@ ok = True
 for name, q, p, want in cases:
     r = check_quote(q, p)
     flag = "OK " if r["tier"] == want else "BAD"; ok &= r["tier"] == want
-    print(f"{flag} {name:<18} tier={r['tier']:<9} speaker={r['speaker']} sim={r['similarity']}")
+    print(f"{flag} {name:<22} tier={r['tier']:<9} speaker={r['speaker']} sim={r['similarity']}")
 good = {"codes": [{"label": "praise for punctuality", "quote": "He’s always punctual."}]*3,
         "interpretation": "x", "tone": "positive", "confidence": 70}
 bad = [dict(good, codes=good["codes"][:2]), dict(good, tone="sad"), dict(good, confidence=120),

@@ -24,4 +24,4 @@ retry_seed_offsets: [100, 200]   # attempt 2 uses seed+100, attempt 3 seed+200
 
 models:
   - {name: "qwen3:8b",  runs: 5}
-  - {name: "qwen3:14b", runs: 5}   # TO DECIDE after the pilot: 5 or 3
+  - {name: "qwen3:14b", runs: 5}

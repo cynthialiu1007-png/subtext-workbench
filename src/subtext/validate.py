@@ -122,8 +122,13 @@ def check_quote(quote: str, passage: str) -> dict:
     verbatim : found after typographic normalisation (case-sensitive)
     loose    : found after also case-folding, trimming edge punctuation and a leading speaker label
     elided   : contains '...' and every fragment is found, in order, at loose level
+    stitched : two or more sentences of 3+ words, each found at loose level, but not as one
+               contiguous span in the given order (e.g. sentences reordered or joined)
     near     : best word-window similarity >= NEAR_MATCH_THRESHOLD
     absent   : none of the above (counted as fabricated evidence)
+
+    Only 'absent' counts towards the fabricated-evidence rate. 'stitched' and 'near' are
+    reported separately.
     """
     p_norm = normalise(passage)
     q_norm = normalise(quote)
@@ -157,6 +162,13 @@ def check_quote(quote: str, passage: str) -> dict:
         else:
             if frags:
                 res.update(tier="elided", speaker=_speaker_of(p_norm, first)); return res
+
+    sents = [_loose(x) for x in re.split(r"(?<=[.!?])\s+", _SPEAKER.sub("", q_norm))]
+    sents = [x for x in sents if x]
+    if len(sents) >= 2 and all(len(x.split()) >= 3 for x in sents):
+        found = [p_loose.find(x) for x in sents]
+        if all(f >= 0 for f in found):
+            res.update(tier="stitched", speaker=_speaker_of(p_norm, found[0])); return res
 
     q_words, p_words = q_loose.split(), p_loose.split()
     best = 0.0
