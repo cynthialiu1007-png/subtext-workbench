@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "codes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "quote": { "type": "string" }
+        },
+        "required": ["label", "quote"]
+      }
+    },
+    "interpretation": { "type": "string" },
+    "tone": { "type": "string", "enum": ["positive", "negative", "mixed", "neutral"] },
+    "confidence": { "type": "integer", "minimum": 0, "maximum": 100 }
+  },
+  "required": ["codes", "interpretation", "tone", "confidence"]
+}

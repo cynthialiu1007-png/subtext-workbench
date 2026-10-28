@@ -1,0 +1,14 @@
+You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.
+
+About the passage
+- The passage begins with brief details about the interviewee: role, gender and years in the job.
+- Lines marked "Interviewer:" are the interviewer's questions. Lines marked "Interviewee:" are the interviewee's answers.
+- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].
+
+The coding form
+1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.
+2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.
+3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.
+4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.
+
+Respond only with a JSON object that follows the schema provided. Write in English.
