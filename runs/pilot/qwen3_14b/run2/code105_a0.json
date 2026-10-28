@@ -1,0 +1,178 @@
+{
+ "record_version": 1,
+ "phase": "pilot",
+ "config_file": "config/pilot.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "105",
+ "list": "A",
+ "seed": 902,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Room attendant, female, 2nd year\n\nInterviewer: Is there anything at work that’s made a particularly strong impression on you?\n\nInterviewee: Last month a guest phoned after checking out to say a gold bracelet had gone missing from the bedside table, and I was the one who’d cleaned that room. Security called me into their office and questioned me for almost an hour: what time I went into the room, what time I came out, whether anyone else had come in while I was there. Then, right in front of me, they went through my cleaning trolley and my locker. They even opened my lunch box and looked inside. The office door was open, and every so often a colleague walked past in the corridor, glanced in, and walked on. I kept saying I’d cooperate, that it was only right, the hotel has rules, anyone would have to be checked. The next day the guest found it herself, in the inner pocket of her make-up bag. The lobby manager phoned to tell me it had been a misunderstanding and not to take it to heart. The guest never phoned again after that. I said it’s fine, it’s all over now. For about two weeks after that, I didn’t go to the staff canteen at lunchtime. I just sat in the workroom, and I barely touched the food I’d brought. I also went to bed very late every night when I got home. I lost two kilos in those two weeks. Now when I clean a room, I prop my phone up on the trolley and record from the moment I walk in until I walk out. And I don’t leave the door half open any more. I push it all the way open and wedge it with a doorstop. My team leader asked me once why I do that. I said I’ve just got used to it, and this way everyone can feel easy. Around that time my mum phoned and asked how work was going. I said it’s fine, just a bit tiring, then said I had to go and clean a room, and hung up. Actually, I’d already finished my shift that day.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 902
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Accusation of theft and investigation\", \"quote\": \"Security called me into their office and questioned me for almost an hour: what time I went into the room, what time I came out, whether anyone else had come in while I was there.\"}, {\"label\": \"Emotional distress and physical effects\", \"quote\": \"I lost two kilos in those two weeks.\"}, {\"label\": \"Changes in work practices for self-protection\", \"quote\": \"Now when I clean a room, I prop my phone up on the trolley and record from the moment I walk in until I walk out.\"}, {\"label\": \"Emotional suppression and social performance\", \"quote\": \"I said it’s fine, just a bit tiring, then said I had to go and clean a room, and hung up.\"}, {\"label\": \"Lingering effects of the incident\", \"quote\": \"For about two weeks after that, I didn’t go to the staff canteen at lunchtime. I just sat in the workroom, and I barely touched the food I’d brought.\"}], \"interpretation\": \"The interviewee describes a traumatic experience of being falsely accused of theft, the subsequent emotional and physical toll, and the coping mechanisms she developed, including changes in work habits and emotional suppression.\", \"tone\": \"mixed\", \"confidence\": 95}",
+  "thinking": "Okay, let me start by reading through the interviewee's response carefully. She's a room attendant with two years of experience. The main event she's talking about is when a guest accused her of stealing a gold bracelet. Security questioned her for an hour, searched her belongings, and this made her feel really uncomfortable. Even though they later found out it was a misunderstanding, she was still affected for two weeks. She lost weight, avoided the staff canteen, and changed her cleaning habits. Now she records her work and uses doorstops to prevent any suspicion. Her mom called, and she downplayed the situation, saying it's fine but actually, she was still stressed.\n\nFirst, I need to code this passage with first-order codes. Let me look for key themes. The main incident is the accusation and the investigation. That's a clear code: \"Accusation of theft and investigation.\" The quote here is \"Security called me into their office and questioned me for almost an hour...\" \n\nThen, the emotional impact: she felt violated and anxious. The quote about not going to the canteen and losing weight shows that. So maybe \"Emotional distress and physical effects.\" The quote could be \"I lost two kilos in those two weeks.\"\n\nNext, the changes she made in her work habits: recording her work and using doorstops. That's a code like \"Changes in work practices for self-protection.\" The quote is \"Now when I clean a room, I prop my phone up on the trolley and record...\"\n\nAlso, she downplayed the incident to her mom, indicating emotional suppression. That could be \"Emotional suppression and social performance.\" The quote is \"I said it’s fine, just a bit tiring...\"\n\nAnother point is the lingering effects even after the incident was resolved. So maybe \"Lingering effects of the incident.\" The quote about not going to the canteen and losing sleep fits here.\n\nNow, the interpretation: She's communicating the traumatic experience of being falsely accused, the lasting emotional and physical effects, and the coping mechanisms she developed. The tone is mixed because there's both negative aspects (distress, changes in habits) and a neutral mention of following hotel rules. Confidence in the interpretation is high since the details are clear and consistent.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 756,
+   "eval_count": 755,
+   "total_duration": 57345878750,
+   "load_duration": 9463542,
+   "prompt_eval_duration": 86730000,
+   "eval_duration": 56732258000
+  },
+  "wall_seconds": 57.37
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T08:07:57.966978Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Accusation of theft and investigation\", \"quote\": \"Security called me into their office and questioned me for almost an hour: what time I went into the room, what time I came out, whether anyone else had come in while I was there.\"}, {\"label\": \"Emotional distress and physical effects\", \"quote\": \"I lost two kilos in those two weeks.\"}, {\"label\": \"Changes in work practices for self-protection\", \"quote\": \"Now when I clean a room, I prop my phone up on the trolley and record from the moment I walk in until I walk out.\"}, {\"label\": \"Emotional suppression and social performance\", \"quote\": \"I said it’s fine, just a bit tiring, then said I had to go and clean a room, and hung up.\"}, {\"label\": \"Lingering effects of the incident\", \"quote\": \"For about two weeks after that, I didn’t go to the staff canteen at lunchtime. I just sat in the workroom, and I barely touched the food I’d brought.\"}], \"interpretation\": \"The interviewee describes a traumatic experience of being falsely accused of theft, the subsequent emotional and physical toll, and the coping mechanisms she developed, including changes in work habits and emotional suppression.\", \"tone\": \"mixed\", \"confidence\": 95}",
+   "thinking": "Okay, let me start by reading through the interviewee's response carefully. She's a room attendant with two years of experience. The main event she's talking about is when a guest accused her of stealing a gold bracelet. Security questioned her for an hour, searched her belongings, and this made her feel really uncomfortable. Even though they later found out it was a misunderstanding, she was still affected for two weeks. She lost weight, avoided the staff canteen, and changed her cleaning habits. Now she records her work and uses doorstops to prevent any suspicion. Her mom called, and she downplayed the situation, saying it's fine but actually, she was still stressed.\n\nFirst, I need to code this passage with first-order codes. Let me look for key themes. The main incident is the accusation and the investigation. That's a clear code: \"Accusation of theft and investigation.\" The quote here is \"Security called me into their office and questioned me for almost an hour...\" \n\nThen, the emotional impact: she felt violated and anxious. The quote about not going to the canteen and losing weight shows that. So maybe \"Emotional distress and physical effects.\" The quote could be \"I lost two kilos in those two weeks.\"\n\nNext, the changes she made in her work habits: recording her work and using doorstops. That's a code like \"Changes in work practices for self-protection.\" The quote is \"Now when I clean a room, I prop my phone up on the trolley and record...\"\n\nAlso, she downplayed the incident to her mom, indicating emotional suppression. That could be \"Emotional suppression and social performance.\" The quote is \"I said it’s fine, just a bit tiring...\"\n\nAnother point is the lingering effects even after the incident was resolved. So maybe \"Lingering effects of the incident.\" The quote about not going to the canteen and losing sleep fits here.\n\nNow, the interpretation: She's communicating the traumatic experience of being falsely accused, the lasting emotional and physical effects, and the coping mechanisms she developed. The tone is mixed because there's both negative aspects (distress, changes in habits) and a neutral mention of following hotel rules. Confidence in the interpretation is high since the details are clear and consistent.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 57345878750,
+  "load_duration": 9463542,
+  "prompt_eval_count": 756,
+  "prompt_eval_cached_count": 755,
+  "prompt_eval_duration": 86730000,
+  "eval_count": 755,
+  "eval_duration": 56732258000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [
+   "codes[0].quote: 35 words > 30"
+  ],
+  "quotes": [
+   {
+    "quote": "Security called me into their office and questioned me for almost an hour: what time I went into the room, what time I came out, whether anyone else had come in while I was there.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I lost two kilos in those two weeks.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Now when I clean a room, I prop my phone up on the trolley and record from the moment I walk in until I walk out.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I said it’s fine, just a bit tiring, then said I had to go and clean a room, and hung up.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "For about two weeks after that, I didn’t go to the staff canteen at lunchtime. I just sat in the workroom, and I barely touched the food I’d brought.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T08:07:00+00:00",
+ "finished_at": "2026-10-28T08:07:58+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}

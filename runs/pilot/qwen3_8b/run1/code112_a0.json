@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "pilot",
+ "config_file": "config/pilot.yaml",
+ "model": "qwen3:8b",
+ "model_identity": {
+  "name": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "size": 5225388164,
+  "modified_at": "2026-10-27T21:36:31.398662169Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "8.2B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 4096,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "112",
+ "list": "A",
+ "seed": 901,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet server, male, 3rd year\n\nInterviewer: How much of the banquet service charge do you frontline staff get?\n\nInterviewee: The service charge is distributed centrally according to hotel regulations. The formula is set out clearly in the staff handbook. It’s calculated using a length-of-service coefficient and a grade coefficient, and the breakdown is posted on the noticeboard once a month. There’s a line on the payslip called service bonus. I check it every month and take a photo of it on my phone to keep. To be honest, I’m not happy with the formula. Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8. But at the three weddings every weekend, it’s basically us young ones carrying the drinks, moving the tables and chairs and clearing up. The long-serving staff just stand to one side giving directions, and they get nearly twice as much as we do. Last year I asked once in the group chat whether the number of events worked could be included too. My supervisor said that would have to wait to be discussed at the staff representatives’ meeting, and told me to write a proposal. I wrote it and handed it in. This year’s meeting is next month, and I’m going to raise it again. Seven or eight colleagues have already signed it. My supervisor didn’t say anything against it, and even reminded me to get the numbers right and not make any mistakes. Actually, the benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine. It’s much better than the hotel I was at before. There’s also a year-end bonus. Last year it was a month and a half’s pay. It’s just the service charge part that I think is unfair. You can write that as it is, and you can put my name on it too. Next month is the peak wedding season. Every weekend we’ll have three events, and everyone’s bound to start talking about this again. I hope we get a result this year.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 901
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Service Charge Formula\",\n      \"quote\": \"The formula is set out clearly in the staff handbook. It’s calculated using a length-of-service coefficient and a grade coefficient\"\n    },\n    {\n      \"label\": \"Perceived Inequity\",\n      \"quote\": \"Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8\"\n    },\n    {\n      \"label\": \"Proposal for Change\",\n      \"quote\": \"Last year I asked once in the group chat whether the number of events worked could be included too. My supervisor said that would have to wait to be discussed\"\n    },\n    {\n      \"label\": \"Positive Benefits\",\n      \"quote\": \"The benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine\"\n    },\n    {\n      \"label\": \"Colleague Support\",\n      \"quote\": \"Seven or eight colleagues have already signed it. My supervisor didn’t say anything against it\"\n    },\n    {\n      \"label\": \"Workload Disparity\",\n      \"quote\": \"It’s basically us young ones carrying the drinks, moving the tables and chairs and clearing up. The long-serving staff just stand to one side giving directions\"\n    }\n  ],\n  \"interpretation\": \"The interviewee feels the service charge formula is unfair, as newer staff do more physical work but receive less pay compared to long-serving colleagues, but they are actively seeking change through proposals with colleague support.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+  "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the interviewee's experience as a banquet server. The main points are about the service charge distribution, the formula, and the perception of fairness.\n\nThe interviewee mentions the service charge is distributed via a formula based on length of service and grade. He's not happy because newer employees like himself get less despite doing more work. There's a mention of a proposal to include event numbers in the formula, which some colleagues support. He also notes that overall benefits are good, but the service charge is unfair.\n\nSo, possible codes could be: \"Service Charge Formula\", \"Perceived Inequity\", \"Proposal for Change\", \"Positive Benefits\", \"Colleague Support\", and \"Workload Disparity\". Each code needs a supporting quote. \n\nFor \"Service Charge Formula\", the quote about the formula using coefficients. \"Perceived Inequity\" could use the part where he says he's not happy with the formula. \"Proposal for Change\" would include his mention of writing a proposal. \"Positive Benefits\" can reference the meals and accommodation. \"Colleague Support\" is when he mentions seven colleagues signed the proposal. \"Workload Disparity\" would be the part where he says young staff do the physical work while older ones get more.\n\nInterpretation: The interviewee feels the service charge formula is unfair, as newer staff do more work but get less, but he's actively seeking change with colleague support. The tone is mixed, negative about the formula but positive about overall benefits. Confidence might be around 85, as the details are clear but some parts are inferred.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 750,
+   "eval_count": 698,
+   "total_duration": 30698583417,
+   "load_duration": 3059667,
+   "prompt_eval_duration": 859704000,
+   "eval_duration": 29720000000
+  },
+  "wall_seconds": 30.7
+ },
+ "raw_response": {
+  "model": "qwen3:8b",
+  "created_at": "2026-10-28T08:01:52.441042Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n  \"codes\": [\n    {\n      \"label\": \"Service Charge Formula\",\n      \"quote\": \"The formula is set out clearly in the staff handbook. It’s calculated using a length-of-service coefficient and a grade coefficient\"\n    },\n    {\n      \"label\": \"Perceived Inequity\",\n      \"quote\": \"Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8\"\n    },\n    {\n      \"label\": \"Proposal for Change\",\n      \"quote\": \"Last year I asked once in the group chat whether the number of events worked could be included too. My supervisor said that would have to wait to be discussed\"\n    },\n    {\n      \"label\": \"Positive Benefits\",\n      \"quote\": \"The benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine\"\n    },\n    {\n      \"label\": \"Colleague Support\",\n      \"quote\": \"Seven or eight colleagues have already signed it. My supervisor didn’t say anything against it\"\n    },\n    {\n      \"label\": \"Workload Disparity\",\n      \"quote\": \"It’s basically us young ones carrying the drinks, moving the tables and chairs and clearing up. The long-serving staff just stand to one side giving directions\"\n    }\n  ],\n  \"interpretation\": \"The interviewee feels the service charge formula is unfair, as newer staff do more physical work but receive less pay compared to long-serving colleagues, but they are actively seeking change through proposals with colleague support.\",\n  \"tone\": \"mixed\",\n  \"confidence\": 85\n}",
+   "thinking": "Okay, let's tackle this. The user wants me to code the interview passage using first-order coding. First, I need to understand the interviewee's experience as a banquet server. The main points are about the service charge distribution, the formula, and the perception of fairness.\n\nThe interviewee mentions the service charge is distributed via a formula based on length of service and grade. He's not happy because newer employees like himself get less despite doing more work. There's a mention of a proposal to include event numbers in the formula, which some colleagues support. He also notes that overall benefits are good, but the service charge is unfair.\n\nSo, possible codes could be: \"Service Charge Formula\", \"Perceived Inequity\", \"Proposal for Change\", \"Positive Benefits\", \"Colleague Support\", and \"Workload Disparity\". Each code needs a supporting quote. \n\nFor \"Service Charge Formula\", the quote about the formula using coefficients. \"Perceived Inequity\" could use the part where he says he's not happy with the formula. \"Proposal for Change\" would include his mention of writing a proposal. \"Positive Benefits\" can reference the meals and accommodation. \"Colleague Support\" is when he mentions seven colleagues signed the proposal. \"Workload Disparity\" would be the part where he says young staff do the physical work while older ones get more.\n\nInterpretation: The interviewee feels the service charge formula is unfair, as newer staff do more work but get less, but he's actively seeking change with colleague support. The tone is mixed, negative about the formula but positive about overall benefits. Confidence might be around 85, as the details are clear but some parts are inferred.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 30698583417,
+  "load_duration": 3059667,
+  "prompt_eval_count": 750,
+  "prompt_eval_cached_count": 306,
+  "prompt_eval_duration": 859704000,
+  "eval_count": 698,
+  "eval_duration": 29720000000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "The formula is set out clearly in the staff handbook. It’s calculated using a length-of-service coefficient and a grade coefficient",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Last year I asked once in the group chat whether the number of events worked could be included too. My supervisor said that would have to wait to be discussed",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Seven or eight colleagues have already signed it. My supervisor didn’t say anything against it",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "It’s basically us young ones carrying the drinks, moving the tables and chairs and clearing up. The long-serving staff just stand to one side giving directions",
+    "tier": "loose",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T08:01:21+00:00",
+ "finished_at": "2026-10-28T08:01:52+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

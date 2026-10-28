@@ -1,0 +1,182 @@
+{
+ "record_version": 1,
+ "phase": "pilot",
+ "config_file": "config/pilot.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "105",
+ "list": "A",
+ "seed": 901,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Room attendant, female, 2nd year\n\nInterviewer: Is there anything at work that’s made a particularly strong impression on you?\n\nInterviewee: Last month a guest phoned after checking out to say a gold bracelet had gone missing from the bedside table, and I was the one who’d cleaned that room. Security called me into their office and questioned me for almost an hour: what time I went into the room, what time I came out, whether anyone else had come in while I was there. Then, right in front of me, they went through my cleaning trolley and my locker. They even opened my lunch box and looked inside. The office door was open, and every so often a colleague walked past in the corridor, glanced in, and walked on. I kept saying I’d cooperate, that it was only right, the hotel has rules, anyone would have to be checked. The next day the guest found it herself, in the inner pocket of her make-up bag. The lobby manager phoned to tell me it had been a misunderstanding and not to take it to heart. The guest never phoned again after that. I said it’s fine, it’s all over now. For about two weeks after that, I didn’t go to the staff canteen at lunchtime. I just sat in the workroom, and I barely touched the food I’d brought. I also went to bed very late every night when I got home. I lost two kilos in those two weeks. Now when I clean a room, I prop my phone up on the trolley and record from the moment I walk in until I walk out. And I don’t leave the door half open any more. I push it all the way open and wedge it with a doorstop. My team leader asked me once why I do that. I said I’ve just got used to it, and this way everyone can feel easy. Around that time my mum phoned and asked how work was going. I said it’s fine, just a bit tiring, then said I had to go and clean a room, and hung up. Actually, I’d already finished my shift that day.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 901
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\"codes\": [{\"label\": \"Security questioning and invasion of privacy\", \"quote\": \"Security called me into their office and questioned me for almost an hour... they went through my cleaning trolley and my locker.\"}, {\"label\": \"Guest misunderstanding and apology\", \"quote\": \"The guest found it herself... the lobby manager phoned to tell me it had been a misunderstanding.\"}, {\"label\": \"Physical and emotional stress\", \"quote\": \"I barely touched the food... I lost two kilos in those two weeks.\"}, {\"label\": \"Work habit changes\", \"quote\": \"I prop my phone up on the trolley and record... I push it all the way open and wedge it with a doorstop.\"}, {\"label\": \"Workplace trust issues\", \"quote\": \"My team leader asked me once why I do that... I’ve just got used to it.\"}, {\"label\": \"Hiding true feelings\", \"quote\": \"I said it’s fine, just a bit tiring... I’d already finished my shift that day.\"}], \"interpretation\": \"The interviewee describes a traumatic experience with invasive security questioning that led to significant emotional and physical stress, prompting her to adopt new work habits to regain a sense of control and protect her privacy, while also concealing her true feelings about the incident from colleagues and family.\", \"tone\": \"mixed\", \"confidence\": 90}",
+  "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a room attendant in her second year, and she's talking about an incident where she was questioned by security after a guest reported a missing bracelet. The key points here are the stressful experience with the security check, the impact on her well-being (like not eating, losing weight, sleep issues), and the changes she made in her work routine afterward, such as recording her cleaning process and using a doorstop.\n\nFirst, I need to identify the first-order codes. These should be short labels based on the interviewee's own words. Let's see:\n\n1. \"Security questioning and invasion of privacy\" – the part where they searched her trolley, locker, and lunch box.\n2. \"Guest misunderstanding and apology\" – the guest found the bracelet herself, and the manager called to apologize.\n3. \"Physical and emotional stress\" – not eating, losing weight, sleep issues.\n4. \"Work habit changes\" – recording her cleaning and using a doorstop.\n5. \"Workplace trust issues\" – the team leader asking why she uses a doorstop, and her response about being used to it.\n6. \"Hiding true feelings\" – telling her mom it's fine but actually being stressed.\n\nFor the interpretation, the main message is that the incident caused significant stress, leading to changes in her work habits and affecting her health, even though the hotel tried to apologize. She's showing resilience but also some lingering anxiety.\n\nThe tone is mixed because there's both the negative experience and the positive outcome of the apology, but the overall impact seems negative. However, the interviewee mentions that she's adjusted, which might lean towards neutral, but the stress and changes in behavior suggest a more negative tone. Hmm, but the apology and her adaptation might make it mixed. Need to check again.\n\nConfidence in interpretation: The interviewee clearly describes the incident, the stress, and the changes she made, so I'm pretty confident, maybe around 90%.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 756,
+   "eval_count": 706,
+   "total_duration": 58178141000,
+   "load_duration": 3717384042,
+   "prompt_eval_duration": 2392880000,
+   "eval_duration": 52035254000
+  },
+  "wall_seconds": 58.2
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T08:05:07.702954Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\"codes\": [{\"label\": \"Security questioning and invasion of privacy\", \"quote\": \"Security called me into their office and questioned me for almost an hour... they went through my cleaning trolley and my locker.\"}, {\"label\": \"Guest misunderstanding and apology\", \"quote\": \"The guest found it herself... the lobby manager phoned to tell me it had been a misunderstanding.\"}, {\"label\": \"Physical and emotional stress\", \"quote\": \"I barely touched the food... I lost two kilos in those two weeks.\"}, {\"label\": \"Work habit changes\", \"quote\": \"I prop my phone up on the trolley and record... I push it all the way open and wedge it with a doorstop.\"}, {\"label\": \"Workplace trust issues\", \"quote\": \"My team leader asked me once why I do that... I’ve just got used to it.\"}, {\"label\": \"Hiding true feelings\", \"quote\": \"I said it’s fine, just a bit tiring... I’d already finished my shift that day.\"}], \"interpretation\": \"The interviewee describes a traumatic experience with invasive security questioning that led to significant emotional and physical stress, prompting her to adopt new work habits to regain a sense of control and protect her privacy, while also concealing her true feelings about the incident from colleagues and family.\", \"tone\": \"mixed\", \"confidence\": 90}",
+   "thinking": "Okay, let's start by reading through the interviewee's response carefully. She's a room attendant in her second year, and she's talking about an incident where she was questioned by security after a guest reported a missing bracelet. The key points here are the stressful experience with the security check, the impact on her well-being (like not eating, losing weight, sleep issues), and the changes she made in her work routine afterward, such as recording her cleaning process and using a doorstop.\n\nFirst, I need to identify the first-order codes. These should be short labels based on the interviewee's own words. Let's see:\n\n1. \"Security questioning and invasion of privacy\" – the part where they searched her trolley, locker, and lunch box.\n2. \"Guest misunderstanding and apology\" – the guest found the bracelet herself, and the manager called to apologize.\n3. \"Physical and emotional stress\" – not eating, losing weight, sleep issues.\n4. \"Work habit changes\" – recording her cleaning and using a doorstop.\n5. \"Workplace trust issues\" – the team leader asking why she uses a doorstop, and her response about being used to it.\n6. \"Hiding true feelings\" – telling her mom it's fine but actually being stressed.\n\nFor the interpretation, the main message is that the incident caused significant stress, leading to changes in her work habits and affecting her health, even though the hotel tried to apologize. She's showing resilience but also some lingering anxiety.\n\nThe tone is mixed because there's both the negative experience and the positive outcome of the apology, but the overall impact seems negative. However, the interviewee mentions that she's adjusted, which might lean towards neutral, but the stress and changes in behavior suggest a more negative tone. Hmm, but the apology and her adaptation might make it mixed. Need to check again.\n\nConfidence in interpretation: The interviewee clearly describes the incident, the stress, and the changes she made, so I'm pretty confident, maybe around 90%.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 58178141000,
+  "load_duration": 3717384042,
+  "prompt_eval_count": 756,
+  "prompt_eval_cached_count": 0,
+  "prompt_eval_duration": 2392880000,
+  "eval_count": 706,
+  "eval_duration": 52035254000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Security called me into their office and questioned me for almost an hour... they went through my cleaning trolley and my locker.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "The guest found it herself... the lobby manager phoned to tell me it had been a misunderstanding.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I barely touched the food... I lost two kilos in those two weeks.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I prop my phone up on the trolley and record... I push it all the way open and wedge it with a doorstop.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "My team leader asked me once why I do that... I’ve just got used to it.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I said it’s fine, just a bit tiring... I’d already finished my shift that day.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T08:04:09+00:00",
+ "finished_at": "2026-10-28T08:05:07+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 1,
+ "attempt": 0
+}

@@ -1,0 +1,176 @@
+{
+ "record_version": 1,
+ "phase": "pilot",
+ "config_file": "config/pilot.yaml",
+ "model": "qwen3:14b",
+ "model_identity": {
+  "name": "qwen3:14b",
+  "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "size": 9276198565,
+  "modified_at": "2026-10-28T07:11:59.890463075Z",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen3",
+   "families": [
+    "qwen3"
+   ],
+   "parameter_size": "14.8B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 40960,
+   "embedding_length": 5120,
+   "runner": "ggml"
+  }
+ },
+ "backend_version": "0.40.11",
+ "code": "112",
+ "list": "A",
+ "seed": 902,
+ "prompt_version": "v1",
+ "prompt_sha256": {
+  "system": "ae1b83cea0647a617e8438ad116760db37b72b345f018721390d93748a61eb37",
+  "template": "71f16dead1745b9a633ef01456114a16e711c48b4ee465c5ff187061eeb1d558",
+  "schema": "a7f18863752dbd735af99acf9df1dd139922e8c497392a211672b529911f558b"
+ },
+ "request": {
+  "system": "You are assisting with the qualitative analysis of interview data from a study of frontline hotel employees' work experiences. You will receive one passage from an interview transcript. Code the passage as a qualitative researcher would in first-order coding, and complete the coding form below.\n\nAbout the passage\n- The passage begins with brief details about the interviewee: role, gender and years in the job.\n- Lines marked \"Interviewer:\" are the interviewer's questions. Lines marked \"Interviewee:\" are the interviewee's answers.\n- Some passages contain two excerpts from the same interview, marked [Earlier in the interview] and [Later in the interview].\n\nThe coding form\n1. codes: Give between 3 and 6 first-order codes. Each code has a short label of 2 to 6 words, kept close to the interviewee's own language, and one supporting quote. Each quote must be copied word for word from the passage, without any change, and must be no longer than 30 words.\n2. interpretation: In one or two sentences, in your own words, state what the interviewee is communicating in this passage.\n3. tone: The overall tone of the interviewee's account. Choose one: positive, negative, mixed or neutral.\n4. confidence: An integer from 0 to 100 indicating how confident you are that your interpretation is accurate.\n\nRespond only with a JSON object that follows the schema provided. Write in English.\n",
+  "user": "Interviewee details: Banquet server, male, 3rd year\n\nInterviewer: How much of the banquet service charge do you frontline staff get?\n\nInterviewee: The service charge is distributed centrally according to hotel regulations. The formula is set out clearly in the staff handbook. It’s calculated using a length-of-service coefficient and a grade coefficient, and the breakdown is posted on the noticeboard once a month. There’s a line on the payslip called service bonus. I check it every month and take a photo of it on my phone to keep. To be honest, I’m not happy with the formula. Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8. But at the three weddings every weekend, it’s basically us young ones carrying the drinks, moving the tables and chairs and clearing up. The long-serving staff just stand to one side giving directions, and they get nearly twice as much as we do. Last year I asked once in the group chat whether the number of events worked could be included too. My supervisor said that would have to wait to be discussed at the staff representatives’ meeting, and told me to write a proposal. I wrote it and handed it in. This year’s meeting is next month, and I’m going to raise it again. Seven or eight colleagues have already signed it. My supervisor didn’t say anything against it, and even reminded me to get the numbers right and not make any mistakes. Actually, the benefits here are pretty good overall. Meals and accommodation are included. The dorm rooms are for two people, with air conditioning and a washing machine. It’s much better than the hotel I was at before. There’s also a year-end bonus. Last year it was a month and a half’s pay. It’s just the service charge part that I think is unfair. You can write that as it is, and you can put my name on it too. Next month is the peak wedding season. Every weekend we’ll have three events, and everyone’s bound to start talking about this again. I hope we get a result this year.\n",
+  "options": {
+   "temperature": 0.6,
+   "top_p": 0.95,
+   "top_k": 20,
+   "min_p": 0,
+   "num_ctx": 8192,
+   "num_predict": 6144,
+   "seed": 902
+  },
+  "think": true,
+  "format": {
+   "type": "object",
+   "properties": {
+    "codes": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 6,
+     "items": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "label",
+       "quote"
+      ]
+     }
+    },
+    "interpretation": {
+     "type": "string"
+    },
+    "tone": {
+     "type": "string",
+     "enum": [
+      "positive",
+      "negative",
+      "mixed",
+      "neutral"
+     ]
+    },
+    "confidence": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 100
+    }
+   },
+   "required": [
+    "codes",
+    "interpretation",
+    "tone",
+    "confidence"
+   ]
+  }
+ },
+ "response": {
+  "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Service charge formula dissatisfaction\",\n    \"quote\": \"Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8.\"\n  },\n  {\n    \"label\": \"Workload vs. compensation disparity\",\n    \"quote\": \"it’s basically us young ones carrying the drinks, moving the tables and chairs and clearing up.\"\n  },\n  {\n    \"label\": \"Efforts to propose change\",\n    \"quote\": \"I wrote it and handed it in. This year’s meeting is next month, and I’m going to raise it again.\"\n  },\n  {\n    \"label\": \"Positive benefits acknowledgment\",\n    \"quote\": \"the benefits here are pretty good overall. Meals and accommodation are included.\"\n  },\n  {\n    \"label\": \"Anticipation of renewed discussion\",\n    \"quote\": \"Next month is the peak wedding season... everyone’s bound to start talking about this again.\"\n  }\n],\n\"interpretation\": \"The interviewee feels the service charge distribution is unfair due to tenure-based coefficients, despite his and colleagues' heavier workload, but he is actively working to address the issue through proposals and acknowledges other benefits like housing and bonuses.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+  "thinking": "Okay, let me start by reading through the interviewee's response carefully. He's a banquet server with three years of experience. The main topic is about the service charge distribution.\n\nFirst, he mentions the formula for the service charge, which is based on length of service and grade. He checks his payslip monthly and takes photos. Then he expresses dissatisfaction with the formula, pointing out that someone with three years (like him) has a coefficient of 1.0, while a ten-year veteran has 1.8. He feels that despite working harder at events, the older staff get more. He tried to propose changing the formula to include number of events worked, but it's pending. However, his supervisor hasn't opposed it and even reminded him to get the numbers right. He also mentions other benefits like meals, accommodation, and a year-end bonus, but the service charge part is unfair. He's planning to raise the issue again next month during peak season.\n\nNow, for the coding. I need 3-6 first-order codes. Let me identify key themes. \n\n1. The service charge formula's unfairness based on tenure. Quote: \"Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8.\"\n2. Disparity in workload vs. compensation. Quote: \"it’s basically us young ones carrying the drinks... and they get nearly twice as much as we do.\"\n3. Efforts to address the issue through proposal. Quote: \"I wrote it and handed it in. This year’s meeting is next month, and I’m going to raise it again.\"\n4. Positive aspects of benefits. Quote: \"the benefits here are pretty good overall. Meals and accommodation are included.\"\n5. Anticipation of renewed discussion during peak season. Quote: \"Next month is the peak wedding season... everyone’s bound to start talking about this again.\"\n\nInterpretation: The interviewee feels the service charge distribution is unfair, especially compared to workload, but is taking steps to address it and acknowledges other benefits.\n\nTone: Mixed, because there's both dissatisfaction and positive comments about benefits.\n\nConfidence: High, as the interviewee clearly expresses both the problem and his actions, along with positive aspects.\n",
+  "done_reason": "stop",
+  "usage": {
+   "prompt_eval_count": 750,
+   "eval_count": 746,
+   "total_duration": 58050793584,
+   "load_duration": 7894875,
+   "prompt_eval_duration": 88942000,
+   "eval_duration": 56851319000
+  },
+  "wall_seconds": 58.08
+ },
+ "raw_response": {
+  "model": "qwen3:14b",
+  "created_at": "2026-10-28T08:08:56.094106Z",
+  "message": {
+   "role": "assistant",
+   "content": "{\n\n\"codes\": [\n  {\n    \"label\": \"Service charge formula dissatisfaction\",\n    \"quote\": \"Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8.\"\n  },\n  {\n    \"label\": \"Workload vs. compensation disparity\",\n    \"quote\": \"it’s basically us young ones carrying the drinks, moving the tables and chairs and clearing up.\"\n  },\n  {\n    \"label\": \"Efforts to propose change\",\n    \"quote\": \"I wrote it and handed it in. This year’s meeting is next month, and I’m going to raise it again.\"\n  },\n  {\n    \"label\": \"Positive benefits acknowledgment\",\n    \"quote\": \"the benefits here are pretty good overall. Meals and accommodation are included.\"\n  },\n  {\n    \"label\": \"Anticipation of renewed discussion\",\n    \"quote\": \"Next month is the peak wedding season... everyone’s bound to start talking about this again.\"\n  }\n],\n\"interpretation\": \"The interviewee feels the service charge distribution is unfair due to tenure-based coefficients, despite his and colleagues' heavier workload, but he is actively working to address the issue through proposals and acknowledges other benefits like housing and bonuses.\",\n\"tone\": \"mixed\",\n\"confidence\": 95\n}",
+   "thinking": "Okay, let me start by reading through the interviewee's response carefully. He's a banquet server with three years of experience. The main topic is about the service charge distribution.\n\nFirst, he mentions the formula for the service charge, which is based on length of service and grade. He checks his payslip monthly and takes photos. Then he expresses dissatisfaction with the formula, pointing out that someone with three years (like him) has a coefficient of 1.0, while a ten-year veteran has 1.8. He feels that despite working harder at events, the older staff get more. He tried to propose changing the formula to include number of events worked, but it's pending. However, his supervisor hasn't opposed it and even reminded him to get the numbers right. He also mentions other benefits like meals, accommodation, and a year-end bonus, but the service charge part is unfair. He's planning to raise the issue again next month during peak season.\n\nNow, for the coding. I need 3-6 first-order codes. Let me identify key themes. \n\n1. The service charge formula's unfairness based on tenure. Quote: \"Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8.\"\n2. Disparity in workload vs. compensation. Quote: \"it’s basically us young ones carrying the drinks... and they get nearly twice as much as we do.\"\n3. Efforts to address the issue through proposal. Quote: \"I wrote it and handed it in. This year’s meeting is next month, and I’m going to raise it again.\"\n4. Positive aspects of benefits. Quote: \"the benefits here are pretty good overall. Meals and accommodation are included.\"\n5. Anticipation of renewed discussion during peak season. Quote: \"Next month is the peak wedding season... everyone’s bound to start talking about this again.\"\n\nInterpretation: The interviewee feels the service charge distribution is unfair, especially compared to workload, but is taking steps to address it and acknowledges other benefits.\n\nTone: Mixed, because there's both dissatisfaction and positive comments about benefits.\n\nConfidence: High, as the interviewee clearly expresses both the problem and his actions, along with positive aspects.\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 58050793584,
+  "load_duration": 7894875,
+  "prompt_eval_count": 750,
+  "prompt_eval_cached_count": 749,
+  "prompt_eval_duration": 88942000,
+  "eval_count": 746,
+  "eval_duration": 56851319000
+ },
+ "validation": {
+  "parsed": true,
+  "parse_note": null,
+  "schema_errors": [],
+  "form_issues": [],
+  "quotes": [
+   {
+    "quote": "Someone like me who’s been here three years has a coefficient of 1.0, and a long-serving employee with ten years has 1.8.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "it’s basically us young ones carrying the drinks, moving the tables and chairs and clearing up.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "I wrote it and handed it in. This year’s meeting is next month, and I’m going to raise it again.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "the benefits here are pretty good overall. Meals and accommodation are included.",
+    "tier": "verbatim",
+    "similarity": null,
+    "speaker": "interviewee"
+   },
+   {
+    "quote": "Next month is the peak wedding season... everyone’s bound to start talking about this again.",
+    "tier": "elided",
+    "similarity": null,
+    "speaker": "interviewee"
+   }
+  ],
+  "schema_ok": true
+ },
+ "started_at": "2026-10-28T08:07:58+00:00",
+ "finished_at": "2026-10-28T08:08:56+00:00",
+ "host": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7"
+ },
+ "run": 2,
+ "attempt": 0
+}
