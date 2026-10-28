@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-10-28T21:45:47+00:00",
+  "counts": {
+    "practice": 12,
+    "primary": 96,
+    "second": 20
+  },
+  "second_scorer_sample": {
+    "seed": 20261030,
+    "share": 0.2,
+    "k": 20,
+    "method": "random.Random(seed).sample(sorted primary response_ids, k)"
+  },
+  "key_file": "scoring/private/key.json",
+  "key_sha256": "243d79f705f6c188d2f3eb61379dd24195b4f04a3568b5281786383dd319c7f1",
+  "sheets_sha256": {
+    "practice": "270c7f079bfe8995ce753cdcccbec1207b803b3af8ccf22662e428c8f10a5fe5",
+    "primary": "f179be851daebeb9cf781e6c8f3097e83d16bdd4abab8e0ed3ce1b07b5557856",
+    "second": "cfc0d8418064fc2a060d5fbf1e5feb83df41e332527e79f73a922ee80198206d"
+  }
+}
