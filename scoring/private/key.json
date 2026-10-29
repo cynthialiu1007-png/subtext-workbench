@@ -1,0 +1,866 @@
+{
+ "R007E3B": {
+  "attempt": 0,
+  "code": "222",
+  "file": "runs/main/qwen3_14b/run1/code222_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R0610B9": {
+  "attempt": 0,
+  "code": "101",
+  "file": "runs/main/qwen3_8b/run1/code101_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R0A24DC": {
+  "attempt": 0,
+  "code": "119",
+  "file": "runs/main/qwen3_14b/run1/code119_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R0A2E4A": {
+  "attempt": 0,
+  "code": "105",
+  "file": "runs/pilot/qwen3_14b/run2/code105_a0.json",
+  "model": "qwen3:14b",
+  "run": 2,
+  "set": "practice"
+ },
+ "R0E6346": {
+  "attempt": 0,
+  "code": "104",
+  "file": "runs/main/qwen3_14b/run1/code104_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R0EFDF5": {
+  "attempt": 0,
+  "code": "216",
+  "file": "runs/main/qwen3_14b/run1/code216_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R139C2A": {
+  "attempt": 0,
+  "code": "105",
+  "file": "runs/main/qwen3_8b/run1/code105_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R1464CD": {
+  "attempt": 0,
+  "code": "124",
+  "file": "runs/main/qwen3_14b/run1/code124_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R161738": {
+  "attempt": 0,
+  "code": "116",
+  "file": "runs/pilot/qwen3_8b/run1/code116_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "practice"
+ },
+ "R17612D": {
+  "attempt": 0,
+  "code": "223",
+  "file": "runs/main/qwen3_8b/run1/code223_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R1769D7": {
+  "attempt": 0,
+  "code": "215",
+  "file": "runs/main/qwen3_14b/run1/code215_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R18B890": {
+  "attempt": 0,
+  "code": "112",
+  "file": "runs/pilot/qwen3_14b/run1/code112_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "practice"
+ },
+ "R193E83": {
+  "attempt": 0,
+  "code": "108",
+  "file": "runs/main/qwen3_14b/run1/code108_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R1B1A02": {
+  "attempt": 0,
+  "code": "201",
+  "file": "runs/main/qwen3_14b/run1/code201_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R1C31FF": {
+  "attempt": 0,
+  "code": "102",
+  "file": "runs/main/qwen3_14b/run1/code102_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R1CCCD7": {
+  "attempt": 0,
+  "code": "109",
+  "file": "runs/main/qwen3_8b/run1/code109_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R1F2094": {
+  "attempt": 0,
+  "code": "223",
+  "file": "runs/main/qwen3_14b/run1/code223_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R20ED02": {
+  "attempt": 0,
+  "code": "212",
+  "file": "runs/main/qwen3_14b/run1/code212_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R211A85": {
+  "attempt": 0,
+  "code": "218",
+  "file": "runs/main/qwen3_14b/run1/code218_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R223950": {
+  "attempt": 0,
+  "code": "117",
+  "file": "runs/main/qwen3_8b/run1/code117_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R248400": {
+  "attempt": 0,
+  "code": "206",
+  "file": "runs/main/qwen3_14b/run1/code206_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R24BCD6": {
+  "attempt": 0,
+  "code": "219",
+  "file": "runs/main/qwen3_8b/run1/code219_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R251002": {
+  "attempt": 0,
+  "code": "118",
+  "file": "runs/main/qwen3_8b/run1/code118_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R25B173": {
+  "attempt": 0,
+  "code": "124",
+  "file": "runs/main/qwen3_8b/run1/code124_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R2B013E": {
+  "attempt": 0,
+  "code": "217",
+  "file": "runs/main/qwen3_8b/run1/code217_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R2C5135": {
+  "attempt": 0,
+  "code": "107",
+  "file": "runs/main/qwen3_8b/run1/code107_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R2CAADA": {
+  "attempt": 0,
+  "code": "208",
+  "file": "runs/main/qwen3_8b/run1/code208_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R2CCF2D": {
+  "attempt": 0,
+  "code": "117",
+  "file": "runs/main/qwen3_14b/run1/code117_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R2ECA07": {
+  "attempt": 0,
+  "code": "105",
+  "file": "runs/pilot/qwen3_8b/run1/code105_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "practice"
+ },
+ "R2F093B": {
+  "attempt": 0,
+  "code": "106",
+  "file": "runs/main/qwen3_14b/run1/code106_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R34B63E": {
+  "attempt": 0,
+  "code": "201",
+  "file": "runs/main/qwen3_8b/run1/code201_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R377221": {
+  "attempt": 0,
+  "code": "206",
+  "file": "runs/main/qwen3_8b/run1/code206_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R38166E": {
+  "attempt": 0,
+  "code": "118",
+  "file": "runs/main/qwen3_14b/run1/code118_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R39EF8F": {
+  "attempt": 0,
+  "code": "108",
+  "file": "runs/main/qwen3_8b/run1/code108_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R3B88BD": {
+  "attempt": 0,
+  "code": "213",
+  "file": "runs/main/qwen3_8b/run1/code213_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R3BF8B6": {
+  "attempt": 0,
+  "code": "115",
+  "file": "runs/main/qwen3_14b/run1/code115_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R3E8F85": {
+  "attempt": 0,
+  "code": "109",
+  "file": "runs/main/qwen3_14b/run1/code109_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R41EA93": {
+  "attempt": 0,
+  "code": "101",
+  "file": "runs/main/qwen3_14b/run1/code101_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R41FFBC": {
+  "attempt": 0,
+  "code": "211",
+  "file": "runs/main/qwen3_14b/run1/code211_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R42A110": {
+  "attempt": 0,
+  "code": "113",
+  "file": "runs/main/qwen3_14b/run1/code113_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R433265": {
+  "attempt": 0,
+  "code": "116",
+  "file": "runs/main/qwen3_8b/run1/code116_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R4486B3": {
+  "attempt": 0,
+  "code": "112",
+  "file": "runs/pilot/qwen3_8b/run1/code112_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "practice"
+ },
+ "R44A988": {
+  "attempt": 0,
+  "code": "217",
+  "file": "runs/main/qwen3_14b/run1/code217_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R496FC5": {
+  "attempt": 0,
+  "code": "210",
+  "file": "runs/main/qwen3_8b/run1/code210_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R499982": {
+  "attempt": 0,
+  "code": "116",
+  "file": "runs/pilot/qwen3_14b/run2/code116_a0.json",
+  "model": "qwen3:14b",
+  "run": 2,
+  "set": "practice"
+ },
+ "R4C75E8": {
+  "attempt": 0,
+  "code": "205",
+  "file": "runs/main/qwen3_14b/run1/code205_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R4D7E4C": {
+  "attempt": 0,
+  "code": "209",
+  "file": "runs/main/qwen3_8b/run1/code209_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R522154": {
+  "attempt": 0,
+  "code": "123",
+  "file": "runs/main/qwen3_8b/run1/code123_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R528195": {
+  "attempt": 0,
+  "code": "104",
+  "file": "runs/main/qwen3_8b/run1/code104_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R56A222": {
+  "attempt": 0,
+  "code": "216",
+  "file": "runs/main/qwen3_8b/run1/code216_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R5BB80A": {
+  "attempt": 0,
+  "code": "116",
+  "file": "runs/main/qwen3_14b/run1/code116_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R5E1026": {
+  "attempt": 0,
+  "code": "212",
+  "file": "runs/main/qwen3_8b/run1/code212_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R5F49BC": {
+  "attempt": 0,
+  "code": "207",
+  "file": "runs/main/qwen3_14b/run1/code207_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R6372F1": {
+  "attempt": 0,
+  "code": "219",
+  "file": "runs/main/qwen3_14b/run1/code219_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R63A448": {
+  "attempt": 0,
+  "code": "224",
+  "file": "runs/main/qwen3_8b/run1/code224_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R63F3C9": {
+  "attempt": 0,
+  "code": "221",
+  "file": "runs/main/qwen3_14b/run1/code221_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R6A7243": {
+  "attempt": 0,
+  "code": "111",
+  "file": "runs/main/qwen3_8b/run1/code111_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R6CB242": {
+  "attempt": 0,
+  "code": "110",
+  "file": "runs/main/qwen3_8b/run1/code110_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R6D877E": {
+  "attempt": 0,
+  "code": "122",
+  "file": "runs/main/qwen3_8b/run1/code122_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R6F2D6C": {
+  "attempt": 0,
+  "code": "110",
+  "file": "runs/main/qwen3_14b/run1/code110_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R7782BB": {
+  "attempt": 0,
+  "code": "116",
+  "file": "runs/pilot/qwen3_14b/run1/code116_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "practice"
+ },
+ "R795D45": {
+  "attempt": 0,
+  "code": "123",
+  "file": "runs/main/qwen3_14b/run1/code123_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R7AE4F9": {
+  "attempt": 0,
+  "code": "211",
+  "file": "runs/main/qwen3_8b/run1/code211_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R7B613C": {
+  "attempt": 0,
+  "code": "120",
+  "file": "runs/main/qwen3_14b/run1/code120_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R7D2B90": {
+  "attempt": 0,
+  "code": "205",
+  "file": "runs/main/qwen3_8b/run1/code205_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R7FC926": {
+  "attempt": 0,
+  "code": "105",
+  "file": "runs/main/qwen3_14b/run1/code105_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R80CEE4": {
+  "attempt": 0,
+  "code": "207",
+  "file": "runs/main/qwen3_8b/run1/code207_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R8250D1": {
+  "attempt": 0,
+  "code": "119",
+  "file": "runs/main/qwen3_8b/run1/code119_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R8392D6": {
+  "attempt": 0,
+  "code": "105",
+  "file": "runs/pilot/qwen3_8b/run2/code105_a0.json",
+  "model": "qwen3:8b",
+  "run": 2,
+  "set": "practice"
+ },
+ "R83C833": {
+  "attempt": 0,
+  "code": "102",
+  "file": "runs/main/qwen3_8b/run1/code102_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R8403CD": {
+  "attempt": 0,
+  "code": "113",
+  "file": "runs/main/qwen3_8b/run1/code113_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R840FD1": {
+  "attempt": 0,
+  "code": "114",
+  "file": "runs/main/qwen3_8b/run1/code114_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R8A29A7": {
+  "attempt": 0,
+  "code": "106",
+  "file": "runs/main/qwen3_8b/run1/code106_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R8DD135": {
+  "attempt": 0,
+  "code": "121",
+  "file": "runs/main/qwen3_8b/run1/code121_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R961B9C": {
+  "attempt": 0,
+  "code": "203",
+  "file": "runs/main/qwen3_8b/run1/code203_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R97AC90": {
+  "attempt": 0,
+  "code": "209",
+  "file": "runs/main/qwen3_14b/run1/code209_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R9BC374": {
+  "attempt": 0,
+  "code": "107",
+  "file": "runs/main/qwen3_14b/run1/code107_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R9E3A68": {
+  "attempt": 0,
+  "code": "112",
+  "file": "runs/main/qwen3_8b/run1/code112_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "R9ECCFC": {
+  "attempt": 0,
+  "code": "221",
+  "file": "runs/main/qwen3_8b/run1/code221_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RA0D313": {
+  "attempt": 0,
+  "code": "204",
+  "file": "runs/main/qwen3_14b/run1/code204_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RA84BEA": {
+  "attempt": 0,
+  "code": "224",
+  "file": "runs/main/qwen3_14b/run1/code224_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RA96C06": {
+  "attempt": 0,
+  "code": "116",
+  "file": "runs/pilot/qwen3_8b/run2/code116_a0.json",
+  "model": "qwen3:8b",
+  "run": 2,
+  "set": "practice"
+ },
+ "RB02D04": {
+  "attempt": 0,
+  "code": "222",
+  "file": "runs/main/qwen3_8b/run1/code222_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RB122C5": {
+  "attempt": 0,
+  "code": "103",
+  "file": "runs/main/qwen3_8b/run1/code103_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RB5935F": {
+  "attempt": 0,
+  "code": "112",
+  "file": "runs/main/qwen3_14b/run1/code112_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RB6CC2F": {
+  "attempt": 0,
+  "code": "112",
+  "file": "runs/pilot/qwen3_8b/run2/code112_a0.json",
+  "model": "qwen3:8b",
+  "run": 2,
+  "set": "practice"
+ },
+ "RB6F4C3": {
+  "attempt": 0,
+  "code": "202",
+  "file": "runs/main/qwen3_8b/run1/code202_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RBC0954": {
+  "attempt": 0,
+  "code": "215",
+  "file": "runs/main/qwen3_8b/run1/code215_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RC0454E": {
+  "attempt": 0,
+  "code": "220",
+  "file": "runs/main/qwen3_8b/run1/code220_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RC6CE4C": {
+  "attempt": 0,
+  "code": "103",
+  "file": "runs/main/qwen3_14b/run1/code103_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RC73505": {
+  "attempt": 0,
+  "code": "214",
+  "file": "runs/main/qwen3_8b/run1/code214_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RCD9889": {
+  "attempt": 0,
+  "code": "115",
+  "file": "runs/main/qwen3_8b/run1/code115_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RCF21C1": {
+  "attempt": 0,
+  "code": "204",
+  "file": "runs/main/qwen3_8b/run1/code204_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RCFE370": {
+  "attempt": 0,
+  "code": "120",
+  "file": "runs/main/qwen3_8b/run1/code120_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RD18974": {
+  "attempt": 0,
+  "code": "203",
+  "file": "runs/main/qwen3_14b/run1/code203_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RD2F6F9": {
+  "attempt": 0,
+  "code": "111",
+  "file": "runs/main/qwen3_14b/run1/code111_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RD3E7A1": {
+  "attempt": 0,
+  "code": "208",
+  "file": "runs/main/qwen3_14b/run1/code208_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RD7CA8E": {
+  "attempt": 0,
+  "code": "112",
+  "file": "runs/pilot/qwen3_14b/run2/code112_a0.json",
+  "model": "qwen3:14b",
+  "run": 2,
+  "set": "practice"
+ },
+ "RDB9284": {
+  "attempt": 0,
+  "code": "114",
+  "file": "runs/main/qwen3_14b/run1/code114_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RE53C3B": {
+  "attempt": 0,
+  "code": "202",
+  "file": "runs/main/qwen3_14b/run1/code202_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RE8ECF7": {
+  "attempt": 0,
+  "code": "220",
+  "file": "runs/main/qwen3_14b/run1/code220_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RE97CDE": {
+  "attempt": 0,
+  "code": "213",
+  "file": "runs/main/qwen3_14b/run1/code213_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "REAAC5D": {
+  "attempt": 0,
+  "code": "214",
+  "file": "runs/main/qwen3_14b/run1/code214_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "REBBFB4": {
+  "attempt": 0,
+  "code": "105",
+  "file": "runs/pilot/qwen3_14b/run1/code105_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "practice"
+ },
+ "RF42BAB": {
+  "attempt": 0,
+  "code": "122",
+  "file": "runs/main/qwen3_14b/run1/code122_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RF7D9BD": {
+  "attempt": 0,
+  "code": "218",
+  "file": "runs/main/qwen3_8b/run1/code218_a0.json",
+  "model": "qwen3:8b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RFCEF3E": {
+  "attempt": 0,
+  "code": "210",
+  "file": "runs/main/qwen3_14b/run1/code210_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ },
+ "RFDC828": {
+  "attempt": 0,
+  "code": "121",
+  "file": "runs/main/qwen3_14b/run1/code121_a0.json",
+  "model": "qwen3:14b",
+  "run": 1,
+  "set": "primary"
+ }
+}
