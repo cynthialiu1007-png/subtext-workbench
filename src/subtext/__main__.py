@@ -30,6 +30,13 @@ def main(argv=None):
     p.add_argument("--file", required=True)
     p.add_argument("--set", required=True, choices=["practice", "primary", "second"])
     p.add_argument("--scorer", required=True)
+    p = sub.add_parser("embed", help="embed interpretations once and cache them (needs Ollama)")
+    p.add_argument("--config", default="config/analysis.yaml")
+    p.add_argument("--force", action="store_true", help="rebuild an existing cache (record why)")
+    p = sub.add_parser("analyze", help="module 7: instability, rubric metrics, RQ1-RQ3, agreement")
+    p.add_argument("--config", default="config/analysis.yaml")
+    p.add_argument("--deviation", help="committed deviation record allowing the key to be read "
+                                       "before second scoring is complete")
     a = ap.parse_args(argv)
 
     if a.cmd == "prepare":
@@ -61,6 +68,12 @@ def main(argv=None):
     elif a.cmd == "import-excel":
         from .scoring import import_excel
         print(json.dumps(import_excel(a.file, a.set, a.scorer), indent=2))
+    elif a.cmd == "embed":
+        from .embed import run_embed
+        print(json.dumps(run_embed(a.config, a.force), indent=2))
+    elif a.cmd == "analyze":
+        from .analysis import run_analysis
+        print(json.dumps(run_analysis(a.config, a.deviation), indent=2))
 
 
 if __name__ == "__main__":

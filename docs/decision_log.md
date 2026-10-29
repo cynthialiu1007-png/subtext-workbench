@@ -12,3 +12,9 @@
 - Rubric application note for E segments (implicit mismatch) added to the analysis plan.
 - Embedding model for semantic dispersion: nomic-embed-text.
 - Full specification: docs/analysis_plan_v1.md.
+## 2026-10-29 Analysis settings (module 7), fixed before any embedding or analysis was run
+- Second scoring by Prof. Hu cannot be completed before the deadline; it moves to after submission. Response key read before second scoring: docs/deviation_2026-10-29_unblinding_before_second_scoring.md.
+- RQ3 within E segments added: docs/addendum_2026-10-29_rq3_within_E.md.
+- Embeddings: nomic-embed-text via Ollama; the interpretation field is prefixed with "clustering: " (the model's task prefix for grouping texts and detecting semantic duplicates). Embeddings are computed once and cached in analysis/embeddings.jsonl.
+- Conventions: X treated as missing and reported; McNemar exact (binomial); Wilcoxon signed-rank with zero differences dropped; effect sizes median paired difference and matched-pairs rank-biserial r; AUC oriented so that higher values mean higher error risk (mean confidence reversed); pooled bootstrap resamples segments as clusters; calibration uses run-1 confidence; confidence SD is the sample SD; d' from lenient read rate and over-interpretation rate with the log-linear correction; excluding the medium-confidence segments drops the whole pair in paired analyses and the E segment elsewhere; kappa on E unweighted (F/P/N/M/X) and linearly weighted on read score for items neither scorer coded X, on C unweighted (A/O/X) with raw agreement.
+- Analysis dependencies: numpy 2.5.4, scipy 1.18.1, matplotlib 3.11.2 (each released at least two weeks earlier, with Python 3.14 wheels).

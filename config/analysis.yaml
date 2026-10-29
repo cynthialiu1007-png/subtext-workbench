@@ -1,0 +1,25 @@
+# Module 7: embeddings and analysis. Settings fixed before any embedding or analysis was run.
+phase: main                      # analyse runs/main/
+
+embedding:
+  host: http://localhost:11434
+  model: nomic-embed-text
+  prefix: "clustering: "         # nomic-embed-text task prefix; see docs/decision_log.md (2026-10-29)
+  batch_size: 16
+  timeout: 600
+  repeat_check: 5                # re-embed the first N texts to check that embeddings are reproducible
+
+scoring:
+  primary_scorer: XL
+  second_scorer: XH
+  stage: pre-discussion          # primary analysis uses pre-discussion scores
+
+analysis:
+  bootstrap: 2000
+  seed: 20261029
+  medium_confidence_segments: [A-L3-02-E, C-L3-01-E, D-L2-01-E]
+  addendum: docs/addendum_2026-10-29_rq3_within_E.md
+
+outputs:
+  dir: analysis                  # aggregate results only; committed
+  private_dir: scoring/private   # segment x model detail; git-ignored
