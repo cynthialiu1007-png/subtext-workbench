@@ -35,6 +35,7 @@ scoring/private/key.json     response key (published with the submission; see do
 scoring/scores/         score files <set>__<scorer>.csv
 analysis/               embedding cache, results (JSON and Markdown), figures, analysis manifest
 docs/                   analysis plan, decision log, calibration record, deviations, addendum, audit timeline
+docs/workbench/         workbench prototype (one HTML page, built by python -m subtext build-demo)
 logs/                   model-access record (2026-10-28)
 tests/                  unit tests (quote checking, schema validation, statistics)
 ```
@@ -90,6 +91,16 @@ python -m subtext summarize --phase rerun
 
 Outputs go to `runs/rerun/`, so the original records are untouched. On the original machine, Ollama version and model digests, the same seed reproduced an output byte for byte (determinism check, `runs/pilot/determinism/`); identical outputs are not expected on other hardware or versions. Scores are tied to the original run-1 outputs, so Level 3 reproduces the instability measures and output statistics, not the scored results.
 
+## Workbench prototype
+
+[`docs/workbench/index.html`](docs/workbench/index.html) is a single self-contained page (no installation, no network access) built from the repository files by `python -m subtext build-demo`. Open it in any browser; when the repository is public it is also served through GitHub Pages.
+
+- **Replay** sends one interview passage to the two models and shows the recorded readings returning in the order and with the latency of the original runs (30 times faster), the quoted evidence lighting up on the passage, the instability signals, and then the answer key and blind scores. The page calls no model: every reading is a recorded output from `runs/main/`.
+- **Workbench** lays out all 48 segments as a triage map (layer of meaning by level of difficulty, each subtext version beside its sincere control), coloured by a chosen instability signal; the passage with every quote located and marked by its check result; and the ten readings, each with tone, confidence, codes, quotes, thinking trace and a link to its raw record. The answer key and scores are hidden until switched on.
+- **Findings** and **Provenance** show the Stage 1 results from `analysis/results.json` and the SHA-256 of every input.
+
+The readings map is a two-dimensional classical MDS projection of the cosine distances between the ten readings of a segment, on one scale shared by all segments; the reported measures are computed from the full embeddings.
+
 ## Audit trail and records
 
 - **Sealing.** Segments, answer key, rubric and scoring protocol were committed and tagged `seal-v1` before any model run. Corrections are never made to sealed files; they are recorded as new, dated files.
@@ -105,7 +116,7 @@ Outputs go to `runs/rerun/`, so the original records are untouched. On the origi
 
 ## Commands
 
-`python -m subtext <command>`: `prepare` · `check-env` · `run` · `determinism` · `summarize` · `make-sets` · `export-excel` · `import-excel` · `embed` · `analyze` · `audit-quotes` · `verify`. Blind scoring interface: `streamlit run app/scoring_app.py`.
+`python -m subtext <command>`: `prepare` · `check-env` · `run` · `determinism` · `summarize` · `make-sets` · `export-excel` · `import-excel` · `embed` · `analyze` · `audit-quotes` · `verify` · `build-demo`. Blind scoring interface: `streamlit run app/scoring_app.py`.
 
 ## Use of AI in this project
 

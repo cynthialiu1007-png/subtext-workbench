@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Subtext Workbench: Stage 1 prototype</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='13' r='4' fill='%230E8A8C'/%3E%3Ccircle cx='21' cy='19' r='4' fill='%23C9741D'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#EDF0F3; --surface:#FFFFFF; --surface-2:#F6F7F9; --ink:#17202B; --ink-2:#4B5563; --ink-3:#7F8A99; --line:#D8DDE4;
+  --sig-lo:#EEECFB; --sig-hi:#3B2F9E; --hl:255,205,64;
+  --m8:#0E8A8C; --m14:#C9741D; --read:#2E9D6E; --warn:#D1495B; --edited:#7B61D9;
+  --serif:"Iowan Old Style","Charter","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --sans:"Avenir Next","Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif;
+  --radius-s:6px; --radius-m:12px; --radius-l:20px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E1318; --surface:#151C24; --surface-2:#1B242E; --ink:#E6EBF1; --ink-2:#A9B3C0; --ink-3:#6F7A89; --line:#28323D;
+    --sig-lo:#1E1C38; --sig-hi:#B7AAFF; --hl:240,190,60;
+    --m8:#3CC3C4; --m14:#F0A24B; --read:#4CC38F; --warn:#F06A7A; --edited:#A891FF;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth; scroll-padding-top:72px}
+body{margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 var(--sans); -webkit-font-smoothing:antialiased;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important; animation:none!important}}
+a{color:inherit}
+button{font:inherit; color:inherit}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em}
+:focus-visible{outline:2px solid var(--sig-hi); outline-offset:2px}
+.wrap{max-width:1440px; margin:0 auto; padding:0 28px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--ink-3)}
+
+/* top bar */
+.top{position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 88%,transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.top .wrap{display:flex; align-items:center; gap:28px; height:56px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:600; text-decoration:none}
+.brand small{font-weight:400; color:var(--ink-3)}
+.top nav{display:flex; gap:22px; margin-left:auto}
+.top nav a{text-decoration:none; color:var(--ink-2)}
+.top nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{display:grid; grid-template-columns:1.12fr .88fr; gap:56px; padding:64px 0 40px; align-items:center}
+.who{color:var(--ink-3); margin:0 0 18px}
+.quote{font:400 clamp(28px,3.4vw,46px)/1.18 var(--serif); margin:0 0 30px; max-width:22ch; text-wrap:balance}
+.quote mark{background:linear-gradient(transparent 58%, rgba(var(--hl),.6) 58%); color:inherit; padding:0 .04em}
+.hero h1{font:600 clamp(20px,1.7vw,26px)/1.3 var(--sans); margin:0 0 12px; max-width:34ch}
+.lede{color:var(--ink-2); max-width:58ch; margin:0 0 28px}
+.cta{display:flex; gap:12px; flex-wrap:wrap}
+.btn{border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:11px 20px; cursor:pointer; font-weight:600; text-decoration:none; display:inline-block}
+.btn.primary{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.btn:hover{border-color:var(--ink-2)}
+.btn:disabled{opacity:.4; cursor:default}
+.figure{background:var(--surface); border-radius:var(--radius-l); padding:22px 22px 18px; border:1px solid var(--line); margin:0}
+.figure figcaption{color:var(--ink-2); font-size:13.5px; margin-top:10px; max-width:52ch}
+.legend{display:flex; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--ink-2); align-items:center}
+.sw{display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px}
+.facts{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:8px 0 72px}
+.fact{padding:22px 24px 22px 0; display:flex; gap:16px; align-items:baseline}
+.fact + .fact{padding-left:24px; border-left:1px solid var(--line)}
+.fact b{font:400 46px/1 var(--serif); font-variant-numeric:lining-nums}
+.fact span{color:var(--ink-2); max-width:30ch}
+
+/* sections */
+.sec{padding:20px 0 64px}
+.sec > header{display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:18px; flex-wrap:wrap}
+.sec h2{font:400 32px/1.15 var(--serif); margin:0}
+.sec header p{margin:6px 0 0; color:var(--ink-2); max-width:70ch}
+
+/* controls */
+.controls{display:flex; gap:22px; flex-wrap:wrap; align-items:center}
+.seg{display:inline-flex; background:var(--surface-2); border:1px solid var(--line); border-radius:999px; padding:3px}
+.seg button{border:0; background:transparent; padding:6px 13px; border-radius:999px; cursor:pointer; color:var(--ink-2); font-size:13.5px}
+.seg button[aria-pressed=true]{background:var(--surface); color:var(--ink); box-shadow:0 0 0 1px var(--line)}
+.seg button:disabled{opacity:.4; cursor:default}
+.ctl-label{font-size:12.5px; color:var(--ink-3); margin-right:8px}
+.switch{display:inline-flex; align-items:center; gap:10px; cursor:pointer; user-select:none; font-size:13.5px; color:var(--ink-2)}
+.switch input{appearance:none; width:38px; height:22px; border-radius:999px; background:var(--line); position:relative; cursor:pointer; margin:0}
+.switch input::after{content:""; position:absolute; top:3px; left:3px; width:16px; height:16px; border-radius:50%; background:var(--surface); transition:left .2s}
+.switch input:checked{background:var(--ink)}
+.switch input:checked::after{left:19px}
+
+/* workbench */
+.bench{display:grid; grid-template-columns:318px minmax(0,1fr) 400px; gap:18px; margin-top:16px; align-items:start}
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:18px}
+.panel h3{font:600 14px/1.3 var(--sans); margin:0 0 4px}
+.panel .sub{font-size:12.5px; color:var(--ink-3); margin:0 0 14px}
+.zone{display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--ink); color:var(--bg); font-size:12px; font-weight:700; margin-right:8px; vertical-align:-4px}
+
+.tri{display:grid; grid-template-columns:auto repeat(3,1fr); gap:8px; align-items:center}
+.tri .colh{font-size:12px; color:var(--ink-3); text-align:center; line-height:1.2}
+.tri .rowh{font-size:12px; color:var(--ink-2); line-height:1.2; padding-right:4px; max-width:80px}
+.block{display:grid; grid-template-columns:1fr 1fr; gap:3px}
+.cell{aspect-ratio:1; border:0; border-radius:5px; cursor:pointer; position:relative; padding:0; min-width:24px}
+.cell .vtag{position:absolute; left:4px; top:2px; font-size:9.5px; font-weight:700; opacity:.55; color:#17202B}
+.cell.dark .vtag{color:#fff; opacity:.8}
+.cell[aria-current=true]{box-shadow:0 0 0 2px var(--surface), 0 0 0 4px var(--ink)}
+.out{position:absolute; right:4px; bottom:4px; width:9px; height:9px; border-radius:50%}
+.out.read{background:var(--read); box-shadow:0 0 0 1.5px var(--surface)}
+.out.partial{background:linear-gradient(90deg,var(--read) 50%, var(--surface) 50%); box-shadow:inset 0 0 0 1.5px var(--read), 0 0 0 1.5px var(--surface)}
+.out.missed{box-shadow:inset 0 0 0 1.8px var(--ink-2); background:var(--surface)}
+.out.over{background:var(--warn)}
+.scale{margin-top:16px}
+.scale .bar{height:8px; border-radius:4px}
+.scale .ends{display:flex; justify-content:space-between; font-size:12px; color:var(--ink-3); margin-top:4px}
+.keyleg{margin-top:14px; display:grid; gap:6px; font-size:12.5px; color:var(--ink-2)}
+.keyleg div{display:flex; align-items:center; gap:8px}
+.keyleg .out{position:static; display:inline-block; flex:none}
+.note{font-size:12.5px; color:var(--ink-3); margin:10px 0 0; line-height:1.45}
+
+.reader-head{display:flex; gap:10px; flex-wrap:wrap; align-items:baseline; margin-bottom:6px}
+.reader-head .sid{font-weight:700; font-size:15px}
+.chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; border-radius:999px; padding:2px 10px; background:var(--surface-2); border:1px solid var(--line); color:var(--ink-2)}
+.chip.e{border-color:color-mix(in srgb,var(--sig-hi) 45%,var(--line)); color:var(--sig-hi)}
+.passage{font:17px/1.72 var(--serif); white-space:pre-wrap; max-width:72ch; margin-top:12px}
+.passage .lbl-speaker{font:600 13px var(--sans); color:var(--ink-3)}
+.passage .lbl-note{font:italic 13px var(--sans); color:var(--ink-3)}
+.passage .h{border-radius:2px; transition:background-color .3s, opacity .2s}
+.passage .h.approx{text-decoration:underline dashed var(--edited) 1.5px; text-underline-offset:4px}
+.passage .h.absent{text-decoration:underline wavy var(--warn) 1.5px; text-underline-offset:4px}
+.passage.focus .h:not(.on){opacity:.3}
+.passage .h.on{box-shadow:0 2px 0 0 var(--ink)}
+.passkey{display:flex; gap:16px; flex-wrap:wrap; font-size:12.5px; color:var(--ink-2); margin-top:16px; padding-top:12px; border-top:1px solid var(--line)}
+.ramp{display:inline-block; width:62px; height:9px; border-radius:3px; background:linear-gradient(90deg, rgba(var(--hl),.12), rgba(var(--hl),.8)); vertical-align:middle; margin-right:6px}
+.u-approx{display:inline-block; width:22px; border-bottom:1.5px dashed var(--edited); margin-right:6px; vertical-align:middle}
+.u-absent{display:inline-block; width:22px; border-bottom:2px dotted var(--warn); margin-right:6px; vertical-align:middle}
+.answer{margin-top:18px; border-radius:var(--radius-m); background:var(--surface-2); padding:16px 18px; border-left:3px solid var(--sig-hi)}
+.answer h4{margin:0 0 6px; font-size:13px; color:var(--ink-2); font-weight:600}
+.answer p{margin:0 0 12px; font-family:var(--serif); font-size:16px; line-height:1.55}
+.answer .row{display:flex; gap:18px; flex-wrap:wrap; font-size:13px; color:var(--ink-2)}
+.cues{display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 12px}
+.cues span{font-size:12.5px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-s); padding:3px 8px; color:var(--ink-2)}
+
+.constel{width:100%; height:auto; display:block}
+.constel .pt{cursor:pointer}
+.constel .lab{font:600 9px var(--sans); fill:#fff; pointer-events:none}
+.stats{display:grid; grid-template-columns:auto 1fr 1fr; gap:4px 12px; font-size:12.5px; margin:10px 0 4px; align-items:baseline}
+.stats .k{color:var(--ink-3); font-size:12px}
+.stats .v{font-variant-numeric:tabular-nums}
+.mgroup{margin-top:16px}
+.mhead{display:flex; align-items:center; gap:8px; font-weight:600; font-size:13.5px; margin-bottom:6px; flex-wrap:wrap}
+.card{border-top:1px solid var(--line); padding:10px 4px 10px 0; display:grid; grid-template-columns:34px 1fr; gap:4px 10px; border-radius:4px}
+.card.hover{background:var(--surface-2)}
+.card .rn{font-size:12px; color:var(--ink-3); padding-top:2px}
+.card .rn b{display:block; font-size:15px; color:var(--ink); font-weight:600}
+.meta{display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:12px; color:var(--ink-2)}
+.tone{display:inline-block; padding:1px 8px; border-radius:999px; font-size:11.5px; border:1px solid var(--line)}
+.tone.positive{background:color-mix(in srgb,var(--read) 16%,transparent)}
+.tone.negative{background:color-mix(in srgb,var(--warn) 16%,transparent)}
+.tone.mixed{background:linear-gradient(90deg,color-mix(in srgb,var(--read) 16%,transparent),color-mix(in srgb,var(--warn) 16%,transparent))}
+.conf{display:inline-flex; align-items:center; gap:5px}
+.conf i{display:inline-block; width:46px; height:5px; border-radius:3px; background:var(--line); position:relative; overflow:hidden}
+.conf i::after{content:""; position:absolute; inset:0; width:var(--w); background:var(--ink-2)}
+.score{font-weight:700; font-size:11.5px; padding:1px 7px; border-radius:var(--radius-s); color:#fff; white-space:nowrap}
+.score.F{background:var(--read)} .score.P{background:color-mix(in srgb,var(--read) 55%,var(--ink-3))} .score.N,.score.M,.score.A{background:var(--ink-3)} .score.O{background:var(--warn)}
+.interp{font:14.5px/1.5 var(--serif); margin:4px 0 0}
+.more{border:0; background:none; padding:0; font-size:12px; color:var(--sig-hi); cursor:pointer; text-decoration:underline; text-underline-offset:3px; margin-top:4px}
+.qs{display:flex; flex-wrap:wrap; gap:5px; margin-top:6px}
+.qchip{font-size:11.5px; border:1px solid var(--line); border-radius:var(--radius-s); padding:1px 7px; color:var(--ink-2); display:inline-flex; gap:5px; align-items:center}
+.tdot{width:7px; height:7px; border-radius:50%; display:inline-block; background:rgb(var(--hl)); flex:none}
+.tdot.elided,.tdot.stitched{background:color-mix(in srgb,rgb(var(--hl)) 55%,var(--ink-3))}
+.tdot.near{background:var(--edited)} .tdot.absent{background:var(--warn)}
+details.think{margin-top:6px; font-size:12.5px}
+details.think summary{cursor:pointer; color:var(--ink-2)}
+details.think pre{white-space:pre-wrap; font:12.5px/1.5 var(--sans); color:var(--ink-2); max-height:260px; overflow:auto; background:var(--surface-2); padding:10px; border-radius:var(--radius-s)}
+.qlist{margin:6px 0 0; padding:0; list-style:none; display:grid; gap:6px}
+.qlist li{font-size:12.5px; color:var(--ink-2)}
+.qlist q{font-family:var(--serif); font-size:13.5px; color:var(--ink)}
+.prov{font-size:11.5px; color:var(--ink-3); margin-top:6px; display:flex; gap:10px; flex-wrap:wrap}
+.prov a{color:var(--ink-3)}
+
+.fgrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.finding{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:22px}
+.finding h3{font:400 22px/1.25 var(--serif); margin:0 0 6px}
+.finding p{color:var(--ink-2); margin:0 0 14px; max-width:62ch}
+.finding svg{width:100%; height:auto; display:block}
+.finding svg text{font-family:var(--sans); fill:var(--ink-2)}
+.caveat{font-size:13px; color:var(--ink-3); margin-top:16px; max-width:90ch}
+
+.prov-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.kv{display:grid; grid-template-columns:minmax(150px,auto) 1fr; gap:6px 16px; font-size:13px; margin:0}
+.kv dt{color:var(--ink-3)}
+.kv dd{margin:0; overflow-wrap:anywhere}
+.hash{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px}
+footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--ink-3); font-size:13px}
+
+/* replay */
+.replay{position:fixed; inset:0; z-index:50; background:var(--bg); display:none; grid-template-rows:auto 1fr auto; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px)}
+.replay.open{display:grid}
+.rp-top{display:flex; align-items:center; gap:18px; padding:12px 28px; border-bottom:1px solid var(--line)}
+.rp-top .t{font-weight:600}
+.steps{display:flex; gap:6px; margin-left:auto}
+.steps i{width:26px; height:4px; border-radius:2px; background:var(--line)}
+.steps i.on{background:var(--ink)}
+.rp-body{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:24px; padding:22px 28px; overflow:auto; min-height:0}
+.rp-left{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:20px 24px; overflow:auto}
+.rp-right{display:flex; flex-direction:column; gap:16px; min-height:0}
+.slots{display:grid; grid-template-columns:repeat(5,1fr); gap:8px}
+.slot{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-s); padding:8px 9px; min-height:100px; font-size:12px; position:relative; overflow:hidden; transition:opacity .3s}
+.slot .w{margin:0; font-size:11.5px; color:var(--ink-3); display:flex; align-items:center; gap:2px}
+.slot .txt{font:12.5px/1.4 var(--serif); color:var(--ink); margin-top:5px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden}
+.slot .prog{position:absolute; left:0; bottom:0; height:3px; background:var(--ink-3); width:0}
+.slot.wait{opacity:.45}
+.rp-panel{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:16px 18px}
+.rp-panel h3{margin:0 0 8px; font:400 22px/1.25 var(--serif)}
+.rp-panel p{color:var(--ink-2); margin:0 0 10px}
+.rp-bottom{display:flex; align-items:center; gap:14px; padding:14px 28px; border-top:1px solid var(--line); background:var(--surface)}
+.rp-cap{flex:1; font-size:15px; max-width:90ch}
+.rp-cap small{display:block; color:var(--ink-3); font-size:12.5px; margin-top:2px}
+.bars{display:grid; gap:10px}
+.bars .b{display:grid; grid-template-columns:170px 1fr 54px; gap:10px; align-items:center; font-size:13px}
+.bars .track{height:10px; background:var(--surface-2); border-radius:5px; position:relative; overflow:hidden; border:1px solid var(--line)}
+.bars .fill{position:absolute; inset:0 auto 0 0; border-radius:5px}
+.bars .med{position:absolute; top:-2px; bottom:-2px; width:2px; background:var(--ink-2)}
+
+@media (max-width:1180px){
+  .bench{grid-template-columns:300px minmax(0,1fr)}
+  .bench .col-read{grid-column:1 / -1; order:3}
+}
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr; padding-top:36px; gap:28px}
+  .facts{grid-template-columns:1fr}
+  .fact + .fact{padding-left:0; border-left:0; border-top:1px solid var(--line)}
+  .bench,.fgrid,.prov-grid{grid-template-columns:1fr}
+  .top nav{display:none}
+  .rp-body{grid-template-columns:1fr}
+  .slots{grid-template-columns:repeat(5,minmax(64px,1fr)); overflow-x:auto}
+  .wrap{padding:0 18px}
+  .rp-top,.rp-bottom{padding-left:18px; padding-right:18px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><circle cx="10" cy="13" r="4" fill="var(--m8)"/><circle cx="21" cy="19" r="4" fill="var(--m14)"/><circle cx="17" cy="8" r="2.4" fill="var(--ink-3)"/></svg>
+      Subtext Workbench <small>Stage 1 prototype</small>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#replay" data-action="replay">Replay</a>
+      <a href="#bench">Workbench</a>
+      <a href="#findings">Findings</a>
+      <a href="#provenance">Provenance</a>
+      <a id="repoLink" href="#" target="_blank" rel="noopener">Repository</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <p class="who" id="heroWho"></p>
+        <p class="quote" id="heroQuote"></p>
+        <h1>When language models read workplace talk, where can their reading be trusted?</h1>
+        <p class="lede" id="heroLede"></p>
+        <div class="cta">
+          <button class="btn primary" data-action="replay">Watch a replay</button>
+          <a class="btn" href="#bench">Open the workbench</a>
+        </div>
+      </div>
+      <figure class="figure">
+        <div class="legend" id="heroLegend"></div>
+        <svg class="constel" id="heroConst" viewBox="0 0 400 300" role="img" aria-label="Ten readings of this passage plotted by similarity"></svg>
+        <figcaption id="heroCap"></figcaption>
+      </figure>
+    </section>
+    <div class="facts" id="facts"></div>
+
+    <section class="sec" id="bench">
+      <header>
+        <div>
+          <h2>Workbench</h2>
+          <p>Pick a segment on the triage map, read the passage with the models’ evidence marked on it, and compare the ten readings.</p>
+        </div>
+        <div class="controls" role="group" aria-label="View settings">
+          <div><span class="ctl-label">Signal</span><span class="seg" id="sigSeg"></span></div>
+          <div><span class="ctl-label">Model</span><span class="seg" id="modSeg"></span></div>
+          <label class="switch"><input type="checkbox" id="keyToggle"> Answer key and scores</label>
+        </div>
+      </header>
+      <div class="bench">
+        <div class="panel">
+          <h3><span class="zone">1</span>Triage map</h3>
+          <p class="sub" id="triSub"></p>
+          <div id="tri"></div>
+          <div class="scale" id="triScale"></div>
+          <div class="keyleg" id="triKey"></div>
+        </div>
+        <div class="panel col-read">
+          <h3><span class="zone">2</span>Passage</h3>
+          <p class="sub">Highlighted text was quoted as evidence; the stronger the highlight, the more of the ten readings quoted it. Hover a reading to see its own quotes.</p>
+          <div id="reader"></div>
+        </div>
+        <div class="panel">
+          <h3><span class="zone">3</span>Ten readings</h3>
+          <p class="sub">Each dot is one reading; the farther apart two dots, the more differently the two readings put it.</p>
+          <div id="readings"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="findings">
+      <header>
+        <div>
+          <h2>Findings from Stage 1</h2>
+          <p>Run-1 readings of all 48 segments by each model, scored blind against the sealed answer key. All inference is exploratory.</p>
+        </div>
+      </header>
+      <div class="fgrid" id="fgrid"></div>
+      <p class="caveat" id="caveat"></p>
+    </section>
+
+    <section class="sec" id="provenance">
+      <header>
+        <div>
+          <h2>Provenance</h2>
+          <p>Everything on this page is read or computed from files in the repository. Run <code>python -m subtext verify</code> to check them, and <code>python -m subtext build-demo</code> to rebuild this page.</p>
+        </div>
+      </header>
+      <div class="prov-grid" id="provGrid"></div>
+    </section>
+  </div>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+
+<div class="replay" id="replay" role="dialog" aria-modal="true" aria-labelledby="rpTitle">
+  <div class="rp-top">
+    <span class="t" id="rpTitle">Replay</span>
+    <span class="muted" id="rpSeg"></span>
+    <div class="steps" id="rpSteps" aria-hidden="true"></div>
+    <button class="btn" id="rpClose">Close</button>
+  </div>
+  <div class="rp-body">
+    <div class="rp-left" id="rpLeft"></div>
+    <div class="rp-right" id="rpRight"></div>
+  </div>
+  <div class="rp-bottom">
+    <div class="rp-cap" id="rpCap" aria-live="polite"></div>
+    <button class="btn" id="rpBack">Back</button>
+    <button class="btn primary" id="rpNext">Next</button>
+  </div>
+</div>
+
+<script>
+const D=/*__DATA__*/null;
+(function(){
+"use strict";
+const M=D.models, SEGS=D.segments, BY={}; SEGS.forEach(s=>BY[s.code]=s);
+const LAYERS=["A","B","C","D"], LEVELS=["L1","L2","L3"];
+const LAYER_NAME={A:"Implied evaluation",B:"Suppressed emotion",C:"Irony and humour",D:"Power and silence"};
+const LEVEL_NAME={L1:"Explicit cues",L2:"Subtle cues",L3:"Needs context"};
+const SIGNALS=[["semantic_dispersion","Semantic spread"],["tone_disagreement","Tone disagreement"],["confidence_sd","Confidence spread"],["cross","Model disagreement"]];
+const SIG_HELP={semantic_dispersion:"mean distance between one model’s five readings",tone_disagreement:"share of one model’s five readings that depart from its most common tone",confidence_sd:"spread of one model’s five self-rated confidence scores",cross:"mean distance between the two models’ readings"};
+const OUT_LABEL={F:"read in full",P:"partly read",N:"not read",M:"misread",A:"taken at face value, correctly",O:"over-read"};
+const short=m=>m.replace("qwen3:","");
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const mcol=m=>m===M[0]?"var(--m8)":"var(--m14)";
+const $=(s,r=document)=>r.querySelector(s);
+const h=(tag,attrs={},...kids)=>{const e=document.createElement(tag);for(const[k,v]of Object.entries(attrs||{})){if(v==null)continue;if(k==="class")e.className=v;else if(k.startsWith("on"))e.addEventListener(k.slice(2),v);else e.setAttribute(k,v)}for(const c of kids.flat()){if(c==null)continue;e.append(c.nodeType?c:document.createTextNode(c))}return e};
+const NS="http://www.w3.org/2000/svg";
+const sv=(tag,attrs={},...kids)=>{const e=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs)){if(v!=null)e.setAttribute(k,v)}kids.flat().forEach(c=>c!=null&&e.append(c.nodeType?c:document.createTextNode(c)));return e};
+const fmt=(x,d=3)=>x==null||Number.isNaN(x)?"–":(+x).toFixed(d);
+const firstSentence=t=>{const m=t.match(/^.*?[.!?](\s|$)/);return m?m[0].trim():t};
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const layerOf=s=>s.layer[0], levelOf=s=>s.level.slice(0,2);
+const outcome=c=>({F:"read",P:"partial",N:"missed",M:"missed",O:"over"})[c]||null;
+const missed=c=>c==="N"||c==="M";
+const state={code:D.replay[0], model:M[0], signal:"semantic_dispersion", key:false, hover:null};
+
+/* colour */
+function rgb(x){x=x.replace("#","");if(x.length===3)x=[...x].map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(x.slice(i,i+2),16))}
+function mix(a,b,t){const A=rgb(a),B=rgb(b);return"rgb("+A.map((v,i)=>Math.round(v+(B[i]-v)*t)).join(",")+")"}
+function lumOf(c){let m=c.match(/rgba?\(([^)]+)\)/),v,a=1;
+  if(m){const p=m[1].split(",").map(Number);v=p.slice(0,3);a=p.length>3?p[3]:1}else v=rgb(c);
+  if(a<1){const s=rgb(css("--surface"));v=v.map((x,i)=>x*a+s[i]*(1-a))}
+  return(0.2126*v[0]+0.7152*v[1]+0.0722*v[2])/255}
+function lum(a,b,t){const A=rgb(a),B=rgb(b);const c=A.map((v,i)=>v+(B[i]-v)*t);return(0.2126*c[0]+0.7152*c[1]+0.0722*c[2])/255}
+const sigVal=(s,sig,m)=>sig==="cross"?s.cross:s.instability[m][sig];
+function range(sig,m){const v=SEGS.map(s=>sigVal(s,sig,m)).sort((a,b)=>a-b);return{min:v[0],max:v[v.length-1],median:(v[23]+v[24])/2}}
+
+/* triage map */
+function triage(container,{model,signal,showKey,current,onPick,cell}){
+  container.innerHTML="";
+  const r=range(signal,model), lo=css("--sig-lo"), hi=css("--sig-hi");
+  const g=h("div",{class:"tri"});
+  g.append(h("span"));LEVELS.forEach(L=>g.append(h("div",{class:"colh"},LEVEL_NAME[L])));
+  const readV=[], missV=[];
+  LAYERS.forEach(A=>{
+    g.append(h("div",{class:"rowh"},LAYER_NAME[A]));
+    LEVELS.forEach(L=>{
+      const b=h("div",{class:"block"});
+      ["01","02"].forEach(p=>["E","C"].forEach(v=>{
+        const s=SEGS.find(x=>x.id===`${A}-${L}-${p}-${v}`); if(!s)return;
+        const val=sigVal(s,signal,model), t=r.max>r.min?(val-r.min)/(r.max-r.min):0;
+        const cat=s.scores[model];
+        if(s.version==="E"&&cat)(missed(cat)?missV:readV).push(val);
+        const c=h("button",{class:"cell"+(lum(lo,hi,t)<.45?" dark":""),
+          style:`background:${mix(lo,hi,t)}${cell?`;width:${cell}px`:""}`,"aria-current":s.code===current?"true":null,
+          "aria-label":`${s.id}, ${s.version==="E"?"subtext version":"sincere control"}, signal ${fmt(val)}${showKey&&cat?", "+OUT_LABEL[cat]:""}`,
+          title:`${s.id}  ${fmt(val)}${showKey&&cat?"  "+OUT_LABEL[cat]:""}`, onclick:onPick?()=>onPick(s.code):null});
+        c.append(h("span",{class:"vtag"},v));
+        if(showKey&&outcome(cat))c.append(h("span",{class:"out "+outcome(cat)}));
+        b.append(c);
+      }));
+      g.append(b);
+    });
+  });
+  container.append(g);
+  const med=a=>{const v=[...a].sort((x,y)=>x-y),n=v.length;return n?(n%2?v[(n-1)/2]:(v[n/2-1]+v[n/2])/2):NaN};
+  return {readMed:med(readV), missMed:med(missV), nRead:readV.length, nMiss:missV.length};
+}
+function triageScale(el,signal,model){
+  const r=range(signal,model); el.innerHTML="";
+  el.append(h("div",{class:"bar",style:`background:linear-gradient(90deg,${css("--sig-lo")},${css("--sig-hi")})`}),
+    h("div",{class:"ends num"},h("span",{},fmt(r.min)),h("span",{},"median "+fmt(r.median)),h("span",{},fmt(r.max))));
+}
+
+/* passage */
+function passage(seg,{visible,focus,el}){
+  const P=seg.passage, cuts=new Set([0,P.length]), items=[];
+  seg.readings.forEach((rd,ri)=>{ if(visible&&!visible.has(ri))return;
+    rd.codes.forEach(q=>q.spans.forEach(([a,b])=>{cuts.add(a);cuts.add(b);items.push({a,b,ri,tier:q.tier})}));});
+  seg.labels.forEach(([a,b])=>{cuts.add(a);cuts.add(b)});
+  const pts=[...cuts].sort((x,y)=>x-y), hl=css("--hl");
+  const box=el||h("div"); box.innerHTML=""; box.className="passage"+(focus!=null?" focus":"");
+  for(let i=0;i<pts.length-1;i++){
+    const a=pts[i],b=pts[i+1], txt=P.slice(a,b); if(!txt)continue;
+    const lab=seg.labels.find(([x,y])=>a>=x&&b<=y);
+    if(lab){box.append(h("span",{class:"lbl-"+lab[2]},txt));continue}
+    const cov=items.filter(it=>it.a<=a&&it.b>=b);
+    if(!cov.length){box.append(document.createTextNode(txt));continue}
+    const rs=new Set(cov.map(c=>c.ri)), n=rs.size, tiers=new Set(cov.map(c=>c.tier));
+    const cls=["h"]; if(tiers.has("absent"))cls.push("absent"); else if(tiers.has("near"))cls.push("approx");
+    if(focus!=null&&rs.has(focus))cls.push("on");
+    const who=[...rs].map(ri=>`${short(seg.readings[ri].model)} run ${seg.readings[ri].run}`).join(", ");
+    box.append(h("span",{class:cls.join(" "),style:`background:rgba(${hl},${(0.10+0.70*n/10).toFixed(3)})`,
+      title:`Quoted by ${n} reading${n>1?"s":""}: ${who}${tiers.has("absent")?". Includes the closest text to a quote that is not in the passage.":tiers.has("near")?". Includes an approximate match.":""}`},txt));
+  }
+  return box;
+}
+const passageKey=()=>h("div",{class:"passkey"},
+  h("span",{},h("span",{class:"ramp"}),"quoted by 1 to 10 readings"),
+  h("span",{},h("span",{class:"u-approx"}),"approximate match"),
+  h("span",{},h("span",{class:"u-absent"}),"closest text to a quote not found in the passage"));
+
+/* constellation: classical MDS of the ten readings, one shared scale for all segments */
+function constellation(svg,seg,{visible,focus,onHover,size}){
+  const W=size?.[0]||400,H=size?.[1]||300, pad=26, sc=D.scale*1.12;
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`); svg.innerHTML="";
+  const R=Math.min(W,H)/2-pad, X=x=>W/2+x/sc*R, Y=y=>H/2-y/sc*R;
+  svg.append(sv("circle",{cx:W/2,cy:H/2,r:R*0.5,fill:"none",stroke:"var(--line)","stroke-dasharray":"2 4"}),
+             sv("circle",{cx:W/2,cy:H/2,r:R,fill:"none",stroke:"var(--line)","stroke-dasharray":"2 4"}));
+  const unit=0.05/sc*R;
+  svg.append(sv("line",{x1:pad,y1:H-12,x2:pad+unit,y2:H-12,stroke:"var(--ink-3)","stroke-width":1.5}),
+    sv("text",{x:pad,y:H-18,style:"fill:var(--ink-3);font:400 10px var(--sans)"},"0.05 cosine distance"));
+  M.forEach(m=>{
+    const pts=seg.readings.map((r,i)=>({r,i})).filter(o=>o.r.model===m&&(!visible||visible.has(o.i)));
+    if(pts.length>1){
+      const cx=pts.reduce((a,o)=>a+X(o.r.xy[0]),0)/pts.length, cy=pts.reduce((a,o)=>a+Y(o.r.xy[1]),0)/pts.length;
+      const rad=Math.max(...pts.map(o=>Math.hypot(X(o.r.xy[0])-cx,Y(o.r.xy[1])-cy)))+14;
+      svg.append(sv("circle",{cx,cy,r:rad,fill:mcol(m),opacity:.09}));
+    }
+  });
+  seg.readings.forEach((r,i)=>{
+    if(visible&&!visible.has(i))return;
+    const c=sv("circle",{class:"pt",cx:X(r.xy[0]),cy:Y(r.xy[1]),r:focus===i?11:8.5,fill:mcol(r.model),stroke:focus===i?"var(--ink)":"var(--surface)","stroke-width":2,tabindex:onHover?0:null,"aria-label":`${r.model} run ${r.run}`});
+    c.append(sv("title",{},`${r.model}, run ${r.run}: ${firstSentence(r.interpretation)}`));
+    if(onHover){c.addEventListener("mouseenter",()=>onHover(i));c.addEventListener("mouseleave",()=>onHover(null));c.addEventListener("focus",()=>onHover(i));c.addEventListener("blur",()=>onHover(null))}
+    svg.append(c, sv("text",{class:"lab",x:X(r.xy[0]),y:Y(r.xy[1])+3,"text-anchor":"middle"},String(r.run)));
+  });
+}
+function legendModels(el){el.innerHTML="";M.forEach(m=>el.append(h("span",{},h("span",{class:"sw",style:`background:${mcol(m)}`}),m)))}
+
+/* readings column */
+function readingsPanel(seg){
+  const el=$("#readings"); el.innerHTML="";
+  const svg=sv("svg",{class:"constel",role:"img","aria-label":"Readings plotted by similarity"});
+  const lg=h("div",{class:"legend",style:"margin-bottom:4px"}); legendModels(lg);
+  el.append(lg,svg);
+  constellation(svg,seg,{focus:state.hover,onHover:i=>{state.hover=i;syncHover(seg)}});
+  const st=h("div",{class:"stats"},h("span"),...M.map(m=>h("span",{class:"k",style:`color:${mcol(m)}`},short(m))));
+  [["semantic_dispersion","Semantic spread",3],["tone_disagreement","Tone disagreement",1],["confidence_sd","Confidence spread",1],["confidence_mean","Mean confidence",1]].forEach(([k,lab,d])=>{
+    st.append(h("span",{class:"k"},lab),...M.map(m=>h("span",{class:"v"},fmt(seg.instability[m][k],d))));
+  });
+  st.append(h("span",{class:"k"},"Model disagreement"),h("span",{class:"v",style:"grid-column:span 2"},fmt(seg.cross)));
+  el.append(st);
+  M.forEach(m=>{
+    const grp=h("div",{class:"mgroup"},h("div",{class:"mhead"},h("span",{class:"sw",style:`background:${mcol(m)}`}),m));
+    seg.readings.forEach((r,i)=>{ if(r.model===m)grp.append(card(seg,r,i)); });
+    el.append(grp);
+  });
+}
+function card(seg,r,i){
+  const cat=state.key&&r.run===1?seg.scores[r.model]:null;
+  const fs=firstSentence(r.interpretation), rest=r.interpretation.length>fs.length;
+  const txt=h("p",{class:"interp"},fs+(rest?" …":""));
+  const qs=h("div",{class:"qs"},...r.codes.map(q=>h("span",{class:"qchip",title:`${q.tier}: “${q.quote}”`},h("i",{class:"tdot "+q.tier}),q.label)));
+  const ql=h("ul",{class:"qlist",hidden:""},...r.codes.map(q=>h("li",{},h("q",{},q.quote)," ",h("span",{class:"muted"},`${q.tier}${q.sim!=null?", similarity "+q.sim:""}`))));
+  const more=h("button",{class:"more"},"Full reading and quotes");
+  more.addEventListener("click",()=>{const open=ql.hasAttribute("hidden");ql.toggleAttribute("hidden");txt.textContent=open?r.interpretation:fs+(rest?" …":"");more.textContent=open?"Show less":"Full reading and quotes"});
+  return h("div",{class:"card","data-i":i,onmouseenter:()=>{state.hover=i;syncHover(seg)},onmouseleave:()=>{state.hover=null;syncHover(seg)}},
+    h("div",{class:"rn"},"Run",h("b",{},String(r.run))),
+    h("div",{},
+      h("div",{class:"meta"},h("span",{class:"tone "+r.tone},r.tone),
+        h("span",{class:"conf",title:"Self-rated confidence"},h("i",{style:`--w:${r.confidence}%`}),h("span",{class:"num"},String(r.confidence))),
+        cat?h("span",{class:"score "+cat,title:"Blind score of run 1"},`${cat}: ${OUT_LABEL[cat]}`):null),
+      txt, qs, ql, more,
+      h("details",{class:"think"},h("summary",{},`Thinking trace, ${r.thinking.length.toLocaleString()} characters`),h("pre",{},r.thinking)),
+      h("div",{class:"prov"},h("span",{},`seed ${r.seed}`),h("span",{},`${Math.round(r.seconds)} s`),h("span",{},`${r.tokens} tokens`),
+        h("a",{href:`${D.repo}/blob/main/${r.file}`,target:"_blank",rel:"noopener"},"raw record"))));
+}
+function syncHover(seg){
+  document.querySelectorAll("#readings .card").forEach(c=>c.classList.toggle("hover",+c.dataset.i===state.hover));
+  const svg=$("#readings svg"); if(svg)constellation(svg,seg,{focus:state.hover,onHover:i=>{state.hover=i;syncHover(seg)}});
+  const p=$("#reader .passage"); if(p)passage(seg,{focus:state.hover,el:p});
+}
+
+/* reader */
+function head(seg){return h("div",{class:"reader-head"},h("span",{class:"sid"},seg.id),
+  h("span",{class:"chip"+(seg.version==="E"?" e":"")},seg.version==="E"?"Subtext version":"Sincere control"),
+  h("span",{class:"chip"},LAYER_NAME[layerOf(seg)]),h("span",{class:"chip"},LEVEL_NAME[levelOf(seg)]),
+  h("span",{class:"muted",style:"font-size:13px"},seg.details))}
+function reader(seg){
+  const el=$("#reader"); el.innerHTML="";
+  el.append(head(seg), passage(seg,{focus:state.hover}), passageKey());
+  if(state.key)el.append(answer(seg));
+}
+function answer(seg){
+  const k=seg.key;
+  return h("div",{class:"answer"},
+    h("h4",{},"What the speaker means, from the sealed answer key"),h("p",{},k.intended_meaning),
+    h("h4",{},"What the words say"),h("p",{},k.surface_meaning),
+    seg.version==="E"?h("div",{},h("h4",{},"Cues"),h("div",{class:"cues"},...k.key_cues.map(c=>h("span",{},c)))):null,
+    h("div",{class:"row"},h("span",{},`Said ${k.surface_valence}, meant ${k.intended_valence}`),h("span",{},`Author confidence: ${k.author_confidence}`),
+      ...M.map(m=>h("span",{},h("span",{class:"sw",style:`background:${mcol(m)}`}),`${short(m)}, run 1: ${seg.scores[m]?OUT_LABEL[seg.scores[m]]:"–"}`))));
+}
+
+/* workbench */
+function controls(){
+  const sg=$("#sigSeg"); sg.innerHTML="";
+  SIGNALS.forEach(([k,lab])=>sg.append(h("button",{"aria-pressed":String(state.signal===k),title:SIG_HELP[k],onclick:()=>{state.signal=k;renderBench()}},lab)));
+  const ms=$("#modSeg"); ms.innerHTML="";
+  M.forEach(m=>ms.append(h("button",{"aria-pressed":String(state.model===m),onclick:()=>{state.model=m;renderBench()}},short(m))));
+}
+function renderBench(){
+  controls();
+  const tri=triage($("#tri"),{model:state.model,signal:state.signal,showKey:state.key,current:state.code,onPick:c=>{state.code=c;state.hover=null;renderBench()}});
+  $("#triSub").textContent=`Each square is one segment, with the subtext version (E) beside its sincere control (C). Colour: ${SIG_HELP[state.signal]}${state.signal==="cross"?"":", "+state.model}.`;
+  triageScale($("#triScale"),state.signal,state.model);
+  const kl=$("#triKey"); kl.innerHTML="";
+  if(state.key){
+    kl.append(h("div",{},h("span",{class:"out read"}),"read in full"),h("div",{},h("span",{class:"out partial"}),"partly read"),
+      h("div",{},h("span",{class:"out missed"}),"not read"),h("div",{},h("span",{class:"out over"}),"over-read (none in Stage 1)"),
+      h("p",{class:"note"},`Subtext versions, ${state.model}: median signal ${fmt(tri.readMed)} where the run-1 reading caught the meaning (${tri.nRead}), ${fmt(tri.missMed)} where it missed (${tri.nMiss}).`));
+  } else kl.append(h("p",{class:"note"},"Turn on “Answer key and scores” to see how the blind scoring judged each model’s run-1 reading."));
+  reader(BY[state.code]); readingsPanel(BY[state.code]);
+}
+
+/* hero */
+function hero(){
+  const s=BY[D.replay[0]];
+  $("#heroWho").textContent=`${s.details}, in an author-written interview segment`;
+  const lead="I laughed the loudest", rest=", and the colleague next to me even gave me a nudge and said, is it really that funny?";
+  const q=$("#heroQuote"); q.innerHTML=""; q.append("“",h("mark",{},lead),rest+"”");
+  $("#heroLede").textContent=`Two local language models read ${SEGS.length} interview segments from hotel and restaurant work, five times each. Half of the segments carry a meaning the speaker never states; the other half are sincere versions of the same talk.`;
+  legendModels($("#heroLegend"));
+  const a=s.scores[M[0]], b=s.scores[M[1]], ins=s.instability;
+  $("#heroCap").textContent=`The ten readings of this passage. ${M[0]} wavers between readings (spread ${fmt(ins[M[0]].semantic_dispersion)}); its scored reading was judged ${OUT_LABEL[a]}. ${M[1]} gives nearly the same reading five times (spread ${fmt(ins[M[1]].semantic_dispersion)}, confidence ${fmt(ins[M[1]].confidence_mean,0)}${ins[M[1]].confidence_sd===0?" every time":" on average"}); its scored reading was judged ${OUT_LABEL[b]}.`;
+  const svg=$("#heroConst");
+  if(reduce){constellation(svg,s,{});return}
+  const vis=new Set(); let k=0; constellation(svg,s,{visible:vis});
+  const tick=()=>{vis.add(k++);constellation(svg,s,{visible:vis});if(k<s.readings.length)setTimeout(tick,170)};
+  setTimeout(tick,450);
+}
+function facts(){
+  const c=D.results.pooled.counts, nE=D.results.pooled.n_E, nC=D.results.pooled.n_C;
+  const rv=D.quotes.review, nAbs=Object.values(rv).reduce((a,b)=>a+b,0);
+  const kept=rv["meaning preserved"]||0, mis=rv["preserved but potentially misleading"]||0, alt=rv["content altered"]||0;
+  const el=$("#facts"); el.innerHTML="";
+  el.append(h("div",{class:"fact"},h("b",{},String(c.O)),h("span",{},`of ${nC} readings of sincere controls were over-read. Neither model invented a hidden meaning.`)),
+    h("div",{class:"fact"},h("b",{},String(c.F+c.P)),h("span",{},`of ${nE} readings of subtext segments caught the unstated meaning, ${c.F} of them in full.`)),
+    h("div",{class:"fact"},h("b",{},String(kept)),h("span",{},`of ${nAbs} quotes the checker could not match were faithful edits of real text; ${mis} rearranged it and ${alt} changed a fact. None was invented.`)));
+}
+
+/* findings */
+function stackBar(svg,rows,{w=520,rowH=26,gap=14,labelW=110,keys,colors}){
+  const H=rows.length*(rowH+gap); svg.setAttribute("viewBox",`0 0 ${w} ${H}`);
+  rows.forEach((r,i)=>{
+    const y=i*(rowH+gap); let x=labelW;
+    svg.append(sv("text",{x:0,y:y+rowH/2+4,"font-size":12.5},r.label));
+    const tot=keys.reduce((a,k)=>a+(r.v[k]||0),0);
+    keys.forEach(k=>{const v=r.v[k]||0; if(!v)return; const ww=(w-labelW-4)*v/tot;
+      svg.append(sv("rect",{x,y,width:Math.max(ww-1.5,0.8),height:rowH,rx:4,fill:colors[k]}));
+      if(ww>24)svg.append(sv("text",{x:x+ww/2,y:y+rowH/2+4,"text-anchor":"middle","font-size":11.5,style:`fill:${lumOf(colors[k])>.55?"#17202B":"#fff"};font-weight:600`},String(v)));
+      x+=ww;});
+  });
+}
+function findings(){
+  const g=$("#fgrid"); g.innerHTML="";
+  const R=D.results, read=css("--read"), ink3=css("--ink-3"), warn=css("--warn"), hl=css("--hl");
+  { // 1
+    const svg=sv("svg",{role:"img","aria-label":"Blind scores of run-1 readings by model"});
+    const rows=[];M.forEach(m=>{const c=R.by_model[m].overall.counts;rows.push({label:`${short(m)}, subtext`,v:{F:c.F,P:c.P,N:c.N,M:c.M}});rows.push({label:`${short(m)}, controls`,v:{A:c.A,O:c.O}})});
+    const col={F:read,P:mix(read,css("--surface"),.45),N:ink3,M:"#555555",A:ink3,O:warn};
+    stackBar(svg,rows,{keys:["F","P","N","M","A","O"],colors:col,labelW:116});
+    const e=R.rq1_error;
+    g.append(h("article",{class:"finding"},h("h3",{},"Literal by default"),
+      h("p",{},`Neither model over-read a sincere control. On the subtext versions both mostly took the words at face value: interpretive error of ${fmt(e[M[0]].error_rate_E,2)} and ${fmt(e[M[1]].error_rate_E,2)}, against 0 on the paired controls (24 pairs each; exact McNemar p = ${e[M[0]].p.toExponential(1)} and ${e[M[1]].p.toExponential(1)}).`),svg,
+      h("div",{class:"legend",style:"margin-top:8px"},h("span",{},h("span",{class:"sw",style:`background:${read}`}),"read in full"),h("span",{},h("span",{class:"sw",style:`background:${col.P}`}),"partly read"),h("span",{},h("span",{class:"sw",style:`background:${ink3}`}),"not read, or a control taken at face value"),h("span",{},h("span",{class:"sw",style:`background:${warn}`}),"over-read"))));
+  }
+  { // 2
+    const wrap=h("div",{style:"display:grid;grid-template-columns:1fr 1fr;gap:14px"}), lo=css("--sig-lo"), hi=css("--sig-hi");
+    M.forEach(m=>{const svg=sv("svg",{role:"img","aria-label":`Mean read score by layer and level, ${m}`,viewBox:"0 0 250 196"});
+      const cell=R.by_model[m].by_cell;
+      LEVELS.forEach((L,j)=>svg.append(sv("text",{x:94+j*52+24,y:12,"text-anchor":"middle","font-size":10.5},L)));
+      LAYERS.forEach((A,i)=>{svg.append(sv("text",{x:0,y:20+i*42+23,"font-size":10.5},LAYER_NAME[A].split(" ")[0]));
+        LEVELS.forEach((L,j)=>{const v=cell[`${A}-${L}`].mean_read_score, t=v==null?0:v/2;
+          svg.append(sv("rect",{x:94+j*52,y:20+i*42,width:48,height:38,rx:5,fill:mix(lo,hi,t)}),
+            sv("text",{x:94+j*52+24,y:20+i*42+24,"text-anchor":"middle","font-size":12,style:`fill:${lum(lo,hi,t)<.45?"#fff":"#17202B"};font-weight:600`},v==null?"–":v.toFixed(1)))})});
+      wrap.append(h("div",{},h("div",{class:"mhead"},h("span",{class:"sw",style:`background:${mcol(m)}`}),m),svg))});
+    g.append(h("article",{class:"finding"},h("h3",{},"Where reading holds, and where it fails"),
+      h("p",{},"Mean read score (0 not read, 2 read in full) by layer of meaning and level of difficulty. Each cell holds two segments, so one reading moves it by 0.5: a first sketch of the boundary map, not an estimate."),wrap));
+  }
+  { // 3
+    const preds=[["semantic_dispersion","Semantic spread"],["tone_disagreement","Tone disagreement"],["confidence_sd","Confidence spread"],["confidence_mean","Mean confidence, reversed"],["cross_model_distance","Model disagreement"]];
+    const svg=sv("svg",{role:"img","aria-label":"How well each signal separates missed from read subtext readings"}); const W=520,rowH=34,left=170,H=preds.length*rowH+46;
+    svg.setAttribute("viewBox",`0 0 ${W} ${H}`); const X=v=>left+(W-left-14)*v;
+    [0,.25,.5,.75,1].forEach(v=>{svg.append(sv("line",{x1:X(v),x2:X(v),y1:0,y2:H-32,stroke:v===.5?css("--ink-3"):css("--line"),"stroke-dasharray":v===.5?null:"2 3"}),sv("text",{x:X(v),y:H-18,"text-anchor":"middle","font-size":10.5},v.toFixed(2)))});
+    preds.forEach(([k,lab],i)=>{const y=i*rowH+16; svg.append(sv("text",{x:0,y:y+4,"font-size":12},lab));
+      ["pooled",...M].forEach((t,j)=>{const a=R.rq3_within_E[t].predictors[k]; if(!a||a.auc==null)return; const yy=y+(j-1)*8;
+        const col=t==="pooled"?css("--ink"):(t===M[0]?css("--m8"):css("--m14"));
+        if(a.ci.low!=null)svg.append(sv("line",{x1:X(a.ci.low),x2:X(a.ci.high),y1:yy,y2:yy,stroke:col,"stroke-width":1.5,opacity:.75}));
+        svg.append(sv("circle",{cx:X(a.auc),cy:yy,r:t==="pooled"?4.5:3.5,fill:col}));});});
+    svg.append(sv("text",{x:X(.22),y:H-2,"text-anchor":"middle","font-size":10.5,style:"fill:var(--ink-3)"},"misses steadier and surer"),sv("text",{x:X(.78),y:H-2,"text-anchor":"middle","font-size":10.5,style:"fill:var(--ink-3)"},"misses less steady"));
+    const pa=R.rq3_all.pooled.predictors.semantic_dispersion;
+    let below=0,tot=0,ex=[];preds.forEach(([k,lab])=>["pooled",...M].forEach(t=>{const a=R.rq3_within_E[t].predictors[k];if(!a||a.auc==null)return;tot++;if(a.auc<.5)below++;if(a.ci.high!=null&&a.ci.high<.5)ex.push(`${t==="pooled"?"both models":short(t)}, ${lab.toLowerCase()}`)}));
+    g.append(h("article",{class:"finding"},h("h3",{},"The signal goes quiet where the model misses"),
+      h("p",{},`Within the subtext versions, how well each signal separates missed readings from read ones (AUC with 95% bootstrap interval; 0.5 is chance, below 0.5 means misses were steadier or surer). ${below} of ${tot} estimates fall below 0.5; the interval excludes 0.5 for ${ex.join("; ")}. Across all 48 segments, as pre-specified, no signal predicted error (semantic spread, both models: AUC ${fmt(pa.auc,2)}). The within-subtext analysis was registered before unblinding and is exploratory.`),svg,
+      h("div",{class:"legend",style:"margin-top:6px"},h("span",{},h("span",{class:"sw",style:"background:var(--ink)"}),"both models"),...M.map(m=>h("span",{},h("span",{class:"sw",style:`background:${mcol(m)}`}),m)))));
+  }
+  { // 4
+    const svg=sv("svg",{role:"img","aria-label":"Quote check results by model"});
+    const tc={verbatim:`rgba(${hl},0.95)`,loose:`rgba(${hl},0.6)`,elided:`rgba(${hl},0.35)`,stitched:ink3,near:css("--edited"),absent:warn};
+    stackBar(svg,M.map(m=>({label:short(m),v:D.quotes.tiers[m]})),{keys:["verbatim","loose","elided","stitched","near","absent"],colors:tc,labelW:56});
+    const rv=D.quotes.review, tot=Object.values(rv).reduce((a,b)=>a+b,0), n=m=>Object.values(D.quotes.tiers[m]).reduce((a,b)=>a+b,0);
+    g.append(h("article",{class:"finding"},h("h3",{},"Quotes are edited, rarely invented"),
+      h("p",{},`Every quote was checked against its passage (${n(M[0]).toLocaleString()} and ${n(M[1]).toLocaleString()} quotes). Of the ${tot} that could not be matched, ${rv["meaning preserved"]||0} reworded real text without changing its meaning, ${rv["preserved but potentially misleading"]||0} rearranged it in ways that could mislead, and ${rv["content altered"]||0} changed a fact: 120 recorded jokes became 12,000. Quotes from a model need checking before they serve as evidence.`),svg,
+      h("div",{class:"legend",style:"margin-top:8px"},...Object.entries({verbatim:"word for word",loose:"case or edge punctuation differs",elided:"shortened with an ellipsis",stitched:"sentences joined",near:"near match",absent:"not found"}).map(([k,lab])=>h("span",{},h("span",{class:"sw",style:`background:${tc[k]}`}),lab)))));
+  }
+  $("#caveat").textContent="Stage 1 limits: two models of one family (8B and 14B parameters) run locally; 48 author-written segments; one blind scorer (the author), with second scoring and inter-rater agreement to follow; a neutral prompt, which tests whether models notice an unstated meaning unprompted, not whether they could if asked.";
+}
+
+/* provenance */
+function provenance(){
+  const P=D.provenance, g=$("#provGrid"); g.innerHTML="";
+  const kv=rows=>h("dl",{class:"kv"},...rows.flatMap(([k,v,cls])=>[h("dt",{},k),h("dd",{class:cls||null},v)]));
+  g.append(h("div",{class:"panel"},h("h3",{},"Models and settings"),h("p",{class:"sub"},"Run locally through Ollama; every record stores the full request, response and thinking trace."),
+    kv([...M.flatMap(m=>[[m,`${P.models[m].parameters} parameters, ${P.models[m].quantization}`],["digest",P.models[m].digest,"hash"]]),
+      ["Ollama",P.ollama],["Prompt",`${P.prompt_version}, neutral first-order coding`],["Sampling",`temperature ${P.options.temperature}, top-p ${P.options.top_p}, top-k ${P.options.top_k}, context ${P.options.num_ctx}`],
+      ["Seeds",`${P.seeds.join(", ")}; run k uses seed k`],["Embeddings",`${P.embedding.model}, task prefix “${P.embedding.prefix.trim()}”`],["digest",P.embedding.digest,"hash"]])));
+  g.append(h("div",{class:"panel"},h("h3",{},"Data behind this page"),h("p",{class:"sub"},`Built ${D.generated.replace("T"," ").replace("+00:00"," UTC")}${D.commit?" at commit "+D.commit.slice(0,7):""}. SHA-256 of each input.`),
+    kv([...Object.entries(P.inputs).map(([k,v])=>[k,v,"hash"]),[`runs/main, ${P.run_records.n} records`,P.run_records.combined_sha256,"hash"]])));
+  if(Object.keys(P.sealed).length)g.append(h("div",{class:"panel",style:"grid-column:1/-1"},h("h3",{},"Sealed before any model run, tag seal-v1"),h("p",{class:"sub"},"Segments, answer key, coding lists, scoring rubric and scoring protocol; not modified since."),
+    kv(Object.entries(P.sealed).map(([k,v])=>[k,v,"hash"]))));
+  const f=$("#foot"); f.innerHTML="";
+  f.append("Subtext Workbench, Stage 1 prototype. The interview segments are fictional. Code MIT; materials and data CC BY 4.0. ",h("a",{href:D.repo,target:"_blank",rel:"noopener"},"Source repository"));
+  $("#repoLink").href=D.repo;
+}
+
+/* replay */
+const RP={code:null,step:0,timers:[],arrived:new Set(),running:false,svg:null};
+const STEPS=5;
+function openReplay(code){RP.code=code||D.replay[0];RP.step=0;RP.arrived=new Set();$("#replay").classList.add("open");document.body.style.overflow="hidden";renderStep();$("#rpNext").focus()}
+function closeReplay(){clearTimers();$("#replay").classList.remove("open");document.body.style.overflow=""}
+function clearTimers(){RP.timers.forEach(clearTimeout);RP.timers=[];RP.running=false}
+function cap(main,small){const c=$("#rpCap");c.innerHTML="";c.append(main,small?h("small",{},small):null)}
+function constPanel(s,visible){const svg=sv("svg",{class:"constel"}), lg=h("div",{class:"legend"}); legendModels(lg); constellation(svg,s,{visible,size:[460,250]}); RP.svg=svg; return h("div",{class:"rp-panel"},lg,svg)}
+function renderStep(){
+  clearTimers();
+  const s=BY[RP.code], L=$("#rpLeft"), Rt=$("#rpRight"), next=$("#rpNext");
+  $("#rpSeg").textContent=`${s.id}, ${s.details}`;
+  const st=$("#rpSteps"); st.innerHTML=""; for(let i=0;i<STEPS;i++)st.append(h("i",{class:i<=RP.step?"on":""}));
+  $("#rpBack").disabled=RP.step===0; L.innerHTML=""; Rt.innerHTML="";
+  const all=s.readings.map((_,i)=>i);
+  if(RP.step===0){
+    L.append(head(s),passage(s,{visible:new Set()}));
+    Rt.append(slots(s), h("div",{class:"rp-panel"},h("p",{style:"margin:0"},"Each model gets the same neutral instruction a first-order coder would: what is this person communicating? Nothing in the instruction mentions hidden meaning.")));
+    cap("An interview passage, as a coder would receive it. Send it to two models, five readings each.","A replay of recorded runs: this page calls no model.");
+    next.textContent="Send to models";
+  } else if(RP.step===1){
+    L.append(head(s),passage(s,{visible:RP.arrived}),passageKey());
+    Rt.append(slots(s),constPanel(s,RP.arrived));
+    cap("Readings come back one by one. Their quoted evidence lights up on the passage, and each reading takes its place on the map.",`Order and latency as recorded, shown ${D.compression} times faster. In the study the calls were made one after another.`);
+    if(RP.arrived.size<all.length){next.textContent="Skip ahead";runArrivals(s)} else next.textContent="Next";
+  } else if(RP.step===2){
+    L.append(head(s),passage(s,{}),passageKey());
+    Rt.append(constPanel(s),signalBars(s));
+    const a=s.instability[M[0]].semantic_dispersion,b=s.instability[M[1]].semantic_dispersion, hi=a>b?M[0]:M[1], lo=a>b?M[1]:M[0];
+    cap(`${hi}’s readings spread out; ${lo}’s nearly coincide. Spread costs nothing to compute, so it could flag passages across any corpus.`,"Each bar shows where this segment falls among all 48; the tick marks the median.");
+    next.textContent="Reveal the answer key";
+  } else if(RP.step===3){
+    L.append(head(s),passage(s,{}),answer(s));
+    const pnl=h("div",{class:"rp-panel"});
+    M.forEach(m=>{const r=s.readings.find(x=>x.model===m&&x.run===1);pnl.append(h("div",{class:"mgroup"},h("div",{class:"mhead"},h("span",{class:"sw",style:`background:${mcol(m)}`}),`${m}, run 1`,h("span",{class:"score "+s.scores[m]},`${s.scores[m]}: ${OUT_LABEL[s.scores[m]]}`)),h("p",{class:"interp"},r.interpretation)))});
+    Rt.append(pnl,signalBars(s));
+    const sp=m=>s.instability[m].semantic_dispersion, steady=sp(M[0])<sp(M[1])?M[0]:M[1], other=steady===M[0]?M[1]:M[0];
+    const msg=missed(s.scores[M[0]])&&missed(s.scores[M[1]])?"Both models missed the unstated meaning, and each read the passage much the same way five times."
+      :missed(s.scores[steady])&&!missed(s.scores[other])?`The steadier, surer model is the one that missed: ${steady}.`
+      :`Blind scores of run 1: ${short(M[0])} ${OUT_LABEL[s.scores[M[0]]]}, ${short(M[1])} ${OUT_LABEL[s.scores[M[1]]]}.`;
+    cap(msg,"Scores are the author’s blind scores of run 1, made before the response key was opened.");
+    next.textContent="See all 48 segments";
+  } else {
+    const box=h("div",{style:"max-width:430px"}), m=M[0], t=triage(box,{model:m,signal:"semantic_dispersion",showKey:true,current:s.code}), t2=triage(h("div"),{model:M[1],signal:"semantic_dispersion",showKey:true});
+    L.append(h("h3",{style:"margin:0 0 4px;font:600 15px var(--sans)"},`Triage map: ${m}, semantic spread`),h("p",{class:"muted",style:"margin:0 0 14px;font-size:13px"},"Stronger colour: readings spread more. Dots: how the blind scoring judged run 1 on the subtext versions."),box,
+      h("div",{class:"keyleg",style:"grid-template-columns:repeat(3,auto);justify-content:start;column-gap:22px"},h("div",{},h("span",{class:"out read"}),"read in full"),h("div",{},h("span",{class:"out partial"}),"partly read"),h("div",{},h("span",{class:"out missed"}),"not read")));
+    Rt.append(h("div",{class:"rp-panel"},h("h3",{},"Interpretive triage, and its blind spot"),
+      h("p",{},"Spread tends to run higher on the subtext versions than on their sincere controls, so it can point a reader to passages worth a closer look."),
+      h("p",{},`Within the subtext versions, though, spread was higher where the reading caught the meaning (median ${fmt(t.readMed)} for ${short(m)}, ${fmt(t2.readMed)} for ${short(M[1])}) than where it missed (${fmt(t.missMed)} and ${fmt(t2.missMed)}). A model that half-hears the subtext tends to waver; a model that does not hear it at all tends to give the same reading every time.`),
+      h("p",{style:"margin:0"},"The cheap signal points to what a model partly perceives and stays quiet about what it misses entirely. Those quiet misses are where human reading cannot yet be handed over.")));
+    const other=D.replay.find(c=>c!==RP.code);
+    Rt.append(h("div",{class:"cta"},other?h("button",{class:"btn",onclick:()=>openReplay(other)},`Replay ${BY[other].id}`):null,
+      h("button",{class:"btn",onclick:()=>{state.code=RP.code;state.key=true;$("#keyToggle").checked=true;closeReplay();renderBench();location.hash="bench"}},"Open this segment in the workbench")));
+    cap("From one passage to all 48.","Exploratory Stage 1 results; the tests are under Findings.");
+    next.textContent="Finish";
+  }
+}
+function slots(s){
+  return h("div",{class:"slots",id:"rpSlots"},...s.readings.map((r,i)=>{const done=RP.arrived.has(i);
+    return h("div",{class:"slot"+(done?"":" wait"),"data-i":i},h("p",{class:"w"},h("span",{class:"sw",style:`background:${mcol(r.model)}`}),`${short(r.model)}, run ${r.run}`),
+      h("div",{class:"txt"},done?firstSentence(r.interpretation):""),done?h("div",{class:"meta",style:"margin-top:4px"},h("span",{class:"tone "+r.tone},r.tone),h("span",{class:"num muted"},String(r.confidence))):null,h("div",{class:"prog"}))}));
+}
+function runArrivals(s){
+  RP.running=true; let t=0;
+  s.readings.forEach((r,i)=>{ if(RP.arrived.has(i))return;
+    const dur=reduce?0:Math.max(250,r.seconds*1000/D.compression), start=t; t+=dur;
+    RP.timers.push(setTimeout(()=>{const sl=$(`#rpSlots .slot[data-i="${i}"]`); if(!sl)return; sl.classList.remove("wait"); const p=sl.querySelector(".prog"); p.style.transition=`width ${dur}ms linear`; requestAnimationFrame(()=>p.style.width="100%")},start));
+    RP.timers.push(setTimeout(()=>{RP.arrived.add(i); const sl=$(`#rpSlots .slot[data-i="${i}"]`);
+      if(sl){sl.querySelector(".txt").textContent=firstSentence(r.interpretation); sl.querySelector(".prog").style.opacity=0;
+        sl.insertBefore(h("div",{class:"meta",style:"margin-top:4px"},h("span",{class:"tone "+r.tone},r.tone),h("span",{class:"num muted"},String(r.confidence))),sl.querySelector(".prog"))}
+      passage(s,{visible:RP.arrived,el:$("#rpLeft .passage")}); constellation(RP.svg,s,{visible:RP.arrived,size:[460,250]});
+      if(RP.arrived.size===s.readings.length){RP.running=false;$("#rpNext").textContent="Next"}},t));
+  });
+}
+function signalBars(s){
+  const box=h("div",{class:"rp-panel bars"});
+  [...M.map(m=>[m,"semantic_dispersion",`${short(m)}, semantic spread`,3]),...M.map(m=>[m,"confidence_sd",`${short(m)}, confidence spread`,1]),[null,"cross","Model disagreement",3]].forEach(([m,k,lab,d])=>{
+    const r=range(k,m||M[0]), v=sigVal(s,k,m||M[0]), sc=x=>r.max>r.min?(x-r.min)/(r.max-r.min)*100:0;
+    box.append(h("div",{class:"b"},h("span",{},lab),h("div",{class:"track"},h("div",{class:"fill",style:`width:${sc(v).toFixed(1)}%;background:${m?mcol(m):"var(--sig-hi)"}`}),h("div",{class:"med",style:`left:${sc(r.median).toFixed(1)}%`})),h("span",{class:"num"},fmt(v,d))))});
+  return box;
+}
+$("#rpNext").addEventListener("click",()=>{
+  if(RP.step===1&&RP.running){clearTimers();BY[RP.code].readings.forEach((_,i)=>RP.arrived.add(i));renderStep();return}
+  if(RP.step===STEPS-1){closeReplay();location.hash="findings";return}
+  RP.step++; renderStep();
+});
+$("#rpBack").addEventListener("click",()=>{if(RP.step>0){RP.step--; if(RP.step===0)RP.arrived=new Set(); renderStep()}});
+$("#rpClose").addEventListener("click",closeReplay);
+document.addEventListener("keydown",e=>{if(!$("#replay").classList.contains("open"))return; if(e.key==="Escape")closeReplay()});
+document.querySelectorAll('[data-action="replay"]').forEach(b=>b.addEventListener("click",e=>{e.preventDefault();openReplay(D.replay[0])}));
+$("#keyToggle").addEventListener("change",e=>{state.key=e.target.checked;renderBench()});
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{renderBench();findings()});
+
+hero(); facts(); renderBench(); findings(); provenance();
+if(location.hash==="#replay")openReplay(D.replay[0]);
+})();
+</script>
+</body>
+</html>

@@ -43,6 +43,8 @@ def main(argv=None):
     p.add_argument("--out", help="also write the Markdown report to this file")
     p = sub.add_parser("verify", help="reproduction level 1: verify hashes, run records and Git timeline")
     p.add_argument("--timeline-out", help="write the audit timeline as Markdown (e.g. docs/audit_timeline.md)")
+    p = sub.add_parser("build-demo", help="build the workbench demo page from repository files")
+    p.add_argument("--out", default="docs/workbench/index.html")
     a = ap.parse_args(argv)
 
     if a.cmd == "prepare":
@@ -83,6 +85,9 @@ def main(argv=None):
         print(md)
         if a.out:
             Path(a.out).write_text(md, encoding="utf-8")
+    elif a.cmd == "build-demo":
+        from .demo import build_demo
+        print(json.dumps(build_demo(a.out), indent=2))
     elif a.cmd == "verify":
         from .verify import run_verify
         sys.exit(0 if run_verify(a.timeline_out) else 1)
