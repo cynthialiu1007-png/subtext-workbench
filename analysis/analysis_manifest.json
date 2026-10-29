@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-10-29T00:30:24+00:00",
+  "git_head": "89a96309b3b2f49494ac0d51b6b4be136f07c999",
+  "code_or_config_uncommitted": false,
+  "inputs_sha256": {
+    "config/analysis.yaml": "83fe956c40e1fc44d61d3b991dee5fc92db6fd107c6fa4df30361d68ab7d7cd3",
+    "data/derived/answer_key.jsonl": "2c6bff614350b07ef0991fa6b2fc9254a05e36c4180177da6cad814745e47052",
+    "scoring/sets_manifest.json": "4cea9ef722b32606edd680423b55f8fb356080b8beb52312f073d5bc37e8d48d",
+    "analysis/embeddings.jsonl": "1cd158689e9ce0d7eafca0c6f56df118145826bb6c003d383f2f30ec40c35c6c",
+    "scoring/sheets/practice.jsonl": "270c7f079bfe8995ce753cdcccbec1207b803b3af8ccf22662e428c8f10a5fe5",
+    "scoring/sheets/primary.jsonl": "f179be851daebeb9cf781e6c8f3097e83d16bdd4abab8e0ed3ce1b07b5557856",
+    "scoring/sheets/second.jsonl": "cfc0d8418064fc2a060d5fbf1e5feb83df41e332527e79f73a922ee80198206d",
+    "scoring/scores/practice__XL.csv": "6c406413e2a55bba3a1994454add7738b22ce674e5f2113a44ede7b06eaaadab",
+    "scoring/scores/primary__XL.csv": "0de6a521122dff6e3aca669493c12a65232df3213322f9989532c802023853b1"
+  },
+  "run_records": {
+    "n_files": 480,
+    "combined_sha256": "3c3a435fd79dc58e7533c6d8dc181e23bdebc1d1131ba273b1e9f079e6572a27"
+  },
+  "key": {
+    "second_scoring_complete": false,
+    "deviation": {
+      "file": "docs/deviation_2026-10-29_unblinding_before_second_scoring.md",
+      "commit": "00c1eae80c5c5c77df205519fa3fd5e05196d091",
+      "sha256": "78b83d66f679b614855ea9147d58227d1f9a735fb52211a0224b608b9c98adcd"
+    },
+    "addendum": {
+      "file": "docs/addendum_2026-10-29_rq3_within_E.md",
+      "commit": "00c1eae80c5c5c77df205519fa3fd5e05196d091",
+      "sha256": "06587c2abeba1db6e5f6e90e48d6cdd638e9235165813570630c6f8e9c2e11a3"
+    },
+    "opened": true,
+    "key_sha256_verified": true
+  },
+  "outputs": [
+    "analysis/results.json",
+    "analysis/results.md",
+    "analysis/figures/fig1_rq1.png",
+    "analysis/figures/fig1_rq1.pdf",
+    "analysis/figures/fig2_rq2.png",
+    "analysis/figures/fig2_rq2.pdf",
+    "analysis/figures/fig3_rq3.png",
+    "analysis/figures/fig3_rq3.pdf"
+  ],
+  "private_outputs": [
+    "scoring/private/segment_level.csv"
+  ]
+}
