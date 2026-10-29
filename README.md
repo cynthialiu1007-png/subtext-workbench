@@ -101,7 +101,7 @@ Outputs go to `runs/rerun/`, so the original records are untouched. On the origi
   [RQ3 within E segments (addendum)](docs/addendum_2026-10-29_rq3_within_E.md) ·
   [response key published](docs/deviation_2026-10-29_response_key_published.md)
 - **Decisions and calibration:** [`docs/decision_log.md`](docs/decision_log.md), [`docs/calibration_record.md`](docs/calibration_record.md).
-- **Quote audit:** [`docs/quote_audit_main.md`](docs/quote_audit_main.md).
+- **Quote audit:** [`docs/quote_audit_main.md`](docs/quote_audit_main.md) (generated) and [`docs/quote_audit_main_review.md`](docs/quote_audit_main_review.md) (item-level review; no tier changed).
 
 ## Commands
 
@@ -109,7 +109,7 @@ Outputs go to `runs/rerun/`, so the original records are untouched. On the origi
 
 ## Use of AI in this project
 
-The 48 segments were written by the first author directly in English, without AI or grammar tools. Claude (Anthropic) drafted the pipeline and analysis code and assisted with the analysis design; the author reviewed and ran all code, and made the design decisions recorded in the decision log. Claude drafted reference scores for the 12-response practice set, which the author reviewed item by item before saving (see the calibration record). The primary scores are the author's own; two items were discussed with Claude, as noted in the score file. The models under study were run locally through Ollama.
+The 48 segments were written by the first author directly in English, without AI or grammar tools. Claude (Anthropic) suggested the framework for the segments (design matrix, definitions of the layers of meaning, writing rules), which the author adopted; three demonstration segments drafted by Claude while the framework was discussed were not used in the study. Claude drafted the pipeline and analysis code and assisted with the analysis design; the author reviewed and ran all code, and made the design decisions recorded in the decision log. Claude drafted reference scores for the 12-response practice set, which the author reviewed item by item before saving (see the calibration record). The primary scores are the author's own; two items were discussed with Claude, as noted in the score file. The models under study were run locally through Ollama.
 
 ## People
 

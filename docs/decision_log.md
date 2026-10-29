@@ -25,3 +25,5 @@
 - Licences: code MIT; materials, data, model outputs and documentation CC BY 4.0.
 - The 48 segments were written by the author directly in English, without AI or grammar tools.
 - Added `python -m subtext verify` (reproduction level 1) and `python -m subtext audit-quotes` (read-only audit of absent quotes; no tier changed).
+- Absent-quote review: the 29 quotes classified absent were reviewed against the passages (judgements drafted by Claude, reviewed and adopted by XL); no tier changed. See docs/quote_audit_main_review.md.
+- Disclosure: Claude suggested the segment framework (design matrix, layer definitions, writing rules); the author wrote all 48 segments.
