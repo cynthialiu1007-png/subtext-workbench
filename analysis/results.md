@@ -1,6 +1,6 @@
 # Stage 1 analysis results
 
-Generated 2026-10-29T00:30:24+00:00 by `python -m subtext analyze`. Aggregates only. Primary scorer XL, stage pre-discussion. Response key opened: True.
+Generated 2026-10-29T06:37:45+00:00 by `python -m subtext analyze`. Aggregates only. Primary scorer XL, stage pre-discussion. Response key opened: True.
 
 ## Instability (all five runs)
 
@@ -46,6 +46,62 @@ Generated 2026-10-29T00:30:24+00:00 by `python -m subtext analyze`. Aggregates o
 | pooled | 48 | 0.146 | 0.354 | 0.500 | 0.000 | 48 | 0.000 | 0.354 | 1.953 | 0 |
 | qwen3:8b | 24 | 0.125 | 0.333 | 0.458 | 0.000 | 24 | 0.000 | 0.333 | 1.641 | 0 |
 | qwen3:14b | 24 | 0.167 | 0.375 | 0.542 | 0.000 | 24 | 0.000 | 0.375 | 1.748 | 0 |
+
+Excluding the three medium-confidence segments:
+
+| target | n E | strict | lenient | mean score | misread | n C | over-interp. |
+|---|---|---|---|---|---|---|---|
+| pooled | 42 | 0.167 | 0.333 | 0.500 | 0.000 | 48 | 0.000 |
+| qwen3:8b | 21 | 0.143 | 0.286 | 0.429 | 0.000 | 24 | 0.000 |
+| qwen3:14b | 21 | 0.190 | 0.381 | 0.571 | 0.000 | 24 | 0.000 |
+
+### By layer
+
+| target · layer | n E | strict | lenient | mean score | misread | n C | over-interp. |
+|---|---|---|---|---|---|---|---|
+| pooled · A | 12 | 0.167 | 0.250 | 0.417 | 0.000 | 12 | 0.000 |
+| pooled · B | 12 | 0.167 | 0.333 | 0.500 | 0.000 | 12 | 0.000 |
+| pooled · C | 12 | 0.000 | 0.167 | 0.167 | 0.000 | 12 | 0.000 |
+| pooled · D | 12 | 0.250 | 0.667 | 0.917 | 0.000 | 12 | 0.000 |
+| qwen3:8b · A | 6 | 0.167 | 0.333 | 0.500 | 0.000 | 6 | 0.000 |
+| qwen3:8b · B | 6 | 0.167 | 0.333 | 0.500 | 0.000 | 6 | 0.000 |
+| qwen3:8b · C | 6 | 0.000 | 0.167 | 0.167 | 0.000 | 6 | 0.000 |
+| qwen3:8b · D | 6 | 0.167 | 0.500 | 0.667 | 0.000 | 6 | 0.000 |
+| qwen3:14b · A | 6 | 0.167 | 0.167 | 0.333 | 0.000 | 6 | 0.000 |
+| qwen3:14b · B | 6 | 0.167 | 0.333 | 0.500 | 0.000 | 6 | 0.000 |
+| qwen3:14b · C | 6 | 0.000 | 0.167 | 0.167 | 0.000 | 6 | 0.000 |
+| qwen3:14b · D | 6 | 0.333 | 0.833 | 1.167 | 0.000 | 6 | 0.000 |
+
+### By level
+
+| target · level | n E | strict | lenient | mean score | misread | n C | over-interp. |
+|---|---|---|---|---|---|---|---|
+| pooled · L1 | 16 | 0.250 | 0.562 | 0.812 | 0.000 | 16 | 0.000 |
+| pooled · L2 | 16 | 0.125 | 0.250 | 0.375 | 0.000 | 16 | 0.000 |
+| pooled · L3 | 16 | 0.062 | 0.250 | 0.312 | 0.000 | 16 | 0.000 |
+| qwen3:8b · L1 | 8 | 0.250 | 0.500 | 0.750 | 0.000 | 8 | 0.000 |
+| qwen3:8b · L2 | 8 | 0.125 | 0.125 | 0.250 | 0.000 | 8 | 0.000 |
+| qwen3:8b · L3 | 8 | 0.000 | 0.375 | 0.375 | 0.000 | 8 | 0.000 |
+| qwen3:14b · L1 | 8 | 0.250 | 0.625 | 0.875 | 0.000 | 8 | 0.000 |
+| qwen3:14b · L2 | 8 | 0.125 | 0.375 | 0.500 | 0.000 | 8 | 0.000 |
+| qwen3:14b · L3 | 8 | 0.125 | 0.125 | 0.250 | 0.000 | 8 | 0.000 |
+
+### Shortcut check (rubric Section 8)
+
+| target | group | n | strict | lenient | misread | over-interp. |
+|---|---|---|---|---|---|---|
+| pooled | E_intended_negative | 34 | 0.206 | 0.353 | 0.000 | – |
+| pooled | E_intended_positive_or_mixed | 14 | 0.000 | 0.357 | 0.000 | – |
+| pooled | C_surface_negative | 6 | – | – | – | 0.000 |
+| pooled | C_surface_not_negative | 42 | – | – | – | 0.000 |
+| qwen3:8b | E_intended_negative | 17 | 0.176 | 0.294 | 0.000 | – |
+| qwen3:8b | E_intended_positive_or_mixed | 7 | 0.000 | 0.429 | 0.000 | – |
+| qwen3:8b | C_surface_negative | 3 | – | – | – | 0.000 |
+| qwen3:8b | C_surface_not_negative | 21 | – | – | – | 0.000 |
+| qwen3:14b | E_intended_negative | 17 | 0.235 | 0.412 | 0.000 | – |
+| qwen3:14b | E_intended_positive_or_mixed | 7 | 0.000 | 0.286 | 0.000 | – |
+| qwen3:14b | C_surface_negative | 3 | – | – | – | 0.000 |
+| qwen3:14b | C_surface_not_negative | 21 | – | – | – | 0.000 |
 
 ## RQ1a: interpretive error, E vs C (McNemar, exact)
 
