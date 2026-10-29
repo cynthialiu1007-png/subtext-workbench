@@ -93,6 +93,8 @@ Outputs go to `runs/rerun/`, so the original records are untouched. On the origi
 
 ## Workbench prototype
 
+Live page: https://cynthialiu1007-png.github.io/subtext-workbench/workbench/
+
 [`docs/workbench/index.html`](docs/workbench/index.html) is a single self-contained page (no installation, no network access) built from the repository files by `python -m subtext build-demo`. Open it in any browser; when the repository is public it is also served through GitHub Pages.
 
 - **Replay** sends one interview passage to the two models and shows the recorded readings returning in the order and with the latency of the original runs (30 times faster), the quoted evidence lighting up on the passage, the instability signals, and then the answer key and blind scores. The page calls no model: every reading is a recorded output from `runs/main/`.

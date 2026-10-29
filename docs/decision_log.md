@@ -28,3 +28,4 @@
 - Absent-quote review: the 29 quotes classified absent were reviewed against the passages (judgements drafted by Claude, reviewed and adopted by XL); no tier changed. See docs/quote_audit_main_review.md.
 - Disclosure: Claude suggested the segment framework (design matrix, layer definitions, writing rules); the author wrote all 48 segments.
 - Workbench prototype: one self-contained HTML page (docs/workbench/index.html) built from repository files by `python -m subtext build-demo`; replay of recorded outputs only (no model calls), latency shown 30 times faster; answer key hidden by default; replay examples C-L3-01-E and C-L1-02-E, chosen to illustrate, not as typical cases.
+- Repository made public on 2026-10-29, before submission; GitHub Pages serves docs/ (workbench at docs/workbench/).
