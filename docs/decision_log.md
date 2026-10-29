@@ -18,3 +18,10 @@
 - Embeddings: nomic-embed-text via Ollama; the interpretation field is prefixed with "clustering: " (the model's task prefix for grouping texts and detecting semantic duplicates). Embeddings are computed once and cached in analysis/embeddings.jsonl.
 - Conventions: X treated as missing and reported; McNemar exact (binomial); Wilcoxon signed-rank with zero differences dropped; effect sizes median paired difference and matched-pairs rank-biserial r; AUC oriented so that higher values mean higher error risk (mean confidence reversed); pooled bootstrap resamples segments as clusters; calibration uses run-1 confidence; confidence SD is the sample SD; d' from lenient read rate and over-interpretation rate with the log-linear correction; excluding the medium-confidence segments drops the whole pair in paired analyses and the E segment elsewhere; kappa on E unweighted (F/P/N/M/X) and linearly weighted on read score for items neither scorer coded X, on C unweighted (A/O/X) with raw agreement.
 - Analysis dependencies: numpy 2.5.4, scipy 1.18.1, matplotlib 3.11.2 (each released at least two weeks earlier, with Python 3.14 wheels).
+
+## 2026-10-29 Repository for the Stage 1 submission
+- The repository is made public at submission, with author names (no anonymisation), and archived with a DOI.
+- The response key is published with the submission: docs/deviation_2026-10-29_response_key_published.md.
+- Licences: code MIT; materials, data, model outputs and documentation CC BY 4.0.
+- The 48 segments were written by the author directly in English, without AI or grammar tools.
+- Added `python -m subtext verify` (reproduction level 1) and `python -m subtext audit-quotes` (read-only audit of absent quotes; no tier changed).

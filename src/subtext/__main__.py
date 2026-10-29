@@ -2,6 +2,7 @@
 import argparse
 import json
 import sys
+from pathlib import Path
 
 
 def main(argv=None):
@@ -37,6 +38,11 @@ def main(argv=None):
     p.add_argument("--config", default="config/analysis.yaml")
     p.add_argument("--deviation", help="committed deviation record allowing the key to be read "
                                        "before second scoring is complete")
+    p = sub.add_parser("audit-quotes", help="read-only audit of quotes classified as absent")
+    p.add_argument("--phase", default="main")
+    p.add_argument("--out", help="also write the Markdown report to this file")
+    p = sub.add_parser("verify", help="reproduction level 1: verify hashes, run records and Git timeline")
+    p.add_argument("--timeline-out", help="write the audit timeline as Markdown (e.g. docs/audit_timeline.md)")
     a = ap.parse_args(argv)
 
     if a.cmd == "prepare":
@@ -71,6 +77,15 @@ def main(argv=None):
     elif a.cmd == "embed":
         from .embed import run_embed
         print(json.dumps(run_embed(a.config, a.force), indent=2))
+    elif a.cmd == "audit-quotes":
+        from .audit_quotes import audit, to_markdown
+        md = to_markdown(audit(a.phase), a.phase)
+        print(md)
+        if a.out:
+            Path(a.out).write_text(md, encoding="utf-8")
+    elif a.cmd == "verify":
+        from .verify import run_verify
+        sys.exit(0 if run_verify(a.timeline_out) else 1)
     elif a.cmd == "analyze":
         from .analysis import run_analysis
         print(json.dumps(run_analysis(a.config, a.deviation), indent=2))

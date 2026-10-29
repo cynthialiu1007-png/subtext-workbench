@@ -56,11 +56,19 @@ def sha_file(p) -> str:
 
 
 def git(*args) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], capture_output=True, text=True)
+    try:
+        return subprocess.run(["git", *args], capture_output=True, text=True)
+    except FileNotFoundError:
+        return subprocess.CompletedProcess(args, 127, "", "git not found")
 
 
 def committed(path: str) -> str | None:
-    """Commit hash of the last commit touching `path`, if it is tracked and unchanged; else None."""
+    """Commit hash of the last commit touching `path`, if it is tracked and unchanged; else None.
+
+    Outside a Git repository (e.g. an archived release) the commit cannot be checked; the file
+    must still exist, and the manifest records that the check was not possible."""
+    if git("rev-parse", "--is-inside-work-tree").returncode != 0:
+        return "unverified: not a Git repository" if Path(path).exists() else None
     if git("ls-files", "--error-unmatch", path).returncode != 0:
         return None
     if git("diff", "--quiet", "HEAD", "--", path).returncode != 0:
@@ -528,6 +536,29 @@ def tables_md(R: dict, models: list) -> str:
     L += ["", "## Rubric Section 8 metrics (run 1)", ""] + head + [rub_rows("pooled", R["rubric_pooled"])]
     for m, t in (R.get("rubric_by_model") or {}).items():
         L.append(rub_rows(m, t))
+    targets = {"pooled": R["rubric_pooled"], **(R.get("rubric_by_model") or {})}
+
+    def short_row(name, o):
+        return (f"| {name} | {o['n_E']} | {f3(o.get('strict_read_rate'))} | {f3(o.get('lenient_read_rate'))} | "
+                f"{f3(o.get('mean_read_score'))} | {f3(o.get('misread_rate'))} | {o['n_C']} | "
+                f"{f3(o.get('over_interpretation_rate'))} |")
+    sub_head = ["| {} | n E | strict | lenient | mean score | misread | n C | over-interp. |",
+                "|---|---|---|---|---|---|---|---|"]
+    L += ["", "Excluding the three medium-confidence segments:", "", sub_head[0].format("target"), sub_head[1]]
+    for name, t in targets.items():
+        L.append(short_row(name, t["excluding_medium_confidence"]["overall"]))
+    for grp, keys, title in [("by_layer", LAYERS, "layer"), ("by_level", LEVELS, "level")]:
+        L += ["", f"### By {title}", "", sub_head[0].format(f"target · {title}"), sub_head[1]]
+        for name, t in targets.items():
+            for k in keys:
+                L.append(short_row(f"{name} · {k}", t["all_segments"][grp][k]))
+    L += ["", "### Shortcut check (rubric Section 8)", "",
+          "| target | group | n | strict | lenient | misread | over-interp. |", "|---|---|---|---|---|---|---|"]
+    for name, t in targets.items():
+        for g, o in t["shortcut_check"].items():
+            n = o["n_E"] if g.startswith("E_") else o["n_C"]
+            L.append(f"| {name} | {g} | {n} | {f3(o.get('strict_read_rate'))} | {f3(o.get('lenient_read_rate'))} | "
+                     f"{f3(o.get('misread_rate'))} | {f3(o.get('over_interpretation_rate'))} |")
     if "rq1_error" in R:
         L += ["", "## RQ1a: interpretive error, E vs C (McNemar, exact)", "",
               "| variant | model | pairs | error E | error C | diff [CI] | E only | C only | p |",
