@@ -131,4 +131,4 @@ Xiaoran Hu (London School of Economics): second scorer (XH), pending.
 
 ## Licence and citation
 
-Code: MIT ([`LICENSE`](LICENSE)). Materials, data, model outputs and documentation: CC BY 4.0 ([`LICENSE-DATA.md`](LICENSE-DATA.md)). An archived release with a DOI will be listed here.
+Code: MIT ([`LICENSE`](LICENSE)). Materials, data, model outputs and documentation: CC BY 4.0 ([`LICENSE-DATA.md`](LICENSE-DATA.md)). Archived release (v1.0-stage1): https://doi.org/10.5281/zenodo.23815240
