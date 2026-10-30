@@ -1,6 +1,6 @@
 # Subtext Workbench — Stage 1
 
-Research artifact for a Stage 1 submission to the *Organization Science* special issue **AI-Assisted Frontiers in Organizational Science**.
+Research artifact for a Stage 1 submission to the *Organization Science* special issue **AI-Enabled Frontiers in Organizational Science**.
 
 **Question.** Much of what matters in organizations is said obliquely: displayed feelings that differ from felt ones, praise that is not meant, laughter at a superior's joke, silence about power. When large language models (LLMs) read such talk, where can their reading be trusted and where does it fail? The project's aim is to test whether systematic human–LLM interpretive divergence can serve as a validated signal for locating emotional subtext in organizational discourse, and to map where AI-assisted qualitative inference holds and where it fails.
 
